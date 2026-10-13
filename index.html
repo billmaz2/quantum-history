@@ -6,36 +6,29 @@
   <title>Index · Library of Papers</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       background: #f4f2ee;
       font-family: 'Georgia', 'Times New Roman', serif;
       color: #1c1c1c;
       line-height: 1.6;
       padding: 3rem 1.5rem;
-      min-height: 100vh;
     }
-
     .container {
       max-width: 960px;
       margin: 0 auto;
-      background: #ffffff;
+      background: #fff;
       padding: 3rem 2.8rem;
       border-radius: 6px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
       border: 1px solid #ddd8d0;
     }
-
     h1 {
       font-size: 2rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
       border-bottom: 3px solid #1c1c1c;
       padding-bottom: 0.7rem;
       margin-bottom: 0.4rem;
-      line-height: 1.2;
     }
-
     .subtitle {
       font-size: 1rem;
       font-style: italic;
@@ -44,7 +37,6 @@
       border-left: 4px solid #a89e8f;
       padding-left: 1.2rem;
     }
-
     .status {
       font-size: 0.88rem;
       color: #5a5a5a;
@@ -54,31 +46,13 @@
       background: #f8f6f2;
       border-left: 4px solid #b0a494;
       border-radius: 0 4px 4px 0;
+      white-space: pre-wrap;
+      word-break: break-word;
     }
-
-    .status.error {
-      background: #fdf0ee;
-      border-left-color: #c0705a;
-      color: #7a2e1a;
-    }
-
-    .status.success {
-      background: #f0f7f0;
-      border-left-color: #6a9a6a;
-      color: #2e5a2e;
-    }
-
-    ul.paper-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      border-top: 1px solid #e8e2d9;
-    }
-
-    ul.paper-list li {
-      border-bottom: 1px solid #e8e2d9;
-    }
-
+    .status.error { background: #fdf0ee; border-left-color: #c0705a; color: #7a2e1a; }
+    .status.success { background: #f0f7f0; border-left-color: #6a9a6a; color: #2e5a2e; }
+    ul.paper-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid #e8e2d9; }
+    ul.paper-list li { border-bottom: 1px solid #e8e2d9; }
     ul.paper-list li a {
       display: flex;
       align-items: baseline;
@@ -88,23 +62,14 @@
       text-decoration: none;
       color: #1c1c1c;
       border-left: 4px solid transparent;
-      transition: background 0.15s ease, border-color 0.15s ease, padding-left 0.15s ease;
+      transition: background 0.15s, border-color 0.15s, padding-left 0.15s;
     }
-
     ul.paper-list li a:hover {
       background: #f8f6f2;
       border-left-color: #7a6e5e;
       padding-left: 1.5rem;
     }
-
-    ul.paper-list li a .paper-title {
-      font-size: 1.08rem;
-      font-weight: 600;
-      color: #1c1c1c;
-      flex: 1;
-      line-height: 1.45;
-    }
-
+    ul.paper-list li a .paper-title { font-size: 1.08rem; font-weight: 600; flex: 1; }
     ul.paper-list li a .paper-file {
       font-size: 0.8rem;
       font-family: 'Courier New', monospace;
@@ -113,14 +78,7 @@
       padding: 0.2rem 0.6rem;
       border-radius: 12px;
       white-space: nowrap;
-      flex-shrink: 0;
     }
-
-    ul.paper-list li a:hover .paper-file {
-      background: #e8e2d8;
-      color: #5a4e3e;
-    }
-
     .footer-note {
       margin-top: 2.8rem;
       padding-top: 1.4rem;
@@ -130,258 +88,219 @@
       text-align: center;
       font-style: italic;
     }
-
-    @media (max-width: 600px) {
-      body { padding: 1.5rem 0.8rem; }
-      .container { padding: 1.8rem 1.2rem; }
-      h1 { font-size: 1.5rem; }
-      ul.paper-list li a {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.4rem;
-      }
-    }
+    code { background: #f2eee8; padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.9em; }
   </style>
 </head>
 <body>
 
 <div class="container">
   <h1>Index</h1>
-  <div class="subtitle">Every HTML paper in this repository — click a title to open it</div>
-
-  <div id="status" class="status">Scanning repository…</div>
-
+  <div class="subtitle">Every HTML paper in this repository</div>
+  <div id="status" class="status">Initializing…</div>
   <ul id="paper-list" class="paper-list"></ul>
-
-  <div class="footer-note">
-    Auto-generated from repository contents · Reload to refresh after pushing new files
-  </div>
+  <div class="footer-note">Auto-generated from repository contents</div>
 </div>
 
 <script>
-  (async function () {
-    const statusEl = document.getElementById('status');
-    const listEl = document.getElementById('paper-list');
-    const SELF = 'index.html';
+(async function () {
+  const statusEl = document.getElementById('status');
+  const listEl   = document.getElementById('paper-list');
+  const SELF     = 'index.html';
 
-    // ---------------------------------------------------------------
-    // Step 1: Figure out the GitHub repo and folder path from the URL.
-    // Expected URL shape: https://USER.github.io/REPO/[SUBFOLDER/...]/
-    // ---------------------------------------------------------------
-    const host = window.location.hostname;                 // e.g. user.github.io
-    const pathParts = window.location.pathname
-      .split('/')
-      .filter(Boolean);                                    // e.g. ['repo', 'sub']
+  const log = (...a) => console.log('[index]', ...a);
 
-    // If hosted on *.github.io, the first path segment is the repo.
-    // If hosted at a custom domain, the repo can't be inferred — we
-    // fall back to the GitHub API's "self" listing via the same origin.
-    let owner = null;
-    let repo  = null;
-    let folderPath = '';
+  // ---------------------------------------------------------------
+  // 1. Work out owner / repo / folder path from the URL
+  // ---------------------------------------------------------------
+  const host = window.location.hostname;
+  const pathParts = window.location.pathname.split('/').filter(Boolean);
 
-    if (host.endsWith('.github.io')) {
-      owner = host.replace('.github.io', '');
-      repo  = pathParts.shift() || '';                     // remove repo
-      folderPath = pathParts.join('/');
-    } else {
-      // Custom domain — we can't know owner/repo. Use GitHub's
-      // "contents" endpoint relative to the current origin by way of
-      // the Referer or a small prompt. Simplest: try to read the
-      // repo from a `<meta>` tag or a data-attribute if present.
-      const metaRepo = document.querySelector('meta[name="github-repo"]');
-      const metaOwner = document.querySelector('meta[name="github-owner"]');
-      if (metaRepo && metaOwner) {
-        owner = metaOwner.content;
-        repo = metaRepo.content;
-        folderPath = pathParts.join('/');
-      }
-    }
+  log('hostname:', host);
+  log('pathname:', window.location.pathname);
+  log('pathParts:', pathParts);
 
-    // ---------------------------------------------------------------
-    // Step 2: Fetch the directory listing.
-    //   • On GitHub Pages: use the GitHub REST API.
-    //   • On a local static server: use the directory index HTML.
-    // ---------------------------------------------------------------
-    let files = [];
+  let owner = null, repo = null, folderPath = '';
+
+  // Allow <meta> override (useful for custom domains)
+  const metaOwner = document.querySelector('meta[name="github-owner"]');
+  const metaRepo  = document.querySelector('meta[name="github-repo"]');
+
+  if (metaOwner && metaRepo) {
+    owner = metaOwner.content.trim();
+    repo  = metaRepo.content.trim();
+    folderPath = pathParts.join('/');
+    log('Using meta tags for owner/repo');
+  } else if (host.endsWith('.github.io')) {
+    owner = host.replace(/\.github\.io$/, '');
+    repo  = pathParts.shift() || '';
+    folderPath = pathParts.join('/');
+    log('Parsed from .github.io URL');
+  }
+
+  log('owner:', owner, '| repo:', repo, '| folderPath:', JSON.stringify(folderPath));
+
+  if (!owner || !repo) {
+    statusEl.innerHTML =
+      '⚠ Could not determine GitHub owner/repo from URL.<br>' +
+      'Add these to the &lt;head&gt;:<br>' +
+      '<code>&lt;meta name="github-owner" content="YOUR-USERNAME"&gt;</code><br>' +
+      '<code>&lt;meta name="github-repo" content="YOUR-REPO"&gt;</code>';
+    statusEl.className = 'status error';
+    return;
+  }
+
+  // ---------------------------------------------------------------
+  // 2. Fetch the directory listing from the GitHub API
+  // ---------------------------------------------------------------
+  // Try the exact folder path first; if that fails, try the repo root.
+  const candidates = [];
+  if (folderPath) candidates.push(folderPath);
+  candidates.push(''); // repo root as fallback
+
+  let items = null;
+  let usedPath = null;
+
+  for (const path of candidates) {
+    const api =
+      'https://api.github.com/repos/' +
+      encodeURIComponent(owner) + '/' +
+      encodeURIComponent(repo) + '/contents/' +
+      path.split('/').filter(Boolean).map(encodeURIComponent).join('/');
+
+    log('Fetching:', api);
+    statusEl.textContent = 'Fetching ' + api;
 
     try {
-      if (owner && repo) {
-        files = await listFromGitHubAPI(owner, repo, folderPath);
-      } else {
-        files = await listFromDirectoryIndex();
-      }
-    } catch (err) {
-      statusEl.innerHTML =
-        '⚠ Could not list the folder. ' +
-        'If you are viewing this from a custom domain, add ' +
-        '<code>&lt;meta name="github-owner" content="USER"&gt;</code> and ' +
-        '<code>&lt;meta name="github-repo" content="REPO"&gt;</code> ' +
-        'to the &lt;head&gt;. Error: ' + escapeHtml(err.message || String(err));
-      statusEl.className = 'status error';
-      return;
-    }
-
-    // Filter to .html files, exclude index.html
-    files = files.filter(f =>
-      f.name.toLowerCase().endsWith('.html') &&
-      f.name.toLowerCase() !== SELF
-    );
-
-    if (files.length === 0) {
-      statusEl.textContent = 'No HTML files found in this folder (besides index.html).';
-      statusEl.className = 'status error';
-      return;
-    }
-
-    files.sort((a, b) => a.name.localeCompare(b.name));
-
-    statusEl.textContent = `Found ${files.length} file${files.length === 1 ? '' : 's'}. Reading titles…`;
-    statusEl.className = 'status';
-
-    // ---------------------------------------------------------------
-    // Step 3: For each file, fetch its content and extract <title>.
-    // ---------------------------------------------------------------
-    const papers = await Promise.all(files.map(async (f) => {
-      try {
-        // Prefer the raw download_url (GitHub API) or the href (local)
-        const url = f.download_url || f.href;
-        const resp = await fetch(url, { cache: 'no-store' });
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        const html = await resp.text();
-
-        const match = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
-        let title = match ? decodeEntities(match[1].trim()) : '';
-
-        if (!title) {
-          title = f.name
-            .replace(/\.html?$/i, '')
-            .replace(/[-_]+/g, ' ')
-            .replace(/\s+/g, ' ')
-            .trim()
-            .replace(/\b\w/g, c => c.toUpperCase());
-        }
-
-        return { name: f.name, title, url: f.html_url || f.href };
-      } catch (err) {
-        return {
-          name: f.name,
-          title: f.name.replace(/\.html?$/i, '').replace(/[-_]+/g, ' '),
-          url: f.html_url || f.href
-        };
-      }
-    }));
-
-    // ---------------------------------------------------------------
-    // Step 4: Render the list.
-    // ---------------------------------------------------------------
-    listEl.innerHTML = '';
-
-    papers.forEach(({ name, title, url }) => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      // Use the relative URL so clicks stay on the Pages site
-      a.href = name;
-      a.rel = 'noopener';
-
-      const titleSpan = document.createElement('span');
-      titleSpan.className = 'paper-title';
-      titleSpan.textContent = title;
-
-      const fileSpan = document.createElement('span');
-      fileSpan.className = 'paper-file';
-      fileSpan.textContent = name;
-
-      a.appendChild(titleSpan);
-      a.appendChild(fileSpan);
-      li.appendChild(a);
-      listEl.appendChild(li);
-    });
-
-    statusEl.textContent =
-      `✓ ${papers.length} paper${papers.length === 1 ? '' : 's'} listed. ` +
-      `Click any title to open it.`;
-    statusEl.className = 'status success';
-
-    // ---------------------------------------------------------------
-    // Helper: list files from GitHub REST API
-    // ---------------------------------------------------------------
-    async function listFromGitHubAPI(owner, repo, path) {
-      const api =
-        `https://api.github.com/repos/${encodeURIComponent(owner)}/` +
-        `${encodeURIComponent(repo)}/contents/` +
-        path.split('/').map(encodeURIComponent).join('/');
-
       const resp = await fetch(api, {
         headers: { 'Accept': 'application/vnd.github+json' }
       });
 
+      log('  → HTTP', resp.status);
+
       if (!resp.ok) {
-        throw new Error('GitHub API returned HTTP ' + resp.status);
+        log('  → skipping (HTTP ' + resp.status + ')');
+        continue;
       }
 
       const data = await resp.json();
       if (!Array.isArray(data)) {
-        throw new Error('Expected a directory listing, got something else.');
+        log('  → not an array, skipping');
+        continue;
       }
 
-      // Only files (not subdirectories) with a download_url
-      return data
-        .filter(item => item.type === 'file')
-        .map(item => ({
-          name: item.name,
-          download_url: item.download_url,
-          html_url: item.html_url
-        }));
-    }
+      log('  → got ' + data.length + ' entries:',
+          data.map(d => d.name + ' (' + d.type + ')'));
 
-    // ---------------------------------------------------------------
-    // Helper: list files from a plain directory index (local server)
-    // ---------------------------------------------------------------
-    async function listFromDirectoryIndex() {
-      const resp = await fetch('./', { cache: 'no-store' });
+      items = data;
+      usedPath = path;
+      break;
+    } catch (err) {
+      log('  → fetch error:', err.message);
+    }
+  }
+
+  if (!items) {
+    statusEl.innerHTML =
+      '⚠ Could not list files from GitHub API.<br>' +
+      'Check the console (F12) for details.<br>' +
+      'Repo: <code>' + owner + '/' + repo + '</code>';
+    statusEl.className = 'status error';
+    return;
+  }
+
+  log('Using path:', JSON.stringify(usedPath));
+
+  // ---------------------------------------------------------------
+  // 3. Keep only HTML files, exclude index.html
+  // ---------------------------------------------------------------
+  const htmlFiles = items.filter(item =>
+    item.type === 'file' &&
+    /\.html?$/i.test(item.name) &&
+    item.name.toLowerCase() !== SELF
+  );
+
+  log('HTML files after filter:', htmlFiles.map(f => f.name));
+
+  if (htmlFiles.length === 0) {
+    statusEl.innerHTML =
+      'No HTML files found at path <code>' +
+      (usedPath || '/') + '</code>.<br>' +
+      'Files present: ' +
+      (items.map(i => i.name).join(', ') || '(none)') + '<br>' +
+      'Looking for files ending in <code>.html</code> or <code>.htm</code>, ' +
+      'excluding <code>index.html</code>.';
+    statusEl.className = 'status error';
+    return;
+  }
+
+  htmlFiles.sort((a, b) => a.name.localeCompare(b.name));
+
+  // ---------------------------------------------------------------
+  // 4. Fetch each HTML file and read its <title>
+  // ---------------------------------------------------------------
+  statusEl.textContent = 'Reading titles…';
+  statusEl.className = 'status';
+
+  const papers = await Promise.all(htmlFiles.map(async (f) => {
+    // Prefer the raw download_url (served from raw.githubusercontent.com)
+    const url = f.download_url || f.html_url;
+    log('Fetching title from:', url);
+    try {
+      const resp = await fetch(url, { cache: 'no-store' });
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
-
-      const text = await resp.text();
-      const doc = new DOMParser().parseFromString(text, 'text/html');
-      const found = [];
-
-      doc.querySelectorAll('a[href]').forEach(a => {
-        let href = a.getAttribute('href');
-        if (!href) return;
-        href = href.split('?')[0].split('#')[0];
-        if (href.includes('://')) return;
-        if (href.startsWith('/')) return;
-        if (href.includes('/')) return;
-        if (!href.toLowerCase().endsWith('.html')) return;
-        found.push({ name: href, href: href });
-      });
-
-      // Remove duplicates
-      const seen = new Set();
-      return found.filter(f => {
-        if (seen.has(f.name)) return false;
-        seen.add(f.name);
-        return true;
-      });
+      const html = await resp.text();
+      const match = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+      let title = match ? decodeEntities(match[1].trim()) : '';
+      if (!title) {
+        title = f.name.replace(/\.html?$/i, '').replace(/[-_]+/g, ' ')
+                 .replace(/\b\w/g, c => c.toUpperCase());
+      }
+      return { name: f.name, title };
+    } catch (err) {
+      log('  → error reading title:', err.message);
+      return {
+        name: f.name,
+        title: f.name.replace(/\.html?$/i, '').replace(/[-_]+/g, ' ')
+      };
     }
+  }));
 
-    // ---------------------------------------------------------------
-    // Helper: decode HTML entities in titles (&amp; → &, etc.)
-    // ---------------------------------------------------------------
-    function decodeEntities(str) {
-      const txt = document.createElement('textarea');
-      txt.innerHTML = str;
-      return txt.value;
-    }
+  // ---------------------------------------------------------------
+  // 5. Render
+  // ---------------------------------------------------------------
+  listEl.innerHTML = '';
+  papers.forEach(({ name, title }) => {
+    const li = document.createElement('li');
+    const a  = document.createElement('a');
+    a.href = name;   // relative link → stays on the Pages site
+    a.rel  = 'noopener';
 
-    function escapeHtml(s) {
-      return s.replace(/[&<>"']/g, c => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;',
-        '"': '&quot;', "'": '&#39;'
-      }[c]));
-    }
-  })();
+    const t = document.createElement('span');
+    t.className = 'paper-title';
+    t.textContent = title;
+
+    const f = document.createElement('span');
+    f.className = 'paper-file';
+    f.textContent = name;
+
+    a.appendChild(t);
+    a.appendChild(f);
+    li.appendChild(a);
+    listEl.appendChild(li);
+  });
+
+  statusEl.textContent =
+    '✓ ' + papers.length + ' paper' + (papers.length === 1 ? '' : 's') +
+    ' listed (from path "' + (usedPath || '/') + '").';
+  statusEl.className = 'status success';
+
+  // ---------------------------------------------------------------
+  function decodeEntities(str) {
+    const t = document.createElement('textarea');
+    t.innerHTML = str;
+    return t.value;
+  }
+})();
 </script>
 
 </body>
