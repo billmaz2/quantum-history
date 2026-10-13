@@ -268,8 +268,8 @@
   }));
 
   // ---------------------------------------------------------------
-  // 5. Render — links open in a new page (new tab or new window,
-  //    depending on the user's browser settings)
+  // 5. Render — force each link to open in a NEW PAGE
+  //    using an explicit window.open() call on click.
   // ---------------------------------------------------------------
   listEl.innerHTML = '';
 
@@ -277,9 +277,48 @@
     const li = document.createElement('li');
     const a  = document.createElement('a');
 
-    a.href   = name;                   // the URL the link points to
-    a.target = '_blank';               // ← opens in a new page
-    a.rel    = 'noopener noreferrer';  // security best practice
+    // Fallback href for right-click → Copy link, middle-click, etc.
+    a.href   = name;
+    a.target = '_blank';
+    a.rel    = 'noopener noreferrer';
+
+    // Force the browser to open a new page on left-click.
+    // This bypasses any setting that turns target="_blank" into
+    // same-tab navigation.
+    a.addEventListener('click', function (ev) {
+      // Only intercept plain left-clicks; let modified clicks
+      // (Ctrl/Cmd, middle button, Shift, etc.) behave naturally.
+      if (ev.button !== 0 || ev.ctrlKey || ev.metaKey ||
+          ev.shiftKey || ev.altKey) {
+        return;
+      }
+      ev.preventDefault();
+
+      // Feature string with a size → browser opens a real new page.
+      // No size → browser opens a new tab. Either way, it's a new page.
+      const features = [
+        'noopener',
+        'noreferrer',
+        'width=1100',
+        'height=850',
+        'left=' + Math.max(0, (window.screenX || 100) + 60),
+        'top='  + Math.max(0, (window.screenY || 100) + 60),
+        'resizable=yes',
+        'scrollbars=yes'
+      ].join(',');
+
+      // Unique window name per paper so re-clicking focuses that
+      // paper's existing window instead of opening a duplicate.
+      const winName = 'paper_' + name.replace(/[^a-zA-Z0-9]/g, '_');
+
+      const w = window.open(name, winName, features);
+      if (w) {
+        w.focus();
+      } else {
+        // Popup was blocked — fall back to normal navigation.
+        window.location.href = name;
+      }
+    });
 
     const t = document.createElement('span');
     t.className = 'paper-title';
