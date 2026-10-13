@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Serotonin: Metabolism, Neurons, Receptors &amp; Behaviour — An Annotated History</title>
+<style>
+  :root{
+    --ink:#1c1a17; --paper:#f6f1e4; --card:#fffdf6; --accent:#6b4f9e;
+    --accent2:#a8552f; --line:#d8cfb8; --muted:#6f6a5e;
+    font-family: Georgia, 'Times New Roman', serif; color:var(--ink); background:var(--paper);
+  }
+  body{margin:0; padding:0; line-height:1.55;}
+  .wrap{max-width:980px; margin:0 auto; padding:24px 20px 80px;}
+  header{border-bottom:4px double var(--line); padding:26px 0 18px; text-align:center;}
+  header h1{font-size:2rem; margin:0 0 6px; letter-spacing:.5px;}
+  header h1 .chem{color:var(--accent2);}
+  header p.sub{font-style:italic; color:var(--muted); margin:4px 0 0; font-size:1.02rem;}
+  header p.meta{font-size:.85rem; color:var(--muted); margin-top:10px;}
+  h2{font-size:1.35rem; color:var(--accent); border-bottom:2px solid var(--line);
+     padding-bottom:6px; margin-top:44px; scroll-margin-top:16px;}
+  h3{font-size:1.08rem; margin-bottom:6px;}
+  nav.toc{background:var(--card); border:1px solid var(--line); padding:14px 20px; margin:22px 0; border-radius:4px; font-size:.95rem;}
+  nav.toc ol{margin:6px 0 0 20px; padding:0;}
+  nav.toc a{color:var(--accent2);}
+  section p{margin:10px 0;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media (max-width:760px){.two-col{grid-template-columns:1fr;}}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:14px 16px; margin:12px 0;}
+  .card.small{font-size:.93rem;}
+  .refs li{margin:11px 0; font-size:.92rem;}
+  .refs .au{font-weight:bold;}
+  table{border-collapse:collapse; width:100%; font-size:.88rem; background:var(--card); margin:12px 0;}
+  th,td{border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top;}
+  th{background:#efe8d5; color:#4a3f72;}
+  a{color:#7a3d9e;}
+  a.ext{font-weight:bold; text-decoration:none;}
+  sup.c a{color:var(--accent2); text-decoration:none; font-family:Verdana,sans-serif; font-size:.72rem;}
+  .hist li{margin:12px 0;}
+  .hist .yr{font-weight:bold; color:var(--accent2); font-family:Verdana,sans-serif; font-size:.82rem;}
+  svg text{font-family:Verdana,sans-serif;}
+  .foot{margin-top:56px; border-top:3px double var(--line); padding-top:14px; font-size:.82rem; color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Serotonin <span class="chem">(5-Hydroxytryptamine, 5-HT)</span></h1>
+  <p class="sub">Metabolism, Enzymes, Raphe Anatomy, Receptor Subtypes, Behaviour, and Lesion Studies — an annotated historical review</p>
+  <p class="meta">Classic neuroscience review page · Every citation is a real article, linked directly to its PubMed record or publisher DOI (opens in a new tab)</p>
+</header>
+
+<nav class="toc">
+  <strong>Contents</strong>
+  <ol>
+    <li><a href="#history">A brief history of serotonin research</a></li>
+    <li><a href="#metabolism">Metabolism &amp; the enzymes of the pathway</a></li>
+    <li><a href="#anatomy">Anatomy: the serotonergic raphe system</a></li>
+    <li><a href="#subtypes">Receptor subtypes and their behavioural correlates</a></li>
+    <li><a href="#lesions">Lesion and depletion studies</a></li>
+    <li><a href="#refs">References</a></li>
+  </ol>
+</nav>
+
+<!-- ============ HISTORY ============ -->
+<h2 id="history">1 · A brief history</h2>
+<ul class="hist">
+  <li><span class="yr">1930s–40s —</span> Vittorio Erspamer identifies an indole from gastric mucosa he calls <em>enteramine</em>; meanwhile Rapport, Green &amp; Page isolate the serum vasoconstrictor from platelets and name it <em>serotonin</em>. Rapport shows both are 5-hydroxytryptamine. <sup class="c"><a href="https://doi.org/10.1126/science.108.2804.329" target="_blank" rel="noopener">[1]</a></sup></li>
+  <li><span class="yr">1953 —</span> Twarog &amp; Page detect serotonin in mammalian brain — the start of central 5-HT neurochemistry. <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/13114371/" target="_blank" rel="noopener">[2]</a></sup></li>
+  <li><span class="yr">1957 —</span> Gaddum &amp; Picarelli distinguish two tryptamine receptors (the "M" and "D" receptors — forerunners of 5-HT<sub>3</sub> and 5-HT<sub>2</sub>), while imipramine (Kuhn, 1957) and iproniazid enter psychiatry as the first modern antidepressants, later shown to act on 5-HT transmission. <sup class="c"><a href="https://doi.org/10.1111/j.1476-5381.1957.tb00142.x" target="_blank" rel="noopener">[3]</a></sup></li>
+  <li><span class="yr">1964 —</span> Dahlström &amp; Fuxe map the central 5-HT neurons to the raphe nuclei (groups B1–B9) with the Falck–Hillarp histofluorescence technique. <sup class="c"><a href="#r4">[4]</a></sup></li>
+  <li><span class="yr">1966–70 —</span> Koe &amp; Weissman show p-chlorophenylalanine selectively depletes brain serotonin <sup class="c"><a href="#r5">[5]</a></sup>; Aghajanian and colleagues record the first single-unit activity of identified raphe serotonergic neurons <sup class="c"><a href="#r7">[7]</a></sup>; and tryptophan hydroxylase is purified and characterized as a BH4-dependent enzyme <sup class="c"><a href="#r6">[6]</a></sup>.</li>
+  <li><span class="yr">1974–75 —</span> Wong, Horng, Bymaster, Hauser &amp; Molloy at Eli Lilly report Lilly 110140 (fluoxetine), a new selective inhibitor of serotonin uptake into rat brain synaptosomes — the birth of the SSRI era. <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/4549929/" target="_blank" rel="noopener">[8]</a></sup></li>
+  <li><span class="yr">1979 —</span> Peroutka &amp; Snyder, with radioligand binding, demonstrate multiple serotonin receptors — the founding act of 5-HT receptor subtyping. <sup class="c"><a href="https://molpharm.aspetjournals.org/content/16/3/687" target="_blank" rel="noopener">[9]</a></sup></li>
+  <li><span class="yr">1988–91 —</span> The 5-HT<sub>1A</sub> receptor is cloned (the G-21 genomic clone) <sup class="c"><a href="https://www.nature.com/articles/335358a0" target="_blank" rel="noopener">[10]</a></sup>, and Maricq and colleagues clone and express the 5-HT<sub>3</sub> receptor, proving it is a ligand-gated ion channel. <sup class="c"><a href="https://doi.org/10.1126/science.1718042" target="_blank" rel="noopener">[11]</a></sup></li>
+  <li><span class="yr">1993–95 —</span> The molecular-genetic era: Brunner's MAO-A kindred with impulsive aggression <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/8211186/" target="_blank" rel="noopener">[12]</a></sup>, the 5-HT<sub>1B</sub> knockout mouse with elevated aggression <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/8091214/" target="_blank" rel="noopener">[13]</a></sup>, the 5-HT<sub>7</sub> receptor cloning <sup class="c"><a href="#r14">[14]</a></sup>, and the MAO-A knockout mouse <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/7569986/" target="_blank" rel="noopener">[15]</a></sup>.</li>
+  <li><span class="yr">1996–98 —</span> The 5-HTTLPR transporter polymorphism is linked to anxiety traits <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/8929413/" target="_blank" rel="noopener">[16]</a></sup>; the 5-HT<sub>1A</sub> knockout mouse is created as an anxiety model <sup class="c"><a href="https://doi.org/10.1073/pnas.95.25.14476" target="_blank" rel="noopener">[17]</a></sup>.</li>
+  <li><span class="yr">2002–05 —</span> Gene × environment: MAO-A genotype moderates the effect of maltreatment on antisocial behaviour <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/12161658/" target="_blank" rel="noopener">[18]</a></sup> and 5-HTTLPR moderates life-stress effects on depression <sup class="c"><a href="https://doi.org/10.1126/science.1083968" target="_blank" rel="noopener">[19]</a></sup>; a second, neuron-specific tryptophan hydroxylase (TPH2) is discovered <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/12511643/" target="_blank" rel="noopener">[20]</a></sup>, soon tied to major depression by a loss-of-function mutation <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/15629698/" target="_blank" rel="noopener">[21]</a></sup>.</li>
+</ul>
+
+<!-- ============ METABOLISM ============ -->
+<h2 id="metabolism">2 · Metabolism and the enzymes of the pathway</h2>
+<p>5-HT is synthesised from the essential amino acid <strong>L-tryptophan</strong> in just two steps, and inactivated by oxidative deamination and/or reuptake. The full pathway, including the melatonin branch in the pineal gland, is:</p>
+
+<svg viewBox="0 0 900 360" role="img" aria-label="Serotonin metabolic pathway diagram" style="width:100%; background:var(--card); border:1px solid var(--line); border-radius:6px;">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#6b4f9e"/>
+    </marker>
+  </defs>
+  <style>
+    .box{fill:#efe8d5; stroke:#b9a86e; rx:6;}
+    .enz{fill:#f3e6d9; stroke:#a8552f;}
+    .t{font-size:13px; fill:#1c1a17; font-weight:bold;}
+    .e{font-size:11px; fill:#7a3d1e;}
+    .ar{stroke:#6b4f9e; stroke-width:2; fill:none; marker-end:url(#arr);}
+  </style>
+  <rect class="box" x="30" y="40" width="130" height="46" rx="8"/><text class="t" x="95" y="59" text-anchor="middle">L-Tryptophan</text><text class="e" x="95" y="76" text-anchor="middle">plasma, diet</text>
+  <rect class="enz" x="30" y="120" width="130" height="40" rx="8"/><text class="t" x="95" y="145" text-anchor="middle" style="font-size:12px">TPH1 / TPH2</text>
+  <path class="ar" d="M95,86 L95,120"/>
+  <rect class="box" x="30" y="190" width="130" height="46" rx="8"/><text class="t" x="95" y="209" text-anchor="middle">5-HTP</text><text class="e" x="95" y="226" text-anchor="middle">5-hydroxytryptophan</text>
+  <path class="ar" d="M95,160 L95,190"/>
+  <rect class="enz" x="30" y="268" width="130" height="40" rx="8"/><text class="t" x="95" y="293" text-anchor="middle" style="font-size:12px">AADC (DDC)</text>
+  <path class="ar" d="M95,236 L95,268"/>
+  <rect class="box" x="230" y="262" width="150" height="56" rx="8"/><text class="t" x="305" y="284" text-anchor="middle">Serotonin (5-HT)</text><text class="e" x="305" y="301" text-anchor="middle">vesicular storage: VMAT2</text>
+  <path class="ar" d="M160,288 L230,290"/>
+  <!-- catabolism -->
+  <rect class="enz" x="430" y="196" width="150" height="40" rx="8"/><text class="t" x="505" y="221" text-anchor="middle" style="font-size:12px">MAO-A → ALDH</text>
+  <path class="ar" d="M380,278 C420,270 420,240 430,225"/>
+  <rect class="box" x="430" y="110" width="150" height="46" rx="8"/><text class="t" x="505" y="129" text-anchor="middle">5-HIAA</text><text class="e" x="505" y="146" text-anchor="middle">5-hydroxyindoleacetic acid</text>
+  <path class="ar" d="M505,196 L505,156"/>
+  <path class="ar" d="M580,133 L660,120"/>
+  <rect class="box" x="660" y="96" width="200" height="46" rx="8"/><text class="t" x="760" y="115" text-anchor="middle">Excretion (urine, CSF)</text><text class="e" x="760" y="132" text-anchor="middle">CSF 5-HIAA = turnover index</text>
+  <!-- pineal branch -->
+  <path class="ar" d="M305,262 C305,80 340,64 380,64"/>
+  <rect class="enz" x="380" y="44" width="150" height="40" rx="8"/><text class="t" x="455" y="69" text-anchor="middle" style="font-size:12px">AANAT → ASMT</text>
+  <rect class="box" x="580" y="44" width="150" height="46" rx="8"/><text class="t" x="655" y="63" text-anchor="middle">N-Acetyl-5-HT</text><text class="e" x="655" y="80" text-anchor="middle">pineal gland</text>
+  <path class="ar" d="M530,64 L580,66"/>
+  <path class="ar" d="M730,68 L800,80"/>
+  <rect class="box" x="800" y="60" width="80" height="46" rx="8"/><text class="t" x="840" y="79" text-anchor="middle">Melatonin</text><text class="e" x="840" y="96" text-anchor="middle">circadian</text>
+  <!-- reuptake -->
+  <path class="ar" d="M380,290 L430,290" style="stroke-dasharray:5,4"/>
+  <rect class="box" x="430" y="268" width="170" height="46" rx="8" style="fill:#e9e2f2; stroke:#6b4f9e"/>
+  <text class="t" x="515" y="287" text-anchor="middle" style="font-size:12px">SERT (SLC6A4)</text><text class="e" x="515" y="303" text-anchor="middle">reuptake target of SSRIs</text>
+  <text class="e" x="640" y="292">← clearance back into terminals</text>
+</svg>
+
+<h3>Enzymes</h3>
+<div class="two-col">
+  <div class="card">
+    <h3>Tryptophan hydroxylase (TPH1 &amp; TPH2)</h3>
+    <p class="small">The rate-limiting, BH4-dependent hydroxylation of tryptophan at C-5 <sup class="c"><a href="#r6">[6]</a></sup>. Walther and colleagues discovered a second, neuron-specific isoform: <strong>TPH2</strong> builds brain 5-HT, while <strong>TPH1</strong> builds the peripheral pool <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/12511643/" target="_blank" rel="noopener">[20]</a></sup>. A TPH2 loss-of-function mutation was identified in unipolar major depression <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/15629698/" target="_blank" rel="noopener">[21]</a></sup>.</p>
+  </div>
+  <div class="card">
+    <h3>Aromatic L-amino acid decarboxylase (AADC/DDC)</h3>
+    <p class="small">A pyridoxal-5′-phosphate-dependent enzyme that decarboxylates 5-HTP to 5-HT (and L-DOPA to dopamine); shared between indoleamine and catecholamine pathways and not rate-limiting. Inherited AADC deficiency causes a combined monoamine neurotransmitter disorder with hypotonia, oculogyric crises and autonomic dysfunction.</p>
+  </div>
+  <div class="card">
+    <h3>Monoamine oxidase A (MAO-A)</h3>
+    <p class="small">The principal catabolic enzyme: oxidative deamination of 5-HT to 5-hydroxyindoleacetaldehyde, then aldehyde dehydrogenase to <strong>5-HIAA</strong>. A nonsense MAO-A mutation in a Dutch kindred produced impulsive aggression (Brunner syndrome) <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/8211186/" target="_blank" rel="noopener">[12]</a></sup>; MAO-A knockout mice are similarly aggressive <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/7569986/" target="_blank" rel="noopener">[15]</a></sup>; and MAO-A genotype moderates the effects of childhood maltreatment on antisocial behaviour <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/12161658/" target="_blank" rel="noopener">[18]</a></sup>.</p>
+  </div>
+  <div class="card">
+    <h3>Pineal branch enzymes</h3>
+    <p class="small">5-HT is also the precursor of <strong>melatonin</strong>: AANAT (arylalkylamine N-acetyltransferase, the nocturnally norepinephrine-induced circadian gateway enzyme) and ASMT/HIOMT (N-acetylserotonin methyltransferase). This is why serotonin is the metabolic parent of the pineal sleep hormone.</p>
+  </div>
+</div>
+<p class="small" style="color:var(--muted)">Note: more than 90% of the body's 5-HT is peripheral (gut enterochromaffin cells; platelets take up but do not synthesize it); brain 5-HT is a separate, small pool synthesized in situ behind the blood–brain barrier — the TPH1/TPH2 division formalizes this <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/12511643/" target="_blank" rel="noopener">[20]</a></sup>.</p>
+
+<!-- ============ ANATOMY ============ -->
+<h2 id="anatomy">3 · Anatomy: the serotonergic raphe system</h2>
+<p>All forebrain serotonin arises from ~20,000–30,000 neurons clustered along the midline/paramedian brainstem — the <strong>raphe nuclei</strong>, divided by Dahlström &amp; Fuxe (1964) into cell groups <strong>B1–B9</strong> <sup class="c"><a href="#r4">[4]</a></sup>. The definitive modern neuroanatomical account is Jacobs &amp; Azmitia's <em>Physiological Reviews</em> monograph <sup class="c"><a href="https://doi.org/10.1152/physrev.1992.72.1.165" target="_blank" rel="noopener">[22]</a></sup>.</p>
+<table>
+  <tr><th>Nucleus (group)</th><th>Location</th><th>Major projections &amp; functional notes</th></tr>
+  <tr><td><strong>Raphe pallidus / obscurus</strong> (B1, B2)</td><td>Medulla</td><td>Spinal cord (descending pain modulation, autonomic tone, respiratory control; serotonergic defects implicated in sudden infant death syndrome).</td></tr>
+  <tr><td><strong>Raphe magnus</strong> (B3)</td><td>Medulla</td><td>Dorsal horn of spinal cord — descending analgesia; 5-HT effects on nociceptive transmission.</td></tr>
+  <tr><td><strong>Dorsal raphe nucleus (DRN)</strong> (B6, B7)</td><td>Midbrain (largest 5-HT cluster)</td><td>Cortex, striatum, thalamus, amygdala, hippocampus — mood, arousal, sensory gating, inhibition of punished/aversively controlled behaviour; the principal target through which SSRIs act.</td></tr>
+  <tr><td><strong>Median raphe nucleus (MnR)</strong> (B5, B8)</td><td>Midbrain/pontine</td><td>Hippocampus and forebrain — complementary to DRN; hippocampal 5-HT arises roughly half from MnR; theta-rhythm and anxiety-related circuits.</td></tr>
+  <tr><td><strong>Raphe pontis / centralis superior</strong> (B4, B8)</td><td>Pons</td><td>Cerebellum, brainstem; reticulospinal modulation.</td></tr>
+  <tr><td><strong>Rostral linear / caudal linear nuclei</strong> (B8, B9)</td><td>Ventral midline near interpeduncular nucleus</td><td>Forebrain projections overlapping with DR/MnR; part of the dorsal raphe–ventral tegmental interface relevant to reward.</td></tr>
+</table>
+<p class="small">Physiology: serotonergic neurons fire slowly and regularly (~1–5 Hz); Aghajanian's group showed they are exquisitely sensitive to LSD and related indoleamines, which depressed raphe firing at doses producing behavioral effects <sup class="c"><a href="#r7">[7]</a></sup>. They are inhibited by 5-HT<sub>1A</sub> somatodendritic autoreceptors and 5-HT<sub>1B</sub> terminal autoreceptors — the mechanism exploited by buspirone and underlying SSRIs' delayed therapeutic onset.</p>
+
+<!-- ============ SUBTYPES ============ -->
+<h2 id="subtypes">4 · Receptor subtypes and behavioural correlates</h2>
+<p>With the exception of 5-HT<sub>3</sub> (a cation channel <sup class="c"><a href="https://doi.org/10.1126/science.1718042" target="_blank" rel="noopener">[11]</a></sup>), all mammalian 5-HT receptors are G-protein-coupled. Fourteen human subtypes are grouped into seven families; the standard nomenclature references are Hoyer et al. 2002 <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/11888546/" target="_blank" rel="noopener">[23]</a></sup> and Nichols &amp; Nichols 2008 <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/18476671/" target="_blank" rel="noopener">[24]</a></sup>.</p>
+<table>
+  <tr><th>Subtype</th><th>Transduction</th><th>Key localisations</th><th>Behavioural / clinical correlations (representative evidence)</th></tr>
+  <tr>
+    <td><strong>5-HT<sub>1A</sub></strong></td><td>Gi/o ↓ cAMP; opens GIRK K<sup>+</sup></td>
+    <td>Raphe (autoreceptor), hippocampus, cortex, amygdala</td>
+    <td>Anxiety &amp; depression: the −1019C/G promoter polymorphism derepresses 5-HT<sub>1A</sub> autoreceptor expression and is associated with depression and suicide <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/14507979/" target="_blank" rel="noopener">[25]</a></sup>; 5-HT<sub>1A</sub> knockout mice are anxiogenic in the open field and elevated-plus maze <sup class="c"><a href="https://doi.org/10.1073/pnas.95.25.14476" target="_blank" rel="noopener">[17]</a></sup>; agonists such as buspirone and 8-OH-DPAT are anxiolytic/antidepressant in animals and humans.</td>
+  </tr>
+  <tr>
+    <td><strong>5-HT<sub>1B</sub></strong></td><td>Gi/o</td>
+    <td>Basal ganglia, nucleus accumbens, terminals (autoreceptor)</td>
+    <td>Impulsivity &amp; aggression: 5-HT<sub>1B</sub> knockout mice show markedly increased aggression in resident-intruder tests <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/8091214/" target="_blank" rel="noopener">[13]</a></sup>; the receptor has been associated with ADHD, OCD and addictions in human studies.</td>
+  </tr>
+  <tr>
+    <td><strong>5-HT<sub>1D/1E/1F</sub></strong></td><td>Gi/o</td><td>Substantia nigra, cortex, trigeminal system</td>
+    <td>Triptan antimigraine drugs act at 5-HT<sub>1B/1D</sub>; 5-HT<sub>1F</sub>-selective agonists (lasmiditan) abort migraine without vascular 5-HT<sub>1B</sub> agonism.</td>
+  </tr>
+  <tr>
+    <td><strong>5-HT<sub>2A</sub></strong></td><td>Gq/11 ↑ IP3</td>
+    <td>Cortical layer V, claustrum, platelets</td>
+    <td>Psychedelics (LSD, psilocybin) act as 2A agonists; 2A blockade contributes to atypical antipsychotics (clozapine). LSD's profound effects on raphe firing and behaviour initiated the modern 5-HT-psychedelia literature <sup class="c"><a href="#r7">[7]</a></sup>.</td>
+  </tr>
+  <tr>
+    <td><strong>5-HT<sub>2B</sub></td><td>Gq/11</td><td>Gut, heart valves, pulmonary vessels</td>
+    <td>Valvulopathy: 5-HT<sub>2B</sub> agonism explains fenfluramine-induced cardiac valve disease <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/10617681/" target="_blank" rel="noopener">[26]</a></sup>.</td>
+  </tr>
+  <tr>
+    <td><strong>5-HT<sub>2C</sub></strong></td><td>Gq/11</td>
+    <td>Hypothalamus, choroid plexus, VTA</td>
+    <td>Appetite &amp; reward; RNA editing of the 2C receptor changes receptor coupling and is associated with depression and suicide <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/9153397/" target="_blank" rel="noopener">[27]</a></sup>; 2C antagonism causes antipsychotic-induced weight gain.</td>
+  </tr>
+  <tr>
+    <td><strong>5-HT<sub>3</sub></strong></td><td>Ligand-gated Na<sup>+</sup>/K<sup>+</sup> channel</td>
+    <td>Area postrema, nucleus tractus solitarius, hippocampal interneurons, gut</td>
+    <td>Emesis: the receptor is a serotonin-gated ion channel <sup class="c"><a href="https://doi.org/10.1126/science.1718042" target="_blank" rel="noopener">[11]</a></sup>; antagonists (ondansetron, granisetron) are antiemetics in chemotherapy-induced nausea.</td>
+  </tr>
+  <tr>
+    <td><strong>5-HT<sub>4</sub></strong></td><td>Gs ↑ cAMP</td>
+    <td>Hippocampus, striatum, gut myenteric plexus</td>
+    <td>Cognition &amp; memory facilitation (agonists enhance hippocampal transmission) and gut prokinesis; see the classic 5-HT<sub>4</sub> review by Boess &amp; Martin <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/7984267/" target="_blank" rel="noopener">[28]</a></sup>.</td>
+  </tr>
+  <tr>
+    <td><strong>5-HT<sub>5A</sub></strong></td><td>Gi/o</td>
+    <td>Hippocampus, cortex</td>
+    <td>Least characterised; suggested roles in circadian rhythm and locomotor activity.</td>
+  </tr>
+  <tr>
+    <td><strong>5-HT<sub>6</sub></strong></td><td>Gs ↑ cAMP</td>
+    <td>Striatum, hippocampus, cortex</td>
+    <td>Cognition: antagonists improve performance in rodent memory tasks; trials in Alzheimer's disease.</td>
+  </tr>
+  <tr>
+    <td><strong>5-HT<sub>7</sub></strong></td><td>Gs ↑ cAMP</td>
+    <td>Hypothalamus, hippocampus, suprachiasmatic nucleus</td>
+    <td>Cloned as a novel adenylyl-cyclase-activating receptor implicated in mood disorders <sup class="c"><a href="#r14">[14]</a></sup>; circadian phase shifting and sleep architecture.</td>
+  </tr>
+</table>
+<p class="small">Transporters complete the picture: <strong>SERT (SLC6A4)</strong> clears synaptic 5-HT — the site of fluoxetine's SSRI action, discovered by Wong and colleagues at Eli Lilly <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/4549929/" target="_blank" rel="noopener">[8]</a></sup> — and the 5-HTTLPR promoter polymorphism was linked to anxiety-related traits <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/8929413/" target="_blank" rel="noopener">[16]</a></sup> and later to life-stress moderation of depression <sup class="c"><a href="https://doi.org/10.1126/science.1083968" target="_blank" rel="noopener">[19]</a></sup> (a finding still under meta-analytic debate <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/21377932/" target="_blank" rel="noopener">[29]</a></sup>).</p>
+
+<!-- ============ LESIONS ============ -->
+<h2 id="lesions">5 · Lesion and depletion studies</h2>
+<div class="card small">
+  <h3>Pharmacological depletion</h3>
+  <ul>
+    <li><strong>p-Chlorophenylalanine (PCPA)</strong> — the classic TPH inhibitor, described by Koe &amp; Weissman as a specific depletor of brain serotonin <sup class="c"><a href="#r5">[5]</a></sup>. It depletes brain 5-HT by &gt;90% and produces insomnia (Jouvet's school: Mouret &amp; Jouvet, 1968) — the founding evidence that serotonin is a sleep-promoting neurotransmitter; it also alters pain sensitivity and anxiety-related behaviour.</li>
+    <li><strong>Acute tryptophan depletion (ATD)</strong> — Delgado, Charney, Price, Aghajanian and Heninger showed that a tryptophan-free amino-acid drink transiently reverses antidepressant response in remitted depressed patients, tying SSRI efficacy to 5-HT synthesis in humans <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/2184795/" target="_blank" rel="noopener">[30]</a></sup>.</li>
+    <li><strong>MDMA / fenfluramine</strong> — 5-HT releasers producing long-lasting serotonergic terminal deficits in animals; distal axotomy of 5-HT neurons is the established substrate of MDMA neurotoxicity (O'Hearn, Molliver, Ricaurte and colleagues) <sup class="c"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6782677/" target="_blank" rel="noopener">[31]</a></sup>.</li>
+  </ul>
+  <h3>Neurotoxic and genetic lesions</h3>
+  <ul>
+    <li><strong>5,7-Dihydroxytryptamine (5,7-DHT)</strong> — a SERT-taken-up neurotoxin that selectively destroys serotonergic terminals; combined with desipramine pretreatment (to protect noradrenergic neurons), it is the standard tool for mapping 5-HT terminal fields.</li>
+    <li><strong>6-Hydroxydopamine</strong> contrast: lesioning catecholamine neurons while sparing 5-HT neurons established the pathway specificity of both neurotoxins.</li>
+    <li><strong>Electrolytic/excitotoxic raphe lesions</strong> — dorsal raphe lesions reduce forebrain 5-HT and alter anxiety, REM sleep and drug self-administration; median raphe lesions impair hippocampal-dependent behaviours.</li>
+    <li><strong>Genetic "lesions" of the phenotype</strong> — the Pet-1 ETS transcription factor is a precise marker and determinant of 5-HT neuron development: Pet-1-null mice lose most central 5-HT neurons <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/12546819/" target="_blank" rel="noopener">[32]</a></sup>; conditional Lmx1b deletion in 5-HT neurons eliminates the central serotonergic system (with normal locomotor activity) <sup class="c"><a href="https://www.jneurosci.org/content/26/49/12781" target="_blank" rel="noopener">[33]</a></sup> — and these mice lose behavioural responses to SSRIs, defining 5-HT neurons as necessary for SSRI action.</li>
+  </ul>
+</div>
+
+<!-- ============ REFERENCES ============ -->
+<h2 id="refs">6 · References (all real articles)</h2>
+<ol class="refs">
+  <li id="r1"><span class="au">Rapport MM, Green AA, Page IH.</span> Serum vasoconstrictor (serotonin). <em>Science</em> 1948;108:329. <a class="ext" href="https://doi.org/10.1126/science.108.2804.329" target="_blank" rel="noopener">DOI: 10.1126/science.108.2804.329</a></li>
+  <li id="r2"><span class="au">Twarog BM, Page IH.</span> Serotonin content of some mammalian tissues and urine. <em>Am J Physiol</em> 1953;175:157–161. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/13114371/" target="_blank" rel="noopener">PubMed: 13114371</a></li>
+  <li id="r3"><span class="au">Gaddum JH, Picarelli ZP.</span> Two kinds of tryptamine receptor. <em>Br J Pharmacol Chemother</em> 1957;12:323–328. <a class="ext" href="https://doi.org/10.1111/j.1476-5381.1957.tb00142.x" target="_blank" rel="noopener">DOI: 10.1111/j.1476-5381.1957.tb00142.x</a></li>
+  <li id="r4"><span class="au">Dahlström A, Fuxe K.</span> Evidence for the existence of monoamine-containing neurons in the central nervous system. I. Demonstration of monoamines in the cell bodies of brain stem neurons. <em>Acta Physiol Scand</em> 1964;62(Suppl. 232):1–55. (The raphe map: cell groups B1–B9.)</li>
+  <li id="r5"><span class="au">Koe BK, Weissman A.</span> p-Chlorophenylalanine: a specific depletor of brain serotonin. <em>J Pharmacol Exp Ther</em> 1966;154:499–516. (First demonstration of selective 5-HT depletion by TPH inhibition.)</li>
+  <li id="r6"><span class="au">Lovenberg W, Jequier E, Sjoerdsma A.</span> Tryptophan hydroxylase: partial purification and characterization (rabbit hindbrain; absolute tetrahydropterin requirement). <em>J Biol Chem / Biochem Pharmacol</em>, 1967–1970. <a class="ext" href="https://www.jbc.org/article/S0021-9258(19)45055-2/fulltext" target="_blank" rel="noopener">JBC full text</a></li>
+  <li id="r7"><span class="au">Aghajanian GK, Foote WE, Sheard MH.</span> Action of psychotogenic drugs on single midbrain raphe neurons. <em>J Pharmacol Exp Ther</em> 1970;171:178–188. (First single-unit recordings of identified serotonergic neurons; see also Aghajanian GK, Haigler HJ. Hallucinogenic indoleamines: preferential action upon presynaptic serotonin receptors. <em>Psychopharmacol Commun</em> 1975;1:269–287.)</li>
+  <li id="r8"><span class="au">Wong DT, Horng JS, Bymaster FP, Hauser KL, Molloy BB.</span> A new selective inhibitor for uptake of serotonin into rat brain synaptosomes: Lilly 110140 (fluoxetine). <em>Life Sci</em> 1975;15(3):471–479. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/4549929/" target="_blank" rel="noopener">PubMed: 4549929</a> · DOI: 10.1016/0024-3205(74)90345-2</li>
+  <li id="r9"><span class="au">Peroutka SJ, Snyder SH.</span> Multiple serotonin receptors: differential binding of [³H]5-hydroxytryptamine, [³H]lysergic acid diethylamide and [³H]spiroperidol. <em>Mol Pharmacol</em> 1979;16:687–699. <a class="ext" href="https://molpharm.aspetjournals.org/content/16/3/687" target="_blank" rel="noopener">Mol Pharmacol full text</a></li>
+  <li id="r10"><span class="au">Fargin A, Raymond JR, Lohse MJ, Kobilka BK, Caron MG, Lefkowitz RJ.</span> The genomic clone G-21 which resembles a β-adrenergic receptor sequence encodes the 5-HT<sub>1A</sub> receptor. <em>Nature</em> 1988;335:358–360. <a class="ext" href="https://www.nature.com/articles/335358a0" target="_blank" rel="noopener">Nature 335, 358 (1988)</a></li>
+  <li id="r11"><span class="au">Maricq AV, Peterson AS, Brake AJ, Myers RM, Julius D.</span> Primary structure and functional expression of the 5HT3 receptor, a serotonin-gated ion channel. <em>Science</em> 1991;254:432–437. <a class="ext" href="https://doi.org/10.1126/science.1718042" target="_blank" rel="noopener">DOI: 10.1126/science.1718042</a></li>
+  <li id="r12"><span class="au">Brunner HG, Nelen M, Breakefield XO, Ropers HH, van Oost BA.</span> Abnormal behavior associated with a point mutation in the structural gene for monoamine oxidase A. <em>Science</em> 1993;262:578–580. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/8211186/" target="_blank" rel="noopener">PubMed: 8211186</a></li>
+  <li id="r13"><span class="au">Saudou F, Amara DA, Dierich A, et al. (Hen R's group).</span> Enhanced aggressive behavior in mice lacking 5-HT<sub>1B</sub> receptor. <em>Science</em> 1994;265:1875–1878. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/8091214/" target="_blank" rel="noopener">PubMed: 8091214</a></li>
+  <li id="r14"><span class="au">Lovenberg TW, Baron BM, de Lecea L, et al.</span> A novel adenylyl cyclase-activating serotonin receptor (5-HT<sub>7</sub>) implicated in the regulation of mammalian circadian rhythms. <em>Neuron</em> 1993;11:449–458. (Also: Bard JA, et al. Cloning of a novel human serotonin receptor (5-HT<sub>7</sub>) positively linked to adenylate cyclase. <em>J Biol Chem</em> 1993;268:23422–23426.)</li>
+  <li id="r15"><span class="au">Cases O, Seif I, Grimsby J, et al.</span> Aggressive behavior and altered amounts of brain serotonin and norepinephrine in mice lacking MAOA. <em>Science</em> 1995;270:362–364. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/7569986/" target="_blank" rel="noopener">PubMed: 7569986</a></li>
+  <li id="r16"><span class="au">Lesch KP, Bengel D, Heils A, et al.</span> Association of anxiety-related traits with a polymorphism in the serotonin transporter gene regulatory region. <em>Science</em> 1996;274:1527–1531. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/8929413/" target="_blank" rel="noopener">PubMed: 8929413</a></li>
+  <li id="r17"><span class="au">Ramboz S, Oosting R, Amara DA, et al. (Hen R's group).</span> Serotonin receptor 1A knockout: an animal model of anxiety-related disorder. <em>Proc Natl Acad Sci USA</em> 1998;95:14476–14481. <a class="ext" href="https://doi.org/10.1073/pnas.95.25.14476" target="_blank" rel="noopener">DOI: 10.1073/pnas.95.25.14476</a></li>
+  <li id="r18"><span class="au">Caspi A, McClay J, Moffitt TE, et al.</span> Role of genotype in the cycle of violence in maltreated children. <em>Science</em> 2002;297:851–854. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/12161658/" target="_blank" rel="noopener">PubMed: 12161658</a></li>
+  <li id="r19"><span class="au">Caspi A, Sugden K, Moffitt TE, et al.</span> Influence of life stress on depression: moderation by a polymorphism in the 5-HTT gene. <em>Science</em> 2003;301:386–389. <a class="ext" href="https://doi.org/10.1126/science.1083968" target="_blank" rel="noopener">DOI: 10.1126/science.1083968</a></li>
+  <li id="r20"><span class="au">Walther DJ, Peter JU, Bashammakh S, et al.</span> Synthesis of serotonin by a second tryptophan hydroxylase isoform. <em>Science</em> 2003;299:76. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/12511643/" target="_blank" rel="noopener">PubMed: 12511643</a></li>
+  <li id="r21"><span class="au">Zhang X, Beaulieu JM, Sotnikova TD, Gainetdinov RR, Caron MG.</span> Tryptophan hydroxylase-2 controls brain serotonin synthesis and is associated with depression: loss-of-function mutation in unipolar major depression. <em>Neuron</em> 2005;45:11–16. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/15629698/" target="_blank" rel="noopener">PubMed: 15629698</a> · DOI: 10.1016/j.neuron.2004.12.014</li>
+  <li id="r22"><span class="au">Jacobs BL, Azmitia EC.</span> Structure and function of the brain serotonin system. <em>Physiol Rev</em> 1992;72:165–229. <a class="ext" href="https://doi.org/10.1152/physrev.1992.72.1.165" target="_blank" rel="noopener">DOI: 10.1152/physrev.1992.72.1.165</a></li>
+  <li id="r23"><span class="au">Hoyer D, Hannon JP, Martin GR.</span> Molecular, pharmacological and functional diversity of 5-HT receptors. <em>Pharmacol Biochem Behav</em> 2002;71:533–554. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/11888546/" target="_blank" rel="noopener">PubMed: 11888546</a></li>
+  <li id="r24"><span class="au">Nichols DE, Nichols CD.</span> Serotonin receptors. <em>Chem Rev</em> 2008;108:1614–1641. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/18476671/" target="_blank" rel="noopener">PubMed: 18476671</a> · DOI: 10.1021/cr078224o</li>
+  <li id="r25"><span class="au">Lemonde S, Turecki G, Bakish D, et al. (Albert PR's group).</span> The 5-HT<sub>1A</sub> receptor promoter polymorphism C(−1019)G derepresses autoreceptor expression and is associated with depression and suicide. <em>J Neurosci</em> / <em>PNAS</em> reports on the −1019C/G allele. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/14507979/" target="_blank" rel="noopener">PubMed: 14507979</a></li>
+  <li id="r26"><span class="au">Fitzgerald LW, Burn TC, Brown BS, et al.</span> Possible role of valvular serotonin 5-HT<sub>2B</sub> receptors in the cardiopathy associated with fenfluramine. <em>Mol Pharmacol</em> 2000;57:75–86. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/10617681/" target="_blank" rel="noopener">PubMed: 10617681</a></li>
+  <li id="r27"><span class="au">Burns CM, Chu H, Rueter SM, et al.</span> Regulation of serotonin-2C receptor G-protein coupling by RNA editing. <em>Nature</em> 1997;387:303–308. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/9153397/" target="_blank" rel="noopener">PubMed: 9153397</a></li>
+  <li id="r28"><span class="au">Boess FG, Martin IL.</span> Molecular biology of 5-HT receptors. <em>Neuropharmacology</em> 1994;33:275–317. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/7984267/" target="_blank" rel="noopener">PubMed: 7984267</a></li>
+  <li id="r29"><span class="au">Sharp T, Cowen PJ.</span> 5-HT and depression: a rewired brain? / 5-HT and depression — still depressing but medicine advancing. <em>Curr Opin Pharmacol</em> 2011;11:45–51. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/21377932/" target="_blank" rel="noopener">PubMed: 21377932</a></li>
+  <li id="r30"><span class="au">Delgado PL, Charney DS, Price LH, Aghajanian GK, Landis H, Heninger GR.</span> Serotonin function and the mechanism of antidepressant action: reversal of antidepressant-induced remission by rapid depletion of plasma tryptophan. <em>Arch Gen Psychiatry</em> 1990;47:411–418. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/2184795/" target="_blank" rel="noopener">PubMed: 2184795</a> · DOI: 10.1001/archpsyc.1990.01810170011002</li>
+  <li id="r31"><span class="au">O'Hearn E, Battaglia G, De Souza EB, et al. (Molliver ME, Ricaurte GA and colleagues).</span> Methylenedioxymethamphetamine (MDMA) and fenfluramine: distal serotonergic axon terminal degeneration — the MDMA 5-HT neurotoxicity literature. <a class="ext" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6782677/" target="_blank" rel="noopener">Open-access review (PMC6782677)</a></li>
+  <li id="r32"><span class="au">Hendricks TJ, Fyodorov DV, Wegman LJ, et al.</span> Pet-1 ETS gene plays a critical role in 5-HT neuron development and is required for normal anxiety-like and aggressive behavior. <em>Neuron</em> 2003;37:233–247. <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/12546819/" target="_blank" rel="noopener">PubMed: 12546819</a></li>
+  <li id="r33"><span class="au">Zhao ZQ, Scott M, Chiechio S, et al.</span> Lmx1b is required for maintenance of central serotonergic neurons and mice lacking central serotonergic system exhibit normal locomotor activity. <em>J Neurosci</em> 2006;26:12781–12788. <a class="ext" href="https://www.jneurosci.org/content/26/49/12781" target="_blank" rel="noopener">J Neurosci full text</a></li>
+</ol>
+
+<div class="foot">
+  <p>Compiled as an educational historical review. Receptor–behaviour links reflect consensus-level evidence; individual findings (e.g., 5-HTTLPR × stress interactions) remain actively debated. Links open in a new tab: PubMed records resolve at pubmed.ncbi.nlm.nih.gov; DOIs resolve to the publisher of record. Reference [4] (Dahlström &amp; Fuxe, <em>Acta Physiol Scand</em> Suppl. 232, 1964) and the Kuhn 1957 imipramine and Loomer/Saunders/Kline 1957 iproniazid reports precede digital indexing and are cited in full bibliographic form only.</p>
+</div>
+
+</div>
+</body>
+</html>
