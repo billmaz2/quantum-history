@@ -14,7 +14,7 @@
       padding: 3rem 1.5rem;
     }
     .container {
-      max-width: 960px;
+      max-width: 1100px;
       margin: 0 auto;
       background: #fff;
       padding: 3rem 2.8rem;
@@ -51,39 +51,57 @@
     }
     .status.error { background: #fdf0ee; border-left-color: #c0705a; color: #7a2e1a; }
     .status.success { background: #f0f7f0; border-left-color: #6a9a6a; color: #2e5a2e; }
-    ul.paper-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid #e8e2d9; }
-    ul.paper-list li { border-bottom: 1px solid #e8e2d9; }
+
+    ul.paper-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid #e8e2d9;
+    }
+    ul.paper-list li {
+      border-bottom: 1px solid #e8e2d9;
+    }
     ul.paper-list li a {
       display: flex;
       align-items: baseline;
-      justify-content: space-between;
-      gap: 1.5rem;
-      padding: 1.1rem 1.2rem;
+      gap: 1rem;
+      padding: 0.9rem 1rem;
       text-decoration: none;
       color: #1c1c1c;
       border-left: 4px solid transparent;
       transition: background 0.15s, border-color 0.15s, padding-left 0.15s;
+      font-size: 1rem;
+      line-height: 1.5;
     }
     ul.paper-list li a:hover {
       background: #f8f6f2;
       border-left-color: #7a6e5e;
-      padding-left: 1.5rem;
+      padding-left: 1.3rem;
     }
-    ul.paper-list li a .paper-title { font-size: 1.08rem; font-weight: 600; flex: 1; }
-    ul.paper-list li a .paper-file {
-      font-size: 0.8rem;
-      font-family: 'Courier New', monospace;
-      color: #8a7e6e;
-      background: #f2eee8;
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
+    ul.paper-list li a .paper-title {
+      font-weight: 600;
+      color: #1c1c1c;
+      flex: 0 0 auto;
       white-space: nowrap;
     }
-    ul.paper-list li a .paper-file::after {
-      content: " ↗";
-      font-size: 0.9em;
+    ul.paper-list li a .paper-url {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #8a7e6e;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    ul.paper-list li a .paper-url::before {
+      content: "→ ";
       color: #b0a494;
     }
+    ul.paper-list li a:hover .paper-url {
+      color: #5a4e3e;
+    }
+
     .footer-note {
       margin-top: 2.8rem;
       padding-top: 1.4rem;
@@ -100,7 +118,7 @@
 
 <div class="container">
   <h1>Index</h1>
-  <div class="subtitle">Every HTML paper in this repository — click a title to open it in a new page</div>
+  <div class="subtitle">Every HTML paper in this repository — click a title to open it in a new tab</div>
   <div id="status" class="status">Initializing…</div>
   <ul id="paper-list" class="paper-list"></ul>
   <div class="footer-note">Auto-generated from repository contents</div>
@@ -268,8 +286,9 @@
   }));
 
   // ---------------------------------------------------------------
-  // 5. Render — force each link to open in a NEW PAGE
-  //    using an explicit window.open() call on click.
+  // 5. Render — one line per paper, showing title and URL.
+  //    Each link opens in a NEW TAB (not a new window, not the
+  //    same tab).
   // ---------------------------------------------------------------
   listEl.innerHTML = '';
 
@@ -277,59 +296,20 @@
     const li = document.createElement('li');
     const a  = document.createElement('a');
 
-    // Fallback href for right-click → Copy link, middle-click, etc.
-    a.href   = name;
-    a.target = '_blank';
-    a.rel    = 'noopener noreferrer';
-
-    // Force the browser to open a new page on left-click.
-    // This bypasses any setting that turns target="_blank" into
-    // same-tab navigation.
-    a.addEventListener('click', function (ev) {
-      // Only intercept plain left-clicks; let modified clicks
-      // (Ctrl/Cmd, middle button, Shift, etc.) behave naturally.
-      if (ev.button !== 0 || ev.ctrlKey || ev.metaKey ||
-          ev.shiftKey || ev.altKey) {
-        return;
-      }
-      ev.preventDefault();
-
-      // Feature string with a size → browser opens a real new page.
-      // No size → browser opens a new tab. Either way, it's a new page.
-      const features = [
-        'noopener',
-        'noreferrer',
-        'width=1100',
-        'height=850',
-        'left=' + Math.max(0, (window.screenX || 100) + 60),
-        'top='  + Math.max(0, (window.screenY || 100) + 60),
-        'resizable=yes',
-        'scrollbars=yes'
-      ].join(',');
-
-      // Unique window name per paper so re-clicking focuses that
-      // paper's existing window instead of opening a duplicate.
-      const winName = 'paper_' + name.replace(/[^a-zA-Z0-9]/g, '_');
-
-      const w = window.open(name, winName, features);
-      if (w) {
-        w.focus();
-      } else {
-        // Popup was blocked — fall back to normal navigation.
-        window.location.href = name;
-      }
-    });
+    a.href   = name;                  // the URL the link points to
+    a.target = '_blank';              // ← new TAB (browser default)
+    a.rel    = 'noopener noreferrer'; // security best practice
 
     const t = document.createElement('span');
     t.className = 'paper-title';
     t.textContent = title;
 
-    const f = document.createElement('span');
-    f.className = 'paper-file';
-    f.textContent = name;
+    const u = document.createElement('span');
+    u.className = 'paper-url';
+    u.textContent = name;
 
     a.appendChild(t);
-    a.appendChild(f);
+    a.appendChild(u);
     li.appendChild(a);
     listEl.appendChild(li);
   });
