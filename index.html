@@ -68,16 +68,6 @@
       color: #2e5a2e;
     }
 
-    .status a {
-      color: #7a4e2a;
-      text-decoration: none;
-      border-bottom: 1px dotted #7a4e2a;
-    }
-
-    .status a:hover {
-      border-bottom: 1px solid #7a4e2a;
-    }
-
     ul.paper-list {
       list-style: none;
       padding: 0;
@@ -131,13 +121,6 @@
       color: #5a4e3e;
     }
 
-    .loading {
-      text-align: center;
-      padding: 2.5rem 1rem;
-      color: #7a6e5e;
-      font-style: italic;
-    }
-
     .footer-note {
       margin-top: 2.8rem;
       padding-top: 1.4rem;
@@ -164,14 +147,14 @@
 
 <div class="container">
   <h1>Index</h1>
-  <div class="subtitle">Every HTML paper in this folder — click a title to open it</div>
+  <div class="subtitle">Every HTML paper in this repository — click a title to open it</div>
 
-  <div id="status" class="status">Scanning folder…</div>
+  <div id="status" class="status">Scanning repository…</div>
 
   <ul id="paper-list" class="paper-list"></ul>
 
   <div class="footer-note">
-    Auto-generated from folder contents · Reload to refresh after adding new files
+    Auto-generated from repository contents · Reload to refresh after pushing new files
   </div>
 </div>
 
@@ -179,88 +162,99 @@
   (async function () {
     const statusEl = document.getElementById('status');
     const listEl = document.getElementById('paper-list');
-    const SELF = 'index.html';  // this file, always excluded from listing
+    const SELF = 'index.html';
 
     // ---------------------------------------------------------------
-    // Step 1: Discover all HTML files in the current directory.
+    // Step 1: Figure out the GitHub repo and folder path from the URL.
+    // Expected URL shape: https://USER.github.io/REPO/[SUBFOLDER/...]/
     // ---------------------------------------------------------------
-    let htmlFiles = [];
+    const host = window.location.hostname;                 // e.g. user.github.io
+    const pathParts = window.location.pathname
+      .split('/')
+      .filter(Boolean);                                    // e.g. ['repo', 'sub']
+
+    // If hosted on *.github.io, the first path segment is the repo.
+    // If hosted at a custom domain, the repo can't be inferred — we
+    // fall back to the GitHub API's "self" listing via the same origin.
+    let owner = null;
+    let repo  = null;
+    let folderPath = '';
+
+    if (host.endsWith('.github.io')) {
+      owner = host.replace('.github.io', '');
+      repo  = pathParts.shift() || '';                     // remove repo
+      folderPath = pathParts.join('/');
+    } else {
+      // Custom domain — we can't know owner/repo. Use GitHub's
+      // "contents" endpoint relative to the current origin by way of
+      // the Referer or a small prompt. Simplest: try to read the
+      // repo from a `<meta>` tag or a data-attribute if present.
+      const metaRepo = document.querySelector('meta[name="github-repo"]');
+      const metaOwner = document.querySelector('meta[name="github-owner"]');
+      if (metaRepo && metaOwner) {
+        owner = metaOwner.content;
+        repo = metaRepo.content;
+        folderPath = pathParts.join('/');
+      }
+    }
+
+    // ---------------------------------------------------------------
+    // Step 2: Fetch the directory listing.
+    //   • On GitHub Pages: use the GitHub REST API.
+    //   • On a local static server: use the directory index HTML.
+    // ---------------------------------------------------------------
+    let files = [];
 
     try {
-      // Fetch the directory listing from the web server (works with
-      // python -m http.server, nginx autoindex, Apache, Live Server, etc.)
-      const resp = await fetch('./', { cache: 'no-store' });
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-
-      const text = await resp.text();
-      const doc = new DOMParser().parseFromString(text, 'text/html');
-
-      // Collect all href attributes pointing to local .html files
-      const anchors = doc.querySelectorAll('a[href]');
-      const found = new Set();
-
-      anchors.forEach(a => {
-        let href = a.getAttribute('href');
-        if (!href) return;
-
-        // Strip query string and fragment
-        href = href.split('?')[0].split('#')[0];
-
-        // Skip absolute URLs, parent paths, and subdirectories
-        if (href.includes('://')) return;
-        if (href.startsWith('/')) return;
-        if (href.startsWith('..')) return;
-        if (href.includes('/')) return;
-
-        // Must end with .html (case-insensitive)
-        if (!href.toLowerCase().endsWith('.html')) return;
-
-        // Skip this index file itself
-        if (href.toLowerCase() === SELF) return;
-
-        found.add(href);
-      });
-
-      htmlFiles = Array.from(found);
+      if (owner && repo) {
+        files = await listFromGitHubAPI(owner, repo, folderPath);
+      } else {
+        files = await listFromDirectoryIndex();
+      }
     } catch (err) {
-      // Directory listing failed — probably opened via file://
       statusEl.innerHTML =
-        '⚠ Could not scan the folder automatically. ' +
-        'Please serve this folder with a local web server ' +
-        '(e.g. run <code>python3 -m http.server 8000</code> ' +
-        'in this folder and open <a href="http://localhost:8000/">' +
-        'http://localhost:8000/</a>).';
+        '⚠ Could not list the folder. ' +
+        'If you are viewing this from a custom domain, add ' +
+        '<code>&lt;meta name="github-owner" content="USER"&gt;</code> and ' +
+        '<code>&lt;meta name="github-repo" content="REPO"&gt;</code> ' +
+        'to the &lt;head&gt;. Error: ' + escapeHtml(err.message || String(err));
       statusEl.className = 'status error';
       return;
     }
 
-    if (htmlFiles.length === 0) {
+    // Filter to .html files, exclude index.html
+    files = files.filter(f =>
+      f.name.toLowerCase().endsWith('.html') &&
+      f.name.toLowerCase() !== SELF
+    );
+
+    if (files.length === 0) {
       statusEl.textContent = 'No HTML files found in this folder (besides index.html).';
       statusEl.className = 'status error';
       return;
     }
 
-    // Sort alphabetically by filename for stable ordering
-    htmlFiles.sort((a, b) => a.localeCompare(b));
+    files.sort((a, b) => a.name.localeCompare(b.name));
 
-    statusEl.textContent = `Found ${htmlFiles.length} file${htmlFiles.length === 1 ? '' : 's'}. Reading titles…`;
+    statusEl.textContent = `Found ${files.length} file${files.length === 1 ? '' : 's'}. Reading titles…`;
     statusEl.className = 'status';
 
     // ---------------------------------------------------------------
-    // Step 2: Fetch each file and extract its <title> tag.
+    // Step 3: For each file, fetch its content and extract <title>.
     // ---------------------------------------------------------------
-    const papers = await Promise.all(htmlFiles.map(async (file) => {
+    const papers = await Promise.all(files.map(async (f) => {
       try {
-        const r = await fetch(file, { cache: 'no-store' });
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        const html = await r.text();
+        // Prefer the raw download_url (GitHub API) or the href (local)
+        const url = f.download_url || f.href;
+        const resp = await fetch(url, { cache: 'no-store' });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const html = await resp.text();
 
         const match = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
         let title = match ? decodeEntities(match[1].trim()) : '';
 
         if (!title) {
-          // Fallback: derive a readable title from the filename
-          title = file
+          title = f.name
             .replace(/\.html?$/i, '')
             .replace(/[-_]+/g, ' ')
             .replace(/\s+/g, ' ')
@@ -268,24 +262,26 @@
             .replace(/\b\w/g, c => c.toUpperCase());
         }
 
-        return { file, title };
+        return { name: f.name, title, url: f.html_url || f.href };
       } catch (err) {
         return {
-          file,
-          title: file.replace(/\.html?$/i, '').replace(/[-_]+/g, ' ')
+          name: f.name,
+          title: f.name.replace(/\.html?$/i, '').replace(/[-_]+/g, ' '),
+          url: f.html_url || f.href
         };
       }
     }));
 
     // ---------------------------------------------------------------
-    // Step 3: Render the list.
+    // Step 4: Render the list.
     // ---------------------------------------------------------------
     listEl.innerHTML = '';
 
-    papers.forEach(({ file, title }) => {
+    papers.forEach(({ name, title, url }) => {
       const li = document.createElement('li');
       const a = document.createElement('a');
-      a.href = file;
+      // Use the relative URL so clicks stay on the Pages site
+      a.href = name;
       a.rel = 'noopener';
 
       const titleSpan = document.createElement('span');
@@ -294,7 +290,7 @@
 
       const fileSpan = document.createElement('span');
       fileSpan.className = 'paper-file';
-      fileSpan.textContent = file;
+      fileSpan.textContent = name;
 
       a.appendChild(titleSpan);
       a.appendChild(fileSpan);
@@ -308,12 +304,82 @@
     statusEl.className = 'status success';
 
     // ---------------------------------------------------------------
+    // Helper: list files from GitHub REST API
+    // ---------------------------------------------------------------
+    async function listFromGitHubAPI(owner, repo, path) {
+      const api =
+        `https://api.github.com/repos/${encodeURIComponent(owner)}/` +
+        `${encodeURIComponent(repo)}/contents/` +
+        path.split('/').map(encodeURIComponent).join('/');
+
+      const resp = await fetch(api, {
+        headers: { 'Accept': 'application/vnd.github+json' }
+      });
+
+      if (!resp.ok) {
+        throw new Error('GitHub API returned HTTP ' + resp.status);
+      }
+
+      const data = await resp.json();
+      if (!Array.isArray(data)) {
+        throw new Error('Expected a directory listing, got something else.');
+      }
+
+      // Only files (not subdirectories) with a download_url
+      return data
+        .filter(item => item.type === 'file')
+        .map(item => ({
+          name: item.name,
+          download_url: item.download_url,
+          html_url: item.html_url
+        }));
+    }
+
+    // ---------------------------------------------------------------
+    // Helper: list files from a plain directory index (local server)
+    // ---------------------------------------------------------------
+    async function listFromDirectoryIndex() {
+      const resp = await fetch('./', { cache: 'no-store' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+
+      const text = await resp.text();
+      const doc = new DOMParser().parseFromString(text, 'text/html');
+      const found = [];
+
+      doc.querySelectorAll('a[href]').forEach(a => {
+        let href = a.getAttribute('href');
+        if (!href) return;
+        href = href.split('?')[0].split('#')[0];
+        if (href.includes('://')) return;
+        if (href.startsWith('/')) return;
+        if (href.includes('/')) return;
+        if (!href.toLowerCase().endsWith('.html')) return;
+        found.push({ name: href, href: href });
+      });
+
+      // Remove duplicates
+      const seen = new Set();
+      return found.filter(f => {
+        if (seen.has(f.name)) return false;
+        seen.add(f.name);
+        return true;
+      });
+    }
+
+    // ---------------------------------------------------------------
     // Helper: decode HTML entities in titles (&amp; → &, etc.)
     // ---------------------------------------------------------------
     function decodeEntities(str) {
       const txt = document.createElement('textarea');
       txt.innerHTML = str;
       return txt.value;
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;',
+        '"': '&quot;', "'": '&#39;'
+      }[c]));
     }
   })();
 </script>
