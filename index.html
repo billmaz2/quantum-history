@@ -62,6 +62,7 @@
       text-decoration: none;
       color: #1c1c1c;
       border-left: 4px solid transparent;
+      cursor: pointer;
       transition: background 0.15s, border-color 0.15s, padding-left 0.15s;
     }
     ul.paper-list li a:hover {
@@ -79,10 +80,10 @@
       border-radius: 12px;
       white-space: nowrap;
     }
-    /* Small visual hint that the link opens in a new tab */
+    /* Visual hint that the link opens in a separate window */
     ul.paper-list li a .paper-file::after {
-      content: " ↗";
-      font-size: 0.9em;
+      content: " ⧉";
+      font-size: 1em;
       color: #b0a494;
     }
     .footer-note {
@@ -101,7 +102,7 @@
 
 <div class="container">
   <h1>Index</h1>
-  <div class="subtitle">Every HTML paper in this repository — click a title to open it in a new tab</div>
+  <div class="subtitle">Every HTML paper in this repository — click a title to open it in a new window</div>
   <div id="status" class="status">Initializing…</div>
   <ul id="paper-list" class="paper-list"></ul>
   <div class="footer-note">Auto-generated from repository contents</div>
@@ -269,16 +270,39 @@
   }));
 
   // ---------------------------------------------------------------
-  // 5. Render — links open in a NEW tab / page
+  // 5. Render — each link opens a NEW WINDOW via window.open()
   // ---------------------------------------------------------------
   listEl.innerHTML = '';
-  papers.forEach(({ name, title }) => {
+
+  papers.forEach(({ name, title }, i) => {
     const li = document.createElement('li');
     const a  = document.createElement('a');
 
-    a.href   = name;          // relative → stays on the Pages site
-    a.target = '_blank';      // ← opens in a new tab / window
-    a.rel    = 'noopener noreferrer';  // security best practice
+    // Fallback href so middle-click / right-click still work
+    a.href = name;
+
+    // Open in a separate popup window with a unique name per paper
+    a.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      const features = [
+        'width=1100',
+        'height=850',
+        'left='   + Math.max(0, (window.screenX || 100) + 40 + i * 20),
+        'top='    + Math.max(0, (window.screenY || 100) + 40 + i * 20),
+        'resizable=yes',
+        'scrollbars=yes',
+        'toolbar=yes',
+        'menubar=yes',
+        'location=yes',
+        'status=yes'
+      ].join(',');
+
+      // Unique window name so each paper gets its own window
+      // (re-clicking the same paper reuses that window)
+      const winName = 'paper_' + name.replace(/[^a-zA-Z0-9]/g, '_');
+      const w = window.open(name, winName, features);
+      if (w) w.focus();
+    });
 
     const t = document.createElement('span');
     t.className = 'paper-title';
