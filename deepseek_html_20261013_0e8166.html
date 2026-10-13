@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Bohr to Feynman · Quantum Physics 1900–1950</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f4f2ee;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      color: #1c1c1c;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .paper {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 3rem 2.8rem;
+      border-radius: 4px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      border: 1px solid #ddd8d0;
+    }
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      border-bottom: 3px solid #1c1c1c;
+      padding-bottom: 0.7rem;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+    .subtitle {
+      font-size: 1.05rem;
+      font-style: italic;
+      color: #4a4a4a;
+      margin-bottom: 2rem;
+      border-left: 4px solid #a89e8f;
+      padding-left: 1.2rem;
+    }
+    .abstract {
+      background: #f8f6f2;
+      padding: 1.4rem 1.8rem;
+      border-radius: 4px;
+      margin-bottom: 2.4rem;
+      border-left: 6px solid #7a6e5e;
+      font-size: 1rem;
+    }
+    h2 {
+      font-size: 1.55rem;
+      margin-top: 2.8rem;
+      margin-bottom: 0.7rem;
+      font-weight: 600;
+      border-bottom: 1px solid #c8c0b4;
+      padding-bottom: 0.3rem;
+    }
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: #2a2a2a;
+    }
+    h4 {
+      font-size: 1rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+      color: #4a4a4a;
+      font-style: italic;
+    }
+    p {
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+    ul { margin-bottom: 1.1rem; padding-left: 1.7rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { font-weight: 700; color: #111; }
+    a {
+      color: #7a4e2a;
+      text-decoration: none;
+      border-bottom: 1px dotted #7a4e2a;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    a:hover { color: #3a220e; border-bottom: 1px solid #3a220e; }
+    .ref-link {
+      font-size: 0.9rem;
+      color: #3b3b3b;
+      background: #f2eee8;
+      padding: 0.18rem 0.5rem;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      white-space: nowrap;
+      display: inline-block;
+      margin: 0.15rem 0.15rem 0.15rem 0;
+      border-bottom: none;
+    }
+    .ref-link:hover { background: #e5dfd4; color: #111; }
+    .equation {
+      display: block;
+      text-align: center;
+      font-family: 'Cambria Math', 'Latin Modern Math', 'Times New Roman', serif;
+      font-size: 1.15rem;
+      margin: 1.2rem 0;
+      padding: 0.8rem 1rem;
+      background: #faf8f5;
+      border-left: 3px solid #b0a494;
+      border-radius: 0 4px 4px 0;
+      color: #1a1a1a;
+      letter-spacing: 0.02em;
+    }
+    .equation-inline {
+      font-family: 'Cambria Math', 'Latin Modern Math', 'Times New Roman', serif;
+      font-size: 1.02rem;
+      background: #f5f2ed;
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      color: #1a1a1a;
+    }
+    .timeline-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.6rem 0;
+      font-size: 0.94rem;
+    }
+    .timeline-table th {
+      background: #1c1c1c;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+    }
+    .timeline-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #ddd8d0;
+      vertical-align: top;
+    }
+    .timeline-table tr:nth-child(even) { background: #faf8f5; }
+    .timeline-table tr:hover { background: #f0ece5; }
+    .highlight-box {
+      background: #f8f6f2;
+      border-left: 6px solid #7a6e5e;
+      padding: 1.1rem 1.5rem;
+      margin: 1.6rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .highlight-box p:last-child { margin-bottom: 0; }
+    .tag {
+      display: inline-block;
+      background: #e8e2d8;
+      padding: 0.12rem 0.65rem;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-weight: 500;
+      color: #3b3b3b;
+      margin-right: 0.35rem;
+      margin-bottom: 0.25rem;
+    }
+    .footer-note {
+      margin-top: 2.8rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid #ddd8d0;
+      font-size: 0.88rem;
+      color: #5a5a5a;
+      text-align: center;
+      font-style: italic;
+    }
+    @media (max-width: 700px) {
+      .paper { padding: 1.6rem 1.1rem; }
+      h1 { font-size: 1.7rem; }
+      .timeline-table { font-size: 0.82rem; }
+      .timeline-table th, .timeline-table td { padding: 0.55rem 0.65rem; }
+      .ref-link { white-space: normal; word-break: break-word; }
+      .equation { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="paper">
+
+  <h1>From Bohr to Feynman: Quantum Physics 1900–1950</h1>
+  <div class="subtitle">
+    How the Bohr model became the Dirac equation, quantum field theory, and Feynman diagrams — with the actual equations, how they were used, and what they revealed
+  </div>
+
+  <div class="abstract">
+    <strong>Abstract.</strong> This survey traces the conceptual and mathematical arc from Bohr's quantized orbits (1913) to Feynman's diagrams (1949). For each era, we present the central equation, explain how physicists used it, and state what it revealed. Special attention is given to <strong>second quantization</strong> — how Dirac, Heisenberg, and Pauli turned the wavefunction itself into an operator, making the creation and annihilation of particles possible, and thereby founding quantum field theory.
+  </div>
+
+  <!-- ====================== 1900–1913 ====================== -->
+  <h2>1. Pre-Quantum Foundations and the Bohr Model (1900–1913)</h2>
+
+  <p>
+    <span class="tag">Old quantum theory</span>
+    <span class="tag">Quantization</span>
+  </p>
+
+  <h3>Planck (1900) — The quantum of action</h3>
+
+  <p>
+    <strong>Equation:</strong>
+    <span class="equation">E = hν</span>
+    Planck proposed that energy exchange between matter and radiation occurs in discrete packets (quanta) proportional to frequency. <em>h</em> = 6.626 × 10⁻³⁴ J·s.
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Planck derived the blackbody radiation spectrum by counting oscillators with discrete energies <span class="equation-inline">E<sub>n</sub> = nhν</span> and using Boltzmann statistics. The result fit the experimental curve perfectly at all frequencies, eliminating the ultraviolet catastrophe predicted by classical equipartition.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> Energy is not continuous. This was the first crack in classical physics. Planck himself thought it was a mathematical trick; Einstein took it literally.
+    <a class="ref-link" href="https://doi.org/10.1002/andp.19013090310" target="_blank">DOI: 10.1002/andp.19013090310</a>
+  </p>
+
+  <h3>Einstein (1905) — The photon</h3>
+
+  <p>
+    <strong>Equation:</strong>
+    <span class="equation">E<sub>kinetic</sub> = hν − W</span>
+    where <em>W</em> is the work function of the metal.
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Einstein proposed that light itself consists of quanta (photons). The photoelectric effect was explained by treating light as a stream of particles each carrying energy <em>hν</em>. An electron absorbs one photon and escapes if <em>hν > W</em>.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> Quantization is not just in matter — the electromagnetic field itself is quantized. This was a radical step toward quantum field theory.
+    <a class="ref-link" href="https://doi.org/10.1002/andp.19053220607" target="_blank">DOI: 10.1002/andp.19053220607</a>
+  </p>
+
+  <h3>Rutherford (1911) — The nuclear atom</h3>
+
+  <p>
+    <strong>Result:</strong> Alpha particles scattered off a thin gold foil showed large-angle deflections, implying a tiny, massive, positively charged nucleus. The atom is mostly empty space.
+  </p>
+
+  <p>
+    <strong>Problem:</strong> Classical electrodynamics says an accelerating electron radiates energy. An electron orbiting a nucleus should spiral inward in ~10⁻¹¹ seconds. The atom is unstable. Classical physics fails.
+    <a class="ref-link" href="https://doi.org/10.1080/14786440508637080" target="_blank">DOI: 10.1080/14786440508637080</a>
+  </p>
+
+  <h3>Bohr (1913) — Quantized orbits</h3>
+
+  <p>
+    <strong>Equations:</strong>
+    <span class="equation">L = nħ &nbsp;&nbsp;(quantized angular momentum)</span>
+    <span class="equation">E<sub>n</sub> = − (m<sub>e</sub>e⁴) / (8ε₀²h²n²) &nbsp;&nbsp;(hydrogen energy levels)</span>
+    <span class="equation">hν = E<sub>n₂</sub> − E<sub>n₁</sub> &nbsp;&nbsp;(Bohr frequency condition)</span>
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Bohr postulated that electrons occupy discrete <strong>stationary states</strong> with quantized angular momentum <em>L = nħ</em>. Radiation is emitted or absorbed only when the electron jumps between states, with photon energy equal to the energy difference. For hydrogen, this gave:
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> The Rydberg constant <em>R<sub>∞</sub></em> could be calculated from fundamental constants (<em>m<sub>e</sub></em>, <em>e</em>, <em>h</em>, <em>ε₀</em>) and matched experiment to within 0.05%. This was a stunning triumph. But the model could not explain multi-electron atoms, spectral intensities, or the Zeeman effect. It was a hybrid of classical orbits and quantum rules.
+    <a class="ref-link" href="https://doi.org/10.1080/14786441308634955" target="_blank">DOI: 10.1080/14786441308634955</a>
+    <a class="ref-link" href="https://cds.cern.ch/record/262753" target="_blank">CERN Record</a>
+  </p>
+
+  <div class="highlight-box">
+    <p><strong>Why Bohr's model had to be replaced:</strong> The model worked only for hydrogen. It could not handle helium. It assumed electrons have well-defined orbits, contradicting the uncertainty principle that would come later. It was a patchwork — and it was clear that a deeper theory was needed.</p>
+  </div>
+
+  <!-- ====================== 1913–1925 ====================== -->
+  <h2>2. The Old Quantum Theory and Its Breakdown (1913–1925)</h2>
+
+  <p>
+    <span class="tag">Correspondence principle</span>
+    <span class="tag">Sommerfeld</span>
+  </p>
+
+  <h3>Sommerfeld (1916) — Elliptical orbits and fine structure</h3>
+
+  <p>
+    <strong>Equation:</strong>
+    <span class="equation">α = e² / (4πε₀ħc) ≈ 1/137 &nbsp;&nbsp;(fine-structure constant)</span>
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Sommerfeld extended Bohr's model with elliptical orbits and relativistic corrections. He introduced a second quantum number <em>l</em> (azimuthal) and a magnetic quantum number <em>m</em>. The relativistic correction split the hydrogen energy levels into fine structure.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> The fine-structure constant <em>α</em> emerged as a fundamental dimensionless parameter governing the strength of electromagnetic interactions. But the model still could not handle multi-electron atoms.
+    <a class="ref-link" href="https://doi.org/10.1002/andp.19163561702" target="_blank">DOI: 10.1002/andp.19163561702</a>
+  </p>
+
+  <h3>Bohr (1918–1923) — The correspondence principle</h3>
+
+  <p>
+    <strong>Statement:</strong> In the limit of large quantum numbers (<em>n</em> → ∞), quantum predictions must converge to classical ones.
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Bohr used this as a guiding principle to construct quantum rules. For example, the frequency of radiation from a transition <em>n → n−1</em> for large <em>n</em> should equal the classical orbital frequency. This helped determine selection rules and intensities.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> Quantum mechanics must contain classical mechanics as a limiting case — a crucial consistency requirement that any new theory must satisfy.
+    <a class="ref-link" href="https://doi.org/10.1007/BF01328531" target="_blank">DOI: 10.1007/BF01328531</a>
+  </p>
+
+  <h3>Kramers &amp; Heisenberg (1924) — Virtual oscillators</h3>
+
+  <p>
+    <strong>Idea:</strong> Replace classical orbital frequencies with "virtual oscillator" frequencies corresponding to all possible transition pairs <em>(n, m)</em>. Each pair has frequency <em>ν<sub>nm</sub> = (E<sub>n</sub> − E<sub>m</sub>)/h</em> and an amplitude that becomes the matrix element in Heisenberg's theory.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> The intensity of spectral lines is determined by these transition amplitudes. This was the direct precursor to matrix mechanics. Heisenberg would soon realize that these amplitudes form matrices.
+    <a class="ref-link" href="https://doi.org/10.1007/BF01328280" target="_blank">DOI: 10.1007/BF01328280</a>
+  </p>
+
+  <!-- ====================== 1925–1927 ====================== -->
+  <h2>3. The New Quantum Mechanics (1925–1927)</h2>
+
+  <p>
+    <span class="tag">Matrix mechanics</span>
+    <span class="tag">Wave mechanics</span>
+    <span class="tag">Uncertainty</span>
+  </p>
+
+  <h3>Heisenberg (1925) — Matrix mechanics</h3>
+
+  <p>
+    <strong>Equations:</strong>
+    <span class="equation">x(t) → x<sub>mn</sub> e<sup>iω<sub>mn</sub>t</sup> &nbsp;&nbsp;(observable transition amplitudes)</span>
+    <span class="equation">x p − p x = iħ I &nbsp;&nbsp;(canonical commutation relation)</span>
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Heisenberg replaced classical position <em>x(t)</em> with a set of transition amplitudes <em>x<sub>mn</sub></em> indexed by pairs of stationary states. The multiplication rule for these amplitudes is non-commutative:
+    <span class="equation-inline">(x p)<sub>mn</sub> = Σ<sub>k</sub> x<sub>mk</sub> p<sub>kn</sub></span>
+    Born and Jordan recognized this as matrix multiplication.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> Physical observables are non-commuting operators. The uncertainty principle and the entire structure of quantum mechanics follow from this. Orbits are gone — only transition amplitudes remain.
+    <a class="ref-link" href="https://doi.org/10.1007/BF01328377" target="_blank">DOI: 10.1007/BF01328377</a>
+    <a class="ref-link" href="https://doi.org/10.1007/BF01328280" target="_blank">Born–Jordan DOI: 10.1007/BF01328280</a>
+  </p>
+
+  <h3>Schrödinger (1926) — Wave mechanics</h3>
+
+  <p>
+    <strong>Equation:</strong>
+    <span class="equation">iħ ∂ψ/∂t = Ĥψ = [ −(ħ²/2m)∇² + V(r) ] ψ</span>
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Schrödinger replaced the discrete orbit with a continuous wavefunction <em>ψ(r,t)</em>. For the hydrogen atom, solving this equation gives quantized energy levels <em>E<sub>n</sub></em> and wavefunctions <em>ψ<sub>nlm</sub>(r,θ,φ)</em> — exactly reproducing Bohr's energy levels but with a proper mathematical foundation.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> The wavefunction describes the quantum state. Its absolute square |ψ|² gives the probability density. The discrete energy levels emerge naturally from boundary conditions (the wavefunction must be normalizable), not from ad hoc postulates.
+    <a class="ref-link" href="https://doi.org/10.1002/andp.19263840404" target="_blank">DOI: 10.1002/andp.19263840404</a>
+    <a class="ref-link" href="https://doi.org/10.1002/andp.19263840602" target="_blank">Part II DOI: 10.1002/andp.19263840602</a>
+  </p>
+
+  <h3>Born (1926) — Probabilistic interpretation</h3>
+
+  <p>
+    <strong>Equation:</strong>
+    <span class="equation">P(r) d³r = |ψ(r)|² d³r</span>
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Born interpreted <em>|ψ|²</em> as the probability density of finding the particle at position <em>r</em>. This gave physical meaning to the wavefunction and resolved the wave-particle duality.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> Quantum mechanics is fundamentally probabilistic. Determinism is gone. This became a cornerstone of the Copenhagen interpretation.
+    <a class="ref-link" href="https://doi.org/10.1007/BF01397477" target="_blank">DOI: 10.1007/BF01397477</a>
+  </p>
+
+  <h3>Heisenberg (1927) — Uncertainty principle</h3>
+
+  <p>
+    <strong>Equation:</strong>
+    <span class="equation">Δx · Δp ≥ ħ/2</span>
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> This relation limits the precision with which complementary observables (position and momentum) can be simultaneously known. It follows directly from the commutation relation <span class="equation-inline">[x, p] = iħ</span>.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> The classical concept of a trajectory (a path with definite position and momentum at each moment) is fundamentally incompatible with quantum mechanics. Bohr's orbits are meaningless.
+    <a class="ref-link" href="https://doi.org/10.1007/BF01397280" target="_blank">DOI: 10.1007/BF01397280</a>
+  </p>
+
+  <h3>Bohr (1928) — Complementarity</h3>
+
+  <p>
+    <strong>Statement:</strong> Quantum objects exhibit wave and particle properties that are mutually exclusive but complementary. The full description requires both, but they cannot be observed simultaneously.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> This became the philosophical foundation of the Copenhagen interpretation. It resolved paradoxes like the double-slit experiment by asserting that the experimental arrangement determines which aspect (wave or particle) is manifest.
+    <a class="ref-link" href="https://doi.org/10.1038/121580a0" target="_blank">DOI: 10.1038/121580a0</a>
+  </p>
+
+  <div class="highlight-box">
+    <p><strong>The break from Bohr:</strong> The new quantum mechanics abolished orbits. It described states, wavefunctions, and probabilities. The Bohr model was superseded within 13 years. But its central concept — <strong>stationary states with discrete energies</strong> — survived intact as the eigenvalues of the Hamiltonian.</p>
+  </div>
+
+  <!-- ====================== 1927–1928 ====================== -->
+  <h2>4. Quantum Field Theory Is Born (1927–1928)</h2>
+
+  <p>
+    <span class="tag">Field quantization</span>
+    <span class="tag">Relativistic electron</span>
+    <span class="tag">Second quantization</span>
+  </p>
+
+  <h3>Dirac (1927) — Quantizing the electromagnetic field</h3>
+
+  <p>
+    <strong>Equation (field expansion):</strong>
+    <span class="equation">A(r,t) = Σ<sub>k,λ</sub> √(ħ / 2ε₀ω<sub>k</sub>V) [ a<sub>kλ</sub> ε<sub>kλ</sub> e<sup>i(k·r − ω<sub>k</sub>t)</sup> + a<sup>†</sup><sub>kλ</sub> ε*<sub>kλ</sub> e<sup>−i(k·r − ω<sub>k</sub>t)</sup> ]</span>
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Dirac treated the electromagnetic field as a collection of harmonic oscillators — one for each mode (wavevector <em>k</em> and polarization <em>λ</em>). He then quantized each oscillator using the standard rules:
+    <span class="equation-inline">[a<sub>kλ</sub>, a<sup>†</sup><sub>k'λ'</sub>] = δ<sub>kk'</sub> δ<sub>λλ'</sub></span>
+  </p>
+
+  <p>
+    The operator <em>a<sup>†</sup><sub>kλ</sub></em> creates a photon in mode <em>(k,λ)</em>; <em>a<sub>kλ</sub></em> annihilates one. The Hamiltonian becomes:
+    <span class="equation">H = Σ<sub>k,λ</sub> ħω<sub>k</sub> (a<sup>†</sup><sub>kλ</sub>a<sub>kλ</sub> + ½)</span>
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> Photons are quantized excitations of the electromagnetic field. The field itself is a quantum object. This was the first complete quantum field theory. It explained spontaneous emission, the Lamb shift (later), and the anomalous magnetic moment of the electron.
+    <a class="ref-link" href="https://doi.org/10.1098/rspa.1927.0039" target="_blank">DOI: 10.1098/rspa.1927.0039</a>
+  </p>
+
+  <h3>Dirac (1928) — The relativistic electron</h3>
+
+  <p>
+    <strong>Equation (Dirac equation):</strong>
+    <span class="equation">(iħγ<sup>μ</sup>∂<sub>μ</sub> − mc) ψ = 0</span>
+    where <em>γ<sup>μ</sup></em> are 4×4 gamma matrices satisfying <span class="equation-inline">{γ<sup>μ</sup>, γ<sup>ν</sup>} = 2g<sup>μν</sup></span>.
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Dirac sought a relativistic wave equation linear in both space and time derivatives. The gamma matrices were forced by the requirement that the equation be consistent with the relativistic energy-momentum relation <span class="equation-inline">E² = p²c² + m²c⁴</span>. The solution <em>ψ</em> is a four-component spinor — two components for spin up/down, two for particle/antiparticle.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> The electron has spin ½ naturally — it is not put in by hand. The equation predicts negative-energy solutions, which Dirac interpreted as a "sea" of filled states. A hole in this sea is a positron (antimatter), discovered by Anderson in 1932. The Dirac equation also predicted the electron's magnetic moment <em>g = 2</em>, which was later refined by QED to <em>g = 2.002319...</em>
+    <a class="ref-link" href="https://doi.org/10.1098/rspa.1928.0023" target="_blank">DOI: 10.1098/rspa.1928.0023</a>
+  </p>
+
+  <h3>Jordan &amp; Wigner (1928) — Second quantization of matter</h3>
+
+  <p>
+    <strong>Key idea:</strong> Just as the electromagnetic field can be quantized (photons), the Schrödinger wavefunction <em>ψ</em> can itself be promoted to an operator that creates and annihilates particles.
+  </p>
+
+  <p>
+    <strong>Equation (field operator):</strong>
+    <span class="equation">ψ(r) = Σ<sub>k</sub> a<sub>k</sub> φ<sub>k</sub>(r)</span>
+    <span class="equation">[a<sub>k</sub>, a<sup>†</sup><sub>k'</sub>]<sub>∓</sub> = δ<sub>kk'</sub></span>
+    where the commutator (−) applies to bosons and the anticommutator (+) to fermions.
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> The many-body wavefunction is replaced by a field operator <em>ψ(r)</em> that acts on a Fock space of occupation numbers. The operator <em>a<sup>†</sup><sub>k</sub></em> creates a particle in state <em>k</em>; <em>a<sub>k</sub></em> annihilates one. The Hamiltonian becomes:
+    <span class="equation">H = Σ<sub>k</sub> E<sub>k</sub> a<sup>†</sup><sub>k</sub>a<sub>k</sub> + ½ Σ<sub>k,k',q</sub> V(q) a<sup>†</sup><sub>k+q</sub> a<sup>†</sup><sub>k'−q</sub> a<sub>k'</sub> a<sub>k</sub></span>
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> Particles can be created and destroyed. The number of particles is not fixed. This is the essence of quantum field theory. For fermions, the anticommutation relations automatically enforce the Pauli exclusion principle — two fermions cannot occupy the same state because <span class="equation-inline">(a<sup>†</sup><sub>k</sub>)² = 0</span>.
+    <a class="ref-link" href="https://doi.org/10.1007/BF01336751" target="_blank">DOI: 10.1007/BF01336751</a>
+    <a class="ref-link" href="https://doi.org/10.1007/BF01340265" target="_blank">Part II DOI: 10.1007/BF01340265</a>
+  </p>
+
+  <div class="highlight-box">
+    <p><strong>How second quantization was possible:</strong> The crucial insight was that the wavefunction <em>ψ</em> is not a probability amplitude but a <strong>field operator</strong>. In first quantization (Schrödinger), <em>ψ</em> is a complex number at each point in space. In second quantization, <em>ψ(r)</em> becomes an operator that acts on a Hilbert space of variable particle number. The canonical commutation relations for <em>a</em> and <em>a<sup>†</sup></em> replace the classical Poisson brackets. This works because the harmonic oscillator spectrum is isomorphic to the spectrum of occupation numbers. The same mathematical structure describes photons (bosons) and electrons (fermions) — only the commutation relations differ (commutator vs. anticommutator). This unified matter and radiation as quantum fields.</p>
+  </div>
+
+  <!-- ====================== 1930–1948 ====================== -->
+  <h2>5. The QED Crisis and the Road to Renormalization (1930–1948)</h2>
+
+  <p>
+    <span class="tag">Infinities</span>
+    <span class="tag">Infrared divergence</span>
+    <span class="tag">Shelter Island</span>
+  </p>
+
+  <h3>Mott (1929, 1931) — Infrared divergence</h3>
+
+  <p>
+    <strong>Calculation:</strong> Mott calculated relativistic electron scattering in a Coulomb potential using the Dirac equation. He found that the probability of emitting arbitrarily low-energy photons diverges:
+    <span class="equation">P ∝ ∫ dω/ω → ∞ &nbsp;&nbsp;(as ω → 0)</span>
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> The divergence arises because a charged particle can never be truly free — it always emits and reabsorbs soft photons. The resolution (later) was that the observed electron is always accompanied by a cloud of soft photons, and the divergence cancels between emission and virtual corrections.
+    <a class="ref-link" href="https://doi.org/10.1098/rspa.1929.0186" target="_blank">DOI: 10.1098/rspa.1929.0186</a>
+  </p>
+
+  <h3>Dancoff (1939) — The missed opportunity</h3>
+
+  <p>
+    <strong>Calculation:</strong> Dancoff attempted to calculate radiative corrections to electron scattering using second-order perturbation theory. He encountered divergent integrals but made a sign error that prevented him from seeing that the divergence could be absorbed into a redefinition of the electron charge and mass.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> The machinery for renormalization was almost there. The sign error delayed progress by nearly a decade.
+    <a class="ref-link" href="https://doi.org/10.1103/PhysRev.55.959" target="_blank">DOI: 10.1103/PhysRev.55.959</a>
+  </p>
+
+  <h3>Shelter Island Conference (1947) — The crisis crystallizes</h3>
+
+  <p>
+    <strong>Key experimental results reported:</strong>
+  </p>
+  <ul>
+    <li><strong>Lamb shift:</strong> The 2S<sub>1/2</sub> and 2P<sub>1/2</sub> levels of hydrogen are not degenerate; there is a small splitting of ~1057 MHz. Dirac's equation predicts they should be exactly degenerate.</li>
+    <li><strong>Anomalous magnetic moment:</strong> The electron's magnetic moment is slightly larger than the Dirac value <em>g = 2</em>. The excess is <em>(g−2)/2 ≈ 0.00118</em>.</li>
+  </ul>
+
+  <p>
+    <strong>What it revealed:</strong> QED predictions disagreed with experiment. The infinities in the theory were not just a mathematical nuisance — they had physical consequences. A new formulation was needed.
+    <a class="ref-link" href="https://cds.cern.ch/record/158939" target="_blank">CERN History Record</a>
+  </p>
+
+  <h3>Bethe (1947) — The first renormalization</h3>
+
+  <p>
+    <strong>Calculation:</strong> Bethe performed a non-relativistic calculation of the Lamb shift. He found that the divergent integral for the electron self-energy could be absorbed into a redefinition of the electron mass:
+    <span class="equation">m<sub>observed</sub> = m<sub>bare</sub> + δm</span>
+    <span class="equation">δm = (3α/2π) m ln(ħ/Δx) → ∞</span>
+  </p>
+
+  <p>
+    <strong>How it was used:</strong> Bethe replaced the divergent logarithm with a cutoff at the electron Compton wavelength. The finite remainder gave a Lamb shift of ~1040 MHz — close to the experimental 1057 MHz.
+  </p>
+
+  <p>
+    <strong>What it revealed:</strong> Infinities can be absorbed into unobservable "bare" parameters. The physical predictions are finite. This was the first practical demonstration of renormalization.
+    <a class="ref-link" href="https://doi.org/10.1103/PhysRev.72.339" target="_blank">DOI: 10.1103/PhysRev.72.339</a>
+  </p>
+
+  <h3>Schwinger, Feynman, Tomonaga (1948–1949) — Three independent formulations</h3>
+
+  <p>
+    <strong>Schwinger (1948):</strong> Developed a covariant field theory with a unitary transformation that separated finite from divergent parts. He calculated the electron's anomalous magnetic moment to order <em>α</em>:
+    <span class="equation">(g−2)/2 = α/(2π) ≈ 0.001161</span>
+    This matched experiment.
+    <a class="ref-link" href="https://doi.org/10.1103/PhysRev.74.1439" target="_blank">DOI: 10.1103/PhysRev.74.1439</a>
+  </p>
+
+  <p>
+    <strong>Tomonaga (1946):</strong> Developed super-many-time theory, a covariant generalization of the interaction picture. Independently arrived at the same renormalization program.
+    <a class="ref-link" href="https://doi.org/10.1143/PTP.1.27" target="_blank">DOI: 10.1143/PTP.1.27</a>
+  </p>
+
+  <p>
+    <strong>Feynman (1949):</strong> Developed the path integral formulation and introduced <strong>Feynman diagrams</strong> — a graphical representation of perturbative QED. Each diagram corresponds to a mathematical expression:
+    <span class="equation">Amplitude = ∫ [d³p/(2π)³] Π<sub>vertices</sub> (coupling) Π<sub>propagators</sub> (1/(p² − m²))</span>
+    The diagrams made it possible to organize the calculation of physical processes systematically.
+    <a class="ref-link" href="https://doi.org/10.1103/PhysRev.76.769" target="_blank">DOI: 10.1103/PhysRev.76.769</a>
+    <a class="ref-link" href="https://doi.org/10.1103/PhysRev.76.749" target="_blank">DOI: 10.1103/PhysRev.76.749</a>
+  </p>
+
+  <h3>Dyson (1949) — Equivalence and renormalizability</h3>
+
+  <p>
+    <strong>Key results:</strong>
+  </p>
+  <ul>
+    <li>Proved that the Schwinger, Feynman, and Tomonaga formulations are mathematically equivalent.</li>
+    <li>Demonstrated that QED is renormalizable to all orders in perturbation theory.</li>
+    <li>Showed that only a finite number of divergent constants (mass, charge, wavefunction renormalization) are needed.</li>
+  </ul>
+
+  <p>
+    <strong>What it revealed:</strong> QED is a consistent quantum field theory. The infinities are absorbed into unobservable bare parameters. Physical predictions are finite and match experiment to extraordinary precision.
+    <a class="ref-link" href="https://doi.org/10.1103/PhysRev.75.486" target="_blank">DOI: 10.1103/PhysRev.75.486</a>
+  </p>
+
+  <!-- ====================== FEYNMAN DIAGRAMS ====================== -->
+  <h2>6. How Feynman Diagrams Work</h2>
+
+  <p>
+    <span class="tag">Perturbation theory</span>
+    <span class="tag">Graphical calculus</span>
+  </p>
+
+  <p>
+    A Feynman diagram is a pictorial representation of a term in the perturbative expansion of a quantum field theory. Each element has a precise mathematical meaning:
+  </p>
+
+  <table class="timeline-table">
+    <thead>
+      <tr>
+        <th>Diagram Element</th>
+        <th>Mathematical Factor</th>
+        <th>Physical Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Solid line (electron)</td>
+        <td>i / (p̸ − m + iε)</td>
+        <td>Electron propagator</td>
+      </tr>
+      <tr>
+        <td>Wavy line (photon)</td>
+        <td>−i g<sub>μν</sub> / (k² + iε)</td>
+        <td>Photon propagator</td>
+      </tr>
+      <tr>
+        <td>Vertex</td>
+        <td>−i e γ<sup>μ</sup></td>
+        <td>Electron-photon interaction</td>
+      </tr>
+      <tr>
+        <td>Loop</td>
+        <td>∫ d⁴k / (2π)⁴</td>
+        <td>Virtual particle momentum integral</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <strong>Example — electron scattering (Møller scattering):</strong> The lowest-order diagram has two electrons exchanging a virtual photon. The amplitude is:
+    <span class="equation">M = (e² / q²) [ū(p₃)γ<sup>μ</sup>u(p₁)] [ū(p₄)γ<sub>μ</sub>u(p₂)]</span>
+    where <em>q = p₁ − p₃</em> is the momentum transfer. Squaring this amplitude and integrating over phase space gives the cross-section, which agrees with experiment.
+  </p>
+
+  <p>
+    <strong>What diagrams revealed:</strong> They provide an intuitive, systematic way to compute physical quantities. They make divergences manifest (loops → divergent integrals) and show how renormalization works (divergences absorbed into vertex and propagator corrections). They have become the universal language of quantum field theory, extending to QCD, electroweak theory, and beyond.
+  </p>
+
+  <!-- ====================== SUMMARY ====================== -->
+  <h2>7. Summary: The Conceptual Arc</h2>
+
+  <table class="timeline-table">
+    <thead>
+      <tr>
+        <th>Era</th>
+        <th>Central Equation</th>
+        <th>What It Revealed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1900–1913</td>
+        <td>E = hν; L = nħ</td>
+        <td>Energy and angular momentum are quantized; atom is stable</td>
+      </tr>
+      <tr>
+        <td>1925–1927</td>
+        <td>[x,p] = iħ; iħ∂ψ/∂t = Ĥψ</td>
+        <td>Observables are operators; |ψ|² is probability; uncertainty</td>
+      </tr>
+      <tr>
+        <td>1927–1930</td>
+        <td>(iħγ<sup>μ</sup>∂<sub>μ</sub> − mc)ψ = 0; [a,a<sup>†</sup>] = 1</td>
+        <td>Electron is relativistic spinor; particles are field quanta</td>
+      </tr>
+      <tr>
+        <td>1930–1948</td>
+        <td>∫ dω/ω → ∞; m<sub>obs</sub> = m<sub>bare</sub> + δm</td>
+        <td>QED predicts infinities; renormalization absorbs them</td>
+      </tr>
+      <tr>
+        <td>1948–1949</td>
+        <td>Amplitude = Σ diagrams</td>
+        <td>Feynman diagrams systematize calculation; QED is renormalizable</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box">
+    <p><strong>Core logic:</strong> The Bohr model quantized energy but kept classical orbits. Heisenberg and Schrödinger abolished orbits and introduced operators and wavefunctions. Dirac made the electron relativistic and predicted antimatter. Second quantization turned the wavefunction into a field operator, making particle creation and annihilation possible. Quantum field theory quantized the electromagnetic field, creating infinities. Feynman diagrams and renormalization tamed those infinities, turning QED into the most precisely tested theory in physics. Each step was forced by the failure of the previous framework to explain new data or internal consistency.</p>
+  </div>
+
+  <!-- ====================== REFERENCES ====================== -->
+  <h2>Key References with Clickable Links</h2>
+
+  <ul style="font-size:0.92rem; list-style-type:none; padding-left:0;">
+    <li>Planck, M. (1900) — <a href="https://doi.org/10.1002/andp.19013090310" target="_blank">DOI: 10.1002/andp.19013090310</a></li>
+    <li>Einstein, A. (1905) — <a href="https://doi.org/10.1002/andp.19053220607" target="_blank">DOI: 10.1002/andp.19053220607</a></li>
+    <li>Rutherford, E. (1911) — <a href="https://doi.org/10.1080/14786440508637080" target="_blank">DOI: 10.1080/14786440508637080</a></li>
+    <li>Bohr, N. (1913) — <a href="https://doi.org/10.1080/14786441308634955" target="_blank">DOI: 10.1080/14786441308634955</a> · <a href="https://cds.cern.ch/record/262753" target="_blank">CERN Record</a></li>
+    <li>Sommerfeld, A. (1916) — <a href="https://doi.org/10.1002/andp.19163561702" target="_blank">DOI: 10.1002/andp.19163561702</a></li>
+    <li>Heisenberg, W. (1925) — <a href="https://doi.org/10.1007/BF01328377" target="_blank">DOI: 10.1007/BF01328377</a></li>
+    <li>Born, M. &amp; Jordan, P. (1925) — <a href="https://doi.org/10.1007/BF01328280" target="_blank">DOI: 10.1007/BF01328280</a></li>
+    <li>Schrödinger, E. (1926) — <a href="https://doi.org/10.1002/andp.19263840404" target="_blank">DOI: 10.1002/andp.19263840404</a> · <a href="https://doi.org/10.1002/andp.19263840602" target="_blank">Part II</a></li>
+    <li>Born, M. (1926) — <a href="https://doi.org/10.1007/BF01397477" target="_blank">DOI: 10.1007/BF01397477</a></li>
+    <li>Heisenberg, W. (1927) — <a href="https://doi.org/10.1007/BF01397280" target="_blank">DOI: 10.1007/BF01397280</a></li>
+    <li>Bohr, N. (1928) — <a href="https://doi.org/10.1038/121580a0" target="_blank">DOI: 10.1038/121580a0</a></li>
+    <li>Dirac, P.A.M. (1927) — <a href="https://doi.org/10.1098/rspa.1927.0039" target="_blank">DOI: 10.1098/rspa.1927.0039</a></li>
+    <li>Dirac, P.A.M. (1928) — <a href="https://doi.org/10.1098/rspa.1928.0023" target="_blank">DOI: 10.1098/rspa.1928.0023</a></li>
+    <li>Jordan, P. &amp; Wigner, E. (1928) — <a href="https://doi.org/10.1007/BF01336751" target="_blank">DOI: 10.1007/BF01336751</a></li>
+    <li>Heisenberg, W. &amp; Pauli, W. (1929) — <a href="https://doi.org/10.1007/BF01340265" target="_blank">DOI: 10.1007/BF01340265</a></li>
+    <li>Mott, N.F. (1929) — <a href="https://doi.org/10.1098/rspa.1929.0186" target="_blank">DOI: 10.1098/rspa.1929.0186</a></li>
+    <li>Dancoff, S.M. (1939) — <a href="https://doi.org/10.1103/PhysRev.55.959" target="_blank">DOI: 10.1103/PhysRev.55.959</a></li>
+    <li>Bethe, H.A. (1947) — <a href="https://doi.org/10.1103/PhysRev.72.339" target="_blank">DOI: 10.1103/PhysRev.72.339</a></li>
+    <li>Schwinger, J. (1948) — <a href="https://doi.org/10.1103/PhysRev.74.1439" target="_blank">DOI: 10.1103/PhysRev.74.1439</a></li>
+    <li>Feynman, R.P. (1949) — <a href="https://doi.org/10.1103/PhysRev.76.769" target="_blank">DOI: 10.1103/PhysRev.76.769</a> · <a href="https://doi.org/10.1103/PhysRev.76.749" target="_blank">DOI: 10.1103/PhysRev.76.749</a></li>
+    <li>Tomonaga, S. (1946) — <a href="https://doi.org/10.1143/PTP.1.27" target="_blank">DOI: 10.1143/PTP.1.27</a></li>
+    <li>Dyson, F.J. (1949) — <a href="https://doi.org/10.1103/PhysRev.75.486" target="_blank">DOI: 10.1103/PhysRev.75.486</a></li>
+    <li>Shelter Island Conference (1947) — <a href="https://cds.cern.ch/record/158939" target="_blank">CERN History Record</a></li>
+  </ul>
+
+  <div class="footer-note">
+    Prepared as a companion survey to the chromosome structure paper · Quantum physics 1900–1950
+  </div>
+
+</div>
+
+</body>
+</html>
