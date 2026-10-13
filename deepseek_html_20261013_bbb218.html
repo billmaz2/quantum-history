@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Index · All Papers</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f4f2ee;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      color: #1c1c1c;
+      line-height: 1.6;
+      padding: 3rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: #ffffff;
+      padding: 3rem 2.8rem;
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      border: 1px solid #ddd8d0;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      border-bottom: 3px solid #1c1c1c;
+      padding-bottom: 0.7rem;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      font-style: italic;
+      color: #4a4a4a;
+      margin-bottom: 2.2rem;
+      border-left: 4px solid #a89e8f;
+      padding-left: 1.2rem;
+    }
+
+    .status {
+      font-size: 0.9rem;
+      color: #5a5a5a;
+      margin-bottom: 1.5rem;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      padding: 0.6rem 1rem;
+      background: #f8f6f2;
+      border-left: 4px solid #b0a494;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .status.error {
+      background: #fdf0ee;
+      border-left-color: #c0705a;
+      color: #7a2e1a;
+    }
+
+    .status.success {
+      background: #f0f7f0;
+      border-left-color: #6a9a6a;
+      color: #2e5a2e;
+    }
+
+    ul.paper-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    ul.paper-list li {
+      border-bottom: 1px solid #e8e2d9;
+    }
+
+    ul.paper-list li:last-child {
+      border-bottom: none;
+    }
+
+    ul.paper-list li a {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1rem 1.2rem;
+      text-decoration: none;
+      color: #1c1c1c;
+      border-radius: 4px;
+      transition: background 0.15s ease, padding-left 0.15s ease;
+      border-left: 4px solid transparent;
+    }
+
+    ul.paper-list li a:hover {
+      background: #f8f6f2;
+      border-left-color: #7a6e5e;
+      padding-left: 1.5rem;
+    }
+
+    ul.paper-list li a .paper-title {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #1c1c1c;
+      flex: 1;
+      line-height: 1.4;
+    }
+
+    ul.paper-list li a .paper-file {
+      font-size: 0.82rem;
+      font-family: 'Courier New', monospace;
+      color: #8a7e6e;
+      background: #f2eee8;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    ul.paper-list li a:hover .paper-file {
+      background: #e8e2d8;
+      color: #5a4e3e;
+    }
+
+    .footer-note {
+      margin-top: 2.8rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid #ddd8d0;
+      font-size: 0.85rem;
+      color: #8a8a8a;
+      text-align: center;
+      font-style: italic;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #7a6e5e;
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1.5rem 0.8rem; }
+      .container { padding: 1.8rem 1.2rem; }
+      h1 { font-size: 1.5rem; }
+      ul.paper-list li a {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Library Index</h1>
+  <div class="subtitle">All HTML papers in this folder — click any title to open it</div>
+
+  <div id="status" class="status">Scanning folder…</div>
+
+  <ul id="paper-list" class="paper-list"></ul>
+
+  <div class="footer-note">
+    Auto-generated index · The list updates each time you reload
+  </div>
+</div>
+
+<script>
+  (async function () {
+    const statusEl = document.getElementById('status');
+    const listEl = document.getElementById('paper-list');
+
+    // ---- 1. Try to get a directory listing ----
+    // In a normal static server, we can fetch the directory and parse the HTML.
+    // In a local file:// context, fetch() on a directory usually fails.
+    // We try multiple strategies and fall back to a manual list if needed.
+
+    let htmlFiles = [];
+
+    // Strategy A: fetch the directory index (works on many static servers,
+    // e.g. `python -m http.server`, nginx with autoindex, etc.)
+    try {
+      const resp = await fetch('./', { cache: 'no-store' });
+      if (resp.ok) {
+        const text = await resp.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+
+        // Collect all anchors that point to .html files
+        const anchors = doc.querySelectorAll('a[href]');
+        const found = new Set();
+        anchors.forEach(a => {
+          let href = a.getAttribute('href');
+          if (!href) return;
+          // Strip query/hash
+          href = href.split('?')[0].split('#')[0];
+          // Only local .html files, not subdirectories with slashes
+          if (
+            href.toLowerCase().endsWith('.html') &&
+            !href.includes('://') &&
+            !href.startsWith('/') &&
+            !href.includes('/')
+          ) {
+            found.add(href);
+          }
+        });
+
+        // Also check for a manually provided list in a JSON file
+        if (found.size === 0) {
+          try {
+            const jsonResp = await fetch('./papers.json', { cache: 'no-store' });
+            if (jsonResp.ok) {
+              const json = await jsonResp.json();
+              if (Array.isArray(json)) {
+                json.forEach(f => found.add(f));
+              }
+            }
+          } catch (_) { /* ignore */ }
+        }
+
+        htmlFiles = Array.from(found);
+      }
+    } catch (err) {
+      // Directory fetch failed — we'll fall back below
+    }
+
+    // Strategy B: If we found nothing, use a hardcoded list.
+    // Edit this array to match the HTML files you actually have in the folder.
+    // You can also create a `papers.json` file with an array of filenames
+    // and the script will pick it up automatically (see Strategy A above).
+    if (htmlFiles.length === 0) {
+      htmlFiles = [
+        'chromosome-structure.html',
+        'quantum-physics.html',
+        'index.html'  // will be filtered out below
+      ];
+    }
+
+    // Remove this index file itself
+    htmlFiles = htmlFiles.filter(f => f.toLowerCase() !== 'index.html');
+
+    // Remove duplicates and sort
+    htmlFiles = [...new Set(htmlFiles)].sort();
+
+    if (htmlFiles.length === 0) {
+      statusEl.textContent = 'No HTML files found. Add files to this folder or edit the list in index.html.';
+      statusEl.className = 'status error';
+      return;
+    }
+
+    statusEl.textContent = `Found ${htmlFiles.length} file${htmlFiles.length === 1 ? '' : 's'}. Reading titles…`;
+    statusEl.className = 'status';
+
+    // ---- 2. For each file, fetch it and extract the <title> ----
+    const papers = [];
+
+    for (const file of htmlFiles) {
+      try {
+        const resp = await fetch(file, { cache: 'no-store' });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const text = await resp.text();
+
+        // Extract <title>…</title>
+        const match = text.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+        let title = match ? match[1].trim() : file;
+
+        // Decode HTML entities in the title
+        title = decodeEntities(title);
+
+        // If title is empty or just whitespace, fall back to filename
+        if (!title) title = file.replace(/\.html$/i, '').replace(/[-_]/g, ' ');
+
+        papers.push({ file, title });
+      } catch (err) {
+        // If we can't fetch the file, still show it with a fallback title
+        papers.push({
+          file,
+          title: file.replace(/\.html$/i, '').replace(/[-_]/g, ' ') + ' (unreadable)'
+        });
+      }
+    }
+
+    // ---- 3. Render the list ----
+    listEl.innerHTML = '';
+
+    papers.forEach(({ file, title }) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = file;
+      a.target = '_blank';
+      a.rel = 'noopener';
+
+      const titleSpan = document.createElement('span');
+      titleSpan.className = 'paper-title';
+      titleSpan.textContent = title;
+
+      const fileSpan = document.createElement('span');
+      fileSpan.className = 'paper-file';
+      fileSpan.textContent = file;
+
+      a.appendChild(titleSpan);
+      a.appendChild(fileSpan);
+      li.appendChild(a);
+      listEl.appendChild(li);
+    });
+
+    statusEl.textContent = `✓ ${papers.length} paper${papers.length === 1 ? '' : 's'} loaded. Click a title to open it.`;
+    statusEl.className = 'status success';
+
+    // ---- Helper: decode HTML entities ----
+    function decodeEntities(str) {
+      const txt = document.createElement('textarea');
+      txt.innerHTML = str;
+      return txt.value;
+    }
+  })();
+</script>
+
+</body>
+</html>
