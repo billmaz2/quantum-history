@@ -79,6 +79,12 @@
       border-radius: 12px;
       white-space: nowrap;
     }
+    /* Small visual hint that the link opens in a new tab */
+    ul.paper-list li a .paper-file::after {
+      content: " ↗";
+      font-size: 0.9em;
+      color: #b0a494;
+    }
     .footer-note {
       margin-top: 2.8rem;
       padding-top: 1.4rem;
@@ -95,7 +101,7 @@
 
 <div class="container">
   <h1>Index</h1>
-  <div class="subtitle">Every HTML paper in this repository</div>
+  <div class="subtitle">Every HTML paper in this repository — click a title to open it in a new tab</div>
   <div id="status" class="status">Initializing…</div>
   <ul id="paper-list" class="paper-list"></ul>
   <div class="footer-note">Auto-generated from repository contents</div>
@@ -121,7 +127,6 @@
 
   let owner = null, repo = null, folderPath = '';
 
-  // Allow <meta> override (useful for custom domains)
   const metaOwner = document.querySelector('meta[name="github-owner"]');
   const metaRepo  = document.querySelector('meta[name="github-repo"]');
 
@@ -152,10 +157,9 @@
   // ---------------------------------------------------------------
   // 2. Fetch the directory listing from the GitHub API
   // ---------------------------------------------------------------
-  // Try the exact folder path first; if that fails, try the repo root.
   const candidates = [];
   if (folderPath) candidates.push(folderPath);
-  candidates.push(''); // repo root as fallback
+  candidates.push('');
 
   let items = null;
   let usedPath = null;
@@ -242,7 +246,6 @@
   statusEl.className = 'status';
 
   const papers = await Promise.all(htmlFiles.map(async (f) => {
-    // Prefer the raw download_url (served from raw.githubusercontent.com)
     const url = f.download_url || f.html_url;
     log('Fetching title from:', url);
     try {
@@ -266,14 +269,16 @@
   }));
 
   // ---------------------------------------------------------------
-  // 5. Render
+  // 5. Render — links open in a NEW tab / page
   // ---------------------------------------------------------------
   listEl.innerHTML = '';
   papers.forEach(({ name, title }) => {
     const li = document.createElement('li');
     const a  = document.createElement('a');
-    a.href = name;   // relative link → stays on the Pages site
-    a.rel  = 'noopener';
+
+    a.href   = name;          // relative → stays on the Pages site
+    a.target = '_blank';      // ← opens in a new tab / window
+    a.rel    = 'noopener noreferrer';  // security best practice
 
     const t = document.createElement('span');
     t.className = 'paper-title';
