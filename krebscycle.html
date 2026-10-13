@@ -1,0 +1,1958 @@
+<title>Krebs Cycle History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Layout concept: a biochemical wall chart. Diagram and detail side by side, then a lab-notebook timeline, prize ledger, PDF reader and reference list. */
+:root{
+  --bg:#f3f6f7; --surface:#ffffff; --ink:#17222d; --muted:#55616e; --rule:#d2dae0; --tint:#e8eef1;
+  --gly:#2c4bb0; --cyc:#0b756a; --nob:#94680a; --on-accent:#ffffff; --focus:#d4501e;
+  --f-display:'Spectral',Georgia,'Times New Roman',serif;
+  --f-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1920; --surface:#15232c; --ink:#e5edf2; --muted:#9aabb8; --rule:#2a3b47; --tint:#1b2c37;
+    --gly:#8fa7ff; --cyc:#4fd3c0; --nob:#e3b550; --on-accent:#0e1920; --focus:#ff8a5c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1920; --surface:#15232c; --ink:#e5edf2; --muted:#9aabb8; --rule:#2a3b47; --tint:#1b2c37;
+  --gly:#8fa7ff; --cyc:#4fd3c0; --nob:#e3b550; --on-accent:#0e1920; --focus:#ff8a5c; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:1120px;margin-inline:auto}
+a{color:var(--cyc)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h1,h2,h3{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,5.4vw,3.6rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:600}
+.mono{font-family:var(--f-mono)}
+.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+header.top{padding-block:40px 28px;border-bottom:1px solid var(--rule)}
+header.top p.lede{max-width:62ch;font-size:1.06rem;color:var(--muted);margin:14px 0 0}
+nav.jump{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:20px;font-family:var(--f-mono);font-size:.8rem}
+nav.jump a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+nav.jump a:hover{border-color:var(--cyc);color:var(--cyc)}
+.theme-btn{font-family:var(--f-mono);font-size:.75rem;background:transparent;color:var(--muted);border:1px solid var(--rule);padding:4px 10px;border-radius:3px;cursor:pointer;margin-left:auto}
+
+section{padding-block:44px 8px;scroll-margin-top:12px}
+section>.head{display:flex;flex-direction:column;gap:6px;margin-bottom:22px}
+section>.head p{margin:0;max-width:64ch;color:var(--muted)}
+
+/* diagram */
+.stage{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:820px){.stage{grid-template-columns:minmax(0,1fr)}}
+.tabs{display:flex;gap:0;margin-bottom:12px;border:1px solid var(--rule);width:fit-content;max-width:100%}
+.tabs button{font:500 .85rem var(--f-body);padding:8px 14px;background:var(--surface);color:var(--ink);border:0;cursor:pointer}
+.tabs button+button{border-left:1px solid var(--rule)}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.card{background:var(--surface);border:1px solid var(--rule);padding:16px}
+.diagram-card{padding:12px 8px 8px}
+svg.chart{display:block;width:100%;height:auto;max-width:620px;margin-inline:auto}
+svg.chart text{font-family:var(--f-body);fill:var(--ink)}
+svg.chart .ab{font-family:var(--f-mono);font-size:11px;fill:var(--muted)}
+svg.chart .met{font-size:13px}
+svg.chart .yr{font-family:var(--f-mono);font-size:11px;fill:var(--muted)}
+.edge{fill:none;stroke:var(--rule);stroke-width:2.5}
+.node{fill:var(--surface);stroke:var(--ink);stroke-width:1.6}
+.badge{cursor:pointer}
+.badge circle{stroke-width:2}
+.badge text{font-family:var(--f-mono);font-size:11px;font-weight:500;text-anchor:middle;dominant-baseline:central}
+.badge.gly circle{stroke:var(--gly)} .badge.cyc circle{stroke:var(--cyc)} .badge.link circle{stroke:var(--nob)}
+.badge.gly.known circle{fill:var(--gly)} .badge.cyc.known circle{fill:var(--cyc)} .badge.link.known circle{fill:var(--nob)}
+.badge:not(.known) circle{fill:var(--surface);stroke-dasharray:3 3}
+.badge:not(.known) text{fill:var(--muted)}
+.badge.known text{fill:var(--on-accent)}
+.badge.sel circle{stroke:var(--focus);stroke-width:3.5;stroke-dasharray:none}
+.badge:hover circle{stroke-width:3.5}
+svg.chart .center{font-size:12px;fill:var(--muted);text-anchor:middle}
+
+.slider-row{margin-top:14px;display:grid;gap:6px;padding-inline:8px}
+.slider-row label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:.88rem}
+.slider-row output{font-family:var(--f-mono);font-size:1.25rem;font-weight:500;color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--cyc)}
+.known-line{font-size:.85rem;color:var(--muted);margin:0}
+.steps{display:flex;flex-wrap:wrap;gap:6px;margin:14px 8px 4px;padding:0;list-style:none}
+.steps button{font:400 .78rem var(--f-mono);padding:4px 8px;background:var(--tint);color:var(--ink);border:1px solid var(--rule);cursor:pointer;border-radius:2px;text-align:left}
+.steps button[aria-current="true"]{border-color:var(--focus);box-shadow:inset 0 0 0 1px var(--focus)}
+.steps button.future{color:var(--muted);border-style:dashed}
+
+.detail{position:sticky;top:12px}
+@media (max-width:820px){.detail{position:static}}
+.detail h3{margin:6px 0 4px;font-size:1.5rem}
+.detail .rxn{font-family:var(--f-mono);font-size:.84rem;background:var(--tint);padding:8px 10px;margin:10px 0;overflow-wrap:anywhere}
+.detail dl{margin:0;display:grid;gap:12px}
+.detail dt{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.detail dd{margin:2px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0;padding:0;list-style:none}
+.chip{font-family:var(--f-mono);font-size:.74rem;padding:2px 8px;border:1px solid var(--rule);background:var(--surface);border-radius:2px;text-decoration:none;color:var(--ink);display:inline-block}
+a.chip:hover{border-color:var(--cyc);color:var(--cyc)}
+.chip.nob{border-color:var(--nob);color:var(--nob)}
+.chip.ok{border-color:var(--cyc);color:var(--cyc)}
+
+/* timeline */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.filters button{font:500 .82rem var(--f-body);padding:6px 12px;background:var(--surface);color:var(--ink);border:1px solid var(--rule);cursor:pointer;border-radius:2px}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+ol.tl{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--rule)}
+ol.tl>li{display:grid;grid-template-columns:76px minmax(0,1fr);gap:4px 18px;padding:18px 0;border-bottom:1px solid var(--rule)}
+@media (max-width:560px){ol.tl>li{grid-template-columns:minmax(0,1fr)}}
+.tl .yr{font-family:var(--f-mono);font-size:1.45rem;font-weight:500;line-height:1}
+.tl .gly-mark{color:var(--gly)} .tl .cyc-mark{color:var(--cyc)}
+.tl h3{font-size:1.2rem}
+.tl .who{font-size:.9rem;color:var(--muted);margin:2px 0 6px}
+.tl p{margin:0 0 8px;max-width:68ch}
+
+/* nobel */
+.nobels{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.nobel{background:var(--surface);border:1px solid var(--rule);border-top:4px solid var(--nob);padding:14px 16px;display:grid;gap:6px;align-content:start}
+.nobel .y{font-family:var(--f-mono);font-size:1.7rem;font-weight:500;color:var(--nob);line-height:1}
+.nobel .field{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nobel .w{font-family:var(--f-display);font-weight:600;font-size:1.08rem}
+.nobel p{margin:0;font-size:.9rem}
+.nobel p.rel{color:var(--muted);font-style:italic}
+.nobel.hl{box-shadow:0 0 0 3px var(--focus)}
+.note{font-size:.88rem;color:var(--muted);max-width:70ch;margin-top:16px}
+
+/* reader */
+.pdfbar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-bottom:12px}
+.btn{font:600 .88rem var(--f-body);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:2px;text-decoration:none;display:inline-block}
+.btn:hover{background:var(--cyc);color:var(--on-accent)}
+iframe.pdf{width:100%;height:min(78vh,760px);min-height:420px;border:1px solid var(--rule);background:var(--surface);display:block}
+details.read{margin-top:18px;border:1px solid var(--rule);background:var(--surface)}
+details.read>summary{cursor:pointer;padding:12px 16px;font-weight:600}
+details.read .body{padding:4px 18px 18px;max-width:72ch}
+details.read h3{margin:22px 0 6px;color:var(--cyc)}
+details.read p{margin:0 0 10px;font-family:var(--f-display);font-size:1.06rem;line-height:1.6}
+
+/* refs */
+.search{width:100%;max-width:460px;padding:9px 12px;font:400 .95rem var(--f-body);border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:2px;margin-bottom:14px}
+ol.refs{margin:0;padding:0;list-style:none;display:grid;gap:0;border-top:1px solid var(--rule)}
+ol.refs>li{padding:12px 0;border-bottom:1px solid var(--rule);display:grid;gap:5px;scroll-margin-top:12px}
+ol.refs .cite{font-size:.95rem;overflow-wrap:anywhere}
+ol.refs .cite b{font-weight:600}
+ol.refs li:target{background:var(--tint)}
+footer{margin-top:48px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);max-width:70ch}
+
+/* reasoning */
+.methods{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:28px}
+.method{background:var(--surface);border:1px solid var(--rule);padding:14px 16px;display:grid;gap:6px;align-content:start}
+.method h3{font-size:1.05rem}
+.method p{margin:0;font-size:.88rem}
+.method .k{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sim{margin-bottom:28px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:820px){.sim{grid-template-columns:minmax(0,1fr)}}
+.sim .ctrl{display:grid;gap:14px}
+.sim .ctrl label{display:grid;gap:4px;font-size:.9rem}
+.sim .ctrl output{font-family:var(--f-mono);font-weight:500}
+.sim .chk{display:flex;gap:8px;align-items:center}
+.sim .read{font-size:.9rem;background:var(--tint);padding:10px 12px;margin:0}
+.sim .tag{font-family:var(--f-mono);font-size:.72rem;color:var(--muted)}
+svg.sc text{font-family:var(--f-body);font-size:11px;fill:var(--ink)}
+svg.sc .ax{stroke:var(--muted);stroke-width:1.2;fill:none}
+svg.sc .grid{stroke:var(--rule);stroke-width:1}
+svg.sc .c-base{stroke:var(--muted);stroke-width:2.2;fill:none;stroke-dasharray:5 4}
+svg.sc .c-phos{stroke:var(--cyc);stroke-width:3;fill:none}
+svg.sc .c-ars{stroke:var(--nob);stroke-width:3;fill:none}
+.exps{display:grid;gap:12px}
+details.exp{background:var(--surface);border:1px solid var(--rule)}
+details.exp>summary{cursor:pointer;padding:14px 16px;display:grid;gap:2px;list-style:none}
+details.exp>summary::-webkit-details-marker{display:none}
+details.exp>summary .t{font-family:var(--f-display);font-weight:700;font-size:1.18rem}
+details.exp>summary .m{font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+details.exp>summary::after{content:'+';position:absolute;right:16px;font-family:var(--f-mono);font-size:1.2rem;color:var(--muted)}
+details.exp{position:relative}
+details.exp[open]>summary::after{content:'\2212'}
+details.exp .in{padding:0 16px 16px;display:grid;gap:14px}
+details.exp .why{margin:0;font-family:var(--f-display);font-size:1.06rem;line-height:1.55;border-left:3px solid var(--cyc);padding-left:12px;max-width:70ch}
+details.exp .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+details.exp h4{margin:0 0 4px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:500}
+details.exp ul.pts{margin:0;padding-left:18px;font-size:.92rem;display:grid;gap:5px}
+details.exp .src{font-size:.82rem;color:var(--muted);margin:0}
+@media (prefers-reduced-motion:no-preference){.badge circle{transition:fill .25s,stroke .25s}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div style="display:flex;align-items:flex-start;gap:12px">
+    <span class="label">History of biochemistry · 1897 – 1953</span>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme">theme</button>
+  </div>
+  <h1 style="margin-top:10px">From glucose to the Krebs cycle</h1>
+  <p class="lede">How the enzymes of sugar breakdown and the citric acid cycle were found, who found them and when. Explore the pathways, drag the year to see what was known, and follow the primary papers and Nobel Prizes.</p>
+  <nav class="jump" aria-label="Sections">
+    <a href="#diagram">Interactive pathways</a>
+    <a href="#reasoning">How they reasoned</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#nobel">Nobel Prizes</a>
+    <a href="#history">PDF history</a>
+    <a href="#refs">Papers: DOI &amp; PubMed</a>
+  </nav>
+</header>
+
+<section id="diagram">
+  <div class="head">
+    <span class="label">Interactive pathways</span>
+    <h2>Click an enzyme to see how it was found</h2>
+    <p>Filled circles mark steps whose first experimental work had been reported by the selected year; dashed circles were still unknown.</p>
+  </div>
+  <div class="stage">
+    <div>
+      <div class="tabs" role="group" aria-label="Choose pathway">
+        <button type="button" id="tabGly" aria-pressed="false">Glycolysis</button>
+        <button type="button" id="tabCyc" aria-pressed="true">Citric acid cycle</button>
+      </div>
+      <div class="card diagram-card">
+        <div id="gView" hidden></div>
+        <div id="cView"></div>
+        <div class="slider-row">
+          <label for="yr"><span>Show what was known by</span><output id="yrOut" for="yr">1953</output></label>
+          <input id="yr" type="range" min="1897" max="1953" step="1" value="1953">
+          <p class="known-line" id="knownLine"></p>
+        </div>
+        <ul class="steps" id="stepList"></ul>
+      </div>
+    </div>
+    <aside class="card detail" id="detail" aria-live="polite"></aside>
+  </div>
+</section>
+
+
+<section id="reasoning">
+  <div class="head">
+    <span class="label">How they reasoned</span>
+    <h2>Why each experiment was tried, and what it could not show</h2>
+    <p>Discoveries rarely come from guessing the answer. Most came from a side effect, a control that behaved oddly, or a tool that could pull a system apart. Below are the seven reasoning tools that recur, a schematic of Harden's phosphate experiment you can play with, and nine experiments analysed one by one.</p>
+  </div>
+  <div class="methods" id="methods"></div>
+
+  <div class="card sim" id="simCard">
+    <div>
+      <span class="label">Try it: Harden's phosphate experiment (schematic)</span>
+      <svg class="sc" id="simSvg" viewBox="0 0 480 270" role="img" aria-label="Schematic curves of carbon dioxide evolved over time for yeast juice with no added phosphate, with phosphate, and with arsenate" style="width:100%;height:auto;display:block;margin-top:8px"></svg>
+    </div>
+    <div class="ctrl">
+      <label for="phos"><span>Phosphate added to the juice</span><output id="phosOut" for="phos">30</output></label>
+      <input id="phos" type="range" min="0" max="60" step="1" value="30">
+      <div class="chk"><input id="ars" type="checkbox"><label for="ars" style="display:inline">Add arsenate as well</label></div>
+      <p class="read" id="simRead"></p>
+      <p class="tag">Shape taken from Harden's description of fermentation types 1 to 3. The one-to-one relation between extra gas and phosphate is built into the sketch, as a rule Harden measured (0.8 to 1); the numbers are not data.</p>
+    </div>
+  </div>
+
+  <div class="exps" id="exps"></div>
+</section>
+
+<section id="timeline">
+  <div class="head">
+    <span class="label">Timeline</span>
+    <h2>Who found what, in order</h2>
+    <p>Two threads run side by side: the breakdown of glucose to pyruvate, and the oxidation of organic acids that led to the cycle.</p>
+  </div>
+  <div class="filters" role="group" aria-label="Filter timeline">
+    <button type="button" data-f="all" aria-pressed="true">All</button>
+    <button type="button" data-f="glycolysis" aria-pressed="false">Glucose and glycolysis</button>
+    <button type="button" data-f="cycle" aria-pressed="false">Citric acid cycle</button>
+  </div>
+  <ol class="tl" id="tl"></ol>
+</section>
+
+<section id="nobel">
+  <div class="head">
+    <span class="label">Nobel Prizes</span>
+    <h2>The prizes along the way</h2>
+    <p>Each card links to the Nobel Prize page for that year.</p>
+  </div>
+  <div class="nobels" id="nobels"></div>
+  <p class="note" id="nobelNote"></p>
+</section>
+
+<section id="history">
+  <div class="head">
+    <span class="label">The continuous history</span>
+    <h2>One PDF from the first enzyme to the last</h2>
+    <p>Sixteen pages: ten chapters in order, nine experiment analyses with the reasoning behind them, a timeline, a table of every enzyme with who, when and how, the Nobel Prizes, and the reference list with DOI and PubMed links.</p>
+  </div>
+  <div class="pdfbar">
+    <a class="btn" href="krebs_cycle_history.pdf" target="_blank" rel="noopener">Open the PDF in a new tab</a>
+    <span class="label">16 pages · A4</span>
+  </div>
+  <iframe class="pdf" src="krebs_cycle_history.pdf" title="History of glycolysis and the citric acid cycle, PDF"></iframe>
+  <details class="read">
+    <summary>Read the same history on this page</summary>
+    <div class="body" id="chapters"></div>
+  </details>
+</section>
+
+<section id="refs">
+  <div class="head">
+    <span class="label">Primary papers and reviews</span>
+    <h2>Papers with DOI and PubMed</h2>
+    <p>A green DOI or PMID tag means the identifier was checked against a database while preparing this page. Where no identifier is shown, the links search PubMed and Crossref for the exact title, because many of these 1897–1953 papers have no DOI.</p>
+  </div>
+  <input class="search" id="refSearch" type="search" placeholder="Filter by author, year or title" aria-label="Filter references">
+  <ol class="refs" id="refList"></ol>
+  <footer>
+    Enzyme names, years and attributions follow the reviews of Kresge, Simoni and Hill (2005) and Barnett (2003) and the Nobel lectures. Where sources differ the cautious wording is used, and approximate years are shown as ranges.
+  </footer>
+</section>
+</div>
+
+<script>
+const DATA = {
+ "refs": [
+  {
+   "id": "r1",
+   "authors": "Buchner E",
+   "year": 1897,
+   "title": "Alkoholische Gährung ohne Hefezellen",
+   "venue": "Berichte der deutschen chemischen Gesellschaft 30:117–124",
+   "doi": "10.1002/cber.18970300121",
+   "pmid": null
+  },
+  {
+   "id": "r2",
+   "authors": "Buchner E, Rapp R",
+   "year": 1897,
+   "title": "Alkoholische Gährung ohne Hefezellen",
+   "venue": "Berichte der deutschen chemischen Gesellschaft 30:2668–2678",
+   "doi": "10.1002/cber.18970300354",
+   "pmid": null
+  },
+  {
+   "id": "r3",
+   "authors": "Harden A, Young WJ",
+   "year": 1906,
+   "title": "The alcoholic ferment of yeast-juice",
+   "venue": "Proceedings of the Royal Society of London B 77:405–420",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r4",
+   "authors": "Lohmann K",
+   "year": 1929,
+   "title": "Über die Pyrophosphatfraktion im Muskel",
+   "venue": "Naturwissenschaften 17:624–625",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r5",
+   "authors": "Embden G, Deuticke HJ, Kraft G",
+   "year": 1933,
+   "title": "Über die intermediären Vorgänge bei der Glykolyse in der Muskulatur",
+   "venue": "Klinische Wochenschrift 12:213–215",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r6",
+   "authors": "Kresge N, Simoni RD, Hill RL",
+   "year": 2005,
+   "title": "Otto Fritz Meyerhof and the elucidation of the glycolytic pathway",
+   "venue": "Journal of Biological Chemistry 280(4):e3",
+   "doi": "10.1016/s0021-9258(20)76366-0",
+   "pmid": "15665335"
+  },
+  {
+   "id": "r7",
+   "authors": "Barnett JA",
+   "year": 2003,
+   "title": "A history of research on yeasts 5: the fermentation pathway",
+   "venue": "Yeast",
+   "doi": "10.1002/yea.986",
+   "pmid": null
+  },
+  {
+   "id": "r8",
+   "authors": "Annau E, Banga I, Blazsó A, Bruckner V, Laki K, Straub F, Szent-Györgyi A",
+   "year": 1935,
+   "title": "Über die Bedeutung der Fumarsäure für die tierische Gewebsatmung",
+   "venue": "Hoppe-Seyler's Zeitschrift für physiologische Chemie 236",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r9",
+   "authors": "Martius C, Knoop F",
+   "year": 1937,
+   "title": "Der physiologische Abbau der Citronensäure",
+   "venue": "Hoppe-Seyler's Zeitschrift für physiologische Chemie 246:I–II",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r10",
+   "authors": "Krebs HA, Johnson WA",
+   "year": 1937,
+   "title": "The role of citric acid in intermediate metabolism in animal tissues",
+   "venue": "Enzymologia 4:148–156 (reprinted in FEBS Letters 117, 1980)",
+   "doi": "10.1016/0014-5793(80)80564-3",
+   "pmid": null,
+   "doiNote": "DOI of the 1980 FEBS Letters reprint"
+  },
+  {
+   "id": "r11",
+   "authors": "Krebs HA",
+   "year": 1937,
+   "title": "The intermediate metabolism of carbohydrates",
+   "venue": "The Lancet 230:736–741",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r12",
+   "authors": "Krebs HA, Eggleston LV",
+   "year": 1940,
+   "title": "The oxidation of pyruvate in pigeon breast muscle",
+   "venue": "Biochemical Journal 34:1383–1395",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r13",
+   "authors": "Krebs HA",
+   "year": 1970,
+   "title": "The history of the tricarboxylic acid cycle",
+   "venue": "Perspectives in Biology and Medicine 14:154–170",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r14",
+   "authors": "Krebs HA",
+   "year": 1953,
+   "title": "The citric acid cycle (Nobel lecture)",
+   "venue": "Nobel Foundation",
+   "doi": null,
+   "pmid": null,
+   "url": "https://www.nobelprize.org/uploads/2018/06/krebs-lecture.pdf"
+  },
+  {
+   "id": "r15",
+   "authors": "Kornberg H",
+   "year": 2000,
+   "title": "Krebs and his trinity of cycles",
+   "venue": "Nature Reviews Molecular Cell Biology",
+   "doi": "10.1038/35043073",
+   "pmid": null
+  },
+  {
+   "id": "r16",
+   "authors": "Williamson DH (obituary)",
+   "year": 1993,
+   "title": "William Arthur Johnson – a postgraduate's contribution to the Krebs cycle",
+   "venue": "Trends in Biochemical Sciences",
+   "doi": "10.1016/0968-0004(93)90057-T",
+   "pmid": null,
+   "doiNote": "Author and title as listed in the Wikipedia reference; check the DOI page"
+  },
+  {
+   "id": "r17",
+   "authors": "Lipmann F, Kaplan NO",
+   "year": 1946,
+   "title": "A common factor in the enzymatic acetylation of sulfanilamide and of choline",
+   "venue": "Journal of Biological Chemistry 162:743–744",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r18",
+   "authors": "Stern JR, Ochoa S",
+   "year": 1951,
+   "title": "Enzymatic synthesis of citric acid. I. Synthesis with soluble enzymes",
+   "venue": "Journal of Biological Chemistry 191:161–172",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r19",
+   "authors": "Ochoa S",
+   "year": 1948,
+   "title": "Biosynthesis of tricarboxylic acids by carbon dioxide fixation. III. Enzymatic mechanisms",
+   "venue": "Journal of Biological Chemistry 174:133–157",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r20",
+   "authors": "Reed LJ, DeBusk BG, Gunsalus IC, Hornberger CS",
+   "year": 1951,
+   "title": "Crystalline alpha-lipoic acid: a catalytic agent associated with pyruvate dehydrogenase",
+   "venue": "Science 114:93–94",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r21",
+   "authors": "Kaufman S, Gilvarg C, Cori O, Ochoa S",
+   "year": 1953,
+   "title": "Enzymatic oxidation of alpha-ketoglutarate and coupled phosphorylation",
+   "venue": "Journal of Biological Chemistry 203:869–888",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r22",
+   "authors": "Kennedy EP, Lehninger AL",
+   "year": 1949,
+   "title": "Oxidation of fatty acids and tricarboxylic acid cycle intermediates by isolated rat liver mitochondria",
+   "venue": "Journal of Biological Chemistry 179:957–972",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r23",
+   "authors": "Berger L, Slein MW, Colowick SP, Cori CF",
+   "year": 1946,
+   "title": "Isolation of hexokinase from baker's yeast",
+   "venue": "Journal of General Physiology 29:379–391",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r24",
+   "authors": "Quastel JH, Wooldridge WR",
+   "year": 1928,
+   "title": "Some properties of the dehydrogenating enzymes of bacteria",
+   "venue": "Biochemical Journal 22:689–702",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r25",
+   "authors": "Kornberg HL, Krebs HA",
+   "year": 1957,
+   "title": "Synthesis of cell constituents from C2-units by a modified tricarboxylic acid cycle",
+   "venue": "Nature 179:988–991",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r26",
+   "authors": "Mitchell P",
+   "year": 1961,
+   "title": "Coupling of phosphorylation to electron and hydrogen transfer by a chemi-osmotic type of mechanism",
+   "venue": "Nature 191:144–148",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r28",
+   "authors": "Keilin D, Hartree EF",
+   "year": 1940,
+   "title": "Succinic dehydrogenase-cytochrome system of cells",
+   "venue": "Proceedings of the Royal Society of London B 129:277–306",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r29",
+   "authors": "Thunberg T",
+   "year": 1920,
+   "title": "Zur Kenntnis des intermediären Stoffwechsels und der dabei wirksamen Enzyme",
+   "venue": "Skandinavisches Archiv für Physiologie 40:1–91",
+   "doi": null,
+   "pmid": null
+  },
+  {
+   "id": "r30",
+   "authors": "Harden A",
+   "year": 1929,
+   "title": "The function of phosphate in alcoholic fermentation (Nobel lecture)",
+   "venue": "Nobel Lectures, Chemistry 1922–1941",
+   "doi": null,
+   "pmid": null,
+   "url": "https://www.nobelprize.org/uploads/2018/06/harden-lecture.pdf"
+  },
+  {
+   "id": "r31",
+   "authors": "States DM",
+   "year": null,
+   "title": "Otto Meyerhof and the Physiology Institute: the birth of modern biochemistry",
+   "venue": "Nobel Prize (themes article)",
+   "doi": null,
+   "pmid": null,
+   "url": "https://www.nobelprize.org/prizes/themes/otto-meyerhof-and-the-physiology-institute-the-birth-of-modern-biochemistry"
+  },
+  {
+   "id": "r32",
+   "authors": "Encyclopedia.com",
+   "year": null,
+   "title": "Sir Hans Adolf Krebs",
+   "venue": "Biography entry",
+   "doi": null,
+   "pmid": null,
+   "url": "https://www.encyclopedia.com/people/medicine/medicine-biographies/sir-hans-adolf-krebs"
+  }
+ ],
+ "nobels": [
+  {
+   "year": 1907,
+   "field": "Chemistry",
+   "who": "Eduard Buchner",
+   "why": "Biochemical researches and the discovery of cell-free fermentation.",
+   "link": "https://www.nobelprize.org/prizes/chemistry/1907/summary/",
+   "link2": null,
+   "relates": "Proved that fermentation is carried out by enzymes that work outside living cells."
+  },
+  {
+   "year": 1922,
+   "field": "Physiology or Medicine",
+   "who": "Otto Meyerhof (shared with Archibald V. Hill)",
+   "why": "Meyerhof: the fixed relationship between oxygen consumption and the metabolism of lactic acid in muscle.",
+   "link": "https://www.nobelprize.org/prizes/medicine/1922/summary/",
+   "relates": "Muscle glycolysis, the chemistry behind the Embden–Meyerhof–Parnas pathway."
+  },
+  {
+   "year": 1929,
+   "field": "Chemistry",
+   "who": "Arthur Harden and Hans von Euler-Chelpin",
+   "why": "Investigations on the fermentation of sugar and of fermentative enzymes.",
+   "link": "https://www.nobelprize.org/prizes/chemistry/1929/summary/",
+   "relates": "Hexose phosphates, coferment (cozymase) and the role of phosphate."
+  },
+  {
+   "year": 1931,
+   "field": "Physiology or Medicine",
+   "who": "Otto Warburg",
+   "why": "The nature and mode of action of the respiratory enzyme.",
+   "link": "https://www.nobelprize.org/prizes/medicine/1931/summary/",
+   "relates": "Respiratory enzymes and the pyridine-nucleotide chemistry used by the dehydrogenases of glycolysis and the cycle."
+  },
+  {
+   "year": 1937,
+   "field": "Physiology or Medicine",
+   "who": "Albert Szent-Györgyi",
+   "why": "Discoveries concerning biological combustion, with special reference to vitamin C and the catalysis of fumaric acid.",
+   "link": "https://www.nobelprize.org/prizes/medicine/1937/summary/",
+   "relates": "Showed that succinate, fumarate, malate and oxaloacetate act as catalysts of respiration."
+  },
+  {
+   "year": 1947,
+   "field": "Physiology or Medicine",
+   "who": "Carl F. Cori and Gerty T. Cori (with Bernardo Houssay)",
+   "why": "The course of the catalytic conversion of glycogen.",
+   "link": "https://www.nobelprize.org/prizes/medicine/1947/summary/",
+   "relates": "Glycogen phosphorylase and the Cori cycle; Cori's laboratory also crystallised glycolytic enzymes."
+  },
+  {
+   "year": 1953,
+   "field": "Physiology or Medicine",
+   "who": "Hans A. Krebs and Fritz Lipmann",
+   "why": "Krebs: the citric acid cycle. Lipmann: coenzyme A and its importance for intermediary metabolism.",
+   "link": "https://www.nobelprize.org/prizes/medicine/1953/summary/",
+   "relates": "The cycle itself and the carrier that feeds acetyl groups into it."
+  },
+  {
+   "year": 1964,
+   "field": "Physiology or Medicine",
+   "who": "Feodor Lynen (shared with Konrad Bloch)",
+   "why": "The mechanism and regulation of cholesterol and fatty acid metabolism.",
+   "link": "https://www.nobelprize.org/prizes/medicine/1964/summary/",
+   "relates": "Lynen identified acetyl-CoA as the active form of acetate (1951)."
+  },
+  {
+   "year": 1978,
+   "field": "Chemistry",
+   "who": "Peter Mitchell",
+   "why": "Biological energy transfer through the chemiosmotic theory.",
+   "link": "https://www.nobelprize.org/prizes/chemistry/1978/summary/",
+   "relates": "Explains how the NADH and FADH2 made by the cycle end up making ATP."
+  },
+  {
+   "year": 1997,
+   "field": "Chemistry",
+   "who": "Paul D. Boyer and John E. Walker (with Jens C. Skou)",
+   "why": "The enzymatic mechanism behind the synthesis of ATP.",
+   "link": "https://www.nobelprize.org/prizes/chemistry/1997/summary/",
+   "relates": "ATP synthase, the last step of the energy chain the cycle feeds."
+  }
+ ],
+ "events": [
+  {
+   "id": "e1",
+   "year": 1857,
+   "track": "glycolysis",
+   "title": "Fermentation tied to living yeast",
+   "people": "Louis Pasteur",
+   "text": "Pasteur argued that alcoholic fermentation is the work of living yeast cells, which pushed the idea of a purely chemical ferment into the background for four decades.",
+   "refs": []
+  },
+  {
+   "id": "e2",
+   "year": 1897,
+   "track": "glycolysis",
+   "title": "Fermentation without cells",
+   "people": "Eduard Buchner (with Rapp)",
+   "text": "Buchner ground yeast with sand and kieselguhr, pressed out a cell-free juice and found that it fermented sugar to alcohol and carbon dioxide. He called the active material zymase. This ended the vitalist view and began enzyme chemistry of metabolism.",
+   "refs": [
+    "r1",
+    "r2"
+   ],
+   "nobel": 1907
+  },
+  {
+   "id": "e3",
+   "year": 1906,
+   "track": "glycolysis",
+   "title": "Phosphate and a coferment",
+   "people": "Arthur Harden, William Young",
+   "text": "Harden and Young traced the speeding of fermentation by boiled yeast juice to two heat-stable helpers: a dialysable coferment and inorganic phosphate. With phosphate, juice fermented fast while a hexose bisphosphate piled up; the extra gas matched the phosphate taken up. The sugar phosphate was later identified as fructose-1,6-bisphosphate.",
+   "refs": [
+    "r3"
+   ],
+   "nobel": 1929
+  },
+  {
+   "id": "e4",
+   "year": 1922,
+   "track": "glycolysis",
+   "title": "Lactic acid and oxygen in muscle",
+   "people": "Otto Meyerhof, A. V. Hill",
+   "text": "Meyerhof's measurements linked lactic acid formation, glycogen breakdown and oxygen use in muscle. His laboratory then showed that muscle extracts contain the same kind of fermentative enzymes as yeast.",
+   "refs": [
+    "r6"
+   ],
+   "nobel": 1922
+  },
+  {
+   "id": "e5",
+   "year": 1929,
+   "track": "glycolysis",
+   "title": "ATP isolated from muscle",
+   "people": "Karl Lohmann",
+   "text": "Lohmann isolated the pyrophosphate-containing nucleotide of muscle, later called ATP, which turned out to be the energy currency connecting each phosphorylation in glycolysis to work.",
+   "refs": [
+    "r4"
+   ]
+  },
+  {
+   "id": "e6",
+   "year": 1933,
+   "track": "glycolysis",
+   "title": "Embden's scheme",
+   "people": "Gustav Embden, Hans Deuticke, Gerhard Kraft",
+   "text": "Embden's group proposed a step-by-step sequence from glycogen to lactic acid with phosphorylated intermediates. Over the next decade Meyerhof, Parnas, Lohmann, Warburg, the Coris and others identified and purified the individual enzymes. Embden was nominated for a Nobel Prize 12 times but never received one.",
+   "refs": [
+    "r5",
+    "r6"
+   ]
+  },
+  {
+   "id": "e7",
+   "year": 1939,
+   "track": "glycolysis",
+   "title": "Last glycolytic steps pinned down",
+   "people": "Otto Warburg, Walter Christian, Negelein, Brömel",
+   "text": "The oxidation of glyceraldehyde-3-phosphate coupled to phosphate uptake was worked out around 1939, giving the 1,3-bisphosphoglycerate step. By about 1940 the glycolytic pathway from glucose to pyruvate was essentially complete.",
+   "refs": [
+    "r6",
+    "r7"
+   ],
+   "nobel": 1931
+  },
+  {
+   "id": "e8",
+   "year": 1946,
+   "track": "glycolysis",
+   "title": "A glycolytic enzyme in pure form",
+   "people": "Berger, Slein, Colowick, Cori",
+   "text": "Hexokinase, the first enzyme of glucose metabolism, was isolated from baker's yeast by Carl Cori's group, one of the first of a series of crystalline glycolytic enzymes.",
+   "refs": [
+    "r23"
+   ],
+   "nobel": 1947
+  },
+  {
+   "id": "c1",
+   "year": 1909,
+   "track": "cycle",
+   "title": "Dehydrogenases and succinate",
+   "people": "Torsten Thunberg",
+   "text": "From 1909 Thunberg showed that minced tissue oxidises succinate, citrate, fumarate, malate and other organic acids by dehydrogenation, using methylene blue as a hydrogen acceptor. These acids became the standard test substances for tissue respiration.",
+   "refs": [
+    "r29"
+   ]
+  },
+  {
+   "id": "c2",
+   "year": 1928,
+   "track": "cycle",
+   "title": "Malonate blocks succinate oxidation",
+   "people": "Quastel and Wooldridge",
+   "text": "Malonate was found to inhibit succinate dehydrogenase competitively. This later became a key tool: Krebs used malonate to show that succinate accumulates when the cycle is blocked.",
+   "refs": [
+    "r24"
+   ]
+  },
+  {
+   "id": "c3",
+   "year": 1935,
+   "track": "cycle",
+   "title": "C4 acids as catalysts of respiration",
+   "people": "Albert Szent-Györgyi and colleagues",
+   "text": "Szent-Györgyi found in pigeon breast muscle that tiny amounts of succinate, fumarate, malate or oxaloacetate raised oxygen uptake far above what their own oxidation could account for. He proposed a chain of four-carbon acids carrying hydrogen from food to oxygen.",
+   "refs": [
+    "r8"
+   ],
+   "nobel": 1937
+  },
+  {
+   "id": "c4",
+   "year": 1937,
+   "track": "cycle",
+   "title": "Citrate to succinate",
+   "people": "Carl Martius, Franz Knoop",
+   "text": "In March 1937 Martius and Knoop showed how citrate is converted via cis-aconitate and isocitrate to alpha-ketoglutarate and onward to succinate, closing a gap between the six-carbon and four-carbon acids.",
+   "refs": [
+    "r9",
+    "r14"
+   ]
+  },
+  {
+   "id": "c5",
+   "year": 1937,
+   "track": "cycle",
+   "title": "The cycle is proposed",
+   "people": "Hans Krebs, William Johnson",
+   "text": "In Sheffield, Krebs and his student William Arthur Johnson found that citrate, added in small amounts to minced pigeon breast muscle, catalytically increased oxygen use and that citrate was formed from oxaloacetate plus a product of pyruvate. They arranged the acids in a cycle, named it the citric acid cycle, and published the full paper in the journal Enzymologia after their short report to Nature was not accepted. Johnson collected most of the experimental data; Krebs gave the direction.",
+   "refs": [
+    "r10",
+    "r11",
+    "r16"
+   ],
+   "nobel": 1953
+  },
+  {
+   "id": "c6",
+   "year": 1940,
+   "track": "cycle",
+   "title": "Pyruvate oxidation tested",
+   "people": "Hans Krebs, L. V. Eggleston",
+   "text": "Further experiments in pigeon breast muscle established that pyruvate oxidation depends on the C4 acids and on the regeneration of oxaloacetate, strengthening the cyclic scheme.",
+   "refs": [
+    "r12"
+   ]
+  },
+  {
+   "id": "c7",
+   "year": 1940,
+   "track": "cycle",
+   "title": "Succinate dehydrogenase and cytochromes",
+   "people": "David Keilin, Edward Hartree",
+   "text": "Succinate oxidation was tied to the cytochrome system, linking the cycle to the respiratory chain.",
+   "refs": [
+    "r28"
+   ]
+  },
+  {
+   "id": "c8",
+   "year": 1945,
+   "track": "cycle",
+   "title": "Coenzyme A",
+   "people": "Fritz Lipmann, Nathan Kaplan",
+   "text": "Lipmann traced acetylation reactions to a heat-stable cofactor, coenzyme A. In 1946 Lipmann and Kaplan described it as a common factor in enzymatic acetylation. It later proved to be the carrier of the acetyl unit that enters the cycle.",
+   "refs": [
+    "r17"
+   ],
+   "nobel": 1953
+  },
+  {
+   "id": "c9",
+   "year": 1948,
+   "track": "cycle",
+   "title": "Isocitrate dehydrogenase and CO2 fixation",
+   "people": "Severo Ochoa",
+   "text": "Ochoa purified isocitrate dehydrogenase and showed that its reaction involves an oxalosuccinate intermediate and is reversible, with CO2 fixation into alpha-ketoglutarate.",
+   "refs": [
+    "r19"
+   ]
+  },
+  {
+   "id": "c10",
+   "year": 1949,
+   "track": "cycle",
+   "title": "The cycle located in mitochondria",
+   "people": "Eugene Kennedy, Albert Lehninger",
+   "text": "Isolated rat-liver mitochondria were shown to oxidise tricarboxylic-acid-cycle intermediates and fatty acids, placing the cycle inside the mitochondrion.",
+   "refs": [
+    "r22"
+   ]
+  },
+  {
+   "id": "c11",
+   "year": 1951,
+   "track": "cycle",
+   "title": "Condensing enzyme and active acetate",
+   "people": "Joseph Stern, Severo Ochoa; Feodor Lynen",
+   "text": "Stern and Ochoa described the enzyme that condenses an acetyl unit with oxaloacetate to give citrate (now citrate synthase). In 1951 Lynen's group showed that the active acetyl group is acetyl-CoA.",
+   "refs": [
+    "r18"
+   ],
+   "nobel": 1964
+  },
+  {
+   "id": "c12",
+   "year": 1951,
+   "track": "cycle",
+   "title": "Lipoic acid",
+   "people": "Lester Reed and colleagues",
+   "text": "Crystalline alpha-lipoic acid was isolated as a catalytic cofactor of pyruvate dehydrogenase. Lipoate later turned out to be part of both pyruvate dehydrogenase and alpha-ketoglutarate dehydrogenase complexes.",
+   "refs": [
+    "r20"
+   ]
+  },
+  {
+   "id": "c13",
+   "year": 1953,
+   "track": "cycle",
+   "title": "Alpha-ketoglutarate to succinate",
+   "people": "Kaufman, Gilvarg, Cori, Ochoa",
+   "text": "The oxidation of alpha-ketoglutarate to succinyl-CoA and the conversion of succinyl-CoA to succinate with phosphorylation of GDP or ADP were separated into distinct enzymes. This accounted for the last unexplained steps of the cycle.",
+   "refs": [
+    "r21"
+   ]
+  },
+  {
+   "id": "c14",
+   "year": 1953,
+   "track": "cycle",
+   "title": "Nobel Prize to Krebs and Lipmann",
+   "people": "Hans Krebs, Fritz Lipmann",
+   "text": "The Nobel Prize in Physiology or Medicine 1953 went to Krebs for the citric acid cycle and to Lipmann for coenzyme A. Johnson and Martius and Knoop were not included.",
+   "refs": [
+    "r14"
+   ],
+   "nobel": 1953
+  },
+  {
+   "id": "c15",
+   "year": 1957,
+   "track": "cycle",
+   "title": "The glyoxylate bypass",
+   "people": "Hans Kornberg, Hans Krebs",
+   "text": "Kornberg and Krebs described a modified cycle in microbes that grows on two-carbon compounds, using isocitrate lyase and malate synthase to skip the decarboxylation steps.",
+   "refs": [
+    "r25",
+    "r15"
+   ]
+  },
+  {
+   "id": "c16",
+   "year": 1961,
+   "track": "cycle",
+   "title": "How the cycle's energy is used",
+   "people": "Peter Mitchell",
+   "text": "The chemiosmotic hypothesis explained how electrons from NADH and FADH2 made by the cycle drive ATP synthesis across the inner mitochondrial membrane.",
+   "refs": [
+    "r26"
+   ],
+   "nobel": 1978
+  }
+ ],
+ "enzymes": [
+  {
+   "id": "g1",
+   "pathway": "glycolysis",
+   "n": 1,
+   "name": "Hexokinase",
+   "ec": "2.7.1.1",
+   "reaction": "Glucose + ATP → glucose 6-phosphate + ADP",
+   "who": "Otto Meyerhof (activity, late 1920s); Berger, Slein, Colowick and Cori (isolation from yeast, 1946)",
+   "when": "1927–1946",
+   "how": "Phosphate uptake by sugar in muscle and yeast extracts, then purification of the yeast enzyme.",
+   "refs": [
+    "r23",
+    "r6"
+   ]
+  },
+  {
+   "id": "g2",
+   "pathway": "glycolysis",
+   "n": 2,
+   "name": "Phosphoglucose isomerase",
+   "ec": "5.3.1.9",
+   "reaction": "Glucose 6-phosphate ⇌ fructose 6-phosphate",
+   "who": "Karl Lohmann",
+   "when": "1933",
+   "how": "Showed enzymatic interconversion of the Robison ester (glucose 6-phosphate) and fructose 6-phosphate in muscle extract.",
+   "refs": [
+    "r6"
+   ]
+  },
+  {
+   "id": "g3",
+   "pathway": "glycolysis",
+   "n": 3,
+   "name": "Phosphofructokinase",
+   "ec": "2.7.1.11",
+   "reaction": "Fructose 6-phosphate + ATP → fructose 1,6-bisphosphate + ADP",
+   "who": "Hexose bisphosphate: Harden and Young (1906); enzyme work in the Embden and Meyerhof schools (1930s)",
+   "when": "1906–1930s",
+   "how": "Accumulation of a hexose bisphosphate in yeast juice with phosphate. Its role as the main control point of glycolysis was clarified in the 1950s and 1960s.",
+   "refs": [
+    "r3",
+    "r6"
+   ]
+  },
+  {
+   "id": "g4",
+   "pathway": "glycolysis",
+   "n": 4,
+   "name": "Aldolase",
+   "ec": "4.1.2.13",
+   "reaction": "Fructose 1,6-bisphosphate ⇌ DHAP + glyceraldehyde 3-phosphate",
+   "who": "Otto Meyerhof and Karl Lohmann",
+   "when": "1934",
+   "how": "Splitting of hexose bisphosphate into two triose phosphates by muscle extract.",
+   "refs": [
+    "r6"
+   ]
+  },
+  {
+   "id": "g5",
+   "pathway": "glycolysis",
+   "n": 5,
+   "name": "Triose phosphate isomerase",
+   "ec": "5.3.1.1",
+   "reaction": "DHAP ⇌ glyceraldehyde 3-phosphate",
+   "who": "Meyerhof and co-workers",
+   "when": "1930s",
+   "how": "Equilibrium between the two triose phosphates in muscle extract.",
+   "refs": [
+    "r6"
+   ]
+  },
+  {
+   "id": "g6",
+   "pathway": "glycolysis",
+   "n": 6,
+   "name": "Glyceraldehyde 3-phosphate dehydrogenase",
+   "ec": "1.2.1.12",
+   "reaction": "G3P + NAD⁺ + Pi → 1,3-bisphosphoglycerate + NADH",
+   "who": "Otto Warburg and Walter Christian; crystallised in the Cori laboratory",
+   "when": "1939 and 1940s",
+   "how": "Coupling of oxidation of the aldehyde to phosphate uptake with the nucleotide cofactor NAD.",
+   "refs": [
+    "r6",
+    "r7"
+   ]
+  },
+  {
+   "id": "g7",
+   "pathway": "glycolysis",
+   "n": 7,
+   "name": "Phosphoglycerate kinase",
+   "ec": "2.7.2.3",
+   "reaction": "1,3-Bisphosphoglycerate + ADP → 3-phosphoglycerate + ATP",
+   "who": "Negelein and Brömel; Warburg and Christian",
+   "when": "1939",
+   "how": "Identification of 1,3-bisphosphoglycerate and its transfer of phosphate to ADP.",
+   "refs": [
+    "r6"
+   ]
+  },
+  {
+   "id": "g8",
+   "pathway": "glycolysis",
+   "n": 8,
+   "name": "Phosphoglycerate mutase",
+   "ec": "5.4.2.11",
+   "reaction": "3-Phosphoglycerate ⇌ 2-phosphoglycerate",
+   "who": "Meyerhof and Kiessling",
+   "when": "1935",
+   "how": "Interconversion of the two phosphoglycerates in muscle extract.",
+   "refs": [
+    "r6"
+   ]
+  },
+  {
+   "id": "g9",
+   "pathway": "glycolysis",
+   "n": 9,
+   "name": "Enolase",
+   "ec": "4.2.1.11",
+   "reaction": "2-Phosphoglycerate ⇌ phosphoenolpyruvate + H₂O",
+   "who": "Lohmann and Meyerhof; crystallised by Warburg and Christian",
+   "when": "1934 and 1941",
+   "how": "Dehydration of 2-phosphoglycerate to a high-energy enol phosphate.",
+   "refs": [
+    "r6"
+   ]
+  },
+  {
+   "id": "g10",
+   "pathway": "glycolysis",
+   "n": 10,
+   "name": "Pyruvate kinase",
+   "ec": "2.7.1.40",
+   "reaction": "Phosphoenolpyruvate + ADP → pyruvate + ATP",
+   "who": "Lohmann and Meyerhof; Parnas",
+   "when": "1934",
+   "how": "Transfer of phosphate from phosphoenolpyruvate to ADP, closing the pathway to pyruvate.",
+   "refs": [
+    "r6"
+   ]
+  },
+  {
+   "id": "l0",
+   "pathway": "link",
+   "n": 0,
+   "name": "Pyruvate dehydrogenase complex",
+   "ec": "1.2.4.1 (E1)",
+   "reaction": "Pyruvate + CoA + NAD⁺ → acetyl-CoA + CO₂ + NADH",
+   "who": "Thiamine pyrophosphate (Lohmann and Schuster, 1937); coenzyme A (Lipmann, 1945–46); lipoic acid (Reed et al., 1951)",
+   "when": "1937–1951",
+   "how": "Built up from cofactors, each identified as a requirement for pyruvate oxidation. Full complex worked out in the 1950s.",
+   "refs": [
+    "r17",
+    "r20"
+   ]
+  },
+  {
+   "id": "t1",
+   "pathway": "cycle",
+   "n": 1,
+   "name": "Citrate synthase",
+   "ec": "2.3.3.1",
+   "reaction": "Acetyl-CoA + oxaloacetate + H₂O → citrate + CoA",
+   "who": "Joseph Stern and Severo Ochoa (the condensing enzyme)",
+   "when": "1949–1951",
+   "how": "Enzymatic synthesis of citrate from acetate and oxaloacetate with CoA, after Lipmann's coenzyme A and Lynen's identification of acetyl-CoA.",
+   "refs": [
+    "r18",
+    "r17"
+   ]
+  },
+  {
+   "id": "t2",
+   "pathway": "cycle",
+   "n": 2,
+   "name": "Aconitase",
+   "ec": "4.2.1.3",
+   "reaction": "Citrate ⇌ cis-aconitate ⇌ isocitrate",
+   "who": "Martius and Knoop (reaction sequence, 1937); enzyme purified around 1950",
+   "when": "1937–1950",
+   "how": "Tracing citrate breakdown through cis-aconitate to isocitrate in liver.",
+   "refs": [
+    "r9"
+   ]
+  },
+  {
+   "id": "t3",
+   "pathway": "cycle",
+   "n": 3,
+   "name": "Isocitrate dehydrogenase",
+   "ec": "1.1.1.41 / 1.1.1.42",
+   "reaction": "Isocitrate + NAD(P)⁺ → alpha-ketoglutarate + CO₂ + NAD(P)H",
+   "who": "Martius (1937); Adler, von Euler and co-workers (1939); Ochoa (purification and mechanism, 1948)",
+   "when": "1937–1948",
+   "how": "Oxidative decarboxylation through an oxalosuccinate intermediate.",
+   "refs": [
+    "r9",
+    "r19"
+   ]
+  },
+  {
+   "id": "t4",
+   "pathway": "cycle",
+   "n": 4,
+   "name": "Alpha-ketoglutarate dehydrogenase complex",
+   "ec": "1.2.4.2 (E1)",
+   "reaction": "Alpha-ketoglutarate + CoA + NAD⁺ → succinyl-CoA + CO₂ + NADH",
+   "who": "Kaufman, Gilvarg, Cori and Ochoa; Sanadi and colleagues",
+   "when": "1952–1953",
+   "how": "Cell-free oxidation of alpha-ketoglutarate requiring thiamine pyrophosphate, lipoate, CoA and NAD, resembling the pyruvate dehydrogenase complex.",
+   "refs": [
+    "r21",
+    "r20"
+   ]
+  },
+  {
+   "id": "t5",
+   "pathway": "cycle",
+   "n": 5,
+   "name": "Succinyl-CoA synthetase",
+   "ec": "6.2.1.4 / 6.2.1.5",
+   "reaction": "Succinyl-CoA + Pi + GDP (or ADP) → succinate + CoA + GTP (or ATP)",
+   "who": "Kaufman, Gilvarg, Cori and Ochoa",
+   "when": "1953",
+   "how": "Separation of a phosphorylating enzyme that couples the thioester bond to nucleotide triphosphate formation, the cycle's substrate-level phosphorylation.",
+   "refs": [
+    "r21"
+   ]
+  },
+  {
+   "id": "t6",
+   "pathway": "cycle",
+   "n": 6,
+   "name": "Succinate dehydrogenase",
+   "ec": "1.3.5.1",
+   "reaction": "Succinate + FAD → fumarate + FADH₂",
+   "who": "Thunberg (1909–1920); Quastel and Wooldridge (malonate, 1928); Keilin and Hartree (1940)",
+   "when": "1909–1940",
+   "how": "Dehydrogenation of succinate by tissue mince, competitive inhibition by malonate, then linkage to cytochromes. Later shown to be a flavoprotein bound to the inner mitochondrial membrane (Complex II).",
+   "refs": [
+    "r29",
+    "r24",
+    "r28"
+   ]
+  },
+  {
+   "id": "t7",
+   "pathway": "cycle",
+   "n": 7,
+   "name": "Fumarase (fumarate hydratase)",
+   "ec": "4.2.1.2",
+   "reaction": "Fumarate + H₂O ⇌ L-malate",
+   "who": "Activity known in tissues since the early twentieth century; role in respiration shown by Szent-Györgyi (1935)",
+   "when": "1935",
+   "how": "Fumarate and malate interconversion in pigeon breast muscle, with fumarate acting as a respiratory catalyst. Purified in the 1950s.",
+   "refs": [
+    "r8"
+   ]
+  },
+  {
+   "id": "t8",
+   "pathway": "cycle",
+   "n": 8,
+   "name": "Malate dehydrogenase",
+   "ec": "1.1.1.37",
+   "reaction": "L-Malate + NAD⁺ ⇌ oxaloacetate + NADH",
+   "who": "Green (1936); Szent-Györgyi and Krebs and Eggleston (oxaloacetate as the cycle's acceptor)",
+   "when": "1935–1940",
+   "how": "Oxidation of malate to oxaloacetate, which closes the cycle by accepting the next acetyl unit.",
+   "refs": [
+    "r8",
+    "r12"
+   ]
+  }
+ ],
+ "chapters": [
+  {
+   "title": "1. A chemical question about sugar (before 1897)",
+   "period": "to 1896",
+   "body": [
+    "By the middle of the nineteenth century people knew that yeast turns sugar into alcohol and carbon dioxide. Louis Pasteur argued in the 1850s and 1860s that the process belongs to living yeast cells. Chemists such as Liebig held that fermentation was a chemical decomposition, and the word enzyme was introduced by Wilhelm Kühne in 1877 for ferments that work outside the cell. Without a way to prepare an active cell-free extract the dispute stayed open."
+   ]
+  },
+  {
+   "title": "2. The first cell-free fermentation (1897)",
+   "period": "1897",
+   "body": [
+    "Eduard Buchner ground yeast with sand and kieselguhr and pressed out the juice. He was looking for a preservable extract for medicine, and added a lot of sugar to preserve it. The juice fermented the sugar. He reported this in 1897 in the Berichte der deutschen chemischen Gesellschaft, and called the active material zymase. The first enzymes of glucose breakdown had been shown to work outside a cell. Buchner received the Nobel Prize in Chemistry in 1907.",
+    "This is the starting point for everything that follows: glucose breakdown could now be studied with extracts, inhibitors, cofactors and eventually pure proteins."
+   ]
+  },
+  {
+   "title": "3. Phosphate and the coferment (1905–1907)",
+   "period": "1905–1907",
+   "body": [
+    "Arthur Harden and William Young in London were not looking for phosphate. Harden's group was trying to raise an antiserum against Buchner's yeast juice, and in the control experiments normal serum unexpectedly sped fermentation. Following that clue they added boiled yeast juice and got a large, temporary rise in fermentation that grew with the amount added. Fractionating the boiled juice, they found two independent helpers: a heat-stable, dialysable coferment (later called cozymase) and inorganic phosphate. Without added phosphate the juice fermented slowly. With phosphate it ran fast, a hexose bisphosphate accumulated, and the burst of gas matched the phosphate taken up. The sugar phosphate was later identified as fructose 1,6-bisphosphate. Harden shared the 1929 Nobel Prize in Chemistry with Hans von Euler-Chelpin. Section 11 sets out the reasoning step by step."
+   ]
+  },
+  {
+   "title": "4. Muscle and the Embden–Meyerhof–Parnas pathway (1907–1940)",
+   "period": "1907–1940",
+   "body": [
+    "Muscle makes lactic acid from glycogen. Otto Meyerhof, working with A. V. Hill on the energetics of muscle, showed that the lactic acid formed is tied to oxygen consumption and recovered during rest, and earned the 1922 Nobel Prize in Physiology or Medicine. Meyerhof's laboratory also showed that muscle extracts contain the same enzyme systems as yeast.",
+    "In 1929 Karl Lohmann isolated adenosine triphosphate from muscle. In 1933 Gustav Embden and colleagues proposed a detailed scheme from glycogen to lactic acid through phosphorylated intermediates. Meyerhof, Lohmann, Jakub Parnas, Otto Warburg, Walter Christian, the Coris and others then identified and purified the individual enzymes during the 1930s, and the pathway is today called the Embden–Meyerhof–Parnas pathway. Historians such as Thomas Kuhn have described the period as a scientific revolution. By about 1940 the ten reactions from glucose to pyruvate were known. Embden never received a Nobel Prize despite being nominated 12 times."
+   ]
+  },
+  {
+   "title": "5. Oxidation of organic acids by tissues (1909–1936)",
+   "period": "1909–1936",
+   "body": [
+    "Torsten Thunberg showed that minced tissues oxidise succinate, fumarate, malate and citrate using dehydrogenase enzymes. In 1928 Quastel and Wooldridge found that malonate, which resembles succinate, competitively inhibits succinate oxidation. David Keilin's work on cytochromes explained how the electrons end up with oxygen.",
+    "In 1935 Albert Szent-Györgyi observed in pigeon breast muscle that small amounts of succinate, fumarate, malate or oxaloacetate stimulated oxygen uptake far beyond what their own oxidation could supply. They acted as catalysts. He proposed a chain of C4 acids that carry hydrogen. He received the 1937 Nobel Prize in Physiology or Medicine, partly for this catalysis by fumaric acid."
+   ]
+  },
+  {
+   "title": "6. 1937: the missing links and the cycle",
+   "period": "1937",
+   "body": [
+    "In March 1937 Carl Martius and Franz Knoop in Germany showed how citrate is converted through cis-aconitate and isocitrate to alpha-ketoglutarate, a route to succinate, so that six-carbon acids and four-carbon acids were joined.",
+    "Hans Krebs, then in Sheffield, and his student William Arthur Johnson used pigeon breast muscle, malonate and other tools to test the connections. They observed that citrate acts as a catalyst, that it is formed from oxaloacetate and a pyruvate-derived two-carbon unit, and that malonate causes succinate to accumulate. They arranged the acids in a cycle and called it the citric acid cycle. A short report sent to Nature was not accepted, and the full paper appeared in 1937 in the journal Enzymologia. Johnson's later recollection was that he collected most of the experimental data while Krebs provided the direction."
+   ]
+  },
+  {
+   "title": "7. Confirmation and the problem of acetyl (1938–1948)",
+   "period": "1938–1948",
+   "body": [
+    "Krebs and Eggleston in 1940 added more evidence from pigeon muscle. Severo Ochoa purified isocitrate dehydrogenase and showed it works through oxalosuccinate and fixes CO2, and Keilin and Hartree tied succinate dehydrogenase to cytochromes. Meanwhile Fritz Lipmann was tracing acetylation reactions to a heat-stable cofactor, coenzyme A (1945–1946). What remained unclear was exactly how pyruvate gives a two-carbon unit to oxaloacetate, and where in the cell the cycle takes place."
+   ]
+  },
+  {
+   "title": "8. Acetyl-CoA, citrate synthase and the mitochondrion (1949–1951)",
+   "period": "1949–1951",
+   "body": [
+    "In 1949 Eugene Kennedy and Albert Lehninger showed that isolated rat-liver mitochondria oxidise cycle intermediates and fatty acids, locating the cycle in the mitochondrion. In 1949–1951 Joseph Stern and Severo Ochoa described the enzyme that condenses an acetyl unit with oxaloacetate to form citrate. In 1951 Feodor Lynen and colleagues identified the active acetate as acetyl-CoA, and Lester Reed's group isolated lipoic acid as a cofactor of pyruvate dehydrogenase. Together these closed the gap between glycolysis and the cycle."
+   ]
+  },
+  {
+   "title": "9. The last steps and the Nobel Prize (1952–1953)",
+   "period": "1952–1953",
+   "body": [
+    "Kaufman, Gilvarg, Cori and Ochoa and, independently, Sanadi and colleagues resolved the oxidation of alpha-ketoglutarate to succinyl-CoA and the conversion of succinyl-CoA to succinate with phosphorylation. With these the individual enzymes of the cycle had all been identified. In 1953 Krebs shared the Nobel Prize in Physiology or Medicine with Fritz Lipmann, for the citric acid cycle and coenzyme A respectively."
+   ]
+  },
+  {
+   "title": "10. Later chapters",
+   "period": "after 1953",
+   "body": [
+    "In 1957 Hans Kornberg and Krebs described the glyoxylate bypass, a modified cycle in microbes. Peter Mitchell's chemiosmotic theory (1961, Nobel 1978) explained how the cycle's NADH and FADH2 drive ATP synthesis, and Boyer and Walker (Nobel 1997) described the enzyme that makes it. Hans Kornberg wrote that Krebs established three cycles: the ornithine (urea) cycle in 1932, the citric acid cycle in 1937 and the glyoxylate cycle in the 1950s."
+   ]
+  }
+ ],
+ "methods": [
+  {
+   "id": "m1",
+   "name": "Take the cell away",
+   "idea": "Grind, press or fractionate so that only soluble catalysts remain, then ask what the extract can still do.",
+   "example": "Buchner's yeast juice; Meyerhof's muscle extracts.",
+   "proves": "The activity is carried by something soluble, not by the living cell as such.",
+   "cannot": "How the cell controls it. Harden found that the juice fermented far more slowly than the same yeast alive."
+  },
+  {
+   "id": "m2",
+   "name": "Split by heat and dialysis",
+   "idea": "Boiling destroys protein enzymes but not small cofactors; a membrane lets small molecules pass and holds enzymes back. If each half is inactive alone and active when recombined, there are two parts.",
+   "example": "Harden's coferment (small, passes the membrane) and zymase (large, stays).",
+   "proves": "A reaction needs both a large catalyst and a small helper.",
+   "cannot": "What the small helper chemically is. It took decades to find NAD, ATP and phosphate in it."
+  },
+  {
+   "id": "m3",
+   "name": "Count the ratio",
+   "idea": "Measure how much of one substance is used for each unit of another formed. A constant ratio near a simple number points to a chemical link.",
+   "example": "Harden: CO₂ formed versus phosphate taken up came out near 1 (0.8 to 1).",
+   "proves": "The two processes are coupled.",
+   "cannot": "The mechanism of the coupling, or which intermediate carries it."
+  },
+  {
+   "id": "m4",
+   "name": "Catalyst or fuel?",
+   "idea": "Add a small amount of a compound to respiring tissue. If oxygen uptake rises by more than complete oxidation of that compound could use, the compound is regenerated.",
+   "example": "Szent-Györgyi with succinate, fumarate and malate; Krebs with citrate.",
+   "proves": "The compound sits on a cyclic path and is regenerated.",
+   "cannot": "The order of the steps."
+  },
+  {
+   "id": "m5",
+   "name": "Block one step and watch what piles up",
+   "idea": "A specific inhibitor stops one enzyme; whatever is made before that step accumulates and whatever comes after it dries up.",
+   "example": "Malonate against succinate dehydrogenase; arsenate in Harden's juice.",
+   "proves": "The order of the compounds along the path.",
+   "cannot": "That the inhibitor acts on one enzyme only. Competitive blocks also weaken when more substrate is added."
+  },
+  {
+   "id": "m6",
+   "name": "Is it fast enough?",
+   "idea": "Give the suspected intermediate to the tissue. If it is used at a rate at least as fast as the whole process, it can be on the path. If it is slow, it is a side reaction.",
+   "example": "Krebs showed that several organic acids were oxidised fast enough to matter.",
+   "proves": "That a compound is a plausible intermediate.",
+   "cannot": "That it is the only route."
+  },
+  {
+   "id": "m7",
+   "name": "Rebuild it from pure parts",
+   "idea": "Mix purified enzymes and cofactors and check that the sequence works in the test tube.",
+   "example": "Meyerhof's cell-free reconstruction of glycogen to lactate; Stern and Ochoa's soluble citrate synthesis.",
+   "proves": "The listed parts are sufficient.",
+   "cannot": "That the cell uses exactly this route at that rate."
+  }
+ ],
+ "experiments": [
+  {
+   "id": "x1",
+   "track": "glycolysis",
+   "year": 1897,
+   "people": "Eduard Buchner (with Rudolf Rapp)",
+   "title": "Can fermentation happen without living yeast?",
+   "why": "Pasteur had tied fermentation to living cells, but chemists such as Liebig described it as a chemical process. A cell-free extract that still fermented would settle the dispute.",
+   "design": [
+    "Grind yeast with sand and kieselguhr and press out a juice.",
+    "Filter the juice so that no intact cells remain.",
+    "Add a lot of sugar. By the usual account the sugar was meant as a preservative for a medical extract, so that it was added without the thought of testing fermentation."
+   ],
+   "result": [
+    "The cell-free juice produced carbon dioxide and alcohol from the sugar."
+   ],
+   "inference": [
+    "A soluble catalyst, which he called zymase, ferments sugar.",
+    "Fermentation is chemistry that can be studied in a test tube."
+   ],
+   "limits": [
+    "The juice fermented far more slowly than the same yeast alive, so something about the living cell was lost (Harden's later work pointed at the supply of phosphate).",
+    "Zymase turned out not to be a single enzyme but a system of many enzymes plus cofactors."
+   ],
+   "source": "Buchner 1897 papers; Harden 1929 lecture; Nobel presentation speech 1929.",
+   "refs": [
+    "r1",
+    "r2",
+    "r30"
+   ],
+   "event": "e2"
+  },
+  {
+   "id": "x2",
+   "track": "glycolysis",
+   "year": 1905,
+   "people": "Arthur Harden, William Young",
+   "title": "Why did Harden add phosphate?",
+   "why": "Phosphate was not a first guess, and it was not predicted. It came out of a side effect. The source for this path is Harden's own Nobel lecture (1929). The last step, why phosphate in particular, is my inference and is marked below.",
+   "design": [
+    "Starting point: Harden's group was trying to make an antiserum against zymase by injecting Buchner's yeast juice into animals.",
+    "In control tests, normal serum surprised them: it slowed the juice's own protein-digesting enzymes and also raised the rate and total amount of fermentation.",
+    "Question: is the boost caused by protein breakdown products? To test it they added boiled, self-digested yeast juice.",
+    "Result: a large but temporary speeding of fermentation, and the extra CO₂ was proportional to the volume of boiled juice added. They also switched from Buchner's weighing method to a volume method that gave almost continuous readings.",
+    "Fractionation (boiling, dialysis, then separating the parts) showed two independent heat-stable helpers: a dialysable coferment, and inorganic phosphate.",
+    "Inference (mine, not stated in the lecture text I read): a mineral component that survives boiling and dialysis in a phosphate-rich organism is an obvious thing to test next, and phosphate was found to be needed by every yeast preparation that fermented."
+   ],
+   "result": [
+    "With phosphate: fast fermentation (Harden's type 1) while a sugar phosphate ester accumulates; when the phosphate runs out the rate falls to a slower steady rate (type 2), sustained by a phosphatase that releases phosphate from the ester.",
+    "The extra CO₂ and alcohol matched the phosphate esterified, with a CO₂ to phosphate ratio mostly 0.8 to 1. In one run 97% of the ester was diphosphate with a ratio of 0.86; in another 86.5% was monophosphate with a ratio of 0.98.",
+    "In words, the Harden–Young scheme: two sugar molecules and two phosphates give one hexose bisphosphate, two CO₂ and two alcohol. One phosphate esterified per CO₂ released."
+   ],
+   "inference": [
+    "Phosphate is not a bystander. It is taken up into a sugar ester in step with fermentation.",
+    "Because the ratio stayed near 1 even when most of the ester was monophosphate, Harden argued that the monophosphate cannot be a simple intermediate and returned to a coupled-reaction idea: making an ester in some sugar molecules drives the breakdown of others."
+   ],
+   "limits": [
+    "The identity of the ester was not fixed: it was later assigned to fructose 1,6-bisphosphate (Levene 1928, according to the French encyclopaedia Universalis).",
+    "The separation of mono- and diphosphate was admittedly imperfect, and pyrophosphates in yeast could distort the phosphate measurements.",
+    "The coupling idea was only a scheme until the step-by-step glycolytic pathway of the 1930s showed where phosphate enters and where ATP is made."
+   ],
+   "source": "Harden's 1929 Nobel lecture, 'The function of phosphate in alcoholic fermentation'.",
+   "refs": [
+    "r30",
+    "r3",
+    "r7"
+   ],
+   "event": "e3",
+   "simulator": true
+  },
+  {
+   "id": "x3",
+   "track": "glycolysis",
+   "year": 1929,
+   "people": "Arthur Harden and colleagues (as reported in his 1929 lecture)",
+   "title": "Arsenate as a test of the phosphate cycle",
+   "why": "If phosphate goes into a sugar ester and comes back out, fermentation could be limited by the return step. A chemical that speeds the return step would test that idea.",
+   "design": [
+    "Add arsenate, a look-alike of phosphate, to the juice.",
+    "Compare with the phosphate-supplemented and unsupplemented juice."
+   ],
+   "result": [
+    "Arsenate strongly stimulated the phosphatase. Fermentation then ran fast with no accumulation of sugar ester, and, unlike phosphate, arsenate raised the rate permanently (type 3).",
+    "From the phosphorus content of yeast it followed that all of its phosphate must pass through an ester every 5 to 6 minutes in normal fermentation. In an average juice the same cycle takes nearly two hours."
+   ],
+   "inference": [
+    "Phosphate cycles through sugar esters, and in the juice the slow return step limits the rate.",
+    "The juice is slow because part of the phosphate supply machinery is damaged, not because the fermenting enzymes are missing."
+   ],
+   "limits": [
+    "The explanation for the damage (phosphatase detached from its location, or a labile activator lost) was a proposal, supported by grinding experiments in which longer grinding lowered the unaided rate and raised the response to phosphate."
+   ],
+   "source": "Harden's 1929 Nobel lecture.",
+   "refs": [
+    "r30"
+   ],
+   "event": "e3"
+  },
+  {
+   "id": "x4",
+   "track": "glycolysis",
+   "year": 1922,
+   "people": "Otto Meyerhof, A. V. Hill",
+   "title": "Where does the lactic acid go?",
+   "why": "Fletcher and Hopkins had shown that lactic acid builds up in muscle without oxygen and disappears when oxygen returns. Hill's heat measurements fit that picture. The question was how much of the lactic acid is burnt and what happens to the rest.",
+   "design": [
+    "Measure oxygen consumption, carbohydrate conversion, and lactic acid formation and removal in muscle at the same time.",
+    "Compare muscle with and without oxygen."
+   ],
+   "result": [
+    "Without oxygen, glycogen is converted to lactic acid.",
+    "With oxygen, only about one fifth to one quarter of the lactic acid is oxidised; the rest is rebuilt into glycogen."
+   ],
+   "inference": [
+    "A cycle: lactic acid is mostly recycled, and a small oxidised share pays for it.",
+    "Oxygen depresses sugar breakdown (the Pasteur–Meyerhof effect), a first sign that respiration and sugar breakdown are linked."
+   ],
+   "limits": [
+    "By the mid-1930s Meyerhof himself proposed that ATP hydrolysis is the primary event in muscle contraction, with lactic acid and creatine phosphate acting indirectly by keeping ATP supplied."
+   ],
+   "source": "Nobel Prize themes article on Meyerhof; Kresge et al. 2005.",
+   "refs": [
+    "r31",
+    "r6"
+   ],
+   "event": "e4"
+  },
+  {
+   "id": "x5",
+   "track": "glycolysis",
+   "year": 1929,
+   "people": "Karl Lohmann, Otto Meyerhof",
+   "title": "Hunting for the cofactor that muscle extracts needed",
+   "why": "Muscle extracts made lactic acid only with a heat-stable cofactor present, just as Harden's yeast juice needed its coferment. In 1918 Meyerhof had shown that the muscle coenzyme and the yeast coenzyme were the same, so purifying it should explain both.",
+   "design": [
+    "Extract the cofactor from muscle and purify it.",
+    "Meyerhof gave the task of identification to his student Lohmann."
+   ],
+   "result": [
+    "Lohmann identified it as adenosine triphosphate (1929).",
+    "In 1931 he found that splitting ATP releases a lot of heat; in 1932 the group tied the phosphate uptake during carbohydrate breakdown to ATP splitting and showed ATP is resynthesised."
+   ],
+   "inference": [
+    "ATP is the carrier that supplies the phosphate that Harden had found fermentation needs.",
+    "Hexokinase, which Meyerhof had found in 1927, was later shown to move a phosphate from ATP to glucose, the first step of glycolysis."
+   ],
+   "limits": [
+    "Embden's 1933 scheme, and the later purification of each enzyme, were still needed to place every step in the sequence."
+   ],
+   "source": "Nobel Prize themes article on Meyerhof.",
+   "refs": [
+    "r31",
+    "r4",
+    "r5"
+   ],
+   "event": "e5"
+  },
+  {
+   "id": "x6",
+   "track": "cycle",
+   "year": 1935,
+   "people": "Albert Szent-Györgyi and colleagues",
+   "title": "Do small amounts of four-carbon acids speed respiration?",
+   "why": "Thunberg had shown that minced tissue oxidises succinate, fumarate and malate. It was not clear whether these are fuels or something else.",
+   "design": [
+    "Add succinate, fumarate or malate to minced pigeon breast muscle.",
+    "Measure oxygen uptake and compare it with the oxygen needed to oxidise the added acid itself."
+   ],
+   "result": [
+    "Oxygen uptake was much larger than the amount needed to oxidise the added acid."
+   ],
+   "inference": [
+    "The acids act as catalysts that are regenerated, not as consumed fuel.",
+    "They may be linked in a chain of enzyme steps that carries hydrogen towards oxygen."
+   ],
+   "limits": [
+    "He could not say what the acids were catalysing, and neither he nor Stare and Baumann could explain how food entered the chain."
+   ],
+   "source": "Krebs's Nobel lecture (as far as I could read it); textbook accounts.",
+   "refs": [
+    "r8",
+    "r14"
+   ],
+   "event": "c3"
+  },
+  {
+   "id": "x7",
+   "track": "cycle",
+   "year": 1937,
+   "people": "Hans Krebs, William Johnson (after Quastel and Wooldridge)",
+   "title": "Malonate: block one step and watch what accumulates",
+   "why": "Quastel and Wooldridge had found in 1928 that malonate, which looks like succinate, competitively blocks succinate dehydrogenase. That gives a tool for ordering the compounds.",
+   "design": [
+    "Add malonate to tissue given citrate, ketoglutarate or other cycle acids.",
+    "Measure what builds up."
+   ],
+   "result": [
+    "Succinate accumulated, as the Krebs lecture records."
+   ],
+   "inference": [
+    "Succinate is formed from those acids and is used up by the blocked step, so it lies after them and before the block.",
+    "This supports the order of the steps."
+   ],
+   "limits": [
+    "Malonate is a competitive inhibitor, so the block weakens when more succinate is present, and an inhibitor can have more than one target."
+   ],
+   "source": "Krebs's Nobel lecture (fragments read); Quastel and Wooldridge 1928.",
+   "refs": [
+    "r24",
+    "r14"
+   ],
+   "event": "c2"
+  },
+  {
+   "id": "x8",
+   "track": "cycle",
+   "year": 1937,
+   "people": "Hans Krebs, William Johnson",
+   "title": "A line or a loop? How citrate led to the cycle",
+   "why": "Szent-Györgyi's four-carbon acids acted as catalysts, and Martius and Knoop had just shown how citrate gives ketoglutarate and onward to succinate. If citrate also acts as a catalyst, something must regenerate it.",
+   "design": [
+    "Test citrate in pigeon breast muscle, which Krebs, trained in Warburg's laboratory, could study with Warburg's manometric oxygen measurements (a standard method for this tissue).",
+    "Add oxaloacetate and watch whether citrate appears.",
+    "Ask whether the known steps from citrate lead back to oxaloacetate."
+   ],
+   "result": [
+    "Citrate was rapidly broken down in muscle, and citrate formed readily when oxaloacetate was added.",
+    "Some of the added oxaloacetate was presumably broken down to pyruvate or acetate, and the rest combined with it to give citrate."
+   ],
+   "inference": [
+    "A catalytic effect of citrate needs a way to remake it, and oxaloacetate plus a pyruvate-derived two-carbon piece makes it.",
+    "Citrate then passes through the known oxidation steps and returns to oxaloacetate, so the sequence closes on itself.",
+    "A line would use up the C4 acids; a loop regenerates them, which explains why tiny amounts have large effects."
+   ],
+   "limits": [
+    "The two-carbon piece was not yet identified. Acetyl-CoA, citrate synthase and the mitochondrial location came in the late 1940s and 1950s.",
+    "The proposal went beyond the data and was met with scientific skepticism. It was built for pigeon breast muscle first.",
+    "Johnson collected most of the data, and Krebs provided the direction (Johnson, interviewed in 1993)."
+   ],
+   "source": "Encyclopedia.com biography of Krebs; Krebs lecture (fragments); Wikipedia on Johnson.",
+   "refs": [
+    "r10",
+    "r32",
+    "r14",
+    "r16"
+   ],
+   "event": "c5"
+  },
+  {
+   "id": "x9",
+   "track": "cycle",
+   "year": 1946,
+   "people": "Fritz Lipmann, Nathan Kaplan, Joseph Stern, Severo Ochoa",
+   "title": "What is the two-carbon piece that enters the cycle?",
+   "why": "Krebs's scheme needed an activated acetyl piece, but nobody knew what it was. Lipmann was studying how liver extracts acetylate sulfanilamide, which needs a heat-stable cofactor.",
+   "design": [
+    "Show that the same cofactor was required for acetylation of sulfanilamide and of choline.",
+    "Then reconstruct the citrate-forming reaction with soluble enzymes from acetate and oxaloacetate."
+   ],
+   "result": [
+    "A common factor, coenzyme A, serves different acetylations (Lipmann and Kaplan, 1946).",
+    "Stern and Ochoa made citrate with soluble enzymes."
+   ],
+   "inference": [
+    "Coenzyme A carries acetyl groups generally, so it is the likely carrier for the cycle's entry step.",
+    "Lynen's group then showed that the active acetate is acetyl-CoA (1951)."
+   ],
+   "limits": [
+    "Coenzyme A was first found through a different reaction, so its role in the cycle was an extension that took several years to prove."
+   ],
+   "source": "Lipmann and Kaplan 1946; Stern and Ochoa 1951; textbook accounts.",
+   "refs": [
+    "r17",
+    "r18"
+   ],
+   "event": "c11"
+  }
+ ]
+};
+(function(){
+  var REFS = {}; DATA.refs.forEach(function(r){ REFS[r.id]=r; });
+  var ENZ = DATA.enzymes;
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function firstYear(e){ var m = /\d{4}/.exec(e.when); return m ? parseInt(m[0],10) : 1953; }
+  ENZ.forEach(function(e){ e.y = firstYear(e); });
+  var ABBR = {g1:'HK',g2:'PGI',g3:'PFK',g4:'ALDO',g5:'TPI',g6:'GAPDH',g7:'PGK',g8:'PGM',g9:'ENO',g10:'PK',l0:'PDC',t1:'CS',t2:'ACO',t3:'IDH',t4:'OGDH',t5:'SCS',t6:'SDH',t7:'FH',t8:'MDH'};
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function refUrl(r){
+    if (r.doi) return 'https://doi.org/' + r.doi;
+    if (r.pmid) return 'https://pubmed.ncbi.nlm.nih.gov/' + r.pmid + '/';
+    if (r.url) return r.url;
+    return 'https://pubmed.ncbi.nlm.nih.gov/?term=' + encodeURIComponent(r.title);
+  }
+  function shortCite(r){ var f = r.authors.split(',')[0].split(' (')[0]; return f + ' ' + (r.year || 'n.d.'); }
+  function chipsFor(ids){
+    if (!ids || !ids.length) return '';
+    return '<ul class="chips">' + ids.map(function(id){
+      var r = REFS[id]; if (!r) return '';
+      return '<li><a class="chip" href="#ref-' + id + '" data-ref="' + id + '">' + esc(shortCite(r)) + '</a></li>';
+    }).join('') + '</ul>';
+  }
+
+  /* ---------- Diagrams ---------- */
+  var state = { path:'cycle', sel:'t1', year:1953 };
+  function mk(tag, attrs, parent){ var n = document.createElementNS(NS, tag); for (var k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; }
+
+  var cycleMets = ['Oxaloacetate','Citrate','Isocitrate','α-Ketoglutarate','Succinyl-CoA','Succinate','Fumarate','Malate'];
+  var glyMets = ['Glucose','Glucose 6-phosphate','Fructose 6-phosphate','Fructose 1,6-bisphosphate','Dihydroxyacetone phosphate','Glyceraldehyde 3-phosphate','1,3-Bisphosphoglycerate','3-Phosphoglycerate','2-Phosphoglycerate','Phosphoenolpyruvate','Pyruvate'];
+
+  function badge(parent, e, x, y){
+    var cls = 'badge ' + (e.pathway === 'glycolysis' ? 'gly' : e.pathway === 'cycle' ? 'cyc' : 'link');
+    var g = mk('g', {'class':cls, 'tabindex':'0', 'role':'button', 'data-id':e.id, 'aria-label': e.name + ', first work ' + e.y}, parent);
+    mk('circle', {cx:x, cy:y, r:14}, g);
+    var t = mk('text', {x:x, y:y}, g); t.textContent = e.n || 'L';
+    g.addEventListener('click', function(){ select(e.id); });
+    g.addEventListener('keydown', function(ev){ if (ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); select(e.id); } });
+    var tt = mk('title', {}, g); tt.textContent = e.name;
+    return g;
+  }
+
+  function buildCycle(){
+    var host = $('cView'); host.innerHTML = '';
+    var svg = mk('svg', {'class':'chart', viewBox:'0 0 560 520', role:'group', 'aria-label':'Citric acid cycle diagram'}, host);
+    var defs = mk('defs', {}, svg);
+    var mrk = mk('marker', {id:'arr', viewBox:'0 0 10 10', refX:'8', refY:'5', markerWidth:'7', markerHeight:'7', orient:'auto-start-reverse'}, defs);
+    var ap = mk('path', {d:'M0,0 L10,5 L0,10 z'}, mrk); ap.setAttribute('style','fill:var(--muted)');
+    var cx = 280, cy = 260, R = 158;
+    function pt(a, r){ var rad = a*Math.PI/180; return [cx + r*Math.cos(rad), cy + r*Math.sin(rad)]; }
+    var enz = ENZ.filter(function(e){ return e.pathway === 'cycle'; });
+    for (var m = 0; m < 8; m++){
+      var a1 = -90 + 45*m + 11, a2 = -90 + 45*(m+1) - 11;
+      var p1 = pt(a1, R), p2 = pt(a2, R);
+      var path = mk('path', {'class':'edge', d:'M'+p1[0].toFixed(1)+','+p1[1].toFixed(1)+' A'+R+','+R+' 0 0 1 '+p2[0].toFixed(1)+','+p2[1].toFixed(1), 'marker-end':'url(#arr)'}, svg);
+    }
+    for (var m2 = 0; m2 < 8; m2++){
+      var a = -90 + 45*m2, p = pt(a, R);
+      mk('circle', {'class':'node', cx:p[0].toFixed(1), cy:p[1].toFixed(1), r:7}, svg);
+      var lp = pt(a, R + 18), c = Math.cos(a*Math.PI/180), s = Math.sin(a*Math.PI/180);
+      var anchor = c > 0.3 ? 'start' : (c < -0.3 ? 'end' : 'middle');
+      var dy = s < -0.3 ? -3 : (s > 0.3 ? 12 : 4);
+      var tx = mk('text', {'class':'met', x:lp[0].toFixed(1), y:(lp[1]+dy).toFixed(1), 'text-anchor':anchor}, svg);
+      tx.textContent = cycleMets[m2];
+    }
+    enz.forEach(function(e, i){
+      var a = -90 + 45*i + 22.5;
+      var bp = pt(a, R), lp = pt(a, R - 34);
+      badge(svg, e, bp[0], bp[1]);
+      var t = mk('text', {'class':'ab', x:lp[0].toFixed(1), y:(lp[1]+4).toFixed(1), 'text-anchor':'middle'}, svg); t.textContent = ABBR[e.id];
+    });
+    var c1 = mk('text', {'class':'center', x:cx, y:cy-14}, svg); c1.textContent = 'acetyl-CoA enters at step 1';
+    var c2 = mk('text', {'class':'center', x:cx, y:cy+6}, svg); c2.textContent = 'CO₂ leaves at steps 3 and 4';
+    var c3 = mk('text', {'class':'center', x:cx, y:cy+26}, svg); c3.textContent = '3 NADH · 1 FADH₂ · 1 GTP/ATP per turn';
+  }
+
+  function buildGly(){
+    var host = $('gView'); host.innerHTML = '';
+    var svg = mk('svg', {'class':'chart', viewBox:'0 0 400 740', role:'group', 'aria-label':'Glycolysis diagram'}, host);
+    var defs = mk('defs', {}, svg);
+    var mrk = mk('marker', {id:'arr2', viewBox:'0 0 10 10', refX:'8', refY:'5', markerWidth:'7', markerHeight:'7', orient:'auto'}, defs);
+    var ap = mk('path', {d:'M0,0 L10,5 L0,10 z'}, mrk); ap.setAttribute('style','fill:var(--muted)');
+    var x = 40, top = 34, dy = 66;
+    var enz = ENZ.filter(function(e){ return e.pathway === 'glycolysis'; });
+    for (var i = 0; i < 10; i++){
+      mk('line', {'class':'edge', x1:x, y1:top+i*dy+11, x2:x, y2:top+(i+1)*dy-11, 'marker-end':'url(#arr2)'}, svg);
+    }
+    for (var m = 0; m < 11; m++){
+      mk('circle', {'class':'node', cx:x, cy:top+m*dy, r:7}, svg);
+      var t = mk('text', {'class':'met', x:x+22, y:top+m*dy+4}, svg); t.textContent = glyMets[m];
+    }
+    enz.forEach(function(e, i){
+      var y = top + i*dy + dy/2;
+      badge(svg, e, x, y);
+      var t = mk('text', {'class':'ab', x:x+22, y:y+4}, svg); t.textContent = ABBR[e.id];
+      var yr = mk('text', {'class':'yr', x:388, y:y+4, 'text-anchor':'end'}, svg); yr.textContent = e.y;
+    });
+  }
+
+  function refreshKnown(){
+    var y = state.year;
+    document.querySelectorAll('.badge').forEach(function(g){
+      var e = ENZ.filter(function(z){ return z.id === g.getAttribute('data-id'); })[0];
+      g.classList.toggle('known', e.y <= y);
+      g.classList.toggle('sel', e.id === state.sel);
+    });
+    var pw = state.path === 'cycle' ? 'cycle' : 'glycolysis';
+    var list = ENZ.filter(function(e){ return e.pathway === pw; });
+    var n = list.filter(function(e){ return e.y <= y; }).length;
+    $('knownLine').textContent = 'By ' + y + ', first experimental work had been reported on ' + n + ' of ' + list.length + ' ' + (pw === 'cycle' ? 'cycle' : 'glycolytic') + ' enzymes.';
+    $('yrOut').textContent = y;
+    document.querySelectorAll('#stepList button').forEach(function(b){
+      var e = ENZ.filter(function(z){ return z.id === b.getAttribute('data-id'); })[0];
+      b.classList.toggle('future', e.y > y);
+      b.setAttribute('aria-current', e.id === state.sel ? 'true' : 'false');
+    });
+  }
+
+  function buildStepList(){
+    var pw = state.path === 'cycle' ? ['link','cycle'] : ['glycolysis'];
+    var ul = $('stepList'); ul.innerHTML = '';
+    ENZ.filter(function(e){ return pw.indexOf(e.pathway) >= 0; }).forEach(function(e){
+      var li = document.createElement('li');
+      var b = document.createElement('button'); b.type = 'button'; b.setAttribute('data-id', e.id);
+      b.textContent = (e.n ? e.n + ' ' : 'in ') + e.name;
+      b.addEventListener('click', function(){ select(e.id); });
+      li.appendChild(b); ul.appendChild(li);
+    });
+  }
+
+  function renderDetail(){
+    var e = ENZ.filter(function(z){ return z.id === state.sel; })[0];
+    var kind = e.pathway === 'glycolysis' ? 'Glycolysis, step ' + e.n : e.pathway === 'cycle' ? 'Citric acid cycle, step ' + e.n : 'Link reaction';
+    var refs = (e.refs || []).map(function(id){ return REFS[id]; }).filter(Boolean);
+    var chips = '<ul class="chips">' + refs.map(function(r){
+      var tags = '';
+      if (r.doi) tags += ' <span class="chip ok" style="padding:0 5px;margin-left:4px">DOI</span>';
+      if (r.pmid) tags += ' <span class="chip ok" style="padding:0 5px;margin-left:4px">PMID</span>';
+      return '<li><a class="chip" href="#ref-' + r.id + '" data-ref="' + r.id + '">' + esc(shortCite(r)) + '</a>' + tags + '</li>';
+    }).join('') + '</ul>';
+    $('detail').innerHTML =
+      '<span class="label">' + esc(kind) + ' · EC ' + esc(e.ec) + '</span>' +
+      '<h3>' + esc(e.name) + '</h3>' +
+      '<div class="rxn">' + esc(e.reaction) + '</div>' +
+      '<dl>' +
+        '<div><dt>Who</dt><dd>' + esc(e.who) + '</dd></div>' +
+        '<div><dt>When</dt><dd class="mono">' + esc(e.when) + '</dd></div>' +
+        '<div><dt>How it was found</dt><dd>' + esc(e.how) + '</dd></div>' +
+        '<div><dt>Papers</dt><dd>' + chips + '</dd></div>' +
+      '</dl>';
+  }
+
+  function select(id){
+    state.sel = id;
+    var e = ENZ.filter(function(z){ return z.id === id; })[0];
+    if (e.pathway === 'glycolysis' && state.path !== 'gly') setPath('gly', true);
+    if (e.pathway !== 'glycolysis' && state.path !== 'cycle') setPath('cycle', true);
+    renderDetail(); refreshKnown();
+  }
+
+  function setPath(p, keepSel){
+    state.path = p;
+    $('gView').hidden = p !== 'gly';
+    $('cView').hidden = p !== 'cycle';
+    $('tabGly').setAttribute('aria-pressed', p === 'gly' ? 'true' : 'false');
+    $('tabCyc').setAttribute('aria-pressed', p === 'cycle' ? 'true' : 'false');
+    buildStepList();
+    if (!keepSel){ state.sel = p === 'gly' ? 'g1' : 't1'; renderDetail(); }
+    refreshKnown();
+  }
+
+
+  /* ---------- Reasoning ---------- */
+  function renderMethods(){
+    $('methods').innerHTML = DATA.methods.map(function(m){
+      return '<div class="method"><h3>' + esc(m.name) + '</h3><p>' + esc(m.idea) + '</p>' +
+        '<p><span class="k">Example</span><br>' + esc(m.example) + '</p>' +
+        '<p><span class="k">Proves</span><br>' + esc(m.proves) + '</p>' +
+        '<p><span class="k">Cannot show</span><br>' + esc(m.cannot) + '</p></div>';
+    }).join('');
+  }
+  function pts(a){ return '<ul class="pts">' + a.map(function(i){ return '<li>' + esc(i) + '</li>'; }).join('') + '</ul>'; }
+  function renderExps(){
+    $('exps').innerHTML = DATA.experiments.map(function(x, i){
+      return '<details class="exp" id="exp-' + x.id + '"' + (x.id === 'x2' ? ' open' : '') + '>' +
+        '<summary><span class="t">' + esc(x.title) + '</span><span class="m">' + x.year + ' · ' + esc(x.people) + '</span></summary>' +
+        '<div class="in"><p class="why">' + esc(x.why) + '</p>' +
+        '<div class="cols"><div><h4>What they did</h4>' + pts(x.design) + '</div>' +
+        '<div><h4>What they saw</h4>' + pts(x.result) + '</div></div>' +
+        '<div class="cols"><div><h4>What they concluded</h4>' + pts(x.inference) + '</div>' +
+        '<div><h4>What it could not show</h4>' + pts(x.limits) + '</div></div>' +
+        '<p class="src">Source: ' + esc(x.source) + '</p>' + chipsFor(x.refs) + '</div></details>';
+    }).join('');
+  }
+  function drawSim(){
+    var P = parseInt($('phos').value, 10), ars = $('ars').checked;
+    $('phosOut').textContent = P;
+    var k1 = 1.2, k2 = 0.2, T = 100, ymax = 130;
+    function X(t){ return 52 + t * 4.1; }
+    function Y(y){ return 228 - y * (196 / ymax); }
+    var svg = $('simSvg'); svg.innerHTML = '';
+    for (var g = 0; g <= 120; g += 40){ mk('line', {'class':'grid', x1:52, x2:462, y1:Y(g), y2:Y(g)}, svg); var gt = mk('text', {x:46, y:Y(g)+4, 'text-anchor':'end'}, svg); gt.textContent = g; }
+    mk('path', {'class':'ax', d:'M52,' + Y(0) + ' L462,' + Y(0) + ' M52,' + Y(0) + ' L52,' + Y(ymax)}, svg);
+    var xl = mk('text', {x:257, y:256, 'text-anchor':'middle'}, svg); xl.textContent = 'time';
+    var yl = mk('text', {x:12, y:130, 'text-anchor':'middle', transform:'rotate(-90 12 130)'}, svg); yl.textContent = 'CO\u2082 evolved (arbitrary units)';
+    mk('polyline', {'class':'c-base', points: X(0)+','+Y(0)+' '+X(T)+','+Y(k2*T)}, svg);
+    var bl = mk('text', {x:X(T)-4, y:Y(k2*T)-8, 'text-anchor':'end'}, svg); bl.textContent = 'no added phosphate: slow, steady';
+    var yEndP = null;
+    if (P > 0){
+      var t1 = Math.min(T, P / (k1 - k2)), y1 = k1 * t1; yEndP = y1 + k2 * (T - t1);
+      mk('polyline', {'class':'c-phos', points: X(0)+','+Y(0)+' '+X(t1)+','+Y(y1)+' '+X(T)+','+Y(yEndP)}, svg);
+      var pl = mk('text', {x:X(t1)+6, y:Y(y1)-6}, svg); pl.textContent = 'phosphate used up';
+    }
+    if (ars){
+      mk('polyline', {'class':'c-ars', points: X(0)+','+Y(0)+' '+X(T)+','+Y(k1*T)}, svg);
+      var al = mk('text', {x:X(T)-4, y:Y(k1*T)-8, 'text-anchor':'end'}, svg); al.textContent = 'with arsenate: fast, steady';
+    }
+    var read = '';
+    if (P > 0){
+      var extra = yEndP - k2 * T;
+      read = 'Extra CO\u2082 over the baseline: ' + extra.toFixed(0) + '. Phosphate added: ' + P + '. The burst ends when the phosphate has been turned into sugar ester, after which the rate returns to the slow steady rate.';
+    } else read = 'No phosphate added: the juice ferments slowly and steadily, limited by how fast its phosphatase releases phosphate from the ester.';
+    if (ars) read += ' Arsenate speeds the phosphatase that gives phosphate back, so fermentation stays fast without ester piling up.';
+    $('simRead').textContent = read;
+  }
+
+  /* ---------- Timeline ---------- */
+  function renderTimeline(f){
+    var evs = DATA.events.slice().sort(function(a,b){ return a.year - b.year || (a.track < b.track ? -1 : 1); });
+    if (f !== 'all') evs = evs.filter(function(e){ return e.track === f; });
+    $('tl').innerHTML = evs.map(function(e){
+      var xs = DATA.experiments.filter(function(x){ return x.event === e.id; });
+      var xl = xs.length ? '<li><a class="chip ok" href="#reasoning" data-exp="' + xs[0].id + '">Experiment analysis</a></li>' : '';
+      var nob = e.nobel ? '<li><a class="chip nob" href="#nobel" data-nobel="' + e.nobel + '">Nobel Prize ' + e.nobel + '</a></li>' : '';
+      nob = (xl || nob) ? '<ul class="chips">' + xl + nob + '</ul>' : '';
+      return '<li><div class="yr ' + (e.track === 'glycolysis' ? 'gly-mark' : 'cyc-mark') + '">' + e.year + '</div>' +
+        '<div><h3>' + esc(e.title) + '</h3><div class="who">' + esc(e.people) + '</div><p>' + esc(e.text) + '</p>' + chipsFor(e.refs) + nob + '</div></li>';
+    }).join('');
+  }
+
+  /* ---------- Nobel ---------- */
+  function renderNobels(){
+    $('nobels').innerHTML = DATA.nobels.map(function(n){
+      return '<article class="nobel" id="nobel-' + n.year + '"><div class="y">' + n.year + '</div>' +
+        '<div class="field">' + esc(n.field) + '</div>' +
+        '<div class="w">' + esc(n.who) + '</div>' +
+        '<p>' + esc(n.why) + '</p>' +
+        '<p class="rel">' + esc(n.relates) + '</p>' +
+        '<a href="' + esc(n.link) + '" target="_blank" rel="noopener">nobelprize.org</a></article>';
+    }).join('');
+    $('nobelNote').textContent = 'No prize for this work went to Gustav Embden (nominated 12 times), William A. Johnson, Carl Martius, Franz Knoop, Karl Lohmann or Jakub Parnas. Severo Ochoa shared the 1959 Nobel Prize in Physiology or Medicine with Arthur Kornberg for work on RNA and DNA synthesis, not for the cycle.';
+  }
+
+  /* ---------- Chapters and refs ---------- */
+  function renderChapters(){
+    $('chapters').innerHTML = DATA.chapters.map(function(c){
+      return '<h3>' + esc(c.title) + '</h3>' + c.body.map(function(p){ return '<p>' + esc(p) + '</p>'; }).join('');
+    }).join('');
+  }
+  function renderRefs(q){
+    q = (q || '').toLowerCase();
+    var list = DATA.refs.slice().sort(function(a,b){ return (a.year||9999) - (b.year||9999) || (a.authors < b.authors ? -1 : 1); })
+      .filter(function(r){ return !q || (r.authors + ' ' + (r.year||'') + ' ' + r.title + ' ' + r.venue).toLowerCase().indexOf(q) >= 0; });
+    $('refList').innerHTML = list.map(function(r){
+      var links = [];
+      if (r.doi) links.push('<a class="chip ok" href="https://doi.org/' + esc(r.doi) + '" target="_blank" rel="noopener">DOI ' + esc(r.doi) + '</a>');
+      if (r.pmid) links.push('<a class="chip ok" href="https://pubmed.ncbi.nlm.nih.gov/' + r.pmid + '/" target="_blank" rel="noopener">PMID ' + r.pmid + '</a>');
+      if (r.url) links.push('<a class="chip" href="' + esc(r.url) + '" target="_blank" rel="noopener">nobelprize.org</a>');
+      var t = encodeURIComponent(r.title);
+      if (!r.pmid) links.push('<a class="chip" href="https://pubmed.ncbi.nlm.nih.gov/?term=' + t + '" target="_blank" rel="noopener">Search PubMed</a>');
+      if (!r.doi) links.push('<a class="chip" href="https://search.crossref.org/?q=' + t + '" target="_blank" rel="noopener">Search Crossref</a>');
+      var note = r.doiNote ? '<span class="label" style="text-transform:none;letter-spacing:0">' + esc(r.doiNote) + '</span>' : '';
+      return '<li id="ref-' + r.id + '"><div class="cite"><b>' + esc(r.authors) + '</b> (' + (r.year || 'n.d.') + '). ' + esc(r.title) + '. <i>' + esc(r.venue) + '</i>.</div><ul class="chips">' + links.map(function(l){ return '<li>' + l + '</li>'; }).join('') + '</ul>' + note + '</li>';
+    }).join('') || '<li>No references match.</li>';
+  }
+
+  /* ---------- Wire up ---------- */
+  buildCycle(); buildGly(); buildStepList(); renderDetail(); refreshKnown();
+  renderMethods(); renderExps(); drawSim(); renderTimeline('all'); renderNobels(); renderChapters(); renderRefs('');
+  $('tabGly').addEventListener('click', function(){ setPath('gly'); });
+  $('tabCyc').addEventListener('click', function(){ setPath('cycle'); });
+  $('yr').addEventListener('input', function(ev){ state.year = parseInt(ev.target.value, 10); refreshKnown(); });
+  document.querySelectorAll('.filters button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.filters button').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      b.setAttribute('aria-pressed','true'); renderTimeline(b.getAttribute('data-f'));
+    });
+  });
+  $('phos').addEventListener('input', drawSim); $('ars').addEventListener('change', drawSim);
+  $('refSearch').addEventListener('input', function(ev){ renderRefs(ev.target.value); });
+  document.addEventListener('click', function(ev){
+    var a = ev.target.closest ? ev.target.closest('a[data-nobel]') : null;
+    if (a){ var card = $('nobel-' + a.getAttribute('data-nobel')); if (card){ card.classList.add('hl'); setTimeout(function(){ card.classList.remove('hl'); }, 2200); } }
+    var xa = ev.target.closest ? ev.target.closest('a[data-exp]') : null;
+    if (xa){ var d = $('exp-' + xa.getAttribute('data-exp')); if (d) d.open = true; }
+    var r = ev.target.closest ? ev.target.closest('a[data-ref]') : null;
+    if (r){ $('refSearch').value = ''; renderRefs(''); }
+  });
+  var theme = 0;
+  $('themeBtn').addEventListener('click', function(){
+    theme = (theme + 1) % 3;
+    var root = document.documentElement;
+    if (theme === 0) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', theme === 1 ? 'light' : 'dark');
+    $('themeBtn').textContent = ['theme: system','theme: light','theme: dark'][theme];
+  });
+})();
+</script>
