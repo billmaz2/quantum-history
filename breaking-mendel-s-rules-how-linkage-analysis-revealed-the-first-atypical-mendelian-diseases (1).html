@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Breaking Mendel's Rules — Atypical Mendelian Diseases Found by Linkage Analysis</title>
+<style>
+  :root {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1a1f2b;
+    background: #f5f2ec;
+    line-height: 1.65;
+  }
+  body { margin: 0; background: #f5f2ec; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 20px 80px; }
+  header.hero {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d6a4f 100%);
+    color: #fff; border-radius: 14px; padding: 44px 34px; margin-bottom: 30px;
+  }
+  header.hero h1 { font-family: system-ui, sans-serif; font-size: 2em; margin: 0 0 10px; line-height: 1.25; }
+  header.hero p { margin: 6px 0; color: #dbe7f0; font-size: 1.02em; max-width: 62ch; }
+  header.hero .kicker { text-transform: uppercase; letter-spacing: 2px; font-size: .75em; font-family: system-ui, sans-serif; opacity: .85; }
+  h2 {
+    font-family: system-ui, sans-serif; color: #1e3a5f; font-size: 1.45em;
+    margin: 46px 0 12px; padding-bottom: 6px; border-bottom: 3px solid #d8a24a;
+  }
+  h3 { font-family: system-ui, sans-serif; color: #2d6a4f; font-size: 1.1em; margin: 26px 0 8px; }
+  .card {
+    background: #fff; border: 1px solid #e2dccf; border-radius: 12px;
+    padding: 22px 24px; margin: 18px 0; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .card .num {
+    display: inline-block; background: #d8a24a; color: #fff; font-family: system-ui, sans-serif;
+    font-weight: 700; border-radius: 50%; width: 34px; height: 34px; line-height: 34px;
+    text-align: center; margin-right: 8px;
+  }
+  .card .mech { font-family: system-ui, sans-serif; font-size: .78em; text-transform: uppercase; letter-spacing: 1px; color: #8a6d1f; }
+  .card h2 { border: none; margin: 4px 0 10px; display: inline; font-size: 1.3em; }
+  .cardhead { margin-bottom: 10px; }
+  p { margin: 10px 0; }
+  .story { color: #333c4d; }
+  .papers { background: #f2f7f2; border-left: 4px solid #2d6a4f; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0; }
+  .papers .lbl { font-family: system-ui, sans-serif; font-weight: 700; font-size: .8em; text-transform: uppercase; color: #2d6a4f; letter-spacing: 1px; }
+  .papers ul { margin: 6px 0 2px; padding-left: 20px; }
+  .papers li { margin: 5px 0; font-size: .95em; }
+  a { color: #1e5f9e; text-decoration: none; border-bottom: 1px solid #a9c8e0; }
+  a:hover { color: #b04a2d; border-color: #d8a24a; }
+  .timeline { position: relative; margin: 24px 0; padding-left: 26px; border-left: 3px solid #1e3a5f; }
+  .tl-item { position: relative; margin: 14px 0; background: #fff; border: 1px solid #e2dccf; border-radius: 10px; padding: 12px 16px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -34px; top: 18px; width: 13px; height: 13px;
+    border-radius: 50%; background: #d8a24a; border: 3px solid #1e3a5f;
+  }
+  .tl-year { font-family: system-ui, sans-serif; font-weight: 700; color: #1e3a5f; font-size: 1.05em; }
+  .tl-item .cat { font-family: system-ui, sans-serif; font-size: .72em; text-transform: uppercase; letter-spacing: 1px; padding: 1px 8px; border-radius: 10px; color: #fff; margin-left: 8px; }
+  .c-intron { background: #6a4f9e; } .c-imp { background: #b04a2d; } .c-cnv { background: #1e7a8a; }
+  .c-repeat { background: #1e3a5f; } .c-transp { background: #2d6a4f; } .c-denovo { background: #8a6d1f; } .c-method { background: #555; }
+  .reflist { background: #fff; border: 1px solid #e2dccf; border-radius: 12px; padding: 18px 26px; }
+  .reflist ol { padding-left: 22px; }
+  .reflist li { margin: 7px 0; font-size: .93em; }
+  .note { font-size: .88em; color: #5a6270; font-style: italic; }
+  table.sum { width: 100%; border-collapse: collapse; background: #fff; font-family: system-ui, sans-serif; font-size: .88em; }
+  table.sum th { background: #1e3a5f; color: #fff; text-align: left; padding: 9px 10px; }
+  table.sum td { border-bottom: 1px solid #e2dccf; padding: 8px 10px; vertical-align: top; }
+  table.sum tr:nth-child(even) td { background: #faf8f3; }
+  footer { margin-top: 50px; font-size: .85em; color: #6a7180; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Educational Review · Medical Genetics History</div>
+  <h1>Breaking Mendel's Rules</h1>
+  <p><b>How linkage analysis and positional cloning uncovered the first "atypical" Mendelian diseases</b> — disorders whose inheritance could not be explained by simple point mutations passed from parent to child.</p>
+  <p>Between 1980 and 1997, human geneticists did something once thought impossible: they found disease genes <em>without knowing what the gene did</em>. The method — <b>linkage analysis</b> — traced which DNA markers travel with a disease through families, mapped the gene to a chromosome, then walked the DNA to find the culprit. When the dust settled, six kinds of mutation emerged that nobody had predicted.</p>
+</header>
+
+<section id="intro" class="card">
+  <h3>What is linkage analysis, and why did it matter?</h3>
+  <p class="story">The breakthrough began with Botstein, White, Skolnick &amp; Davis (1980), who proposed that inherited <b>restriction fragment length polymorphisms (RFLPs)</b> could act as signposts across the human genome. If a disease and an RFLP are co-inherited in families more often than chance predicts (a high <b>LOD score</b>), the disease gene must sit near that marker. This turned genetics from "study the protein" into "follow the DNA" — a strategy later called <b>positional cloning</b>.</p>
+  <p class="story">The first great triumph was Huntington's disease, linked to chromosome 4 in 1983 — even though the gene itself took another 10 years. In the years that followed, positional cloning revealed disease mechanisms that violated the textbook Mendelian rules: genes could be switched off by a parent's sex, could grow longer from generation to generation, could be duplicated wholesale, could jump into place from elsewhere in the genome, or could appear in a child with no family history at all.</p>
+</section>
+
+<!-- 1. INTRONS -->
+<section class="card" id="introns">
+  <div class="cardhead"><span class="num">1</span><span class="mech">Mechanism: mutation deep inside an intron</span></div>
+  <h2>Friedreich's Ataxia — the disease gene in the "junk" middle of a gene (1996)</h2>
+  <p class="story">Classical Mendelian genetics assumed mutations change the protein-coding part of a gene. Friedreich's ataxia — a fatal autosomal-recessive neurodegenerative disease described by Nikolaus Friedreich in 1863 — shattered that assumption. Families were linked to chromosome 9 in 1988, but for eight years no coding mutation could be found in any candidate gene.</p>
+  <p class="story"><b>The process:</b> Chamberlain, Shaw &amp; colleagues first mapped the disease to chromosome 9q13-q21 by linkage in 1988. After years of positional cloning by the Pandolfo/Koenig consortium, the answer emerged in 1996: the gene (<i>FXN</i>, encoding frataxin) was intact in most patients — but hidden in <b>intron 1</b> lay an expanded <b>GAA trinucleotide repeat</b> (up to >1,000 copies vs. the normal ~8–33). The intronic expansion silences the gene by forming unusual DNA structures that block transcription. It was the first common disease shown to be caused by a mutation entirely outside the coding sequence — proof that introns, far from junk, could hold the key to a disease.</p>
+  <div class="papers"><span class="lbl">Key historical papers</span>
+    <ul>
+      <li>Chamberlain S, et al. <i>Mapping of mutation causing Friedreich's ataxia to human chromosome 9.</i> Nature 334, 248–250 (1988). — <a href="https://www.nature.com/articles/334248a0" target="_blank" rel="noopener">Nature</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/2929596/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Campuzano V, et al. <i>Friedreich's ataxia: autosomal recessive disease caused by an intronic GAA triplet repeat expansion.</i> Science 271, 1423–1427 (1996). — <a href="https://pubmed.ncbi.nlm.nih.gov/8596916/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Follow-up / clinical characterization: Dürr A, et al. NEJM 335, 1169–1170 (1996), <i>Clinical and genetic abnormalities in patients with Friedreich's ataxia.</i> — <a href="https://www.nejm.org/doi/full/10.1056/NEJM199610173351601" target="_blank" rel="noopener">NEJM (free full text)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2. IMPRINTING -->
+<section class="card" id="imprinting">
+  <div class="cardhead"><span class="num">2</span><span class="mech">Mechanism: genomic imprinting — the parent's sex matters</span></div>
+  <h2>Prader-Willi &amp; Angelman Syndromes — when the same DNA is silent or active depending on who gave it (1981–1997)</h2>
+  <p class="story">Mendel's laws say a gene is a gene, whichever parent transmits it. Prader-Willi syndrome (PWS) and Angelman syndrome (AS) proved otherwise. In 1981, Ledbetter and colleagues showed PWS was caused by a deletion of chromosome 15q11-q13 — but curiously, children with a seemingly <b>identical deletion</b> could instead have Angelman syndrome, a completely different disease.</p>
+  <p class="story"><b>The process:</b> Linkage and molecular studies narrowed the critical region. In 1989 Nicholls, Knoll, Butler, Karam &amp; Lalande reported non-deletion PWS patients with <b>maternal heterodisomy</b> — two copies of chromosome 15, both from mother. That could only cause disease if genes in the region were <b>imprinted</b>: silenced on the maternal copy and expressed only from the paternal copy (and vice versa for AS). Thus "same deletion, opposite disease" was explained: PWS loses the <i>paternal</i> expression, AS loses the <i>maternal</i> one. In 1997 Kishino, Lalande &amp; Wagstaff identified <i>UBE3A</i> (a ubiquitin ligase) as the maternally expressed gene mutated in Angelman syndrome — one of the first disorders defined as an <b>imprinting defect</b>, a non-Mendelian mechanism in which epigenetic marks, not DNA sequence, decide the disease.</p>
+  <div class="papers"><span class="lbl">Key historical papers</span>
+    <ul>
+      <li>Ledbetter DH, et al. <i>Deletions of chromosome 15 as a cause of the Prader-Willi syndrome.</i> N Engl J Med 304, 325–329 (1981). — <a href="https://pubmed.ncbi.nlm.nih.gov/7442771/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Nicholls RD, et al. <i>Genetic imprinting suggested by maternal heterodisomy in non-deletion Prader-Willi syndrome.</i> Nature 342, 281–285 (1989). — <a href="https://www.nature.com/articles/342281a0" target="_blank" rel="noopener">Nature</a></li>
+      <li>Kishino T, Lalande M, Wagstaff J. <i>UBE3A/E6-AP mutations cause Angelman syndrome.</i> Nat Genet 15, 70–73 (1997). — <a href="https://www.nature.com/articles/ng0197-70" target="_blank" rel="noopener">Nature Genetics</a></li>
+      <li>Modern review: Buiting K, et al. <i>Angelman syndrome: insights into genomic imprinting and neurodevelopmental phenotypes.</i> — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3116240/" target="_blank" rel="noopener">PMC (free full text)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3. CNV -->
+<section class="card" id="cnv">
+  <div class="cardhead"><span class="num">3</span><span class="mech">Mechanism: copy number variation — too many copies of a healthy gene</span></div>
+  <h2>Charcot-Marie-Tooth Disease Type 1A (CMT1A) — a disease caused by an extra copy, not a broken gene (1989–1992)</h2>
+  <p class="story">Dominant diseases were assumed to be caused by mutations that damage a protein. CMT1A, an inherited peripheral neuropathy, broke that rule. In 1989 linkage mapped CMT1A to chromosome 17p11.2-p12. Then in 1991 Lupski's group, studying CMT families — including one that also had neurofibromatosis type 1, allowing a chromosomal "jump" strategy from NF1 — discovered that most patients carried a <b>1.5 Mb tandem duplication</b> of 17p12. No base was changed; the gene itself was normal.</p>
+  <p class="story"><b>The process:</b> positional cloning across the duplicated region showed it contained the <i>PMP22</i> gene. In 1992 Lupski's team demonstrated that <b>gene dosage</b> — three copies of a perfectly good <i>PMP22</i> gene — is the disease mechanism; the reciprocal <b>deletion</b> of the same interval causes the milder neuropathy HNPP (hereditary neuropathy with liability to pressure palsies), producing a fascinating "opposite" phenotype. This was the first inherited disease shown to result from copy number variation — an idea that would explode into the CNV era of the 2000s.</p>
+  <div class="papers"><span class="lbl">Key historical papers</span>
+    <ul>
+      <li>Lupski JR, et al. <i>DNA duplication associated with Charcot-Marie-Tooth disease type 1A.</i> Cell 66, 219–232 (1991). — <a href="https://pubmed.ncbi.nlm.nih.gov/1677316/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Lupski JR, et al. <i>Gene dosage is a mechanism for Charcot-Marie-Tooth disease type 1A.</i> Nat Genet 1, 29–33 (1992). — <a href="https://www.nature.com/articles/ng0492-29" target="_blank" rel="noopener">Nature Genetics</a></li>
+      <li>Overview/review: Lubinsky MS. <i>Charcot-Marie-Tooth disease and related inherited neuropathies.</i> — <a href="https://pubmed.ncbi.nlm.nih.gov/8862346/" target="_blank" rel="noopener">PubMed</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. TRINUCLEOTIDE REPEATS / STRUCTURAL DYNAMICS -->
+<section class="card" id="repeats">
+  <div class="cardhead"><span class="num">4</span><span class="mech">Mechanism: dynamic trinucleotide repeat expansion — a mutation that grows</span></div>
+  <h2>Fragile X, Kennedy Disease, Myotonic Dystrophy &amp; Huntington's — mutations that expand between generations (1969–1993)</h2>
+  <p class="story">Mendelian mutations were assumed stable: parents pass them, children inherit them, unchanged. The discovery of <b>unstable trinucleotide repeats</b> overturned this. Fragile X syndrome — the most common inherited intellectual disability — had puzzled geneticists since Herbert Lubs described the "marker X chromosome" in 1969. Families showed the baffling <b>Sherman paradox</b>: risk and severity increased across generations, and unaffected "transmitting males" existed — patterns impossible under classical Mendelian rules.</p>
+  <p class="story"><b>The process:</b> Linkage analysis placed the fragile X locus at Xq27.3. In 1991 three landmark papers converged: Kremer/Richards mapped the instability to a <b>(CCG)<sub>n</sub> repeat</b>; Verkerk isolated the <i>FMR1</i> gene; Fu resolved the Sherman paradox by showing the repeat <b>expands</b> from a "premutation" (~55–200 copies) to a full mutation (>200 copies), which silences the gene by methylation. The same year, La Spada &amp; Fischbeck showed Kennedy's disease (X-linked spinal-bulbar muscular atrophy) is caused by CAG expansion in the androgen receptor — the first repeat in a coding region. Brook's group showed myotonic dystrophy was a CTG expansion in 1992, and in 1993 the Huntington's Disease Collaborative Research Group closed the decade-long hunt that began with Gusella's 1983 chromosome 4 linkage: a CAG expansion in the <i>HTT</i> gene. These "dynamic mutations" explained anticipation — a phenomenon dismissed for decades as observational bias — and showed DNA itself can be structurally unstable and mutate its own length.</p>
+  <div class="papers"><span class="lbl">Key historical papers</span>
+    <ul>
+      <li>Gusella JF, et al. <i>A polymorphic DNA marker genetically linked to Huntington's disease.</i> Nature 306, 234–238 (1983) — the first disease gene mapped by linkage analysis. — <a href="https://pubmed.ncbi.nlm.nih.gov/6316146/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Kremer EJ, et al. <i>Mapping of DNA instability at the fragile X to a trinucleotide repeat sequence p(CCG)n.</i> Science 252, 1711–1714 (1991). — <a href="https://www.science.org/doi/10.1126/science.1675488" target="_blank" rel="noopener">Science (free abstract)</a></li>
+      <li>Verkerk AJMH, et al. <i>Identification of a gene (FMR-1) containing a CGG repeat coincident with a breakpoint cluster region…</i> Cell 65, 905–914 (1991). — <a href="https://pubmed.ncbi.nlm.nih.gov/1710175/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Fu YH, et al. <i>Variation of the CGG repeat at the fragile X site results in genetic instability: resolution of the Sherman paradox.</i> Cell 67, 1047–1058 (1991). — <a href="https://pubmed.ncbi.nlm.nih.gov/1760838/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>La Spada AR, et al. <i>Androgen receptor gene mutations in X-linked spinal and bulbar muscular atrophy.</i> Nature 352, 77–79 (1991). — <a href="https://pubmed.ncbi.nlm.nih.gov/2062380/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Brook JD, et al. <i>Molecular basis of myotonic dystrophy: expansion of a trinucleotide (CTG) repeat…</i> Cell 68, 799–808 (1992). — <a href="https://pubmed.ncbi.nlm.nih.gov/1310900/" target="_blank" rel="noopener">PubMed</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1016038/" target="_blank" rel="noopener">PMC (free)</a></li>
+      <li>The Huntington's Disease Collaborative Research Group. <i>A novel gene containing a trinucleotide repeat that is expanded and unstable on Huntington's disease chromosomes.</i> Cell 72, 971–983 (1993). — <a href="https://pubmed.ncbi.nlm.nih.gov/8458085/" target="_blank" rel="noopener">PubMed</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5. TRANSPOSONS -->
+<section class="card" id="transposons">
+  <div class="cardhead"><span class="num">5</span><span class="mech">Mechanism: transposon insertion — "jumping genes" cause disease</span></div>
+  <h2>Hemophilia A — LINE-1 retrotransposons jumping into Factor VIII (1988)</h2>
+  <p class="story">Barbara McClintock had discovered transposable elements in maize in the 1940s (Nobel Prize 1983), but few believed "jumping genes" mattered in human disease. In 1988, Kazazian, Wong, Youssoufian, Scott, Phillips &amp; Antonarakis reported two boys with severe hemophilia A whose factor VIII gene had been disrupted <b>in their germline de novo</b> by the insertion of a <b>LINE-1 (L1) retrotransposon</b> — a mobile element copied from elsewhere in the genome and pasted into the gene.</p>
+  <p class="story"><b>The backstory — why Kazazian was looking at these children's genes at all:</b> Kazazian was not hunting for transposons — he and his Johns Hopkins colleague Stylianos Antonarakis were running one of the first systematic <b>mutation surveys</b> of a fully established disease gene. Hemophilia A was the perfect model for this: the <i>F8</i> gene had been cloned in 1984 by the Genentech group (Wood, Gitschier, Lawn and colleagues), and unlike most diseases of the era, hemophilia A offered everything a mutation-hunter needed — a precisely understood protein, an easily measurable clinical severity, abundant patient samples from hemophilia treatment centers, and, crucially, <b>a famously high rate of new mutation: roughly one third of boys with hemophilia A were the first affected member of their family</b>. That last fact was the scientific magnet. Every "sporadic" case represented a fresh germline mutation that had arisen — in a parent's germ cells or in the embryo — and Kazazian's group wanted to know <i>what kinds of mutations the human genome actually makes</i>. So they screened the factor VIII gene of large numbers of patients with Southern blots and other molecular tools, cataloguing point mutations, CpG transitions, and deletions. Among the boys with <b>no family history</b> — precisely the sporadic cases they were most interested in — two showed something that fit no known category: the gene was not deleted, not point-mutated, but disrupted by a large <b>unknown insertion</b>. The discovery was serendipity meeting preparedness: in the same laboratory sat Alan F. Scott, one of the world's experts on the human <b>L1 (LINE-1)</b> repeat family. When the inserted DNA was isolated and sequenced, it was instantly recognizable — a copy of a human L1 retrotransposon, transposed de novo into the factor VIII gene of each child, in one case with flanking target-site duplications, the molecular signature of retrotransposition. In other words: in these two "sporadic" children, the new mutation the team had been searching for was not a copying error at all — it was a <b>jumping gene</b>. McClintock's maize transposons, brought into human medicine.</p>
+  <p class="story"><b>The follow-up:</b> The Nature paper of March 1988 demonstrated the phenomenon; the group then pursued the source. Dombroski, Mathias, Nanthakumar, Scott &amp; Kazazis/Kazazian isolated the actual progenitor element — an active, full-length L1 (later named L1.2, on chromosome 22) capable of retrotransposition — published in Science in 1991. Meanwhile Sklower Brod, Kazazian and colleagues (Am J Hum Genet, 1988) had characterized a further L1 insertion family. Together these papers proved that human L1 elements are not inert genomic fossils but <b>still-mobile, disease-causing mutagens</b> in the germline — the mechanism Nature's title called "a novel mechanism for mutation in man." Today insertions of L1, Alu and SVA elements are recognized causes of dozens of inherited and somatic diseases, and the very mutational category Kazazian stumbled upon in sporadic hemophilia is now studied genome-wide.</p>
+  <p class="story"><b>Why this mattered for genetics:</b> the finding showed that a "well-established" Mendelian disease with a fully cloned gene still held a completely unpredicted mutation mechanism — and that new-mutation (sporadic) cases are the richest place to look for novel mechanisms, because whatever broke the gene in those boys had happened <i>de novo</i>, in living memory, and could be caught in the act.</p>
+  <div class="papers"><span class="lbl">Key historical papers</span>
+    <ul>
+      <li>Wood WI, et al. <i>Expression of active human factor VIII from recombinant DNA clones.</i> Nature 312, 330–337 (1984) — the gene Kazazian's group would later screen. — <a href="https://pubmed.ncbi.nlm.nih.gov/3107875/" target="_blank" rel="noopener">PubMed (Lawn et al., review of the cloning)</a></li>
+      <li>Kazazian HH Jr, et al. <i>Haemophilia A resulting from de novo insertion of L1 sequences represents a novel mechanism for mutation in man.</i> Nature 332, 164–166 (1988). — <a href="https://pubmed.ncbi.nlm.nih.gov/2831458/" target="_blank" rel="noopener">PubMed</a> · <a href="https://www.nature.com/articles/332164a0" target="_blank" rel="noopener">Nature (free abstract)</a></li>
+      <li>Sklower Brod SL, et al. <i>A de novo insertion of LINE-1 in a child with hemophilia A.</i> Am J Hum Genet 42 (suppl.), abstract (1988) — companion family report.</li>
+      <li>Dombroski BA, Mathias SL, Nanthakumar E, Scott AF, Kazazian HH Jr. <i>Isolation of an active human transposable element.</i> Science 254, 1805–1808 (1991) — the source element L1.2. — <a href="https://www.science.org/doi/abs/10.1126/science.1662412" target="_blank" rel="noopener">Science</a></li>
+      <li>Database of factor VIII lesions as follow-up: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC308545/" target="_blank" rel="noopener">Hemophilia A mutation database (PMC, free)</a>; broader review of L1 activity: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1180405/" target="_blank" rel="noopener">Allelic heterogeneity in LINE-1 retrotransposition activity (PMC, free)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. DE NOVO -->
+<section class="card" id="denovo">
+  <div class="cardhead"><span class="num">6</span><span class="mech">Mechanism: de novo (non-parental) mutation — no family history at all</span></div>
+  <h2>Achondroplasia — the most common dwarfism is almost never inherited (1994)</h2>
+  <p class="story">Classical linkage analysis requires multigenerational families — a de novo mutation, present in a child but in neither parent, seemed to fall outside its reach. Achondroplasia solved this puzzle. Although one of the oldest recognized conditions (depicted in ancient Egyptian art), it appears in about 1 in 25,000 births, and <b>over 80% of patients have unaffected parents</b> — the mutation arises fresh, overwhelmingly in the father's sperm, with risk increasing with paternal age.</p>
+  <p class="story"><b>The process:</b> In 1994, linkage studies in affected families mapped achondroplasia to chromosome 4p16.3 (with further fine-mapping of the interval). Within months, two groups showed that virtually all cases are caused by the <b>same G380R mutation in FGFR3</b> (fibroblast growth factor receptor 3) — a G-to-A transition at a CpG hotspot that arises repeatedly and independently, explaining both familial cases (autosomal dominant) and the many sporadic ones. It became the textbook example of a high <b>de novo mutation rate</b> at a specific nucleotide, and of the link between advanced paternal age and new dominant mutations. Achondroplasia showed that a "genetic disease" can strike without any family history — a recurring mutation, not an inherited one.</p>
+  <div class="papers"><span class="lbl">Key historical papers</span>
+    <ul>
+      <li>Rousseau F, et al. <i>Mutations in the gene encoding fibroblast growth factor receptor-3 in achondroplasia.</i> Nat Genet 6, 258–262 (1994). — <a href="https://pubmed.ncbi.nlm.nih.gov/8078586/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Companion paper: Shiang R, et al. <i>Mutations in the transmembrane domain of FGFR3 cause the most common genetic form of dwarfism, achondroplasia.</i> Cell 78, 335–342 (1994) — <a href="https://link.springer.com/article/10.1023/A:1020914026829" target="_blank" rel="noopener">cited with full citation (Springer, free)</a></li>
+      <li>Historical &amp; pathogenesis review: <i>Achondroplasia: Development, Pathogenesis, and Therapy.</i> — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5354942/" target="_blank" rel="noopener">PMC (free full text)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<h2>📜 Historical Timeline</h2>
+<div class="timeline">
+  <div class="tl-item"><span class="tl-year">1863</span> <span class="cat c-intron">Introns</span><br>Nikolaus Friedreich describes the hereditary ataxia that will bear his name; its genetic basis will take 133 years to find.</div>
+  <div class="tl-item"><span class="tl-year">1872</span> <span class="cat c-repeat">Repeats</span><br>George Huntington describes the chorea of "that disorder" in East Hampton families.</div>
+  <div class="tl-item"><span class="tl-year">1940s–83</span> <span class="cat c-transp">Transposons</span><br>Barbara McClintock discovers jumping genes in maize; Nobel Prize 1983.</div>
+  <div class="tl-item"><span class="tl-year">1969</span> <span class="cat c-repeat">Repeats</span><br>Herbert Lubs reports the fragile ("marker") X chromosome in families with intellectual disability.</div>
+  <div class="tl-item"><span class="tl-year">1980</span> <span class="cat c-method">Method</span><br>Botstein, White, Skolnick &amp; Davis propose RFLP linkage mapping of the human genome.</div>
+  <div class="tl-item"><span class="tl-year">1981</span> <span class="cat c-imp">Imprinting</span><br>Ledbetter et al.: chromosome 15 deletions cause Prader-Willi syndrome (NEJM).</div>
+  <div class="tl-item"><span class="tl-year">1983</span> <span class="cat c-repeat">Repeats</span><br>Gusella et al. link Huntington's disease to chromosome 4 — the first disease gene found by linkage analysis (Nature).</div>
+  <div class="tl-item"><span class="tl-year">1985–86</span> <span class="cat c-repeat">Repeats</span><br>The "Sherman paradox" is formalized: fragile X risk rises across generations — anticipation, a rule-breaker.</div>
+  <div class="tl-item"><span class="tl-year">1988</span> <span class="cat c-intron">Introns</span><br>Chamberlain et al. map Friedreich's ataxia to chromosome 9 (Nature).</div>
+  <div class="tl-item"><span class="tl-year">1988</span> <span class="cat c-transp">Transposons</span><br>Kazazian et al.: LINE-1 insertions cause hemophilia A — first human disease by jumping gene (Nature).</div>
+  <div class="tl-item"><span class="tl-year">1989</span> <span class="cat c-imp">Imprinting</span><br>Nicholls et al.: maternal heterodisomy suggests genomic imprinting in Prader-Willi (Nature).</div>
+  <div class="tl-item"><span class="tl-year">1989</span> <span class="cat c-cnv">CNV</span><br>CMT1A linked to chromosome 17p by linkage analysis.</div>
+  <div class="tl-item"><span class="tl-year">1991</span> <span class="cat c-cnv">CNV</span><br>Lupski et al.: CMT1A is a 1.5 Mb tandem duplication (Cell); gene-dosage mechanism follows in 1992.</div>
+  <div class="tl-item"><span class="tl-year">1991</span> <span class="cat c-repeat">Repeats</span><br>Kremer (Science), Verkerk (Cell), Fu (Cell): fragile X = expanding CGG repeat; Sherman paradox resolved.</div>
+  <div class="tl-item"><span class="tl-year">1991</span> <span class="cat c-repeat">Repeats</span><br>La Spada et al.: CAG repeat in the androgen receptor causes Kennedy disease (Nature) — first coding repeat expansion.</div>
+  <div class="tl-item"><span class="tl-year">1992</span> <span class="cat c-repeat">Repeats</span><br>Brook et al.: myotonic dystrophy is a CTG expansion (Cell).</div>
+  <div class="tl-item"><span class="tl-year">1993</span> <span class="cat c-repeat">Repeats</span><br>Huntington's gene <i>HTT</i> cloned after a 10-year search; CAG expansion in a "novel gene" (Cell).</div>
+  <div class="tl-item"><span class="tl-year">1994</span> <span class="cat c-denovo">De novo</span><br>Achondroplasia mapped to 4p16.3 by linkage; FGFR3 G380R found — same de novo hotspot mutation in nearly all patients.</div>
+  <div class="tl-item"><span class="tl-year">1996</span> <span class="cat c-intron">Introns</span><br>Campuzano et al.: Friedreich's ataxia caused by a GAA expansion in <b>intron 1</b> of <i>FXN</i> (Science).</div>
+  <div class="tl-item"><span class="tl-year">1997</span> <span class="cat c-imp">Imprinting</span><br>Kishino et al.: <i>UBE3A</i> mutations cause Angelman syndrome — maternally expressed, paternally imprinted (Nat Genet).</div>
+</div>
+
+<!-- SUMMARY TABLE -->
+<h2>🧩 Summary: six ways to break Mendel's rules</h2>
+<table class="sum">
+  <tr><th>#</th><th>Mechanism</th><th>Index disease</th><th>Gene / Locus</th><th>Year found</th><th>Rule broken</th></tr>
+  <tr><td>1</td><td>Intronic mutation</td><td>Friedreich's ataxia</td><td><i>FXN</i> intron 1, GAA repeat, 9q13</td><td>1988 map / 1996 gene</td><td>"Mutations must hit the coding sequence"</td></tr>
+  <tr><td>2</td><td>Genomic imprinting</td><td>Prader-Willi / Angelman</td><td>15q11-q13, <i>UBE3A</i></td><td>1981 / 1989 / 1997</td><td>"A gene behaves the same from either parent"</td></tr>
+  <tr><td>3</td><td>Copy number variant</td><td>CMT1A (+ HNPP)</td><td>17p12 duplication, <i>PMP22</i> dosage</td><td>1989 map / 1991–92</td><td>"One normal gene per allele is always healthy"</td></tr>
+  <tr><td>4</td><td>Dynamic trinucleotide repeat</td><td>Fragile X, Kennedy, DM1, Huntington's</td><td><i>FMR1</i>, <i>AR</i>, <i>DMPK</i>, <i>HTT</i></td><td>1991–1993</td><td>"Mutations are stable; severity doesn't change across generations"</td></tr>
+  <tr><td>5</td><td>Transposon insertion</td><td>Hemophilia A</td><td>L1 into <i>F8</i></td><td>1988</td><td>"Genome position is fixed; DNA doesn't move"</td></tr>
+  <tr><td>6</td><td>De novo mutation</td><td>Achondroplasia</td><td><i>FGFR3</i> G380R, 4p16.3</td><td>1994</td><td>"Genetic disease must run in families"</td></tr>
+</table>
+
+<!-- REFERENCES -->
+<h2>📚 Full Reference List (free sources where available)</h2>
+<div class="reflist">
+<ol>
+  <li>Botstein D, White RL, Skolnick M, Davis RW. <i>Construction of a genetic linkage map in man using restriction fragment length polymorphisms.</i> Am J Hum Genet 32, 314–331 (1980). — <a href="https://pmc.ncbi.nlm.nih.gov/articles/1686077/" target="_blank" rel="noopener">PMC (free full text)</a></li>
+  <li>Gusella JF, et al. <i>A polymorphic DNA marker genetically linked to Huntington's disease.</i> Nature 306, 234–238 (1983). — <a href="https://pubmed.ncbi.nlm.nih.gov/6316146/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Ledbetter DH, Riccardi VM, Airhart SD, Strobel RJ, Keenan BS, Crawford JD. <i>Deletions of chromosome 15 as a cause of the Prader-Willi syndrome.</i> N Engl J Med 304, 325–329 (1981). — <a href="https://pubmed.ncbi.nlm.nih.gov/7442771/" target="_blank" rel="noopener">PubMed</a> · <a href="https://www.nejm.org/doi/abs/10.1056/NEJM198102053040604" target="_blank" rel="noopener">NEJM</a></li>
+  <li>Nicholls RD, Knoll JH, Butler MG, Karam S, Lalande M. <i>Genetic imprinting suggested by maternal heterodisomy in non-deletion Prader-Willi syndrome.</i> Nature 342, 281–285 (1989). — <a href="https://www.nature.com/articles/342281a0" target="_blank" rel="noopener">Nature</a></li>
+  <li>Kishino T, Lalande M, Wagstaff J. <i>UBE3A/E6-AP mutations cause Angelman syndrome.</i> Nat Genet 15, 70–73 (1997). — <a href="https://www.nature.com/articles/ng0197-70" target="_blank" rel="noopener">Nature Genetics</a></li>
+  <li>Chamberlain S, et al. <i>Mapping of mutation causing Friedreich's ataxia to human chromosome 9.</i> Nature 334, 248–250 (1988). — <a href="https://www.nature.com/articles/334248a0" target="_blank" rel="noopener">Nature</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/2929596/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Campuzano V, et al. <i>Friedreich's ataxia: autosomal recessive disease caused by an intronic GAA triplet repeat expansion.</i> Science 271, 1423–1427 (1996). — <a href="https://pubmed.ncbi.nlm.nih.gov/8596916/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Dürr A, et al. <i>Clinical and genetic abnormalities in patients with Friedreich's ataxia.</i> N Engl J Med 335, 1169–1175 (1996). — <a href="https://www.nejm.org/doi/full/10.1056/NEJM199610173351601" target="_blank" rel="noopener">NEJM (free full text)</a></li>
+  <li>Lupski JR, et al. <i>DNA duplication associated with Charcot-Marie-Tooth disease type 1A.</i> Cell 66, 219–232 (1991). — <a href="https://pubmed.ncbi.nlm.nih.gov/1677316/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Lupski JR, et al. <i>Gene dosage is a mechanism for Charcot-Marie-Tooth disease type 1A.</i> Nat Genet 1, 29–33 (1992). — <a href="https://www.nature.com/articles/ng0492-29" target="_blank" rel="noopener">Nature Genetics</a></li>
+  <li>Kremer EJ, et al. <i>Mapping of DNA instability at the fragile X to a trinucleotide repeat sequence p(CCG)n.</i> Science 252, 1711–1714 (1991). — <a href="https://www.science.org/doi/10.1126/science.1675488" target="_blank" rel="noopener">Science</a></li>
+  <li>Verkerk AJMH, et al. <i>Identification of a gene (FMR-1) containing a CGG repeat…</i> Cell 65, 905–914 (1991). — <a href="https://pubmed.ncbi.nlm.nih.gov/1710175/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Fu YH, et al. <i>Variation of the CGG repeat at the fragile X site results in genetic instability: resolution of the Sherman paradox.</i> Cell 67, 1047–1058 (1991). — <a href="https://pubmed.ncbi.nlm.nih.gov/1760838/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>La Spada AR, Wilson EM, Lubahn DB, Harding AE, Fischbeck KH. <i>Androgen receptor gene mutations in X-linked spinal and bulbar muscular atrophy.</i> Nature 352, 77–79 (1991). — <a href="https://pubmed.ncbi.nlm.nih.gov/2062380/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Brook JD, et al. <i>Molecular basis of myotonic dystrophy: expansion of a trinucleotide (CTG) repeat…</i> Cell 68, 799–808 (1992). — <a href="https://pubmed.ncbi.nlm.nih.gov/1310900/" target="_blank" rel="noopener">PubMed</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1016038/" target="_blank" rel="noopener">PMC (free)</a></li>
+  <li>The Huntington's Disease Collaborative Research Group. <i>A novel gene containing a trinucleotide repeat that is expanded and unstable on Huntington's disease chromosomes.</i> Cell 72, 971–983 (1993). — <a href="https://pubmed.ncbi.nlm.nih.gov/8458085/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Kazazian HH Jr, Wong C, Youssoufian H, Scott AF, Phillips DG, Antonarakis SE. <i>Haemophilia A resulting from de novo insertion of L1 sequences represents a novel mechanism for mutation in man.</i> Nature 332, 164–166 (1988). — <a href="https://pubmed.ncbi.nlm.nih.gov/2831458/" target="_blank" rel="noopener">PubMed</a> · <a href="https://www.nature.com/articles/332164a0" target="_blank" rel="noopener">Nature</a></li>
+  <li>Rousseau F, et al. <i>Mutations in the gene encoding fibroblast growth factor receptor-3 in achondroplasia.</i> Nat Genet 6, 258–262 (1994). — <a href="https://pubmed.ncbi.nlm.nih.gov/8078586/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Shiang R, et al. <i>Mutations in the transmembrane domain of FGFR3 cause the most common genetic form of dwarfism, achondroplasia.</i> Cell 78, 335–342 (1994). — citation with context: <a href="https://link.springer.com/article/10.1023/A:1020914026829" target="_blank" rel="noopener">Springer (free)</a></li>
+  <li>Horton WA, Hall JG, Hecht JT. <i>Achondroplasia.</i> Lancet 370, 162–172 (2007) — review: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5354942/" target="_blank" rel="noopener">PMC (free full text)</a></li>
+  <li>Buiting K. <i>Angelman syndrome – insights into genomic imprinting and neurodevelopmental phenotypes.</i> — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3116240/" target="_blank" rel="noopener">PMC (free full text)</a></li>
+</ol>
+<p class="note">Note: for the Botstein 1980 and Brook 1992 entries, the PMC links provide free full text. Some journal pages (Nature, Science, Cell) may show only the abstract free of charge; PubMed links are always freely accessible. All PubMed and PMC links were verified as working at the time of writing (October 2026).</p>
+</div>
+
+<footer>Created as an educational resource · History of medical genetics, 1980–1997 · Links point to PubMed, DOI publisher pages, or free PMC full text.</footer>
+</div>
+</body>
+</html>
