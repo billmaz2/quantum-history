@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systems Biology of the Krebs Cycle &amp; Glycogen Cycle — Models, History &amp; Equations</title>
+<style>
+  :root {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1a1f2b;
+    background: #edf2ec;
+    line-height: 1.65;
+  }
+  body { margin: 0; background: #edf2ec; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 20px 80px; }
+  header.hero {
+    background: linear-gradient(135deg, #14532d 0%, #1f4e79 100%);
+    color: #fff; border-radius: 14px; padding: 44px 34px; margin-bottom: 30px;
+  }
+  header.hero h1 { font-family: system-ui, sans-serif; font-size: 2em; margin: 0 0 10px; line-height: 1.25; }
+  header.hero p { margin: 6px 0; color: #d4e4d0; font-size: 1.02em; max-width: 64ch; }
+  header.hero .kicker { text-transform: uppercase; letter-spacing: 2px; font-size: .75em; font-family: system-ui, sans-serif; opacity: .85; }
+  h2 {
+    font-family: system-ui, sans-serif; color: #14532d; font-size: 1.45em;
+    margin: 46px 0 12px; padding-bottom: 6px; border-bottom: 3px solid #c98a2d;
+  }
+  h3 { font-family: system-ui, sans-serif; color: #1f4e79; font-size: 1.1em; margin: 26px 0 8px; }
+  .card {
+    background: #fff; border: 1px solid #dde3dc; border-radius: 12px;
+    padding: 22px 24px; margin: 18px 0; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .card .num {
+    display: inline-block; background: #c98a2d; color: #fff; font-family: system-ui, sans-serif;
+    font-weight: 700; border-radius: 50%; width: 34px; height: 34px; line-height: 34px;
+    text-align: center; margin-right: 8px;
+  }
+  .card .mech { font-family: system-ui, sans-serif; font-size: .78em; text-transform: uppercase; letter-spacing: 1px; color: #7a5216; }
+  .card h2 { border: none; margin: 4px 0 10px; display: inline; font-size: 1.3em; }
+  .cardhead { margin-bottom: 10px; }
+  p { margin: 10px 0; }
+  .story { color: #333c4d; }
+  .old, .prob, .new {
+    border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: .97em;
+  }
+  .old { background: #f6f0e8; border-left: 4px solid #b58a3d; }
+  .prob { background: #fbeeee; border-left: 4px solid #b04a2d; }
+  .new { background: #eef5f0; border-left: 4px solid #2d6a4f; }
+  .old .lbl, .prob .lbl, .new .lbl {
+    font-family: system-ui, sans-serif; font-weight: 700; font-size: .78em;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .old .lbl { color: #8a6d1f; } .prob .lbl { color: #8a2d1d; } .new .lbl { color: #2d6a4f; }
+  .eq {
+    font-family: 'Georgia', serif; background: #12291a; color: #e0f5d8;
+    border-radius: 8px; padding: 12px 16px; margin: 10px 0; text-align: center;
+    font-size: 1.08em; letter-spacing: .5px; overflow-x: auto;
+  }
+  .eq .note { display: block; font-size: .78em; color: #a0c9a8; font-family: system-ui, sans-serif; margin-top: 6px; letter-spacing: 0; text-align: left; }
+  .papers { background: #f2f5fa; border-left: 4px solid #1f4e79; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0; }
+  .papers .lbl { font-family: system-ui, sans-serif; font-weight: 700; font-size: .8em; text-transform: uppercase; color: #1f4e79; letter-spacing: 1px; }
+  .papers ul { margin: 6px 0 2px; padding-left: 20px; }
+  .papers li { margin: 5px 0; font-size: .95em; }
+  a { color: #1e5f9e; text-decoration: none; border-bottom: 1px solid #a9c8e0; }
+  a:hover { color: #b04a2d; border-color: #c98a2d; }
+  .timeline { position: relative; margin: 24px 0; padding-left: 26px; border-left: 3px solid #14532d; }
+  .tl-item { position: relative; margin: 14px 0; background: #fff; border: 1px solid #dde3dc; border-radius: 10px; padding: 12px 16px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -34px; top: 18px; width: 13px; height: 13px;
+    border-radius: 50%; background: #c98a2d; border: 3px solid #14532d;
+  }
+  .tl-year { font-family: system-ui, sans-serif; font-weight: 700; color: #14532d; font-size: 1.05em; }
+  .tl-item .cat { font-family: system-ui, sans-serif; font-size: .72em; text-transform: uppercase; letter-spacing: 1px; padding: 1px 8px; border-radius: 10px; color: #fff; margin-left: 8px; }
+  .c-class { background: #555; } .c-mca { background: #6a4f9e; } .c-osc { background: #b04a2d; } .c-kin { background: #1f4e79; } .c-flux { background: #1e7a8a; } .c-whole { background: #2d6a4f; }
+  .reflist { background: #fff; border: 1px solid #dde3dc; border-radius: 12px; padding: 18px 26px; }
+  .reflist ol { padding-left: 22px; }
+  .reflist li { margin: 7px 0; font-size: .93em; }
+  .note { font-size: .88em; color: #5a6270; font-style: italic; }
+  table.sum { width: 100%; border-collapse: collapse; background: #fff; font-family: system-ui, sans-serif; font-size: .88em; }
+  table.sum th { background: #14532d; color: #fff; text-align: left; padding: 9px 10px; }
+  table.sum td { border-bottom: 1px solid #dde3dc; padding: 8px 10px; vertical-align: top; }
+  table.sum tr:nth-child(even) td { background: #f5f8f2; }
+  footer { margin-top: 50px; font-size: .85em; color: #6a7180; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Educational Review · Systems Biology of Metabolism</div>
+  <h1>The Krebs Cycle &amp; the Glycogen Cycle as Systems</h1>
+  <p><b>How systems biology turned two classic biochemical diagrams into dynamic, predictive control systems.</b> The Krebs (TCA) cycle and glycogen metabolism were mapped as reaction schemes by classical biochemistry (1930s–1950s). Systems biology asks different questions: <i>which step controls the flux? why is the network robust? when does it oscillate or switch?</i></p>
+  <p>Each section below follows the same structure: the <b>classical (static) view</b>, the <b>question it could not answer</b>, the <b>systems-level model and finding</b>, and the key equations — with historical papers and working free-access references.</p>
+</header>
+
+<section id="intro" class="card">
+  <h3>The paradigm shift: from reaction maps to control systems</h3>
+  <p class="story">Classical biochemistry gave us the "what": which enzymes, which metabolites, which arrows. Systems biology asks about the "how much" and "when": metabolic <b>fluxes</b> (rates through pathways), <b>control coefficients</b> (how much each enzyme controls the flux), <b>dynamics</b> (oscillations, switches, transients), and <b>robustness</b> (why the network keeps working despite perturbations). The two pathways in this page illustrate both major branches of the field: the <b>cybernetic / control-theory tradition</b> (glycogen regulation as an ultrasensitive switch — Goldbeter, Koshland) and the <b>kinetic modeling / flux analysis tradition</b> (TCA cycle as an ODE system and flux network — from early kinetic models to ¹³C temporal fluxomics and genome-scale methods).</p>
+</section>
+
+<!-- 1. CLASSICAL DISCOVERY -->
+<section class="card" id="classical">
+  <div class="cardhead"><span class="num">1</span><span class="mech">1930s–1950s · The classical foundations</span></div>
+  <h2>Mapping the Cycles — Krebs, Cori &amp; Cori, Sutherland</h2>
+  <div class="old"><span class="lbl">The classical view</span><br>Hans Krebs mapped the citric acid cycle (1937) from pigeon-flight muscle experiments — five reactions that oxidize carbon while regenerating their own carrier. Carl and Gerty Cori mapped the glycogen ↔ glucose corridor and the "Cori cycle" between liver and muscle. The diagrams were static: enzymes as labeled arrows, regulation as on/off notes.</div>
+  <div class="prob"><span class="lbl">What classical biochemistry could not answer</span><br>Textbooks spoke of a single "rate-limiting step" per pathway — but which one? Do all steps just follow their substrate concentrations, or does regulation create switches and amplifiers? Why does adding more of a "bottleneck" enzyme often barely change the flux? Static maps cannot answer any dynamical question: they say nothing about response time, stability, amplification, or the effect of changing multiple enzymes at once.</div>
+  <div class="new"><span class="lbl">The systems view begins</span><br>Already in the 1940s–60s, the discovery of <b>allosteric regulation</b> (Monod, Changeux, Jacob 1963), <b>reversible phosphorylation of glycogen phosphorylase</b> (Krebs &amp; Fischer, 1955–56 — the first protein phosphorylation cascade ever discovered), and the <b>cAMP second-messenger cascade</b> (Sutherland, Nobel 1971) revealed that metabolic pathways are wired into <b>multi-layer control circuits</b> — precisely the kind of object that control theory and later systems biology were built to analyze.</div>
+  <div class="eq">glycogen phosphorylase: phosphorylase-<b>b</b> ⇌ phosphorylase-<b>a</b> &nbsp;·&nbsp; cAMP → PKA → phosphorylase kinase → phosphorylase<span class="note">The glycogen cascade discovered by Krebs &amp; Fischer (1956, Nobel 1992) and Sutherland: a hormone signal amplified through covalent modification. One hormone molecule activates many PKA molecules, each activating many kinase molecules, each activating many phosphorylase molecules — a biological amplifier chain.</span></div>
+</section>
+
+<!-- 2. MCA -->
+<section class="card" id="mca">
+  <div class="cardhead"><span class="num">2</span><span class="mech">1973–74 · The founding theory: metabolic control analysis</span></div>
+  <h2>Kacser &amp; Burns, Heinrich &amp; Rapoport — Nobody is "the rate-limiting enzyme"</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>The "rate-limiting step" doctrine: each pathway has one bottleneck enzyme that controls the flux; increasing that enzyme increases flux proportionally.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Experiments kept contradicting the doctrine. Overexpressing a putative "rate-limiting" enzyme often changed flux barely at all; the regulatory properties of a single enzyme told you nothing about the pathway's behavior. A theory was needed for how control is <i>distributed</i> across a network.</div>
+  <div class="new"><span class="lbl">New model</span><br>Metabolic Control Analysis (MCA), created independently by Kacser &amp; Burns (1973) and Heinrich &amp; Rapoport (1974): control is a <b>shared, quantifiable property of the whole system</b>. Each enzyme gets a dimensionless <b>flux control coefficient</b> C<sub>J,i</sub> — the fractional change in pathway flux caused by a fractional change in that enzyme's activity. The famous <b>summation theorem</b> says all coefficients in a pathway sum to exactly 1. No single enzyme is "the" controller; control shifts with conditions. MCA became the mathematical backbone of systems biology, and its central result — control redistribution — explains why single-enzyme overexpression experiments usually disappoint.</div>
+  <div class="eq">C<sub>J,i</sub> = (∂J/J) / (∂e<sub>i</sub>/e<sub>i</sub>) &nbsp;&nbsp;·&nbsp;&nbsp; Σ<sub>i</sub> C<sub>J,i</sub> = 1<span class="note">Flux control coefficient and the summation theorem (Kacser &amp; Burns 1973; Heinrich &amp; Rapoport 1974). For the TCA cycle this means flux control is distributed among many steps and shifts with substrate supply, energy charge and hormonal state — a fact now confirmed by ¹³C flux experiments.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Kacser H, Burns JA. <i>The control of flux.</i> Symp. Soc. Exp. Biol. 27, 65–104 (1973). — <a href="https://pubmed.ncbi.nlm.nih.gov/4148886/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Heinrich R, Rapoport TA. <i>A linear steady-state treatment of enzymatic chains.</i> Eur. J. Biochem. 42, 89–95 (1974). — <a href="https://pubmed.ncbi.nlm.nih.gov/4148886/" target="_blank" rel="noopener">Review context (PubMed)</a> · Modern review: <a href="https://pubmed.ncbi.nlm.nih.gov/6365197/" target="_blank" rel="noopener">Fell D. <i>Modern theories of metabolic control…</i> Biochem J 286 (1992) — PubMed</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3. ZERO-ORDER -->
+<section class="card" id="ultrasens">
+  <div class="cardhead"><span class="num">3</span><span class="mech">1981–87 · Glycogen regulation as an ultrasensitive switch</span></div>
+  <h2>Goldbeter &amp; Koshland — Zero-Order Ultrasensitivity in the Glycogen Cascade</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Covalent modification (phosphorylation/dephosphorylation) was thought to give smooth, graded responses: a little more hormone, a little more active phosphorylase.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>But organisms need <b>switches</b>: liver must synthesize glycogen after a meal and break it down while fasting — <i>simultaneously running both is wasted energy</i> (a futile cycle) and dangerous. How can a smooth chemical cascade produce an all-or-none decision? Classical kinetics of a single enzyme cannot answer this.</div>
+  <div class="new"><span class="lbl">New model &amp; findings</span><br>Goldbeter &amp; Koshland (1981) showed theoretically that when the modifying enzymes (kinases, phosphatases) are saturated with their protein substrate ("zero-order" regime), a <b>covalent modification cycle behaves like an ultrasensitive switch</b>: the response curve becomes effectively sigmoidal, with Hill coefficients far above 1. Meinke, Bishop &amp; Edstrom (1986) then showed experimentally that <b>glycogen phosphorylase activation is exactly such a zero-order ultrasensitive switch</b> — and quantified the whole glycogen cascade system, finding that liver glycogen synthase and muscle phosphorylase achieve ultrasensitivity through <i>distinctive regulatory designs</i>. In 1996, Cárdenas &amp; Goldbeter built the theoretical model of the liver's <b>glucose-induced switch</b> between glycogen phosphorylase and glycogen synthase: glucose itself, by inhibiting phosphorylase-a, flips liver from glycogen breakdown to synthesis. Later work extended the model to Ca²⁺/IP₃-driven phosphorylase dynamics. This line of research is a pillar of the systems-biology tradition: treating a metabolic pathway as a <b>signal-processing circuit</b> with amplification, thresholds and memory.</div>
+  <div class="eq">v<sub>a</sub> = V<sub>1</sub>W(1 − v<sub>a</sub>) / [V<sub>1</sub>W(1 − v<sub>a</sub>) + V<sub>2</sub>v<sub>a</sub>] &nbsp;→&nbsp; n<sub>H</sub> &gt;&gt; 1 (zero-order regime)<span class="note">The Goldbeter–Koshland covalent-modification cycle (1981): when converter enzymes are saturated (W large), the fraction of modified protein v<sub>a</sub> switches almost discontinuously with signal — "zero-order ultrasensitivity." Applied experimentally to glycogen phosphorylase by Meinke et al. (1986).</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Goldbeter A, Koshland DE Jr. <i>An amplified sensitivity arising from covalent modification in biological systems.</i> PNAS 78, 6840–6844 (1981).</li>
+      <li>Meinke MH, Bishop JS, Edstrom RD. <i>Zero-order ultrasensitivity in the regulation of glycogen phosphorylase.</i> PNAS 83, 2865–2868 (1986). — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC323407/" target="_blank" rel="noopener">PMC (free full text)</a></li>
+      <li>Meinke MH, Edstrom RD. <i>Quantification of the glycogen cascade system: the ultrasensitive responses of liver glycogen synthase and muscle phosphorylase are due to distinctive regulatory designs.</i> Theor. Biol. Med. Model. 2, 19 (2005). — <a href="https://link.springer.com/article/10.1186/1742-4682-2-19" target="_blank" rel="noopener">Springer (free full text)</a></li>
+      <li>Cárdenas ML, Goldbeter A. <i>The glucose-induced switch between glycogen phosphorylase and glycogen synthase in the liver: outlines of a theoretical approach.</i> J. Theor. Biol. 182, 421–426 (1996). — <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022519396901824" target="_blank" rel="noopener">ScienceDirect</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. KINETIC TCA -->
+<section class="card" id="tca-kinetic">
+  <div class="cardhead"><span class="num">4</span><span class="mech">1990s–2020s · The Krebs cycle as an ODE system</span></div>
+  <h2>Kinetic Models of the TCA Cycle — ODEs, Databases &amp; Even Queueing Theory</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>The Krebs cycle as a wall chart: eight reactions, memorized individually, with no notion of how the whole thing behaves as a dynamical system.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Real TCA flux depends on the NAD⁺/NADH ratio, substrate supply, ATP demand, Ca²⁺ activation of dehydrogenases, and product inhibition — all coupled, all simultaneous. Which steps carry the control (MCA question)? What happens during transients — exercise, feeding, hypoxia? Static maps cannot compute anything.</div>
+  <div class="new"><span class="lbl">New model</span><br>Kinetic models write the cycle (plus entry points and the respiratory chain) as a set of coupled <b>ordinary differential equations</b> with enzyme rate laws (Michaelis–Menten with allosteric modifiers), then solve for dynamics, control coefficients and stability. These models live in community-curated, machine-readable databases — <b>BioModels</b> and <b>WikiPathways</b> — with standard formats (SBML). A 2012 paper explicitly reviewed how to improve the <i>description</i> of the human TCA cycle for computational use. On the wilder side, a 2021 <i>Bioinformatics</i> paper modeled the Krebs cycle with <b>queueing theory</b> (the mathematics of waiting lines) as a stochastic Markov process — avoiding the negative-concentration artifacts of naive ODEs — and the same group later integrated the Krebs cycle, glycolysis, the pentose phosphate pathway and fatty-acid β-oxidation into a single queueing-theory model of central carbon metabolism. Pancreatic β-cell models now routinely embed a kinetic TCA cycle (plus glycolysis, PPP, glutaminolysis, ETC) to explain insulin secretion dynamics.</div>
+  <div class="eq">d[X<sub>i</sub>]/dt = Σ<sub>j</sub> ν<sub>ij</sub> v<sub>j</sub>(X, parameters) &nbsp;&nbsp;·&nbsp;&nbsp; v = V<sub>max</sub>[S]/(K<sub>m</sub> + [S])<span class="note">The core of every kinetic metabolic model: each metabolite's concentration changes according to the balance of reaction rates (stoichiometry ν), and each rate follows enzyme kinetics with allosteric modifiers. For the TCA cycle, modifiers like NADH inhibition of dehydrogenases and ATP/ADP ratios make the system highly nonlinear.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Kloska S, et al. <i>Queueing theory model of Krebs cycle.</i> Bioinformatics 37, 2912–2920 (2021). — <a href="https://academic.oup.com/bioinformatics/article/37/18/2912/6173979" target="_blank" rel="noopener">Oxford Bioinformatics (free)</a> · <a href="https://academic.oup.com/bioinformatics/article-pdf/37/18/2912/50579647/btab177.pdf" target="_blank" rel="noopener">PDF (free)</a></li>
+      <li>Kloska S, et al. <i>Integrating glycolysis, citric acid cycle, pentose phosphate pathway and fatty acid β-oxidation into a single computational model.</i> (2023). — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10475038/" target="_blank" rel="noopener">PMC (free full text)</a></li>
+      <li>Romero P, et al. <i>Improving the description of metabolic networks: the TCA cycle as example.</i> (2012). — <a href="https://pubmed.ncbi.nlm.nih.gov/22661004/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Waters SB, et al. <i>Kinetic and data-driven modeling of pancreatic β-cell central metabolism and insulin secretion.</i> PLOS Comput Biol (2022). — <a href="https://pubmed.ncbi.nlm.nih.gov/36251711/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Community model database: <a href="https://www.biomodels.org/" target="_blank" rel="noopener">BioModels Database</a> · Chassagnole C, et al. <i>Dynamic modeling of central carbon metabolism of E. coli.</i> Biotechnol Bioeng 79, 53–73 (2002). — <a href="https://pubmed.ncbi.nlm.nih.gov/17590932/" target="_blank" rel="noopener">PubMed</a> · <a href="https://www.biomodels.org/BIOMD0000000051" target="_blank" rel="noopener">BioModels entry</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 5. FLUXOMICS -->
+<section class="card" id="fluxomics">
+  <div class="cardhead"><span class="num">5</span><span class="mech">2017 · The living TCA cycle oscillates</span></div>
+  <h2>Temporal Fluxomics — TCA Flux Oscillates Through the Cell Cycle</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>¹³C metabolic flux analysis (MFA) assumed a <b>steady state</b>: feed cells labeled glucose, wait, measure isotope patterns, infer constant fluxes. The TCA cycle was treated as a steady machine humming at a fixed rate.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>In a proliferating cell there is no true steady state: enzyme levels, ATP demand and substrate supply all change as the cell grows and divides. Steady-state MFA averages over — and therefore hides — any dynamics.</div>
+  <div class="new"><span class="lbl">New model &amp; finding</span><br>Ahn &amp; Antoniewicz (2017, <i>Molecular Systems Biology</i>) developed <b>temporal (pseudo-steady-state) fluxomics</b>: synchronizing mammalian cells by cell cycle phase, sampling ¹³C isotope patterns densely through time, and fitting a computational model of flux <i>at each phase</i>. The result transformed the picture: <b>TCA cycle flux itself oscillates throughout the cell cycle</b>, alternating between a glucose-driven mode (early cycle) and a glutamine-driven mode (later), with lactate and alanine exchange shifting in phase. The "static wheel" of the textbook is, in a living dividing cell, a periodically re-programming circuit — an example of systems biology discovering dynamics that steady-state biochemistry could never see.</div>
+  <div class="eq">v(t) = f(isotope labeling(t), metabolites(t)) — solved at each cell-cycle phase φ<span class="note">Temporal fluxomics (Ahn &amp; Antoniewicz 2017): instead of a single flux vector v, the model returns a time-resolved flux function, revealing periodic switching of the TCA cycle between glucose- and glutamine-oxidative modes.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Ahn WK, Antoniewicz MR, et al. <i>Temporal fluxomics reveals oscillations in TCA cycle flux throughout the mammalian cell cycle.</i> Mol. Syst. Biol. 13, 953 (2017). — <a href="https://link.springer.com/article/10.15252/msb.20177763" target="_blank" rel="noopener">Molecular Systems Biology (free)</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/29109155/" target="_blank" rel="noopener">PubMed</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. WHOLE BODY GLYCOGEN -->
+<section class="card" id="wholebody">
+  <div class="cardhead"><span class="num">6</span><span class="mech">2013 · Glycogen at the whole-body scale</span></div>
+  <h2>Whole-Body Glycogen Models — Substrate Cycling Keeps Blood Glucose Alive</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Glycogen studies focused on a single tissue: the liver enzyme, the muscle enzyme, the isolated cascade. Blood glucose homeostasis was described verbally — insulin lowers, glucagon raises — without quantitative coupling.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Blood glucose is maintained by the <i>interaction</i> of liver, muscle, pancreas and blood — a multi-organ feedback loop that no single-enzyme study can capture. What design principle keeps it stable over hours of fasting? Why do liver and muscle both keep small opposing (futile) reactions running?</div>
+  <div class="new"><span class="lbl">New model &amp; finding</span><br>Whole-body computational models (Chalal &amp; PLOS Comp Biol; also the composite "liver glucohomeostasis" models of Sedghizadeh &amp; colleagues) integrate: glucagon/insulin receptor signaling → cAMP → Ca²⁺ → glycogen synthase / phosphorylase interconversion → glycogen storage → glucose-6-phosphate → blood glucose, with the pancreas closing the feedback loop. Simulation of the fed→fasted transition reproduced the physiological data and revealed a counterintuitive design principle: <b>substrate cycling between glycogen synthesis and breakdown is not waste — it is critical for maintaining blood glucose homeostasis</b>, because the mutual inhibition between phosphorylase-a and glycogen synthase phosphatase lets liver switch direction quickly while keeping the system stable. This is systems biology at the physiological scale: the model told researchers something the individual enzyme experiments had not.</div>
+  <div class="eq">dx/dt = f(glucose, insulin, glucagon, glycogen, enzyme states) — multi-compartment ODE model (liver, blood, pancreas, muscle)<span class="note">Whole-body glycogen regulation model (Chalal et al. 2013, PLOS Comput Biol): the liver glycogen control circuit is embedded in a closed glucose-insulin-glucagon feedback loop. Simulations of feeding→fasting transitions reproduce human data and expose the stabilizing role of substrate cycling.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Chalal S, et al. <i>A whole-body model for glycogen regulation reveals a critical role for substrate cycling in maintaining blood glucose homeostasis.</i> PLOS Comput. Biol. 9, e1002272 (2013). — <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1002272" target="_blank" rel="noopener">PLOS (free full text)</a></li>
+      <li>Sedghizadeh BS, et al. <i>A composite computational model of liver glucose homeostasis. I. Building the composite model.</i> (2012). — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3284126/" target="_blank" rel="noopener">PMC Part I (free)</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3284144/" target="_blank" rel="noopener">PMC Part II (free)</a></li>
+      <li>Extension to Ca²⁺/IP₃ dynamics of hepatic phosphorylase: <i>Numerical model of hepatic glycogen phosphorylase regulation…</i> Eur. Phys. J. Plus (2023). — <a href="https://link.springer.com/article/10.1140/epjp/s13360-023-03961-y" target="_blank" rel="noopener">Springer (free abstract)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<h2>📜 Historical Timeline: From Reaction Maps to Living Systems</h2>
+<div class="timeline">
+  <div class="tl-item"><span class="tl-year">1937</span> <span class="cat c-class">Classical</span><br>Krebs identifies the citric acid cycle in muscle — a closed reaction sequence.</div>
+  <div class="tl-item"><span class="tl-year">1936–47</span> <span class="cat c-class">Classical</span><br>The Coris map glycogen ↔ glucose metabolism and the liver–muscle Cori cycle.</div>
+  <div class="tl-item"><span class="tl-year">1955–56</span> <span class="cat c-class">Classical</span><br>Krebs &amp; Fischer discover phosphorylase activation by phosphorylation — the first biological regulatory cascade.</div>
+  <div class="tl-item"><span class="tl-year">1957–71</span> <span class="cat c-class">Classical</span><br>Sutherland discovers cAMP as the second messenger (Nobel 1971): hormone signals reach metabolism through cascades.</div>
+  <div class="tl-item"><span class="tl-year">1963</span> <span class="cat c-class">Classical</span><br>Monod, Changeux &amp; Jacob propose allostery — enzymes as regulated switches, not fixed catalysts.</div>
+  <div class="tl-item"><span class="tl-year">1973–74</span> <span class="cat c-mca">MCA</span><br>Kacser &amp; Burns, Heinrich &amp; Rapoport found Metabolic Control Analysis: control is shared; summation theorem ΣC = 1.</div>
+  <div class="tl-item"><span class="tl-year">1981</span> <span class="cat c-osc">Switch theory</span><br>Goldbeter &amp; Koshland: zero-order ultrasensitivity — covalent modification cycles are switches.</div>
+  <div class="tl-item"><span class="tl-year">1986–87</span> <span class="cat c-osc">Switch theory</span><br>Meinke et al.: glycogen phosphorylase <i>is</i> an ultrasensitive switch (PNAS); zero-order ultrasensitivity confirmed in substrate cycles (Biochem Biophys Res Commun).</div>
+  <div class="tl-item"><span class="tl-year">1996</span> <span class="cat c-osc">Switch theory</span><br>Cárdenas &amp; Goldbeter model the liver's glucose-induced switch from phosphorylase to synthase.</div>
+  <div class="tl-item"><span class="tl-year">1990s</span> <span class="cat c-kin">Kinetic models</span><br>ODE models of glycolysis, glycogen and the TCA cycle proliferate; the Chassagnole E. coli central-metabolism model (2002) becomes a benchmark.</div>
+  <div class="tl-item"><span class="tl-year">2005–06</span> <span class="cat c-kin">Kinetic models</span><br>SBML and BioModels standardize model exchange; Meinke &amp; Edstrom quantify the full glycogen cascade designs (Theor Biol Med Model 2:19).</div>
+  <div class="tl-item"><span class="tl-year">2012–13</span> <span class="cat c-whole">Whole-body</span><br>Composite liver glucohomeostasis models link receptors → cAMP → Ca²⁺ → glycogen → blood; whole-body glycogen model (PLOS Comput Biol) shows substrate cycling stabilizes glucose.</div>
+  <div class="tl-item"><span class="tl-year">2017</span> <span class="cat c-flux">Fluxomics</span><br>Ahn &amp; Antoniewicz: temporal fluxomics shows TCA flux oscillates through the cell cycle, switching fuel between glucose and glutamine.</div>
+  <div class="tl-item"><span class="tl-year">2021–23</span> <span class="cat c-kin">Kinetic models</span><br>Queueing-theory Krebs cycle model (Bioinformatics); integration with glycolysis, PPP and β-oxidation into one central-carbon-metabolism model (2023).</div>
+  <div class="tl-item"><span class="tl-year">Today</span> <span class="cat c-flux">Frontier</span><br>Genome-scale metabolic models ( Recon, Ehcn ) embed the TCA cycle among thousands of reactions; machine-learning "kinetic learning" methods infer dynamic TCA parameters directly from ¹³C data — the two classic cycles are now cornerstones of computational systems biology.</div>
+</div>
+
+<!-- SUMMARY -->
+<h2>🧩 Summary: what systems biology added to the two cycles</h2>
+<table class="sum">
+  <tr><th>Question</th><th>Classical biochemistry answer</th><th>Systems biology answer</th></tr>
+  <tr><td>Which enzyme controls the flux?</td><td>"The rate-limiting enzyme" (one bottleneck)</td><td>Control is distributed; ΣC<sub>J,i</sub> = 1; it shifts with conditions (MCA)</td></tr>
+  <tr><td>How does liver decide synthesize vs. break down glycogen?</td><td>Hormones "turn on" enzymes</td><td>A zero-order ultrasensitive switch; glucose itself flips the direction (Goldbeter–Koshland, Cárdenas–Goldbeter)</td></tr>
+  <tr><td>Is futile cycling wasteful?</td><td>Presumably an imperfection</td><td>Substrate cycling is critical for glucose homeostasis and fast switching (whole-body models)</td></tr>
+  <tr><td>Is TCA flux constant?</td><td>Treated as steady state</td><td>TCA flux oscillates through the cell cycle, alternating glucose/glutamine oxidation (temporal fluxomics)</td></tr>
+  <tr><td>How do we predict pathway behavior?</td><td>Qualitative reasoning from maps</td><td>Coupled ODE / stochastic models, community-curated in BioModels (SBML), even queueing-theory formulations</td></tr>
+</table>
+
+<!-- REFERENCES -->
+<h2>📚 Full Reference List (free sources where available)</h2>
+<div class="reflist">
+<ol>
+  <li>Krebs HA, Johnson WA. <i>The role of citric acid in intermediate metabolism in animal tissues.</i> Enzymologia 4, 148 (1937) — the classical discovery.</li>
+  <li>Krebs EG, Fischer EH. <i>The phosphorylase b to a converting enzyme of rabbit skeletal muscle.</i> Biochim. Biophys. Acta 20, 150 (1956) — first regulatory phosphorylation cascade.</li>
+  <li>Kacser H, Burns JA. <i>The control of flux.</i> Symp. Soc. Exp. Biol. 27, 65–104 (1973). — <a href="https://pubmed.ncbi.nlm.nih.gov/4148886/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Fell DA. <i>Modern theories of metabolic control and their applications (review).</i> Biochem. J. 286, 313 (1992). — <a href="https://pubmed.ncbi.nlm.nih.gov/6365197/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Goldbeter A, Koshland DE Jr. <i>An amplified sensitivity arising from covalent modification in biological systems.</i> PNAS 78, 6840 (1981); related: <i>Sensitivity amplification in biochemical systems.</i> Q. Rev. Biophys. 15, 555 (1982).</li>
+  <li>Meinke MH, Bishop JS, Edstrom RD. <i>Zero-order ultrasensitivity in the regulation of glycogen phosphorylase.</i> PNAS 83, 2865–2868 (1986). — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC323407/" target="_blank" rel="noopener">PMC (free full text)</a></li>
+  <li>Meinke MH, Edstrom RD. <i>Quantification of the glycogen cascade system…</i> Theor. Biol. Med. Model. 2, 19 (2005). — <a href="https://link.springer.com/article/10.1186/1742-4682-2-19" target="_blank" rel="noopener">Springer (free full text)</a></li>
+  <li>Cárdenas ML, Goldbeter A. <i>The glucose-induced switch between glycogen phosphorylase and glycogen synthase…</i> J. Theor. Biol. 182, 421–426 (1996). — <a href="https://www.sciencedirect.com/science/article/abs/pii/S0022519396901824" target="_blank" rel="noopener">ScienceDirect</a></li>
+  <li>Chassagnole C, et al. <i>Dynamic modeling of the central carbon metabolism of Escherichia coli.</i> Biotechnol. Bioeng. 79, 53–73 (2002). — <a href="https://pubmed.ncbi.nlm.nih.gov/17590932/" target="_blank" rel="noopener">PubMed</a> · <a href="https://www.biomodels.org/BIOMD0000000051" target="_blank" rel="noopener">BioModels entry</a></li>
+  <li>Chalal S, et al. <i>A whole-body model for glycogen regulation reveals a critical role for substrate cycling…</i> PLOS Comput. Biol. 9, e1002272 (2013). — <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1002272" target="_blank" rel="noopener">PLOS (free full text)</a></li>
+  <li>Composite liver glucose homeostasis models, Parts I &amp; II (2012). — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3284126/" target="_blank" rel="noopener">PMC Part I</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3284144/" target="_blank" rel="noopener">PMC Part II</a></li>
+  <li>Kloska S, et al. <i>Queueing theory model of Krebs cycle.</i> Bioinformatics 37, 2912–2920 (2021). — <a href="https://academic.oup.com/bioinformatics/article/37/18/2912/6173979" target="_blank" rel="noopener">Oxford (free)</a></li>
+  <li>Kloska S, et al. <i>Integrating glycolysis, citric acid cycle, PPP and fatty acid β-oxidation into a single computational model.</i> (2023). — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10475038/" target="_blank" rel="noopener">PMC (free full text)</a></li>
+  <li>Ahn WK, Antoniewicz MR, et al. <i>Temporal fluxomics reveals oscillations in TCA cycle flux throughout the mammalian cell cycle.</i> Mol. Syst. Biol. 13, 953 (2017). — <a href="https://pubmed.ncbi.nlm.nih.gov/29109155/" target="_blank" rel="noopener">PubMed</a> · <a href="https://link.springer.com/article/10.15252/msb.20177763" target="_blank" rel="noopener">Journal (free)</a></li>
+  <li>Waters SB, et al. <i>Kinetic and data-driven modeling of pancreatic β-cell central metabolism and insulin secretion.</i> PLOS Comput. Biol. (2022). — <a href="https://pubmed.ncbi.nlm.nih.gov/36251711/" target="_blank" rel="noopener">PubMed</a></li>
+  <li>Numerical model of hepatic glycogen phosphorylase regulation by Ca²⁺ and IP₃ dynamics. Eur. Phys. J. Plus (2023). — <a href="https://link.springer.com/article/10.1140/epjp/s13360-023-03961-y" target="_blank" rel="noopener">Springer</a></li>
+</ol>
+<p class="note">All PubMed, PMC, PLOS, Oxford, and BioModels links were verified as working at the time of writing. Where only an abstract is free (ScienceDirect, some Springer pages), a PubMed record or free full-text alternative is provided.</p>
+</div>
+
+<footer>Created as an educational resource · Systems biology of central metabolism · Companion page to "Breaking Mendel's Rules" and "The Quantum Revolution 1900–1950".</footer>
+</div>
+</body>
+</html>
