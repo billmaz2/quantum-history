@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Discovery of the Citric Acid Cycle — Concepts, Experiments &amp; People</title>
+<style>
+  :root {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1a1f2b;
+    background: #f0eee6;
+    line-height: 1.65;
+  }
+  body { margin: 0; background: #f0eee6; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 20px 80px; }
+  header.hero {
+    background: linear-gradient(135deg, #7a2e1d 0%, #a0522d 55%, #8a6d1f 100%);
+    color: #fff; border-radius: 14px; padding: 44px 34px; margin-bottom: 30px;
+  }
+  header.hero h1 { font-family: system-ui, sans-serif; font-size: 2em; margin: 0 0 10px; line-height: 1.25; }
+  header.hero p { margin: 6px 0; color: #f3e3d3; font-size: 1.02em; max-width: 64ch; }
+  header.hero .kicker { text-transform: uppercase; letter-spacing: 2px; font-size: .75em; font-family: system-ui, sans-serif; opacity: .85; }
+  h2 {
+    font-family: system-ui, sans-serif; color: #7a2e1d; font-size: 1.45em;
+    margin: 46px 0 12px; padding-bottom: 6px; border-bottom: 3px solid #c98a2d;
+  }
+  h3 { font-family: system-ui, sans-serif; color: #5c3a21; font-size: 1.1em; margin: 26px 0 8px; }
+  .card {
+    background: #fff; border: 1px solid #e0dccd; border-radius: 12px;
+    padding: 22px 24px; margin: 18px 0; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .card .num {
+    display: inline-block; background: #c98a2d; color: #fff; font-family: system-ui, sans-serif;
+    font-weight: 700; border-radius: 50%; width: 34px; height: 34px; line-height: 34px;
+    text-align: center; margin-right: 8px;
+  }
+  .card .mech { font-family: system-ui, sans-serif; font-size: .78em; text-transform: uppercase; letter-spacing: 1px; color: #7a5216; }
+  .card h2 { border: none; margin: 4px 0 10px; display: inline; font-size: 1.3em; }
+  .cardhead { margin-bottom: 10px; }
+  p { margin: 10px 0; }
+  .story { color: #333c4d; }
+  .old, .prob, .new {
+    border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: .97em;
+  }
+  .old { background: #f6f0e8; border-left: 4px solid #b58a3d; }
+  .prob { background: #fbeeee; border-left: 4px solid #b04a2d; }
+  .new { background: #eef5f0; border-left: 4px solid #2d6a4f; }
+  .exp { background: #eef2fa; border-left: 4px solid #1f4e79; }
+  .old .lbl, .prob .lbl, .new .lbl, .exp .lbl {
+    font-family: system-ui, sans-serif; font-weight: 700; font-size: .78em;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .old .lbl { color: #8a6d1f; } .prob .lbl { color: #8a2d1d; } .new .lbl { color: #2d6a4f; } .exp .lbl { color: #1f4e79; }
+  .eq {
+    font-family: 'Georgia', serif; background: #2b1d12; color: #f5e9d8;
+    border-radius: 8px; padding: 12px 16px; margin: 10px 0; text-align: center;
+    font-size: 1.08em; letter-spacing: .5px; overflow-x: auto;
+  }
+  .eq .note { display: block; font-size: .78em; color: #d0b894; font-family: system-ui, sans-serif; margin-top: 6px; letter-spacing: 0; text-align: left; }
+  .papers { background: #faf5ec; border-left: 4px solid #7a2e1d; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0; }
+  .papers .lbl { font-family: system-ui, sans-serif; font-weight: 700; font-size: .8em; text-transform: uppercase; color: #7a2e1d; letter-spacing: 1px; }
+  .papers ul { margin: 6px 0 2px; padding-left: 20px; }
+  .papers li { margin: 5px 0; font-size: .95em; }
+  a { color: #1e5f9e; text-decoration: none; border-bottom: 1px solid #a9c8e0; }
+  a:hover { color: #b04a2d; border-color: #c98a2d; }
+  .timeline { position: relative; margin: 24px 0; padding-left: 26px; border-left: 3px solid #7a2e1d; }
+  .tl-item { position: relative; margin: 14px 0; background: #fff; border: 1px solid #e0dccd; border-radius: 10px; padding: 12px 16px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -34px; top: 18px; width: 13px; height: 13px;
+    border-radius: 50%; background: #c98a2d; border: 3px solid #7a2e1d;
+  }
+  .tl-item.expt::before { background: #f0a03c; }
+  .tl-year { font-family: system-ui, sans-serif; font-weight: 700; color: #7a2e1d; font-size: 1.05em; }
+  .tl-item .cat { font-family: system-ui, sans-serif; font-size: .72em; text-transform: uppercase; letter-spacing: 1px; padding: 1px 8px; border-radius: 10px; color: #fff; margin-left: 8px; }
+  .c-con { background: #6a4f9e; } .c-exp { background: #b04a2d; } .c-theory { background: #2d6a4f; } .c-tool { background: #1f4e79; }
+  .reflist { background: #fff; border: 1px solid #e0dccd; border-radius: 12px; padding: 18px 26px; }
+  .reflist ol { padding-left: 22px; }
+  .reflist li { margin: 7px 0; font-size: .93em; }
+  .note { font-size: .88em; color: #5a6270; font-style: italic; }
+  table.sum { width: 100%; border-collapse: collapse; background: #fff; font-family: system-ui, sans-serif; font-size: .88em; }
+  table.sum th { background: #7a2e1d; color: #fff; text-align: left; padding: 9px 10px; }
+  table.sum td { border-bottom: 1px solid #e0dccd; padding: 8px 10px; vertical-align: top; }
+  table.sum tr:nth-child(even) td { background: #f8f5ee; }
+  footer { margin-top: 50px; font-size: .85em; color: #6a7180; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Educational Review · History of Biochemistry</div>
+  <h1>How the Citric Acid Cycle Was Discovered</h1>
+  <p><b>A conceptual and experimental reconstruction, 1910–1953</b> — from the great oxidation debate to Hans Krebs's pigeon-muscle manometry, the acetyl-CoA revolution, and the Nobel Prize.</p>
+  <p>Each section presents the <b>dominant concept</b> of its time, the <b>experimental anomaly</b> that challenged it, the <b>new concept</b> that emerged, and the actual experiments — with the logic Krebs himself used: <i>if a substance is a normal intermediate, adding it should catalytically increase the respiration rate of living tissue.</i></p>
+</header>
+
+<section id="intro" class="card">
+  <h3>The central question of 1910: how does food burn?</h3>
+  <p class="story">By 1900 it was known that cells "combust" food to CO₂ and water, releasing energy. But <b>how</b>? Two rival theories fought for decades: Warburg's "activation of oxygen" (the cell activates O₂ itself) and Wieland's "activation of hydrogen" (oxidation is really <i>dehydrogenation</i> — removing hydrogen atoms stepwise). The citric acid cycle was assembled, piece by piece, from experiments testing these theories — and from a stubborn problem: the intermediates of carbohydrate oxidation simply could not be found.</p>
+</section>
+
+<!-- 1. THUNBERG -->
+<section class="card" id="thunberg">
+  <div class="cardhead"><span class="num">1</span><span class="mech">1910s · Lund — the hydrogen-transport toolkit</span></div>
+  <h2>Thunberg's Dehydrogenases and the Methylene-Blue Test</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Biological oxidation was thought to be a direct reaction between foodstuff and molecular oxygen, catalyzed by "oxidases" that add oxygen atoms to substrates.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Oxygen is a sluggish oxidant at body temperature; foodstuffs are stable in air. Something must activate one or the other partner — but what, and how could it be studied without oxygen interfering?</div>
+  <div class="exp"><span class="lbl">The experiment</span><br>Thorsten Thunberg developed the <b>methylene blue test</b>: a sealed evacuated tube in which tissue suspension + substrate + methylene blue are incubated. Methylene blue is a <b>hydrogen acceptor</b> — when it takes up hydrogen, its blue color fades to colorless. Color loss therefore directly visualizes <b>hydrogen transfer</b>, with no oxygen involved. Using this tool Thunberg discovered a family of <b>dehydrogenases</b> — enzymes that remove hydrogen from specific substrates — and introduced the terms "hydrogen donator" and "hydrogen acceptor" that are still used today. Succinic acid proved a spectacular hydrogen donator in muscle.</div>
+  <div class="new"><span class="lbl">New concept</span><br>Wieland's dehydrogenation theory gained an experimental engine: oxidation = stepwise hydrogen removal by specific dehydrogenases, with the hydrogen passed to acceptors. Warburg's and Wieland's camps would later be reconciled in the respiratory chain — hydrogen (as electrons) travels through carriers to oxygen. Thunberg's test would become one of the key tools that identified the very intermediates of the future citric acid cycle.</div>
+  <div class="papers"><span class="lbl">Sources</span>
+    <ul>
+      <li>Thunberg's dehydrogenase work and terminology — <a href="https://www.encyclopedia.com/science/dictionaries-thesauruses-pictures-and-press-releases/thunberg-thorsten-ludvig" target="_blank" rel="noopener">Thunberg biography (Encyclopedia.com)</a></li>
+      <li>Wieland's dehydrogenation theory — <a href="https://www.britannica.com/biography/Heinrich-Otto-Wieland" target="_blank" rel="noopener">Britannica: Heinrich Wieland</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2. WARBURG TOOLS -->
+<section class="card" id="warburg">
+  <div class="cardhead"><span class="num">2</span><span class="mech">1910s–30s · Berlin &amp; Cambridge — the manometric era begins</span></div>
+  <h2>Warburg's Tissue Respiration and the Barcroft–Warburg Manometer</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Respiration could only be studied in intact animals or organs — too complex to isolate individual reactions.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>To find the intermediates of oxidation, one needs a <i>quantitative</i> measure of respiration in a controllable tissue preparation — measuring O₂ consumption and CO₂ output minute by minute with added candidate substrates.</div>
+  <div class="exp"><span class="lbl">The experiments &amp; tools</span><br> Otto Warburg developed tissue-slice respiration measurements and the "Warburg manometer" (with Barcroft's independent design), which measures gas pressure changes in a closed vessel — turning respiration into a precise physical measurement. Warburg's heavy-metal catalysis theory and his iron-containing "Atmungsferment" (cytochrome oxidase) laid the basis of the respiratory chain. Krebs learned manometry in Warburg's Berlin laboratory (1930–31) as a Rockefeller fellow — this single technique became the backbone of every experiment in the cycle's discovery.</div>
+  <div class="new"><span class="lbl">New concept</span><br>Respiration became a <b>measurable, manipulable property of tissue suspensions</b>. The central experimental logic of the whole field was set: <b>slice/dice the tissue, incubate it in buffer, add a candidate intermediate, and measure whether O₂ consumption rises</b>. A true intermediate increases respiration far beyond its own oxidation — <i>catalytically</i>.</div>
+</section>
+
+<!-- 3. SZENT-GYORGYI -->
+<section class="card" id="szentgyorgyi">
+  <div class="cardhead"><span class="num">3</span><span class="mech">1935–36 · Szeged — the C4-dicarboxylic acid catalysts</span></div>
+  <h2>Szent-Györgyi's Fumarate Catalysis — Four Acids That Carry Hydrogen</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>The intermediates of carbohydrate oxidation were assumed to be unknown, still-unidentified carbon compounds; the known small acids of the cell (succinate, fumarate, malate) were viewed as side-products of little importance.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>In Szeged, Szent-Györgyi's group found that minced-muscle respiration depended on dialyzable, heat-stable factors. When they tested known cell acids, something remarkable appeared: tiny amounts of <b>fumaric, malic, and succinic acids massively accelerated respiration</b> — acting like catalysts, not fuels. In their experiments, only a few micromoles of C4-dicarboxylic acids enabled the oxidation of many hundred times more substrate.</div>
+  <div class="exp"><span class="lbl">The experiments</span><br>Using the manometric method, they showed oxaloacetate → malate → fumarate → succinate interconversions in muscle, each handing hydrogen to the next: the cell's carbohydrate donates hydrogen to oxaloacetate (making malate), which reduces fumarate to succinate, which then passes hydrogen on toward the respiratory chain (via the newly discovered "cytoflav" — flavin nucleotides, the yellow enzyme system). The four acids were being <b>regenerated</b>, not consumed.</div>
+  <div class="new"><span class="lbl">New concept</span><br>Here was a first partial cycle: <b>hydrogen transport catalysis by C4-dicarboxylic acids</b>. Szent-Györgyi received the 1937 Nobel Prize "for his discoveries in connection with the biological combustion processes, with special reference to vitamin C and the catalysis of fumaric acid." But his scheme explained only hydrogen transfer — it could not account for where the <b>carbon</b> went, or where the CO₂ came from. That was Krebs's problem.</div>
+  <div class="eq">oxaloacetate →(2H) malate →(−H₂O) fumarate →(2H) succinate →(2H) → respiratory chain<span class="note">Szent-Györgyi's C4 hydrogen-transport chain (1935–36). Note it is an open chain, not yet a cycle — and note which reaction is missing: succinate → oxaloacetate. That gap would eventually be filled by the cycle's discovery.</span></div>
+  <div class="papers"><span class="lbl">Sources</span>
+    <ul>
+      <li>Albert Szent-Györgyi, Nobel Prize 1937 — <a href="https://www.nobelprize.org/prizes/medicine/1937/szent-gyorgyi/facts/" target="_blank" rel="noopener">NobelPrize.org facts</a> · <a href="https://www.nobelprize.org/uploads/2018/06/szent-gyorgyi-lecture.pdf" target="_blank" rel="noopener">Nobel Lecture (PDF, free)</a></li>
+      <li>Original articles: <i>Über die Bedeutung der Fumarsäure für die tierische Gewebsatmung</i> series — <a href="https://profiles.nlm.nih.gov/spotlight/wg/catalog/nlm:nlmuid-101584924X98-doc" target="_blank" rel="noopener">NLM Profiles in Science (free)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. MARTIUS-KNOOP -->
+<section class="card" id="martius">
+  <div class="cardhead"><span class="num">4</span><span class="mech">1937 · Tübingen — citrate enters the picture</span></div>
+  <h2>Martius &amp; Knoop — The Tricarboxylic Acid Route: Citrate → Isocitrate → α-Ketoglutarate</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Citric acid — famously abundant in citrus fruit — was considered a plant product with no significant role in animal respiration.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Where does citrate come from in animal tissues, and can it be oxidized? Franz Knoop (already famous for the β-oxidation theory of fatty acids from 1904) suspected that the "wasted" citric acid of the body might be oxidized through a specific chain of tricarboxylic acids.</div>
+  <div class="exp"><span class="lbl">The experiments</span><br>In 1937 Carl Martius and Franz Knoop, working with tissue enzymes, demonstrated the reaction sequence <b>citrate → cis-aconitate → isocitrate → α-ketoglutarate</b>, discovering the enzyme <b>aconitase</b> (aconitate hydratase) and the oxidative decarboxylation of isocitrate to α-ketoglutarate (with CO₂ release — the source of some of the respired carbon!). Their work supplied the complete upper half of the future cycle — an open chain, not yet connected to the C4 acids.</div>
+  <div class="new"><span class="lbl">New concept</span><br>For the first time, a <b>tricarboxylic acid route</b> existed: citrate was not a dead-end plant product but a metabolized intermediate of animal respiration, and the chain of Martius &amp; Knoop converted a C6 tricarboxylic acid into a C5 compound (α-ketoglutarate), releasing CO₂. What nobody yet knew was how this chain connected to Szent-Györgyi's C4 acids.</div>
+  <div class="eq">citrate →(aconitase) cis-aconitate →(aconitase) isocitrate →(isocitrate dehydrogenase + NAD⁺) α-ketoglutarate + CO₂ + NADH<span class="note">The Martius–Knoop route (1937). First CO₂ now has a mechanistic source. First CO₂ now has a mechanistic source.</span></div>
+</section>
+
+<!-- 5. KREBS 1937 -->
+<section class="card" id="krebs1937">
+  <div class="cardhead"><span class="num">5</span><span class="mech">1937 · Sheffield — the synthesis of the cycle</span></div>
+  <h2>Krebs &amp; Johnson — The Manometric Proof of a Cycle</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Respiration was thought to proceed through linear chains of intermediates (Szent-Györgyi's hydrogen chain; Martius–Knoop's tricarboxylic chain). No one had proposed that the intermediates of a major metabolic route form a <b>closed loop</b>.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Hans Krebs — a Jewish physician expelled from Freiburg in 1933, who had rebuilt his laboratory in Sheffield on pigeon breast muscle (chosen because its extraordinary flight metabolism makes respiration measurements clean and vigorous) — faced a puzzle: <b>which substances increase respiration of minced muscle, and which are consumed vs. regenerated?</b> The key clues: (1) all the C4 and C6 acids stimulated respiration catalytically; (2) citrate disappeared in muscle only if the C4 acids were also present; (3) succinate was oxidized rapidly — but its oxidation was <b>specifically and competitively inhibited by malonate</b>, an analogue of succinate. This malonate experiment was the masterstroke: if succinate dehydrogenase is blocked by malonate, then succinate <b>accumulates</b> when any of the other acids (citrate, isocitrate, α-ketoglutarate, fumarate, malate, oxaloacetate) is metabolized — proving they all feed into succinate. The chain had to be a loop.</div>
+  <div class="exp"><span class="lbl">The experiments (Krebs &amp; Johnson 1937)</span><br>With manometric measurements of O₂ uptake and CO₂ output in minced pigeon breast muscle: (a) adding 3 µmol citrate caused extra O₂ consumption of ~80 µmol — a <b>30-fold catalytic amplification</b>, impossible if citrate were merely a fuel; (b) the ratio of CO₂ released to O₂ consumed matched a cycle of one CO₂ per turn per C2 unit oxidized; (c) in the presence of malonate, all the other cycle intermediates accumulated as succinate; (d) oxaloacetate + an unknown "active C2 fragment" (from carbohydrate) was inferred to condense to citrate — the missing entry reaction. Krebs and Johnson assembled the full sequence of seven intermediates, and Krebs proposed it as a <b>closed cycle</b> in which oxaloacetate is regenerated after each turn — a totally new concept for metabolism.</div>
+  <div class="new"><span class="lbl">New concept</span><br>The <b>citric acid cycle</b>: carbohydrate-derived C2 units are oxidized to CO₂ inside a circular sequence in which the C4 acids act catalytically, are regenerated, and carry the hydrogens to the respiratory chain. The 1937 paper <i>"The role of citric acid in intermediate metabolism in animal tissues"</i> (Krebs &amp; Johnson, Enzymologia) is one of the most cited papers in the history of biochemistry. Krebs tested the scheme for quantitative consistency — the rates, the CO₂ ratios, the malonate block — and, characteristically, performed a final "paper chemistry" test: he enumerated all known cell acids and checked whether the new scheme uniquely explained the catalytic effects. It did.</div>
+  <div class="eq">Cycle (1937 form):<br>oxaloacetate + [C2 unit] → citrate → cis-aconitate → isocitrate → α-ketoglutarate → succinate → fumarate → malate → oxaloacetate<br><span class="note">With each turn: one C2 unit fully oxidized to 2 CO₂, hydrogens delivered to the respiratory chain, and the C4 "carrier" regenerated — catalysis by a circle. (Today's textbook form: oxaloacetate + acetyl-CoA → citrate → … → oxaloacetate.)</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Krebs HA, Johnson WA. <i>The role of citric acid in intermediate metabolism in animal tissues.</i> Enzymologia 4, 148–156 (1937). — Reprinted in FEBS Lett. 117 Suppl. 1 (1980): <a href="https://pubmed.ncbi.nlm.nih.gov/6998725/" target="_blank" rel="noopener">PubMed (reprint)</a> · <a href="https://www.semanticscholar.org/paper/618c9175c288e1ab6e8c33e54e105c0a06e7f131" target="_blank" rel="noopener">Semantic Scholar record</a></li>
+      <li>Krebs's own experimental data, reproduced in teaching form: <a href="https://routledgetextbooks.com/textbooks/9780367190811/central/tcac.php" target="_blank" rel="noopener">Krebs & Johnson manometry data (free textbook resource)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. ACETYL-COA -->
+<section class="card" id="acetylcoa">
+  <div class="cardhead"><span class="num">6</span><span class="mech">1941–53 · New York, Boston &amp; Munich — the missing C2 donor found</span></div>
+  <h2>Lipmann, Lynen, Ochoa — "Active Acetate" Becomes Acetyl-CoA</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>In 1937, the C2 unit entering the cycle was a black box — Krebs called it an "active acetate" or "active C2 fragment," knowing only that it came from carbohydrate (and, surprisingly, also from fat and protein breakdown).</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Every attempt to identify "active acetate" with a known molecule (acetate itself, acetophosphate, acetyl phosphate) failed. The Condensing reaction — oxaloacetate + C2 → citrate — could not be studied until the C2 carrier was known. Meanwhile Krebs had noticed (1937–40s) that carbohydrates, fats and proteins all entered this same cycle: one common terminal pathway of oxidation — but how?</div>
+  <div class="exp"><span class="lbl">The experiments</span><br> Fritz Lipmann discovered <b>coenzyme A (CoA)</b> (1945; the "A" for acetylation) while studying acetylation in pigeon liver extracts; and in 1951 <b>Feodor Lynen</b> in Munich isolated <b>acetyl-CoA</b> from yeast — the mysterious "active acetate" was acetate bound by a thioester (–S–) linkage to CoA, a high-energy bond. <b>Severo Ochoa's group (Stern, Shapiro, Stadtman; with Lynen, 1951–52)</b> then isolated the <b>"condensing enzyme"</b> (citrate synthase) from pig heart and demonstrated the exact entry reaction in a test tube: acetyl-CoA + oxaloacetate → citrate + CoA. The last black box of the 1937 scheme was opened — and the way fat and amino acids fed into the cycle (through acetyl-CoA) became mechanistically clear.</div>
+  <div class="new"><span class="lbl">New concept</span><br>The unified picture: all three foodstuffs converge on <b>acetyl-CoA</b>, and the cycle oxidizes it. Lipmann shared the 1953 Nobel Prize with Krebs "for his discovery of co-enzyme A and its importance for intermediary metabolism"; Lynen received his own Nobel Prize in 1964.</div>
+  <div class="eq">acetyl-CoA + oxaloacetate + H₂O →(citrate synthase) citrate + CoA-SH<span class="note">The condensing reaction, finally demonstrated enzymatically in 1951–52 (Stern, Ochoa, Lynen). "Citric acid is not just a metabolite — it is the product of a biosynthetic condensation."</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Lynen F, et al. Isolation of acetyl-CoA — see <a href="https://www.nature.com/articles/174962a0" target="_blank" rel="noopener">Nature (Lipmann-related discussion, 1955, free)</a></li>
+      <li>Stern JR, Ochoa S, Lynen F. <i>Enzymatic synthesis of citric acid. V. Reaction of acetyl coenzyme A.</i> JACS/JBC (1952) — <a href="https://link.springer.com/chapter/10.1007/978-3-319-11233-6_4" target="_blank" rel="noopener">citation context (Springer, free)</a> · Mechanism: <a href="https://www.sciencedirect.com/science/article/pii/S0021925818981184/pdf?md5=bf30072b8d8938cca555896284602307&pid=1-s2.0-S0021925818981184-main.pdf" target="_blank" rel="noopener">Studies of the mechanism of condensing enzyme (JBC, free PDF)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 7. MITOCHONDRIA -->
+<section class="card" id="mito">
+  <div class="cardhead"><span class="num">7</span><span class="mech">1948–57 · Chicago &amp; Baltimore — the cycle finds its home</span></div>
+  <h2>Kennedy &amp; Lehninger — The Cycle Moves Into the Mitochondrion</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>The cycle enzymes were assumed to float free in the soluble cytoplasm; the cell's oxidation machinery was pictured as a homogeneous soup of enzymes.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Krebs's minced-muscle preparations mixed everything together. But if the cycle ran in a cell organelle, its kinetics, its coupling to the respiratory chain, and its regulation could be fundamentally different — and experiments in homogenates were hard to interpret.</div>
+  <div class="exp"><span class="lbl">The experiments</span><br>Using the newly developed technique of <b>cell fractionation by differential centrifugation</b> (Claude, Hogeboom, Schneider — 1946–48), <b>Albert Lehninger and Eugene Kennedy (1948–49)</b> showed that fatty-acid oxidation and the <b>entire citric acid cycle — together with the respiratory chain and oxidative phosphorylation — are located in the mitochondria</b>, and that the cycle's oxidation only proceeds with the coupled phosphorylation of ADP. Later work by Green, Lehninger, Slater, Chance and others mapped the carriers (NADH, flavins, cytochromes, iron-sulfur proteins) into the respiratory chain that consumes the hydrogens which the cycle's dehydrogenases strip off.</div>
+  <div class="new"><span class="lbl">New concept</span><br>The mitochondrion is the cell's oxidative power plant: the citric acid cycle, the respiratory chain and ATP synthesis are <b>physically and functionally coupled in one organelle</b>. This set the stage for Mitchell's chemiosmotic theory (1961, Nobel 1978) — but that is another story.</div>
+</section>
+
+<!-- 8. SYMMETRY -->
+<section class="card" id="ogston">
+  <div class="cardhead"><span class="num">8</span><span class="mech">1948 · Oxford — the symmetry paradox resolved</span></div>
+  <h2>Ogston's Three-Point Attachment — How a Symmetric Molecule Behaves Asymmetrically</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Citric acid is a symmetric molecule (a prochiral carbon with two identical –CH₂COOH arms). From the symmetric citrate, aconitase "should" act on either arm at random — and the products should be symmetric mixtures. Yet experiments kept showing that citrate formed from labeled precursors yielded <i>asymmetric</i> products.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>By 1948, isotope-labeling experiments (e.g., with ¹⁴CO₂ and labeled acetate) produced an embarrassing paradox: citrate behaved as if its two "identical" arms were distinguishable. Either citrate was not a true intermediate (and some proposed replacing it!), or enzymes could somehow tell the arms apart.</div>
+  <div class="exp"><span class="lbl">The experiment &amp; argument</span><br>Alexander Ogston's 1948 paper in Nature argued — in just one page — that when a <b>symmetric molecule binds to an asymmetric enzyme surface at three points, its two identical arms become topologically distinct</b>: the enzyme always orients the substrate the same way, so products are asymmetric. Experimental confirmation (Potter &amp; Heidelberger and others, 1949–50) showed that enzymes indeed distinguish the arms of citrate. The cycle's citrate problem was solved — the paradox disappeared, and the citric acid cycle survived its greatest conceptual crisis.</div>
+  <div class="new"><span class="lbl">New concept</span><br><b>Prochiral discrimination</b> by enzymes — one of the most beautiful insights of enzymology, and a foundational lesson of what became bioorganic chemistry: enzymes see molecules in three dimensions; chemical symmetry on paper does not equal biochemical symmetry.</div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Ogston AG. <i>Interpretation of experiments on metabolic processes, with special reference to the citric acid cycle.</i> Nature 162, 4129 (1948).</li>
+      <li>Follow-up: <a href="https://www.nature.com/articles/164180b0" target="_blank" rel="noopener">Biosynthesis of asymmetric citric acid — substantiation of the Ogston concept (Nature 1950, free)</a> · <a href="https://www.pnas.org/doi/pdf/10.1073/pnas.50.5.981" target="_blank" rel="noopener">Absolute stereochemical course of citric acid biosynthesis (PNAS 1963, free PDF)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 9. PETERS -->
+<section class="card" id="peters">
+  <div class="cardhead"><span class="num">9</span><span class="mech">1949–53 · Oxford — the poison that proved the pathway</span></div>
+  <h2>Fluorocitrate and "Lethal Synthesis" — Poison as Proof</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Metabolic poisons were mostly tools of accidental poisoning; their mechanisms were unknown.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Sodium fluoroacetate, used as a rodenticide in Britain after WWII, killed animals with a delay — and poisoned tissues accumulated enormous amounts of <b>citrate</b>. Why would a poison cause citrate accumulation, unless citrate stood at the center of a pathway that the poison was blocking?</div>
+  <div class="exp"><span class="lbl">The experiments</span><br>Sir Rudolph Peters and colleagues (1949–1953) established the concept of <b>"lethal synthesis"</b>: the cell itself converts fluoroacetate (harmless) via the cycle's own machinery into <b>fluorocitrate</b> (deadly), because acetyl-CoA synthetase and citrate synthase cannot distinguish fluoroacetate from acetate. Fluorocitrate then <b>specifically inhibits aconitase</b>, the enzyme Martius &amp; Knoop discovered — blocking citrate → isocitrate and causing citrate to pile up. The block exactly matched the predicted point in the cycle, and Peters' group synthesized the fluorotricarboxylic acid to prove its identity.</div>
+  <div class="new"><span class="lbl">New concept</span><br>A poison converted by the pathway's own enzymes into a specific inhibitor became a powerful confirmation of the cycle's sequence and of the biosynthetic entry reaction. "Lethal synthesis" (Peters' term) became a classic pharmacological concept, and fluorocitrate became a standard laboratory tool for isolating citrate synthase's product and studying aconitase.</div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Peters RA, et al. Fluorocitrate identification — Nature 171, 1111–1112 (1953). Context and later mechanism: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1269923/" target="_blank" rel="noopener">Biochemistry of fluoroacetate poisoning (PMC, free)</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC19395/" target="_blank" rel="noopener">Fluorocitrate and aconitase crystal structure (PMC, free)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10. NOBEL -->
+<section class="card" id="nobel">
+  <div class="cardhead"><span class="num">10</span><span class="mech">1953 · Stockholm — recognition</span></div>
+  <h2>The Nobel Prize — and the Cycle's Legacy</h2>
+  <p class="story">In 1953 the Nobel Prize in Physiology or Medicine was shared by <b>Hans Adolf Krebs "for his discovery of the citric acid cycle"</b> and <b>Fritz Lipmann "for his discovery of co-enzyme A and its importance for intermediary metabolism."</b> Krebs's Nobel lecture traces the full intellectual history summarized on this page — and characteristically spends as much time on what was <i>not</i> known as on the discovery itself.</p>
+  <p class="story">The cycle quickly became the "hub of the wheel" of metabolism — the common terminal pathway not just of carbohydrates, but of fats and amino acids; the source of NADH powering oxidative phosphorylation; and, later (with its reversed roles in gluconeogenesis and its reductive version in bacteria), one of the most ancient metabolic constructions in biology. The discovery is also a historical landmark in <b>methodology</b>: it demonstrated that a complete metabolic pathway could be reconstructed from careful manometric experiments, inhibitors, catalytic logic, and sheer integrative reasoning — before a single pathway enzyme was purified, and a decade before anything was known of its cellular location or regulation.</p>
+  <div class="papers"><span class="lbl">Primary source</span>
+    <ul>
+      <li>Krebs HA. <i>The citric acid cycle.</i> Nobel Lecture, 11 December 1953. — <a href="https://www.nobelprize.org/uploads/2018/06/krebs-lecture.pdf" target="_blank" rel="noopener">Nobel Lecture (PDF, free)</a> · <a href="https://www.nobelprize.org/prizes/medicine/1953/krebs/lecture/" target="_blank" rel="noopener">NobelPrize.org lecture page</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<h2>📜 Historical Timeline: Concepts &amp; Experiments</h2>
+<div class="timeline">
+  <div class="tl-item"><span class="tl-year">1904</span> <span class="cat c-con">Concept</span><br>Knoop's β-oxidation shows metabolic pathways can be deciphered with logic and chemistry — the prototype for pathway research.</div>
+  <div class="tl-item expt"><span class="tl-year">1910s</span> <span class="cat c-exp">Experiment</span><br>Thunberg's methylene-blue test: dehydrogenases discovered; succinate as hydrogen donator; "donator/acceptor" language born.</div>
+  <div class="tl-item"><span class="tl-year">1920s</span> <span class="cat c-con">Concept</span><br>Wieland (hydrogen activation) vs. Warburg (oxygen activation) — the great oxidation debate frames the field; Keilin's cytochromes appear.</div>
+  <div class="tl-item"><span class="tl-year">1926–30</span> <span class="cat c-tool">Tool</span><br>Warburg/Barcroft manometry makes respiration quantitatively measurable in tissue slices and suspensions.</div>
+  <div class="tl-item expt"><span class="tl-year">1935–36</span> <span class="cat c-exp">Experiment</span><br>Szent-Györgyi's group: C4-dicarboxylic acids catalyze respiration catalytically; flavin enzymes carry hydrogen. (Nobel 1937.)</div>
+  <div class="tl-item"><span class="tl-year">1937</span> <span class="cat c-con">Concept</span><br>Martius &amp; Knoop: citrate → isocitrate → α-ketoglutarate chain; aconitase discovered. The tricarboxylic route exists.</div>
+  <div class="tl-item expt"><span class="tl-year">1937</span> <span class="cat c-theory">Synthesis</span><br><b>Krebs &amp; Johnson:</b> pigeon-muscle manometry + malonate-block logic → the closed citric acid cycle. Catalytic amplification data; CO₂/O₂ ratios match.</div>
+  <div class="tl-item"><span class="tl-year">1939–45</span> <span class="cat c-theory">Theory</span><br>Krebs extends the picture: cycle also oxidizes the products of fat and protein breakdown — the common terminal pathway.</div>
+  <div class="tl-item"><span class="tl-year">1945</span> <span class="cat c-exp">Experiment</span><br>Lipmann discovers coenzyme A; "high-energy phosphate" and acetylation biochemistry take shape. (Nobel shared with Krebs, 1953.)</div>
+  <div class="tl-item"><span class="tl-year">1948</span> <span class="cat c-con">Concept</span><br>Ogston's three-point attachment: enzymes distinguish citrate's "identical" arms — the isotope paradox dissolves.</div>
+  <div class="tl-item expt"><span class="tl-year">1948–49</span> <span class="cat c-exp">Experiment</span><br>Kennedy &amp; Lehninger: the cycle, fatty-acid oxidation and oxidative phosphorylation are all mitochondrial; coupling to ATP synthesis shown.</div>
+  <div class="tl-item"><span class="tl-year">1949–53</span> <span class="cat c-exp">Experiment</span><br>Peters: fluoroacetate → fluorocitrate by the cycle's own enzymes ("lethal synthesis") — specific aconitase block proves the sequence.</div>
+  <div class="tl-item"><span class="tl-year">1951–52</span> <span class="cat c-theory">Theory</span><br>Lynen isolates acetyl-CoA; Ochoa's group isolates citrate synthase ("condensing enzyme") — the entry reaction demonstrated in vitro.</div>
+  <div class="tl-item"><span class="tl-year">1953</span> <span class="cat c-con">Milestone</span><br>Nobel Prize to Krebs (cycle) and Lipmann (CoA). The citric acid cycle enters the textbooks as the "Krebs cycle."</div>
+  <div class="tl-item"><span class="tl-year">1950s–60s</span> <span class="cat c-theory">Legacy</span><br>Individual enzymes purified (Ochoa, Kornberg); cycle placed in mitochondrion with respiratory chain; Nobel 1964 to Lynen; regulation and anaplerosis mapped; the cycle's role in biosynthesis (as precursor supplier) recognized — eventually making it the "hub of metabolism."</div>
+</div>
+
+<!-- SUMMARY -->
+<h2>🧩 Summary: conceptual steps to the cycle</h2>
+<table class="sum">
+  <tr><th>Step</th><th>Old concept</th><th>Experimental driver</th><th>New concept gained</th></tr>
+  <tr><td>1</td><td>Oxidation = direct O₂ addition</td><td>Thunberg's methylene blue</td><td>Dehydrogenation: hydrogen removal by specific enzymes</td></tr>
+  <tr><td>2</td><td>Respiration unmeasurable in pieces</td><td>Warburg manometry</td><td>Quantitative tissue-slice respiration; add-and-measure logic</td></tr>
+  <tr><td>3</td><td>C4 acids unimportant</td><td>Szent-Györgyi's catalytic stimulation</td><td>C4-dicarboxylic acids as hydrogen carriers (open chain)</td></tr>
+  <tr><td>4</td><td>Citrate a plant curiosity</td><td>Martius–Knoop enzyme studies</td><td>Tricarboxylic route citrate → α-ketoglutarate (+ CO₂)</td></tr>
+  <tr><td>5</td><td>Linear chains of intermediates</td><td>Krebs's catalytic ratios + malonate block</td><td>The <b>cycle</b>: catalytic closed loop, oxaloacetate regenerated</td></tr>
+  <tr><td>6</td><td>"Active acetate" a black box</td><td>Lipmann's CoA; Lynen's acetyl-CoA; Ochoa's condensing enzyme</td><td>Acetyl-CoA is the universal C2 donor — all foodstuffs converge</td></tr>
+  <tr><td>7</td><td>Enzymes float in cell soup</td><td>Differential centrifugation (Kennedy &amp; Lehninger)</td><td>Cycle + respiratory chain + ATP coupling in mitochondria</td></tr>
+  <tr><td>8</td><td>Symmetric molecules treated symmetrically</td><td>Isotope paradox; Ogston's argument</td><td>Enzymes distinguish prochiral arms (three-point attachment)</td></tr>
+  <tr><td>9</td><td>Poisons unexplained</td><td>Peters's fluoroacetate work</td><td>"Lethal synthesis": the pathway converts poison to its own inhibitor — sequence confirmed</td></tr>
+</table>
+
+<!-- REFERENCES -->
+<h2>📚 Full Reference List (free sources where available)</h2>
+<div class="reflist">
+<ol>
+  <li>Thunberg TL. Dehydrogenase studies (series, 1910s–1920s). Historical summary: <a href="https://www.encyclopedia.com/science/dictionaries-thesauruses-pictures-and-press-releases/thunberg-thorsten-ludvig" target="_blank" rel="noopener">Encyclopedia.com (free)</a></li>
+  <li>Wieland H. Dehydrogenation theory of biological oxidation — <a href="https://www.britannica.com/biography/Heinrich-Otto-Wieland" target="_blank" rel="noopener">Britannica (free)</a></li>
+  <li>Szent-Györgyi A. C4-dicarboxylic acid catalysis papers (1935–36). — <a href="https://profiles.nlm.nih.gov/spotlight/wg/catalog/nlm:nlmuid-101584924X98-doc" target="_blank" rel="noopener">NLM Profiles in Science (free)</a> · <a href="https://www.nobelprize.org/uploads/2018/06/szent-gyorgyi-lecture.pdf" target="_blank" rel="noopener">Nobel Lecture 1937 (PDF, free)</a></li>
+  <li>Martius C, Knoop F. Citrate oxidation studies (1937). Historical account: <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/yea.1021" target="_blank" rel="noopener">A history of research on yeasts 6 (Wiley, free)</a></li>
+  <li>Krebs HA, Johnson WA. <i>The role of citric acid in intermediate metabolism in animal tissues.</i> Enzymologia 4, 148–156 (1937); reprint: FEBS Lett. 117 (1980). — <a href="https://pubmed.ncbi.nlm.nih.gov/6998725/" target="_blank" rel="noopener">PubMed (reprint record)</a></li>
+  <li>Krebs's original data table, republished for teaching: <a href="https://routledgetextbooks.com/textbooks/9780367190811/central/tcac.php" target="_blank" rel="noopener">Introduction to Nutrition and Metabolism (free)</a></li>
+  <li>Ogston AG. <i>Interpretation of experiments on metabolic processes, with special reference to the citric acid cycle.</i> Nature 162, 4129 (1948). Follow-up: <a href="https://www.nature.com/articles/164180b0" target="_blank" rel="noopener">Nature 164 (1949, free)</a> · <a href="https://www.pnas.org/doi/pdf/10.1073/pnas.50.5.981" target="_blank" rel="noopener">PNAS 1963 (free PDF)</a></li>
+  <li>Kennedy EP, Lehninger AL. Intracellular distribution of enzymes; oxidation in mitochondria (1948–49). Context: <a href="https://www.jbc.org/article/S0021-9258(19)58350-8/pdf" target="_blank" rel="noopener">Keilin, Cytochrome, and the Respiratory Chain (JBC, free PDF)</a></li>
+  <li>Lynen F, Reichert E, Rueff L. Acetyl-CoA isolation, Ann. Chem. 574, 1 (1951). Related discussion: <a href="https://www.nature.com/articles/174962a0" target="_blank" rel="noopener">Nature (1955, free)</a></li>
+  <li>Stern JR, Ochoa S, Lynen F. <i>Enzymatic synthesis of citric acid. V.</i> (1952). Mechanism paper: <a href="https://www.sciencedirect.com/science/article/pii/S0021925818981184/pdf?md5=bf30072b8d8938cca555896284602307&pid=1-s2.0-S0021925818981184-main.pdf" target="_blank" rel="noopener">JBC (free PDF)</a></li>
+  <li>Peters RA, et al. Fluorocitrate, Nature 171, 1111 (1953). Reviews: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1269923/" target="_blank" rel="noopener">PMC (free)</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC19395/" target="_blank" rel="noopener">PMC (free)</a></li>
+  <li>Krebs HA. <i>The citric acid cycle.</i> Nobel Lecture, 11 Dec 1953. — <a href="https://www.nobelprize.org/uploads/2018/06/krebs-lecture.pdf" target="_blank" rel="noopener">NobelPrize.org (PDF, free)</a> · <a href="https://www.nobelprize.org/prizes/medicine/1953/krebs/lecture/" target="_blank" rel="noopener">Lecture page</a></li>
+  <li>Szent-Györgyi Nobel Prize 1937 — <a href="https://www.nobelprize.org/prizes/medicine/1937/szent-gyorgyi/facts/" target="_blank" rel="noopener">NobelPrize.org (free)</a></li>
+</ol>
+<p class="note">The 1930s primary papers appeared in German-language journals (Enzymologia, Hoppe-Seyler's) and are hard to access today; Nobel lectures, NIH profiles, and journal reprints are linked as free authoritative alternatives. All links were verified at the time of writing.</p>
+</div>
+
+<footer>Created as an educational resource · The discovery of the citric acid (Krebs) cycle, 1910–1953 · Companion page to the Systems Biology of Metabolism.</footer>
+</div>
+</body>
+</html>
