@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Quantum Revolution 1900–1950 — Concepts, Experiments, Models &amp; Equations</title>
+<style>
+  :root {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #1a1f2b;
+    background: #eef1f5;
+    line-height: 1.65;
+  }
+  body { margin: 0; background: #eef1f5; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 20px 80px; }
+  header.hero {
+    background: linear-gradient(135deg, #241653 0%, #4a1e5f 100%);
+    color: #fff; border-radius: 14px; padding: 44px 34px; margin-bottom: 30px;
+  }
+  header.hero h1 { font-family: system-ui, sans-serif; font-size: 2em; margin: 0 0 10px; line-height: 1.25; }
+  header.hero p { margin: 6px 0; color: #dcd6ee; font-size: 1.02em; max-width: 64ch; }
+  header.hero .kicker { text-transform: uppercase; letter-spacing: 2px; font-size: .75em; font-family: system-ui, sans-serif; opacity: .85; }
+  h2 {
+    font-family: system-ui, sans-serif; color: #241653; font-size: 1.45em;
+    margin: 46px 0 12px; padding-bottom: 6px; border-bottom: 3px solid #c94f7c;
+  }
+  h3 { font-family: system-ui, sans-serif; color: #4a1e5f; font-size: 1.1em; margin: 26px 0 8px; }
+  .card {
+    background: #fff; border: 1px solid #dde0e8; border-radius: 12px;
+    padding: 22px 24px; margin: 18px 0; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .card .num {
+    display: inline-block; background: #c94f7c; color: #fff; font-family: system-ui, sans-serif;
+    font-weight: 700; border-radius: 50%; width: 34px; height: 34px; line-height: 34px;
+    text-align: center; margin-right: 8px;
+  }
+  .card .mech { font-family: system-ui, sans-serif; font-size: .78em; text-transform: uppercase; letter-spacing: 1px; color: #8a2d55; }
+  .card h2 { border: none; margin: 4px 0 10px; display: inline; font-size: 1.3em; }
+  .cardhead { margin-bottom: 10px; }
+  p { margin: 10px 0; }
+  .story { color: #333c4d; }
+  .old, .prob, .new {
+    border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: .97em;
+  }
+  .old { background: #f6f0e8; border-left: 4px solid #b58a3d; }
+  .prob { background: #fbeeee; border-left: 4px solid #b04a2d; }
+  .new { background: #eef5f0; border-left: 4px solid #2d6a4f; }
+  .old .lbl, .prob .lbl, .new .lbl {
+    font-family: system-ui, sans-serif; font-weight: 700; font-size: .78em;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .old .lbl { color: #8a6d1f; } .prob .lbl { color: #8a2d1d; } .new .lbl { color: #2d6a4f; }
+  .eq {
+    font-family: 'Georgia', serif; background: #1e1b2e; color: #f0eaff;
+    border-radius: 8px; padding: 12px 16px; margin: 10px 0; text-align: center;
+    font-size: 1.08em; letter-spacing: .5px; overflow-x: auto;
+  }
+  .eq .note { display: block; font-size: .78em; color: #b0a5d0; font-family: system-ui, sans-serif; margin-top: 6px; letter-spacing: 0; }
+  .papers { background: #f2f2fa; border-left: 4px solid #4a1e5f; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 14px 0; }
+  .papers .lbl { font-family: system-ui, sans-serif; font-weight: 700; font-size: .8em; text-transform: uppercase; color: #4a1e5f; letter-spacing: 1px; }
+  .papers ul { margin: 6px 0 2px; padding-left: 20px; }
+  .papers li { margin: 5px 0; font-size: .95em; }
+  a { color: #1e5f9e; text-decoration: none; border-bottom: 1px solid #a9c8e0; }
+  a:hover { color: #b04a2d; border-color: #c94f7c; }
+  .timeline { position: relative; margin: 24px 0; padding-left: 26px; border-left: 3px solid #241653; }
+  .tl-item { position: relative; margin: 14px 0; background: #fff; border: 1px solid #dde0e8; border-radius: 10px; padding: 12px 16px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -34px; top: 18px; width: 13px; height: 13px;
+    border-radius: 50%; background: #c94f7c; border: 3px solid #241653;
+  }
+  .tl-year { font-family: system-ui, sans-serif; font-weight: 700; color: #241653; font-size: 1.05em; }
+  .tl-item .cat { font-family: system-ui, sans-serif; font-size: .72em; text-transform: uppercase; letter-spacing: 1px; padding: 1px 8px; border-radius: 10px; color: #fff; margin-left: 8px; }
+  .c-th { background: #241653; } .c-expt { background: #b04a2d; } .c-theory { background: #2d6a4f; } .c-qed { background: #1e7a8a; }
+  .tl-item.expt::before { background: #f0a03c; border-color: #b04a2d; }
+  .reflist { background: #fff; border: 1px solid #dde0e8; border-radius: 12px; padding: 18px 26px; }
+  .reflist ol { padding-left: 22px; }
+  .reflist li { margin: 7px 0; font-size: .93em; }
+  .note { font-size: .88em; color: #5a6270; font-style: italic; }
+  table.sum { width: 100%; border-collapse: collapse; background: #fff; font-family: system-ui, sans-serif; font-size: .88em; }
+  table.sum th { background: #241653; color: #fff; text-align: left; padding: 9px 10px; }
+  table.sum td { border-bottom: 1px solid #dde0e8; padding: 8px 10px; vertical-align: top; }
+  table.sum tr:nth-child(even) td { background: #f7f5fb; }
+  footer { margin-top: 50px; font-size: .85em; color: #6a7180; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Educational Review · History of Physics</div>
+  <h1>The Quantum Revolution, 1900–1950</h1>
+  <p><b>A conceptual and experimental timeline of quantum theory and electrodynamics</b> — from Planck's "act of desperation" in 1900 to the renormalized quantum electrodynamics of Schwinger, Tomonaga, and Feynman in 1948–50.</p>
+  <p>Each entry explains the <b>old physical model</b>, the <b>problem it could not solve</b>, the <b>new model that replaced it</b>, and the key equations — alongside the experimental discoveries that forced the revolution.</p>
+</header>
+
+<section id="intro" class="card">
+  <h3>The world physics inhabited in 1900</h3>
+  <p class="story">By 1900, classical physics seemed almost complete. Newton's mechanics governed particles, Maxwell's equations governed light and fields, and thermodynamics tied them together. Lord Kelvin famously remarked that only "two small clouds" remained on the horizon: the failure to detect the ether (which became relativity) and the blackbody spectrum (which became quantum theory). Within fifty years, both clouds had grown into complete reconstructions of physics — with the electron, the photon, the nucleus, the wavefunction, spin, antimatter, and the quantum field emerging along the way.</p>
+</section>
+
+<!-- 1. PLANCK -->
+<section class="card" id="planck">
+  <div class="cardhead"><span class="num">1</span><span class="mech">1900–1901 · Berlin — the quantum of energy is born</span></div>
+  <h2>Planck's Quantum of Action</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Classical electrodynamics: hot matter emits light continuously, and the energy of a vibrating atom (an oscillator) can take any value. From equipartition, every frequency of the electromagnetic field should share energy equally.</div>
+  <div class="prob"><span class="lbl">The problem — the "ultraviolet catastrophe"</span><br>The classical Rayleigh–Jeans law predicts infinite energy at high frequencies. Worse, the measured spectrum of thermal radiation (black-body radiation) simply did not match any classical formula: the measured peak shifts with temperature (Wien's displacement law), a fact no classical oscillator model could reproduce.</div>
+  <div class="new"><span class="lbl">New model</span><br>On 14 December 1900, Max Planck proposed — as "an act of desperation" — that oscillators can only emit or absorb energy in discrete packets: <b>E = hν</b>, where ν is frequency and h a new constant of nature. Energy is quantized. It was not yet a statement about light itself, only about the matter that emits it.</div>
+  <div class="eq">ρ(ν, T) = (8πhν³/c³) · 1/(e<sup>hν/kT</sup> − 1)<span class="note">Planck's radiation law (1901). Fits the entire black-body spectrum; h ≈ 6.626×10⁻³⁴ J·s. The classical limit h→0 gives back Rayleigh–Jeans — the first glimpse of a "correspondence" between quantum and classical worlds.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Planck M. <i>On the Law of Distribution of Energy in the Normal Spectrum.</i> Annalen der Physik 4, 553–562 (1901). — <a href="https://strangepaths.com/files/planck1901.pdf" target="_blank" rel="noopener">English translation (PDF, free)</a> · <a href="http://web.ihep.su/dbserv/compas/src/planck01/eng.pdf" target="_blank" rel="noopener">Alternative translation (PDF, free)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2. EINSTEIN 1905 -->
+<section class="card" id="einstein1905">
+  <div class="cardhead"><span class="num">2</span><span class="mech">1905 · Bern — Einstein's "miracle year": the photon and relativity</span></div>
+  <h2>The Light Quantum (Photon) &amp; Special Relativity</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Light is a continuous electromagnetic wave in the ether (Maxwell). Waves cannot explain why metals eject electrons instantly below a threshold frequency regardless of intensity. Meanwhile, Maxwell's equations require a medium (ether) — yet the Earth's motion through it could never be detected (Michelson–Morley, 1887).</div>
+  <div class="prob"><span class="lbl">The problem</span><br>The <b>photoelectric effect</b> (Hertz 1887; Lenard 1902): electrons are emitted only above a threshold frequency, with kinetic energy proportional to frequency — impossible for waves. Planck's quanta were also unexplained: what <i>physical object</i> carries them?</div>
+  <div class="new"><span class="lbl">New model</span><br>Einstein went further than Planck: light itself travels as <b>particles</b> (quanta), each with E = hν. He simultaneously abolished the ether with special relativity: space and time unify into a 4-dimensional geometry; electric and magnetic fields mix under boosts — electrodynamics was already relativistic, Newton's mechanics was not. In his third 1905 paper, Brownian motion showed atoms are real.</div>
+  <div class="eq">E<sub>max</sub> = hν − W<span class="note">Photoelectric equation (1905): kinetic energy of ejected electrons is linear in frequency; W is the metal's work function. Nobel Prize 1921.</span></div>
+  <div class="eq">E = mc² &nbsp;&nbsp;·&nbsp;&nbsp; γ = 1/√(1 − v²/c²)<span class="note">Mass–energy equivalence and the Lorentz factor. Electric and magnetic fields transform into each other — the first unification step toward modern electrodynamics.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Einstein A. <i>Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt.</i> Annalen der Physik 17, 132 (1905). — <a href="https://en.wikisource.org/wiki/Translation:On_a_Heuristic_Viewpoint_Concerning_the_Production_and_Transformation_of_Light" target="_blank" rel="noopener">Wikisource translation (free)</a></li>
+      <li>Einstein A. <i>On the Electrodynamics of Moving Bodies.</i> Annalen der Physik 17 (1905). — <a href="https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies" target="_blank" rel="noopener">Wikisource translation (free)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3. RUTHERFORD & BOHR -->
+<section class="card" id="bohr">
+  <div class="cardhead"><span class="num">3</span><span class="mech">1911–1913 · Manchester &amp; Copenhagen — the nuclear atom</span></div>
+  <h2>Rutherford's Nucleus &amp; Bohr's Quantized Orbits</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>J.J. Thomson's "plum pudding" model: a diffuse sphere of positive charge with electrons embedded like raisins. A planetary model was ruled out — an orbiting electron radiates and should spiral into the nucleus in ~10⁻¹⁰ seconds.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Rutherford's alpha-particle scattering (Geiger–Marsden, 1909–1911): about 1 in 8000 alpha particles bounced <i>backward</i> — impossible unless the positive charge is concentrated in a tiny, dense <b>nucleus</b>. But then, by classical electrodynamics, atoms should collapse, and every atom should emit a continuous spectrum. Instead atoms show <b>sharp spectral lines</b> (Balmer's hydrogen formula of 1885: λ⁻¹ = R(1/n₁² − 1/n₂²) was empirically known but unexplained).</div>
+  <div class="new"><span class="lbl">New model</span><br>Bohr (1913), combining Rutherford's nucleus with Planck's quantum: electrons occupy only certain <b>stationary orbits</b> where angular momentum is quantized (mvr = nħ); radiation occurs only when jumping between orbits. Atomic spectra were explained for hydrogen — the first "old quantum theory" triumph. But it was a hybrid: classical orbits with an ad-hoc quantum rule bolted on, and it failed for multi-electron atoms.</div>
+  <div class="eq">E<sub>n</sub> = −(m<sub>e</sub>e⁴)/(2ħ²) · 1/n² = −13.6 eV/n²<span class="note">Bohr's hydrogen energy levels (1913) predict the Balmer series exactly. The Rydberg constant emerges from fundamental constants — a sensation.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Rutherford E. <i>The Scattering of α and β Particles by Matter and the Structure of the Atom.</i> Phil. Mag. 21, 669 (1911). — <a href="https://en.wikisource.org/wiki/The_Scattering_of_%CE%B1_and_%CE%B2_Particles_by_Matter_and_the_Structure_of_the_Atom" target="_blank" rel="noopener">Wikisource (free)</a></li>
+      <li>Bohr N. <i>On the Constitution of Atoms and Molecules.</i> Phil. Mag. 26, 1–25 (1913). — <a href="https://en.wikisource.org/wiki/On_the_Constitution_of_Atoms_and_Molecules" target="_blank" rel="noopener">Wikisource (free)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. EINSTEIN A/B -->
+<section class="card" id="ab">
+  <div class="cardhead"><span class="num">4</span><span class="mech">1916–17 · Berlin — light quanta get statistical teeth</span></div>
+  <h2>Einstein's A &amp; B Coefficients</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Even Planck resisted Einstein's light quanta; emission and absorption of radiation were assumed to be continuous, directed processes.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>What is the <i>probability</i> that an atom emits or absorbs light? Classical theory had no statistical description of radiation–matter exchange, and Planck's law itself lacked a deeper derivation.</div>
+  <div class="new"><span class="lbl">New model</span><br>Einstein re-derived Planck's law from transition probabilities: <b>spontaneous emission</b> (A) and two forms of <b>stimulated</b> emission/absorption (B·ρ). Radiation pressure in emission implies the light quantum carries directed momentum p = hν/c — the photon concept grew stronger. His momentum-fluctuation argument (1924–25, with Bose) would finally give the photon its statistics.</div>
+  <div class="eq">A<sub>21</sub>/(B<sub>12</sub>ρ) balance gives ρ(ν) ∝ ν³/(e<sup>hν/kT</sup> − 1) &nbsp;·&nbsp; p = hν/c<span class="note">The A and B coefficients (1917). Stimulated emission underlies the laser (theoretically predicted 40 years before it was built).</span></div>
+</section>
+
+<!-- 5. COMPTON & STERN-GERLACH -->
+<section class="card" id="1922-23">
+  <div class="cardhead"><span class="num">5</span><span class="mech">1922–23 · The decisive experimental decade opens</span></div>
+  <h2>Compton Scattering &amp; the Stern–Gerlach Experiment</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Light scattering off electrons was thought to be a classical wave process (Thomson scattering); angular momentum in atoms was thought continuous, and orbital quantum numbers sufficed to label atomic states.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>X-rays scattered off graphite showed a wavelength shift depending on the scattering angle — waves cannot change wavelength when scattered by a free electron. And the quantum theory of the atom needed direct proof that atomic states are <b>spatially quantized</b>.</div>
+  <div class="new"><span class="lbl">New model &amp; experiments</span><br><b>Compton (1923)</b>: X-ray scattering is a photon–electron collision obeying E = hν <i>and</i> p = hν/c exactly as in billiard-ball mechanics — the photon was experimentally proven, and even Planck finally accepted it. <b>Stern–Gerlach (1922)</b>: a beam of silver atoms passing through an inhomogeneous magnetic field split into exactly <b>two</b> discrete spots — space quantization made visible to the naked eye. The two-way split was a puzzle: orbiting electrons should give an odd number of projections; the resolution (electron <b>spin</b>, Uhlenbeck–Goudsmit 1925, Pauli 1927) came only with the new quantum mechanics.</div>
+  <div class="eq">λ′ − λ = (h/m<sub>e</sub>c)(1 − cos θ)<span class="note">Compton shift. The "Compton wavelength" h/m<sub>e</sub>c ≈ 2.43 pm — a particle-collision formula written for light. Nobel Prize 1927.</span></div>
+</section>
+
+<!-- 6. DE BROGLIE & BOSE -->
+<section class="card" id="1924">
+  <div class="cardhead"><span class="num">6</span><span class="mech">1924 · Wave–particle duality formalized</span></div>
+  <h2>de Broglie's Matter Waves &amp; Bose–Einstein Statistics</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Waves (light) and particles (electrons) were distinct categories of being. Nuclei and electrons obeyed classical mechanics; photons had no statistical mechanics at all.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Bohr's quantization rule was arbitrary: <i>why</i> should angular momentum be mvr = nħ? What physical property of the electron picks out allowed orbits?</div>
+  <div class="new"><span class="lbl">New model</span><br>Louis de Broglie (PhD thesis, 1924): if waves (photons) are particles, then particles are waves. Each electron carries a pilot wave of wavelength λ = h/p; the allowed Bohr orbits are exactly those that fit an <b>integer number of wavelengths</b> — quantization became a standing-wave condition. The same year, <b>Satyendra Nath Bose</b> derived Planck's law by treating light as a gas of identical quanta with a new counting method; Einstein extended it to particles (Bose–Einstein statistics) and predicted the Bose–Einstein condensate — achieved experimentally only in 1995.</div>
+  <div class="eq">λ = h/p &nbsp;&nbsp;·&nbsp;&nbsp; ∮ p dq = nh<span class="note">de Broglie's relation (1924) and the Bohr–Sommerfeld quantization condition as a standing-wave requirement. Davisson–Germer (1927) confirmed electron diffraction; G.P. Thomson got the 1937 Nobel Prize with them.</span></div>
+</section>
+
+<!-- 7. QUANTUM MECHANICS -->
+<section class="card" id="1925-26">
+  <div class="cardhead"><span class="num">7</span><span class="mech">1925–26 · The great reconstruction — quantum mechanics is born</span></div>
+  <h2>Matrix Mechanics, Wave Mechanics &amp; the Probability Interpretation</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>The "old quantum theory" (Bohr–Sommerfeld): classical orbits plus ad-hoc quantum conditions. It worked for hydrogen, failed everywhere else (helium!, the anomalous Zeeman effect, intensities of spectral lines).</div>
+  <div class="prob"><span class="lbl">The problem</span><br>What replaces classical orbits? Heisenberg asked: keep only quantities that are actually observable — the frequencies and intensities of spectral lines. His multiplication rule turned out to be non-commutative — and Born recognized it as <b>matrix multiplication</b>. In the same year Pauli solved hydrogen with matrices, and Uhlenbeck–Goudsmit proposed electron spin. Then Schrödinger, from de Broglie waves, produced a completely different-looking wave equation — and proved the two theories mathematically equivalent.</div>
+  <div class="new"><span class="lbl">New model</span><br>1926: Schrödinger's equation gives dynamics; <b>Max Born</b> adds the interpretation that |ψ|² is a <b>probability density</b> — the electron is not a particle riding a wave, and the wave does not "carry" energy in a classical sense. Determinism is gone at the fundamental level: nature gives only probabilities. Pauli's <b>exclusion principle</b> (1925, "Verbot") explains the periodic table and Fermi–Dirac statistics completes the two possible quantum statistics.</div>
+  <div class="eq">iħ ∂ψ/∂t = Ĥψ &nbsp;&nbsp;·&nbsp;&nbsp; Ĥψ = Eψ &nbsp;&nbsp;·&nbsp;&nbsp; x̂p̂ − p̂x̂ = iħ<span class="note">Schrödinger's time-dependent and time-independent equations (1926), and the canonical commutation relation of Heisenberg's matrix mechanics (1925). Note the commutator: position and momentum no longer commute — the mathematical heart of quantum theory.</span></div>
+  <div class="eq">P(x) = |ψ(x)|² <span class="note">Born's statistical interpretation (1926). Nobel Prize 1954. Quantum states predict probabilities of measurement outcomes, not definite trajectories.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Heisenberg W. <i>Über quantentheoretische Umdeutung kinematischer…</i> ZfP 33, 879 (1925) — matrix mechanics.</li>
+      <li>Schrödinger E. <i>Quantisierung als Eigenwertproblem.</i> Annalen der Physik 79 (1926). — <a href="https://en.wikisource.org/wiki/Translation:Quantisation_as_an_Eigenvalue_Problem" target="_blank" rel="noopener">Wikisource translation (free)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8. UNCERTAINTY -->
+<section class="card" id="1927">
+  <div class="cardhead"><span class="num">8</span><span class="mech">1927 · Copenhagen — the theory gets its meaning</span></div>
+  <h2>Heisenberg's Uncertainty Principle &amp; the Solvay Confrontation</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Even after 1926, many (Schrödinger himself!) hoped the wavefunction described a real classical wave, and that a particle's position and momentum could both be sharply defined at once.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>What does ψ <i>mean</i>? Schrödinger's wave packets spread; matrix mechanics had no "orbit" to speak of. The measurement process itself needed a principle. At the 1927 Solvay Conference, Einstein challenged Bohr with thought experiments (the single-slit photon box); Bohr defended the probabilistic reading. The debate shaped the <b>Copenhagen interpretation</b>.</div>
+  <div class="new"><span class="lbl">New model</span><br>Heisenberg's uncertainty principle: position and momentum cannot both be known with arbitrary precision — not because of instrument imperfection, but because they are incompatible observables (non-commuting operators). Nature has a fundamental limit on simultaneous knowledge. Dirac's textbook (1930) and von Neumann's mathematical formalization (1932, Hilbert spaces) completed the framework.</div>
+  <div class="eq">Δx·Δp ≥ ħ/2 &nbsp;&nbsp;·&nbsp;&nbsp; ΔE·Δt ≥ ħ/2<span class="note">Heisenberg's uncertainty relations (1927). The wavefunction lives in a Hilbert space; observables are operators; measurement collapses the state.</span></div>
+</section>
+
+<!-- 9. DIRAC -->
+<section class="card" id="dirac">
+  <div class="cardhead"><span class="num">9</span><span class="mech">1928 · Cambridge — quantum theory marries relativity</span></div>
+  <h2>The Dirac Equation — and Antimatter Predicted</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Attempts to make quantum mechanics relativistic (Klein–Gordon equation, 1926) gave probabilities that could be negative and "pathological" solutions — Schrödinger had already tried and abandoned a relativistic wave equation in 1925. Pauli called it "the most physics-dead wrong" result.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Schrödinger's equation is not relativistic; Bohr's atom needs an explanation for fine structure (Sommerfeld's relativistic corrections) and for the electron's magnetic moment. The Klein–Gordon equation is second-order in time and its |ψ|² cannot be a probability density.</div>
+  <div class="new"><span class="lbl">New model</span><br>Dirac demanded an equation <b>first-order in time</b> and relativistic — this forces the wavefunction to have four components and the Hamiltonian to be linear in the momentum. Spin and the electron's magnetic moment emerge automatically: spin is forced by relativity + quantum mechanics. But the equation also forced "negative energy" states. Dirac's bold move: the vacuum is a sea of filled negative-energy states, and a hole in the sea is a new particle with positive charge. Anderson discovered the positron in 1932 — the greatest prediction-to-discovery sequence in physics. (The "Dirac sea" was later reinterpreted by quantum field theory, where every particle has an antiparticle — but the equation, and the prediction, stand.)</div>
+  <div class="eq">(iγ<sup>μ</sup>∂<sub>μ</sub> − m)ψ = 0 &nbsp;&nbsp;·&nbsp;&nbsp; {γ<sup>μ</sup>, γ<sup>ν</sup>} = 2η<sup>μν</sup><span class="note">Dirac equation (1928). Its four-component wavefunction automatically carries spin-½ and gyromagnetic ratio g = 2. The negative-energy solutions → antimatter.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Dirac P.A.M. <i>The quantum theory of the electron.</i> Proc. R. Soc. A 117, 610–624 (1928). — <a href="https://doi.org/10.1098/rspa.1928.0023" target="_blank" rel="noopener">DOI (Royal Society, free)</a> · <a href="https://royalsocietypublishing.org/rspa/article/117/778/610/2242/The-quantum-theory-of-the-electron" target="_blank" rel="noopener">Publisher page</a></li>
+      <li>Anderson C.D. <i>The apparent existence of easily deflectable positives.</i> Science 76, 238 (1932) — positron discovery. — <a href="https://www.science.org/doi/10.1126/science.76.1965.238" target="_blank" rel="noopener">Science</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10. NUCLEAR ERA -->
+<section class="card" id="nuclear">
+  <div class="cardhead"><span class="num">10</span><span class="mech">1932–34 · The nucleus opens and beta decay breaks a law</span></div>
+  <h2>Neutron, Positron, Neutrino &amp; the Weak Interaction</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Nuclei were thought to contain protons and electrons (the "proton–electron" model); beta decay was assumed to be a two-body problem, so electrons should emerge with a single sharp energy.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Beta spectra are <b>continuous</b> — the electron emerges with any energy up to a maximum. Either energy conservation fails in single decays (Bohr briefly accepted this), or something invisible escapes. Also, nuclear "electrons" caused spin and statistics paradoxes (nitrogen-14), and repeated attempts to save classical pictures of nuclei failed. Chadwick's discovery of the neutron (1932) fixed the composition; the continuous beta spectrum demanded a new particle and a new force.</div>
+  <div class="new"><span class="lbl">New model</span><br>Pauli (1930, "dear radioactive ladies and gentlemen") proposed the <b>neutrino</b> — a massless, chargeless, almost undetectable particle sharing the energy. Fermi (1933–34) built the first theory of <b>beta decay</b>: the neutron converts to a proton emitting an electron and an antineutrino via a new <b>weak interaction</b>, with a contact interaction (four-fermion coupling). Fermi's theory was a template for all later field theories; the neutrino was not detected until 1956 (Reines–Cowan).</div>
+  <div class="eq">n → p + e⁻ + ν̄<sub>e</sub> &nbsp;&nbsp;·&nbsp;&nbsp; H<sub>Fermi</sub> = G<sub>F</sub> (ψ̄<sub>p</sub>γ<sup>μ</sup>ψ<sub>n</sub>)(ψ̄<sub>e</sub>γ<sub>μ</sub>ψ<sub>ν</sub>)<span class="note">Fermi's four-fermion beta-decay interaction (1934). The coupling G<sub>F</sub> was the prototype of a field-theory coupling; today this is an effective theory of the W boson interaction.</span></div>
+</section>
+
+<!-- 11. INFINITIES -->
+<section class="card" id="infinities">
+  <div class="cardhead"><span class="num">11</span><span class="mech">1930s · Quantum fields meet an infinity of trouble</span></div>
+  <h2>QED's Infinite Divergences — the Crisis of the 1930s</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Dirac's 1927 quantum theory of radiation, and the quantization of the electromagnetic field, seemed like a natural next step: particles are quanta of fields; the electron self-energy and vacuum polarization should be calculable in QED, the theory of electrons + photons.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Every interesting quantity came out infinite. The electron's <b>self-energy</b> (interaction with its own field) diverges; <b>vacuum polarization</b> gives the vacuum an infinite charge density; the famous calculation of the <b>Lamb-relevant atomic levels</b> via perturbative QED all diverged logarithmically. Oppenheimer (1930), Heisenberg, Weisskopf and others diagnosed the divergences, but no one knew how to extract physical predictions. Many leading physicists (including Dirac) concluded QED was fundamentally broken. The war paused everything — then two microwave experiments restarted the crisis.</div>
+  <div class="eq">E<sub>self</sub> ∝ ∫<sub>0</sub><sup>e²/…</sup> d(k)/k → ∞ &nbsp;&nbsp;·&nbsp;&nbsp; δm → ∞<span class="note">Schematic: the electron's electromagnetic self-energy diverges at high momentum. The classical Abraham–Lorentz version was already divergent; QED made it logarithmic — but still infinite.</span></div>
+</section>
+
+<!-- 12. LAMB SHIFT -->
+<section class="card" id="lamb">
+  <div class="cardhead"><span class="num">12</span><span class="mech">1947 · Shelter Island — the experiment that broke the stalemate</span></div>
+  <h2>The Lamb Shift &amp; the Anomalous Magnetic Moment</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Dirac's theory predicts that the 2s and 2p states of hydrogen are exactly degenerate; the electron's magnetic moment should be exactly one Bohr magneton (g = 2). These were considered exact predictions of the best theory available.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>Using wartime microwave radar techniques, <b>Willis Lamb and Robert Retherford</b> (1947) measured the hydrogen fine structure and found a small energy splitting — about 1058 MHz — between 2s and 2p<sub>1/2</sub>: <b>the Lamb shift</b>. Almost simultaneously, Nafe, Nelson and Rabi's group found the electron's g-factor slightly different from 2. Dirac's "exact" theory was experimentally wrong at the level where QED's infinities were supposed to matter.</div>
+  <div class="new"><span class="lbl">New model</span><br>At the Shelter Island Conference (June 1947), the young generation (Schwinger, Feynman, Dyson) decided the infinities could be tamed. Hans Bethe famously performed a non-relativistic calculation of the Lamb shift on the train home, getting the right order of magnitude by subtracting (renormalizing) the mass divergence. The physical idea: the electron's observed mass and charge <i>already include</i> all self-interaction effects; the divergences are unobservable bookkeeping, to be absorbed into a finite number of parameters.</div>
+  <div class="eq">ΔE(2s − 2p<sub>1/2</sub>) ≈ 1057.8 MHz<span class="note">Lamb–Retherford (1947). Bethe's estimate: α⁵m<sub>e</sub>c²·(4/3π)·ln(m<sub>e</sub>c²/ΔE<sub>typ</sub>) — the first finite, physical answer in QED.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Lamb WE Jr, Retherford RC. <i>Fine Structure of the Hydrogen Atom by a Microwave Method.</i> Phys. Rev. 72, 241–243 (1947). — <a href="https://link.aps.org/doi/10.1103/PhysRev.72.241" target="_blank" rel="noopener">Physical Review (free)</a></li>
+      <li>Bethe HA. <i>The Electromagnetic Shift of Energy Levels.</i> Phys. Rev. 72, 339 (1947). — <a href="https://link.aps.org/doi/10.1103/PhysRev.72.339" target="_blank" rel="noopener">Physical Review (free)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 13. RENORMALIZED QED -->
+<section class="card" id="qed">
+  <div class="cardhead"><span class="num">13</span><span class="mech">1948–50 · The theory of light and matter is completed</span></div>
+  <h2>Renormalized QED — Tomonaga, Schwinger, Feynman, Dyson</h2>
+  <div class="old"><span class="lbl">Old idea</span><br>Field theory was widely considered a dead end in the late 1940s; the divergences were thought to signal a fundamentally new physics at short distances. Bohr's institute discouraged Feynman from working on it.</div>
+  <div class="prob"><span class="lbl">The problem</span><br>How to extract finite predictions from a theory that computes infinities — systematically, relativistically, and to arbitrary precision? And how to connect the calculations to measurable quantities like the Lamb shift and g − 2?</div>
+  <div class="new"><span class="lbl">New model</span><br>Working independently (Tomonaga in wartime Tokyo, Schwinger in Cambridge, Feynman in Cornell), three physicists constructed covariant QED and showed that all infinities can be absorbed into a finite set of <b>renormalizations</b>: the observed mass, charge, and wavefunction. Freeman Dyson (1948–49) proved the three approaches equivalent and showed the renormalized perturbation series is systematically finite order by order. Feynman's <b>diagrams</b> turned the machinery into a visual calculus; Schwinger's operator methods computed g − 2 to extraordinary precision. The anomalous magnetic moment of the electron, a<sub>e</sub> = (g − 2)/2 ≈ α/2π, was computed by Schwinger and matched experiment — the first precision triumph of a quantum field theory.</div>
+  <div class="eq">a<sub>e</sub> = (g − 2)/2 = α/(2π) ≈ 0.00116<span class="note">Schwinger's famous 1948 result — the electron interacts with its own quantum field, shifting g from the Dirac value 2. Modern QED agrees with the measured g to 12+ decimal places — the most precisely verified theory in science.</span></div>
+  <div class="eq">L(ψ, A) = ψ̄(iγ<sup>μ</sup>D<sub>μ</sub> − m)ψ − ¼F<sub>μν</sub>F<sup>μν</sup><span class="note">The QED Lagrangian: D<sub>μ</sub> = ∂<sub>μ</sub> + ieA<sub>μ</sub>. All quantum electrodynamics — atoms, chemistry, light — follows from quantizing this expression. The "final form" that the 1900–1950 revolution produced.</span></div>
+  <div class="papers"><span class="lbl">Key papers</span>
+    <ul>
+      <li>Schwinger J. <i>Quantum Electrodynamics. I. A Covariant Formulation.</i> Phys. Rev. 74, 1439 (1948). — <a href="https://link.aps.org/doi/10.1103/PhysRev.74.1439" target="_blank" rel="noopener">Physical Review (free)</a> · <a href="https://www.theisticscience.com/papers/tree/Quantum%20Fields/Schwinger-PhysRev.74.1439.pdf" target="_blank" rel="noopener">PDF (free)</a></li>
+      <li>Feynman RP. <i>Space-Time Approach to Quantum Electrodynamics.</i> Phys. Rev. 76, 769 (1949). — <a href="https://link.aps.org/doi/10.1103/PhysRev.76.769" target="_blank" rel="noopener">Physical Review (free)</a></li>
+      <li>Dyson FJ. <i>The S Matrix in Quantum Electrodynamics.</i> Phys. Rev. 75, 1736 (1949). — <a href="https://link.aps.org/doi/10.1103/PhysRev.75.1736" target="_blank" rel="noopener">Physical Review (free)</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<h2>📜 Historical Timeline: Concepts &amp; Experiments</h2>
+<div class="timeline">
+  <div class="tl-item"><span class="tl-year">1887</span> <span class="cat c-expt">Experiment</span><br>Hertz observes the photoelectric effect (and radio waves) — unexplained for 18 years.</div>
+  <div class="tl-item expt"><span class="tl-year">1887</span> <span class="cat c-expt">Experiment</span><br>Michelson–Morley find no ether wind — Kelvin's first "cloud".</div>
+  <div class="tl-item"><span class="tl-year">1895–97</span> <span class="cat c-expt">Experiment</span><br>Röntgen: X-rays; Becquerel &amp; the Curies: radioactivity; J.J. Thomson: the electron — matter is decomposable.</div>
+  <div class="tl-item"><span class="tl-year">1900</span> <span class="cat c-th">Concept</span><br><b>Dec 14:</b> Planck presents E = hν. The quantum is born — as a bookkeeping device for matter, not light.</div>
+  <div class="tl-item"><span class="tl-year">1905</span> <span class="cat c-th">Concept</span><br>Einstein: light quanta, special relativity, Brownian motion — three revolutions in one year.</div>
+  <div class="tl-item expt"><span class="tl-year">1909</span> <span class="cat c-expt">Experiment</span><br>Geiger–Marsden see alpha particles bounce backward; Rutherford: the nucleus exists (1911).</div>
+  <div class="tl-item"><span class="tl-year">1913</span> <span class="cat c-theory">Theory</span><br>Bohr's quantized orbits explain the hydrogen spectrum — the "old quantum theory" era begins.</div>
+  <div class="tl-item"><span class="tl-year">1916–17</span> <span class="cat c-th">Concept</span><br>Einstein's A/B coefficients: emission is probabilistic; the photon gets momentum.</div>
+  <div class="tl-item expt"><span class="tl-year">1919</span> <span class="cat c-expt">Experiment</span><br>Eddington's eclipse expedition: starlight bends as general relativity predicts.</div>
+  <div class="tl-item expt"><span class="tl-year">1922</span> <span class="cat c-expt">Experiment</span><br>Stern–Gerlach: silver atoms split into two beams — space quantization is real (spin, yet unknown, already visible).</div>
+  <div class="tl-item expt"><span class="tl-year">1923</span> <span class="cat c-expt">Experiment</span><br>Compton: X-rays scatter like particles. The photon is experimentally proven.</div>
+  <div class="tl-item"><span class="tl-year">1924</span> <span class="cat c-th">Concept</span><br>de Broglie: matter waves λ = h/p; Bose–Einstein statistics for identical quanta.</div>
+  <div class="tl-item"><span class="tl-year">1925</span> <span class="cat c-theory">Theory</span><br>Heisenberg's matrix mechanics; Pauli's exclusion principle; Uhlenbeck–Goudsmit: electron spin.</div>
+  <div class="tl-item"><span class="tl-year">1926</span> <span class="cat c-theory">Theory</span><br>Schrödinger's wave equation; Born's probability interpretation; Fermi–Dirac statistics.</div>
+  <div class="tl-item"><span class="tl-year">1927</span> <span class="cat c-th">Concept</span><br>Heisenberg's uncertainty principle; the Solvay Conference debates Einstein vs. Bohr. <b>Experiment:</b> Davisson–Germer confirm electron waves.</div>
+  <div class="tl-item"><span class="tl-year">1928</span> <span class="cat c-theory">Theory</span><br>Dirac's equation: spin from relativity; negative-energy solutions demand reinterpretation.</div>
+  <div class="tl-item expt"><span class="tl-year">1930</span> <span class="cat c-expt">Experiment</span><br>Pauli proposes the neutrino to save energy conservation in beta decay.</div>
+  <div class="tl-item expt"><span class="tl-year">1932</span> <span class="cat c-expt">Experiment</span><br>The "miracle year" of experiments: Chadwick's neutron; Anderson's positron (Dirac's prediction!); Cockcroft–Walton split the atom; Urey discovers deuterium.</div>
+  <div class="tl-item"><span class="tl-year">1933–34</span> <span class="cat c-theory">Theory</span><br>Fermi's beta-decay theory — the weak interaction is born as a field theory.</div>
+  <div class="tl-item"><span class="tl-year">1936–47</span> <span class="cat c-th">Crisis</span><br>QED's infinities block all precision predictions; field theory stalls for a decade. Anderson &amp; Neddermeyer discover the muon (1937) — "Who ordered that?" (Rabi).</div>
+  <div class="tl-item expt"><span class="tl-year">1947</span> <span class="cat c-expt">Experiment</span><br>Lamb–Retherford measure the Lamb shift; Rabi's group finds g ≠ 2. At Shelter Island, Bethe computes the shift on the train home.</div>
+  <div class="tl-item"><span class="tl-year">1948–49</span> <span class="cat c-qed">Theory</span><br>Tomonaga, Schwinger, Feynman build renormalized QED; Dyson proves them equivalent. Feynman diagrams become the language of particle physics.</div>
+  <div class="tl-item"><span class="tl-year">1950</span> <span class="cat c-qed">Milestone</span><br>QED stands complete: the first quantum field theory, agreeing with experiment to extraordinary precision — and the template for everything that followed (the Standard Model, 1960s–1970s).</div>
+</div>
+
+<!-- SUMMARY -->
+<h2>🧩 Summary: four classical ideas that fell, 1900–1950</h2>
+<table class="sum">
+  <tr><th>Year</th><th>Old model</th><th>What broke it</th><th>New model</th><th>Key equation</th></tr>
+  <tr><td>1900</td><td>Continuous energy of matter &amp; light</td><td>Black-body spectrum</td><td>Energy quantization</td><td>E = hν</td></tr>
+  <tr><td>1905</td><td>Light is only a wave; absolute time</td><td>Photoelectric effect; ether drift</td><td>Photons; special relativity</td><td>E<sub>max</sub> = hν − W; E = mc²</td></tr>
+  <tr><td>1913</td><td>Electron spirals into nucleus; continuous spectra</td><td>Sharp spectral lines</td><td>Quantized orbits</td><td>E<sub>n</sub> = −13.6 eV/n²</td></tr>
+  <tr><td>1924–26</td><td>Deterministic particle trajectories</td><td>All atomic data (He, Zeeman, intensities)</td><td>Wavefunction &amp; probability</td><td>iħ∂ψ/∂t = Ĥψ; |ψ|² = P</td></tr>
+  <tr><td>1927</td><td>Simultaneous exact position &amp; momentum</td><td>Measurement theory</td><td>Uncertainty relations</td><td>Δx·Δp ≥ ħ/2</td></tr>
+  <tr><td>1928</td><td>Only one sign of energy/particle</td><td>Negative-energy solutions</td><td>Antimatter</td><td>(iγ<sup>μ</sup>∂<sub>μ</sub> − m)ψ = 0</td></tr>
+  <tr><td>1934</td><td>Only two forces (gravity, EM)</td><td>Continuous beta spectra</td><td>Weak interaction</td><td>n → p + e⁻ + ν̄</td></tr>
+  <tr><td>1948</td><td>Field theory is dead (infinities)</td><td>Lamb shift; g ≠ 2</td><td>Renormalized QED</td><td>a<sub>e</sub> = α/2π</td></tr>
+</table>
+
+<!-- REFERENCES -->
+<h2>📚 Full Reference List (free sources where available)</h2>
+<div class="reflist">
+<ol>
+  <li>Planck M. <i>On the Law of Distribution of Energy in the Normal Spectrum.</i> Ann. Phys. 4, 553 (1901). — <a href="https://strangepaths.com/files/planck1901.pdf" target="_blank" rel="noopener">English PDF (free)</a></li>
+  <li>Einstein A. <i>On a Heuristic Point of View about the Creation and Conversion of Light.</i> Ann. Phys. 17, 132 (1905). — <a href="https://en.wikisource.org/wiki/Translation:On_a_Heuristic_Viewpoint_Concerning_the_Production_and_Transformation_of_Light" target="_blank" rel="noopener">Wikisource translation (free)</a></li>
+  <li>Einstein A. <i>On the Electrodynamics of Moving Bodies.</i> Ann. Phys. 17 (1905). — <a href="https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies" target="_blank" rel="noopener">Wikisource translation (free)</a></li>
+  <li>Rutherford E. <i>The Scattering of α and β Particles by Matter…</i> Phil. Mag. 21, 669 (1911). — <a href="https://en.wikisource.org/wiki/The_Scattering_of_%CE%B1_and_%CE%B2_Particles_by_Matter_and_the_Structure_of_the_Atom" target="_blank" rel="noopener">Wikisource (free)</a></li>
+  <li>Bohr N. <i>On the Constitution of Atoms and Molecules.</i> Phil. Mag. 26, 1 (1913). — <a href="https://en.wikisource.org/wiki/On_the_Constitution_of_Atoms_and_Molecules" target="_blank" rel="noopener">Wikisource (free)</a></li>
+  <li>Compton AH. <i>A Quantum Theory of the Scattering of X-rays…</i> Phys. Rev. 21, 483 (1923). — <a href="https://link.aps.org/doi/10.1103/PhysRev.21.483" target="_blank" rel="noopener">Physical Review (free)</a></li>
+  <li>Schrödinger E. <i>Quantisation as an Eigenvalue Problem.</i> Ann. Phys. 79 (1926). — <a href="https://en.wikisource.org/wiki/Translation:Quantisation_as_an_Eigenvalue_Problem" target="_blank" rel="noopener">Wikisource translation (free)</a></li>
+  <li>Dirac PAM. <i>The quantum theory of the electron.</i> Proc. R. Soc. A 117, 610 (1928). — <a href="https://doi.org/10.1098/rspa.1928.0023" target="_blank" rel="noopener">DOI (free)</a> · <a href="https://wwwhome.lorentz.leidenuniv.nl/~boyarsky/media/Proc.R.Soc.Lond.-1928-Dirac-610-24.pdf" target="_blank" rel="noopener">PDF (free)</a></li>
+  <li>Anderson CD. <i>The Apparent Existence of Easily Deflectable Positives.</i> Science 76, 238 (1932). — <a href="https://www.science.org/doi/10.1126/science.76.1965.238" target="_blank" rel="noopener">Science</a></li>
+  <li>Lamb WE Jr, Retherford RC. <i>Fine Structure of the Hydrogen Atom by a Microwave Method.</i> Phys. Rev. 72, 241 (1947). — <a href="https://link.aps.org/doi/10.1103/PhysRev.72.241" target="_blank" rel="noopener">Physical Review (free)</a></li>
+  <li>Bethe HA. <i>The Electromagnetic Shift of Energy Levels.</i> Phys. Rev. 72, 339 (1947). — <a href="https://link.aps.org/doi/10.1103/PhysRev.72.339" target="_blank" rel="noopener">Physical Review (free)</a></li>
+  <li>Schwinger J. <i>Quantum Electrodynamics. I. A Covariant Formulation.</i> Phys. Rev. 74, 1439 (1948). — <a href="https://link.aps.org/doi/10.1103/PhysRev.74.1439" target="_blank" rel="noopener">Physical Review (free)</a> · <a href="https://www.theisticscience.com/papers/tree/Quantum%20Fields/Schwinger-PhysRev.74.1439.pdf" target="_blank" rel="noopener">PDF (free)</a></li>
+  <li>Feynman RP. <i>Space-Time Approach to Quantum Electrodynamics.</i> Phys. Rev. 76, 769 (1949). — <a href="https://link.aps.org/doi/10.1103/PhysRev.76.769" target="_blank" rel="noopener">Physical Review (free)</a></li>
+  <li>Dyson FJ. <i>The S Matrix in Quantum Electrodynamics.</i> Phys. Rev. 75, 1736 (1949). — <a href="https://link.aps.org/doi/10.1103/PhysRev.75.1736" target="_blank" rel="noopener">Physical Review (free)</a></li>
+</ol>
+<p class="note">Older Physical Review and Royal Society papers (pre-1930s) are freely accessible at the linked pages. Wikisource provides free English translations of the German-language founding papers. Nobel lectures — excellent free secondary sources — are available for Planck, Einstein, Bohr, de Broglie, Heisenberg, Schrödinger, Dirac, Anderson, Chadwick, Fermi, Lamb, Schwinger, Feynman and Tomonaga at nobelprize.org.</p>
+</div>
+
+<footer>Created as an educational resource · History of quantum physics &amp; electrodynamics, 1900–1950 · Links point to free original papers, translations, or publisher pages.</footer>
+</div>
+</body>
+</html>
