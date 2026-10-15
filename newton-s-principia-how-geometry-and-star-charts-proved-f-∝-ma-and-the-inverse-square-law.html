@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Newton's Principia — F=ma and the Inverse-Square Law by Pure Geometry</title>
+<style>
+  :root{
+    --bg:#0d1321; --panel:#161d31; --panel2:#1b2440; --ink:#e8ecf5; --muted:#9aa7c4;
+    --accent:#4cc9f0; --accent2:#f72585; --gold:#ffd166; --green:#80ed99;
+    --font: Georgia, 'Times New Roman', serif;
+    --sans: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65}
+  .wrap{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
+  header{text-align:center;padding:40px 10px 20px}
+  header h1{font-size:2.0rem;margin:0 0 6px}
+  header h1 span{color:var(--gold)}
+  header p.tag{font-family:var(--sans);color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:760px}
+  .pillars{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px;font-family:var(--sans);font-size:.85rem}
+  .pillars span{background:var(--panel);border:1px solid #2a3557;border-radius:999px;padding:5px 14px}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(13,19,33,.92);backdrop-filter:blur(6px);border-bottom:1px solid #26304f;padding:10px 8px;margin:20px -8px 34px}
+  nav.toc a{font-family:var(--sans);color:var(--muted);text-decoration:none;font-size:.8rem;margin:0 8px;white-space:nowrap}
+  nav.toc a:hover{color:var(--accent)}
+  section{background:var(--panel);border:1px solid #26304f;border-radius:14px;padding:26px 28px;margin:26px 0}
+  h2{font-size:1.4rem;margin:0 0 4px;color:var(--accent);border-bottom:2px solid #2a3557;padding-bottom:10px}
+  h3{font-size:1.05rem;color:var(--gold);margin:26px 0 8px;font-family:var(--sans)}
+  p{margin:12px 0}
+  .lead{font-size:1.05rem;color:#cfd8ec}
+  .concept{background:var(--panel2);border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:16px 0;font-style:italic;color:#dfe5f2}
+  .quote{background:var(--panel2);border-left:4px solid var(--gold);border-radius:8px;padding:14px 18px;margin:16px 0;font-style:italic}
+  .quote small{display:block;color:var(--muted);font-style:normal;font-family:var(--sans);margin-top:6px}
+  .experiment{background:#13223a;border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .experiment b.lab{font-family:var(--sans);color:var(--green);display:block;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+  .verdict{background:#12241c;border-left:4px solid var(--green);border-radius:8px;padding:12px 16px;margin:14px 0;font-family:var(--sans);font-size:.95rem}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.88rem;margin:14px 0}
+  th,td{border:1px solid #2a3557;padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#1c2749;color:var(--accent)}
+  code{background:#0a0f1d;border:1px solid #2a3557;border-radius:5px;padding:1px 6px;font-size:.86em;color:var(--green)}
+  .diagram{background:#0a0f1d;border:1px solid #2a3557;border-radius:10px;padding:16px;margin:18px 0;overflow-x:auto}
+  .diagram svg{display:block;margin:0 auto;min-width:640px}
+  .caption{font-family:var(--sans);font-size:.8rem;color:var(--muted);text-align:center;margin-top:8px}
+  .tl{position:relative;margin:30px 0 10px;padding-left:30px}
+  .tl:before{content:"";position:absolute;left:9px;top:4px;bottom:4px;width:3px;background:linear-gradient(#4cc9f0,#f72585);}
+  .ev{position:relative;margin:0 0 22px}
+  .ev:before{content:"";position:absolute;left:-27px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--dot,#4cc9f0);box-shadow:0 0 0 4px rgba(76,201,240,.15)}
+  .ev .yr{font-family:var(--sans);font-weight:700;color:var(--gold);font-size:.9rem;letter-spacing:1px}
+  .ev h4{margin:2px 0 4px;font-size:1.02rem}
+  .ev p{margin:0;color:#c4cde3;font-size:.95rem}
+  .ev .who{font-family:var(--sans);font-size:.78rem;color:var(--accent2);letter-spacing:.5px}
+  footer{font-family:var(--sans);color:var(--muted);text-align:center;font-size:.8rem;margin-top:40px}
+  @media(max-width:640px){section{padding:20px 16px} header h1{font-size:1.55rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>The <span>Principia</span> (1687): Force Proved by Geometry and Star Charts</h1>
+  <p class="tag">How Isaac Newton, using almost no equations — only Euclidean geometry, limiting arguments, and Tycho Brahe's and Flamsteed's astronomical data — formulated the concept behind <b>F&nbsp;=&nbsp;ma</b> and proved that the force holding the planets must fall as the inverse square of the distance. A walk through the actual propositions of the <i>Philosophiæ Naturalis Principia Mathematica</i>.</p>
+  <div class="pillars">
+    <span>📐 No calculus in print — pure geometry</span>
+    <span>⭐ Kepler's laws as input data</span>
+    <span>🪐 Book 3: astronomical verification</span>
+    <span>☄️ Halley's comet — the prediction</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#background">Background</a>
+  <a href="#laws">Three laws &amp; F=ma</a>
+  <a href="#geometry">Newton's geometry toolkit</a>
+  <a href="#area">Prop 1–2: the area law</a>
+  <a href="#ellipse">Prop 11: ellipse → 1/r²</a>
+  <a href="#deduction">1/r³ → inverse square</a>
+  <a href="#book3">Book 3: the measurements</a>
+  <a href="#moon">Moon, tides &amp; comets</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#sources">Sources</a>
+</nav>
+
+<!-- ==================== BACKGROUND ==================== -->
+<section id="background">
+  <h2>1 · What Newton had to work with (1609–1684)</h2>
+  <p class="lead">The Principia solved a problem that was, in modern terms, data-driven: three empirical "laws" of planetary motion, and no theory that could unify them with mechanics on Earth.</p>
+  <p>By the 1680s, the following facts were firmly established:</p>
+  <ul>
+    <li><b>Kepler's first law (1609):</b> each planet moves in an ellipse with the Sun at one focus — extracted from Tycho Brahe's naked-eye observations of Mars, accurate to about 1 arcminute.</li>
+    <li><b>Kepler's second law (1609):</b> the line from Sun to planet sweeps out equal areas in equal times.</li>
+    <li><b>Kepler's third law (1619):</b> the squares of the orbital periods are proportional to the cubes of the orbital semi-major axes (<code>T² ∝ a³</code>).</li>
+    <li><b>Galileo's mechanics (1638):</b> falling bodies on Earth accelerate uniformly, and projectile motion is parabolic — terrestrial motion obeyed mathematical rules.</li>
+    <li><b>Huygens (1673):</b> the mathematics of circular motion — the "centrifugal" tendency of a body in orbit, which allowed the strength of orbital "attraction" to be computed and compared with gravity.</li>
+  </ul>
+  <p>In the early 1680s several scientists — Hooke, Halley, Wren — guessed that an <b>inverse-square</b> attraction might explain the planets, but none could prove it. In August 1684 Edmond Halley travelled to Cambridge and asked Newton a precise question: what orbit would a body follow under an inverse-square force? Newton answered immediately: "an ellipse — and I have calculated it." Halley, stunned, extracted the manuscript, paid for its printing out of his own pocket, and the <i>Principia</i> appeared in July 1687.</p>
+  <div class="concept">The decisive novelty: Newton would treat <i>attraction</i> as a physical, measurable quantity — a "force" — and use the <i>observed shape of orbits</i> to compute the law that the force must obey. Astronomy became the laboratory.</div>
+</section>
+
+<!-- ==================== LAWS ==================== -->
+<section id="laws">
+  <h2>2 · The three laws — and how close Newton came to F = ma</h2>
+  <p class="lead">Book 1 of the Principia opens with definitions and axioms. Here Newton builds the concept that a century later would be written <code>F = ma</code> — but he does it with proportions and geometry, not equations.</p>
+  <h3>Definitions (the vocabulary)</h3>
+  <table>
+    <tr><th>Newton's term</th><th>His definition (paraphrased)</th><th>Modern symbol</th></tr>
+    <tr><td>Quantity of matter</td><td>Density × volume; measured by weight</td><td>mass, <i>m</i></td></tr>
+    <tr><td>Quantity of motion</td><td>Matter × velocity</td><td>momentum, <i>mv</i></td></tr>
+    <tr><td>Vis insita / inertia</td><td>The power of matter to resist change of its motion</td><td>(inertia)</td></tr>
+    <tr><td>Centripetal force</td><td>Force by which bodies are drawn toward a center — his umbrella term for gravitation, magnetism, etc.</td><td>(directed force)</td></tr>
+  </table>
+  <h3>Axiomata sive Leges Motus — the three laws</h3>
+  <div class="quote">"Law I: Every body continues in its state of rest, or of uniform motion in a right line, unless it is compelled to change that state by forces impressed upon it."
+  <small>Principia (1687), Axioms, Law 1</small></div>
+  <div class="quote">"Law II: The <b>alteration of motion</b> [change of quantity of motion] is <b>proportional to the motive force impressed</b>; and is made in the direction of the right line in which that force is impressed."
+  <small>Principia (1687), Axioms, Law 2</small></div>
+  <div class="quote">"Law III: To every action there is always opposed an equal reaction."
+  <small>Principia (1687), Axioms, Law 3</small></div>
+  <p><b>Read Law 2 as an equation:</b> "alteration of motion" = change of <i>mv</i>; "proportional to the force" — per unit time (Newton applies the law over equal small intervals) — gives <code>F ∝ Δ(mv)/Δt</code>, i.e. <code>F ∝ ma</code> when mass is constant. Every step of Book 1 is, in effect, an application of this proportion: an impressed force deflects a moving body, and the <i>deflection in a small time</i> stands for the force.</p>
+  <div class="experiment">
+    <b class="lab">An honest historical caveat</b>
+    Newton never wrote the symbols <code>F = ma</code>. He had no vector acceleration, no <i>dt</i> calculus in print, and stated Law 2 as a <b>proportionality between force and change of motion</b>. The modern equation <code>F = ma</code> was published by <b>Leonhard Euler in 1775</b>, nearly half a century after Newton's death, as calculus-based mechanics matured. (Historians of science have documented this carefully; e.g. the analysis of the Principia's Second Law vs. Euler's 1775 formulation.) Newton's formulation and Euler's are logically consistent — Euler's equation is the algebraic extraction of the proportion Newton used geometrically — but the textbook equation is Euler's wording, not Newton's.
+  </div>
+  <div class="verdict">✅ <b>The conceptual achievement:</b> force defined as a measurable cause of <i>change</i> of motion (not of motion itself — his deepest break with Aristotle and Descartes), quantified by proportionality, and made directional ("in the right line in which the force is impressed") — geometry's way of saying "vector."</div>
+</section>
+
+<!-- ==================== GEOMETRY TOOLKIT ==================== -->
+<section id="geometry">
+  <h2>3 · Newton's geometry: how to differentiate without calculus</h2>
+  <p class="lead">The Principia contains almost no equations of motion. Its engine is Euclid: a moving body is a sequence of tiny straight-line chords, and forces enter as little deflecting segments.</p>
+  <p>Newton's strategy for an orbit under a central force:</p>
+  <ul>
+    <li>Approximate the orbit as a polygon of equal time-steps. In the absence of force, the body moves in a <b>straight chord</b> each step (Law I).</li>
+    <li>At each vertex, the central force delivers an impulse that adds a small deflection — a little segment <b>pointing at the center</b> (Law II: deflection ∝ force, in the direction of the force).</li>
+    <li>Use <b>similar triangles and ratios of lines</b> to relate the deflection to geometric features of the orbit (its diameter, latus rectum, distance to the focus).</li>
+    <li>Let the time-steps shrink "in infinitum" using his theory of <b>"first and ultimate ratios"</b> (Book 1, Section 1, Lemmas I–XI) — a geometric theory of limits which he published precisely because he was reluctant to publish his fluxion calculus.</li>
+  </ul>
+  <div class="diagram">
+  <svg viewBox="0 0 760 260" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" font-family="system-ui">
+    <rect width="760" height="260" fill="#0a0f1d"/>
+    <!-- polygonal orbit -->
+    <polygon points="80,130 180,70 300,55 420,90 480,170 360,215 200,205 80,130" fill="none" stroke="#4cc9f0" stroke-width="2"/>
+    <!-- center S -->
+    <circle cx="280" cy="140" r="6" fill="#f72585"/>
+    <text x="292" y="146" fill="#f72585" font-size="13">S (center of force)</text>
+    <!-- impulse segments at vertices -->
+    <line x1="300" y1="55" x2="295" y2="140" stroke="#80ed99" stroke-width="2" stroke-dasharray="4 3"/>
+    <line x1="420" y1="90" x2="355" y2="132" stroke="#80ed99" stroke-width="2" stroke-dasharray="4 3"/>
+    <line x1="480" y1="170" x2="385" y2="147" stroke="#80ed99" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="330" y="44" fill="#80ed99" font-size="12">deflection ∝ force, always toward S</text>
+    <!-- equal-area triangles -->
+    <polygon points="280,140 180,70 80,130" fill="rgba(255,209,102,.10)" stroke="none"/>
+    <polygon points="280,140 360,215 200,205" fill="rgba(255,209,102,.10)" stroke="none"/>
+    <text x="150" y="250" fill="#ffd166" font-size="12">Each shaded triangle SPQ has the same area as the step before —</text>
+    <text x="150" y="264" fill="#ffd166" font-size="12">because the height (deflection through S) never displaces area.  → equal areas in equal times</text>
+  </svg>
+  <p class="caption">The polygonal-orbit construction of Book 1, Proposition 1: impulses toward S (green) deflect straight chords (blue); the resulting triangles swept in equal times have equal bases and heights, hence equal areas. Force toward a center ⇒ Kepler's second law falls out for free.</p>
+  </div>
+</section>
+
+<!-- ==================== AREA LAW ==================== -->
+<section id="area">
+  <h2>4 · Propositions 1 &amp; 2: the area law — force must be central</h2>
+  <p class="lead">Newton's first dynamical theorem uses the geometry above to connect an observational fact to the nature of the force.</p>
+  <div class="experiment">
+    <b class="lab">Book 1, Prop. 1 (and its converse, Prop. 2)</b>
+    <b>Prop. 1:</b> If a body, with a centripetal force directed to a fixed center S, sweeps out <i>equal areas in equal times</i> (Kepler II), the force is always directed to S. — Proved with the polygon construction: each equal-time deflection, by Law II, points along the force; the equal-area property of the triangles holds if and only if each deflection segment is parallel to the radius through S.
+    <br><br>
+    <b>Prop. 2 (converse):</b> If the areas are proportional to the times, the force is centripetal. So Kepler's second law, taken from observation, is <i>equivalent</i> to the statement that a single central force governs each planet. This is how observation pins down the <i>direction</i> of the force.
+  </div>
+  <p>Book 1, Prop. 6 then delivers Newton's master measurement tool: for any orbit under central force, the force at a point is proportional to <code>SP² × QT² / QR</code> (in the limit as Q approaches P), where QR is the tiny deflection, QT the perpendicular from the center to the tangent, and SP the radius. Every later proposition becomes a problem in Euclidean algebra: <b>compute the ratio QR/QT² for the curve in question, and you have the force law.</b> This single geometric formula is the engine of the whole proof of universal gravitation.</p>
+</section>
+
+<!-- ==================== ELLIPSE ==================== -->
+<section id="ellipse">
+  <h2>5 · Propositions 11–13: an ellipse forces the law to be 1/r²</h2>
+  <p class="lead">Here is the heart of the Principia: pure conic-section geometry — Apollonius, not calculus — converting Kepler's first law into the inverse-square law.</p>
+  <div class="experiment">
+    <b class="lab">Book 1, Prop. 11 (the direct problem)</b>
+    "Let a body revolve in an ellipse; it is required to find the law of the centripetal force tending to the focus of the ellipse." Newton draws the orbit, the focus S, the tangent, the deflection QR and the perpendicular QT, and then uses two classical properties of the ellipse:
+    <ol>
+      <li>The <b>latus rectum</b> L of an ellipse satisfies <code>L × (PV) = (QV)²</code> for the chord through the position — a standard conic identity relating the small arc segment to the diameter.</li>
+      <li>In the limiting triangle, <code>QR / QT²</code> reduces, after cancellation of similar triangles, to the constant <code>1 / L</code> — the latus rectum, a fixed number for the given orbit.</li>
+    </ol>
+    Substituting into the Prop. 6 measure of force (<code>F ∝ SP² QT² / QR</code>), the QT² and QR terms cancel against the conic identity, leaving <code>F ∝ 1 / SP²</code> — the force is <b>inversely as the square of the distance to the focus</b>, with a constant set by the ellipse's dimensions. Propositions 12 and 13 repeat the computation for the hyperbola and parabola with the same result. <b>No derivatives, no integrals — ratios of lines in similar triangles.</b>
+  </div>
+  <p>Proposition 17 then solves the inverse problem — given an inverse-square force and initial position and velocity, the orbit is a conic — completing the equivalence between "Kepler orbits" and "inverse-square force." (The proofs were hard even for giants: Feynman famously abandoned trying to reconstruct Newton's first proof of Prop. 11 during his 1964 lecture and invented his own.)</p>
+  <div class="diagram">
+  <svg viewBox="0 0 760 300" width="100%" height="300" xmlns="http://www.w3.org/2000/svg" font-family="system-ui">
+    <rect width="760" height="300" fill="#0a0f1d"/>
+    <!-- ellipse -->
+    <ellipse cx="300" cy="160" rx="230" ry="100" fill="none" stroke="#4cc9f0" stroke-width="2"/>
+    <!-- foci -->
+    <circle cx="210" cy="160" r="6" fill="#f72585"/>
+    <circle cx="390" cy="160" r="4" fill="#9aa7c4"/>
+    <text x="185" y="185" fill="#f72585" font-size="13">S (Sun at focus)</text>
+    <!-- planet at P -->
+    <circle cx="455" cy="60" r="6" fill="#80ed99"/>
+    <text x="465" y="56" fill="#80ed99" font-size="13">P (planet)</text>
+    <!-- radius vector SP -->
+    <line x1="210" y1="160" x2="455" y2="60" stroke="#f72585" stroke-width="1.5"/>
+    <text x="320" y="95" fill="#f72585" font-size="12">SP = r</text>
+    <!-- tangent at P -->
+    <line x1="370" y1="95" x2="530" y2="35" stroke="#ffd166" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="540" y="40" fill="#ffd166" font-size="12">tangent (direction of motion)</text>
+    <!-- Q nearby, QR deflection -->
+    <circle cx="490" cy="80" r="4" fill="#e8ecf5"/>
+    <text x="500" y="76" fill="#e8ecf5" font-size="12">Q</text>
+    <line x1="490" y1="80" x2="455" y2="60" stroke="#80ed99" stroke-width="1.5"/>
+    <!-- perpendicular QT -->
+    <line x1="210" y1="160" x2="440" y2="95" stroke="#80ed99" stroke-width="1" stroke-dasharray="3 3"/>
+    <text x="255" y="118" fill="#80ed99" font-size="12">QT (perp. to tangent)</text>
+    <text x="330" y="230" fill="#e8ecf5" font-size="13" font-weight="700">Prop 11: F ∝ SP² · QT² / QR,  and  QT² / QR → constant for an ellipse</text>
+    <text x="330" y="252" fill="#ffd166" font-size="13" font-weight="700">⟹  F ∝ 1/SP²  — the inverse-square law</text>
+    <text x="330" y="278" fill="#9aa7c4" font-size="11">proved with similar triangles and the latus-rectum identity of conics (Apollonius)</text>
+  </svg>
+  <p class="caption">The geometric skeleton of Book 1, Prop. 11. The little deflection QR (from Law II) and the tangent geometry of the ellipse combine so that every distance-dependent factor cancels except one power of SP² — leaving the inverse square.</p>
+  </div>
+</section>
+
+<!-- ==================== DEDUCTION ==================== -->
+<section id="deduction">
+  <h2>6 · Proposition 4 + Corollary 6: circular orbits and T² ∝ a³ seal it</h2>
+  <p class="lead">A second, independent route to 1/r² comes from Kepler's third law, and it is almost one line of proportion.</p>
+  <div class="experiment">
+    <b class="lab">Book 1, Prop. 4 and Corollaries 2–6</b>
+    For uniform circular motion, Huygens's result (re-derived geometrically by Newton) says the "centrifugal" measure is <code>v²/r</code> — in Newton's proportion-language: the force is as the square of the velocity divided by the radius. For a circle, the speed is circumference over period: <code>v = 2πr/T</code>. Combine the two: force ∝ <code>r/T²</code>. Now impose <b>Kepler's third law</b>, <code>T² ∝ r³</code> (from the astronomical tables), and you get force ∝ <code>r / r³ = 1/r²</code>. <b>Corollary 6 of Prop. 4 states exactly this:</b> the centripetal forces of bodies describing circles are inversely as the squares of the distances — provided (Newton notes carefully) the periodic times are as the 3/2 power of the radii, which is precisely what Kepler found.
+  </div>
+  <div class="verdict">✅ <b>Two independent geometric derivations, two independent Kepler laws:</b> the shape of the orbit (ellipse, Prop. 11) and the timing of the orbits (T²∝a³, Prop. 4 Cor. 6) each force the same law, 1/r². This double coincidence is what convinced the scientific world — the same conclusion from two unrelated sets of measurements.</div>
+</section>
+
+<!-- ==================== BOOK 3 ==================== -->
+<section id="book3">
+  <h2>7 · Book 3: the astronomical measurements — the "Rules of Philosophy"</h2>
+  <p class="lead">Book 1 is pure mathematics. Book 3, "The System of the World," is where Newton confronts the theory with data — the first large-scale quantitative verification in the history of science.</p>
+  <p>Newton begins with methodological rules (the famous <i>Regulæ Philosophandi</i> — "no more causes of things are to be admitted than are true and sufficient to explain them"; "qualities found to belong to all bodies are to be taken as belonging to all bodies universally") and then a list of <b>"Phenomena"</b>: the observed motions of Jupiter's moons, Saturn's moons, the planets, and the Moon — each stated with periods and distances from the best astronomical tables (Tycho, Flamsteed, Cassini, Borelli).</p>
+  <div class="experiment">
+    <b class="lab">Book 3, Propositions 1–5 — the test is proportional equality</b>
+    Newton checks, body by body, that each system satisfies Kepler's area and period laws, and therefore (by the Book 1 theorems) that each is governed by an inverse-square force:
+    <table>
+      <tr><th>Proposition</th><th>System</th><th>Measured test</th></tr>
+      <tr><td>Book 3, Prop. 1</td><td>Jupiter's four moons (Galileo 1610)</td><td>T² ∝ r³ verified against observations — so the force on each moon falls as 1/r² from Jupiter's center</td></tr>
+      <tr><td>Book 3, Prop. 2</td><td>Primary planets</td><td>Area law holds (from Flamsteed's and Tycho's data) — forces directed to the Sun; T²∝a³ holds — forces fall as 1/r²</td></tr>
+      <tr><td>Book 3, Prop. 3</td><td>Moon</td><td>Same conclusion for the Earth–Moon system</td></tr>
+      <tr><td>Book 3, Prop. 4</td><td>All of the above</td><td>"The moon gravitates toward the Earth and by the force of gravity is always drawn back from rectilinear motion and kept in its orbit" — the same <i>kind</i> of force as makes apples fall</td></tr>
+      <tr><td>Book 3, Prop. 5, Cor. 1</td><td>All bodies</td><td>There is a power of gravity pertaining to <b>all</b> bodies, proportional to the quantity of matter — universal gravitation</td></tr>
+    </table>
+    The decisive numeric coincidence (Book 3, Prop. 4): the Moon's orbital "fall" toward Earth, computed from its period and distance, matches surface gravity g at the Earth — reduced exactly by the factor (Earth-radius / Moon-distance)², as an inverse-square law demands. The Moon, Newton concludes, <i>is falling</i>, forever, and the force is one and the same gravity.
+  </div>
+  <p>Prop. 7 then states the general law with the proportionality constants: gravity between any two bodies is proportional to the product of their quantities of matter and inversely as the square of the distance — <code>F ∝ m₁m₂/r²</code> — the statement Laplace would later write in symbols, and which still carries Newton's name.</p>
+</section>
+
+<!-- ==================== MOON / COMETS ==================== -->
+<section id="moon">
+  <h2>8 · Predictions: the Moon's wobbles, tides, flattened Earth, and Halley's comet</h2>
+  <p class="lead">Newton understood that a theory earns trust by predicting things nobody had measured. Book 3 delivers.</p>
+  <ul>
+    <li><b>The lunar inequalities:</b> the Moon's orbit is not a perfect ellipse — it wobbles because the Sun pulls on it too. Newton computed the two largest perturbations (the "variation" and the evection) from vector addition of solar and terrestrial attractions — three-body geometry, done with force parallelograms.</li>
+    <li><b>Tides:</b> explained as the differential pull of the Moon (and Sun) on near and far sides of the oceans — the same inverse-square law acting across the Earth's diameter.</li>
+    <li><b>The shape of the Earth:</b> the spinning Earth should bulge at the equator. Newton computed the oblateness from balancing gravity against centrifugal tendency — predicting a flattened Earth (confirmed by French geodetic expeditions to Lapland and Peru in the 1730s–40s, against Cartesian predictions of an elongated Earth).</li>
+    <li><b>Precession of the equinoxes:</b> Newton explained the slow drift of Earth's axis as gravitational torque of the Moon on Earth's equatorial bulge — 26,000-year wobble from the same law.</li>
+    <li><b>Comets:</b> Book 3 shows comet paths are conics through the Sun's focus under the same law — hence comets obey gravitation, not Aristotelian weather. Edmond Halley applied this to the comets of 1531, 1607 and 1682, recognized them as one body, and predicted its return in 1758. Seen on 25 December 1758, after Halley's death, it was the first object beyond the planets ever predicted by a physical law — the posthumous seal on the Principia.</li>
+  </ul>
+  <div class="verdict">✅ <b>The full arc:</b> geometry (Books 1–2) turns observed orbital shapes and periods into a force law; Book 3 turns the force law into verified physics across the solar system; Halley's comet turned the physics into prophecy. All from ratios of lines, similar triangles, and star charts.</div>
+</section>
+
+<!-- ==================== TIMELINE ==================== -->
+<section id="timeline">
+  <h2>9 · Timeline</h2>
+  <div class="tl" id="tl"></div>
+</section>
+
+<!-- ==================== SOURCES ==================== -->
+<section id="sources">
+  <h2>10 · Sources &amp; further reading</h2>
+  <div class="ref" style="font-family:var(--sans);font-size:.88rem;padding:10px 0;border-bottom:1px solid #222c4a">Newton, I. (1687, 1713, 1726). <i>Philosophiæ Naturalis Principia Mathematica</i>. The standard English translation: I. B. Cohen &amp; A. Whitman (1999), <i>The Principia: Mathematical Principles of Natural Philosophy</i>, Univ. of California Press — includes a guide to Newton's geometric methods and the "ultimate ratios" of Book 1, Section 1.</div>
+  <div class="ref" style="font-family:var(--sans);font-size:.88rem;padding:10px 0;border-bottom:1px solid #222c4a">Chandrasekhar, S. (1995). <i>Newton's Principia for the Common Reader</i>. Oxford Univ. Press — proposition-by-proposition modern walkthrough of the geometry of Props. 1, 11, and Book 3.</div>
+  <div class="ref" style="font-family:var(--sans);font-size:.88rem;padding:10px 0;border-bottom:1px solid #222c4a">Brackenridge, J. B. (1995). <i>The Key to Newton's Dynamics: The Kepler Problem and the Principia</i>. Univ. of California Press — the definitive study of the SP²·QT²/QR measure and its conic-geometry implementation.</div>
+  <div class="ref" style="font-family:var(--sans);font-size:.88rem;padding:10px 0;border-bottom:1px solid #222c4a">For the F = ma attribution to Euler (1775) rather than Newton, see the historical analyses of the Principia's Second Law vs. Euler's later algebraic formulation, e.g. the 2024 historical review in <i>Results in Physics</i> (Elsevier) examining how Euler's <code>F = ma</code> derives from the Principia's Second Law.</div>
+  <div class="ref" style="font-family:var(--sans);font-size:.88rem;padding:10px 0;color:var(--muted)">On Feynman's lost lecture reconstructing Prop. 11: D. L. Goodstein &amp; J. R. Goodstein (1996), <i>Feynman's Lost Lecture: The Motions of Planets Around the Sun</i>.</div>
+</section>
+
+<footer>Built as a self-contained educational page · Historical facts consistent with the scholarly literature on the Principia</footer>
+</div>
+
+<script>
+const EVENTS = [
+  {yr:"1609–1619", who:"Kepler · Prague & Graz", dot:"#ffd166", title:"The three laws, extracted from Tycho's data", txt:"Ellipse, equal areas, T²∝a³ — empirical regularities with no cause yet.", href:"#background"},
+  {yr:"1638", who:"Galileo", dot:"#ffd166", title:"Terrestrial mechanics becomes mathematical", txt:"Uniform acceleration of falling bodies; parabolic projectiles — mechanics ready to be united with astronomy.", href:"#background"},
+  {yr:"1673", who:"Huygens", dot:"#ffd166", title:"Circular motion quantified", txt:"The 'centrifugal force' measure v²/r gives astronomers a way to compare orbital attraction with gravity.", href:"#background"},
+  {yr:"Aug 1684", who:"Halley visits Newton · Cambridge", dot:"#f72585", title:"'What orbit under an inverse-square force?' — 'An ellipse. I have calculated it.'", txt:"Halley persuades Newton to write it up and pays for the printing himself.", href:"#background"},
+  {yr:"1686–87", who:"Newton", dot:"#4cc9f0", title:"The Principia: definitions, three laws, ultimate ratios", txt:"Law 2 states the F-concept as a proportionality between impressed force and change of motion — the geometric seed of F=ma. Books 1–2 develop the geometry; the fluxion calculus is kept out of print.", href:"#laws"},
+  {yr:"1687", who:"Principia Book 1", dot:"#4cc9f0", title:"Props. 1–6: area law ⇒ central force; the SP²QT²/QR measure", txt:"Kepler II becomes a theorem about force direction; a single geometric ratio becomes the engine for computing any force law from any orbit.", href:"#area"},
+  {yr:"1687", who:"Principia Book 1", dot:"#80ed99", title:"Props. 11–13: ellipse ⇒ inverse square", txt:"Similar triangles plus the latus-rectum identity of conics: force ∝ 1/SP². Prop. 4 Cor. 6 independently gives 1/r² from T²∝a³.", href:"#ellipse"},
+  {yr:"1687", who:"Principia Book 3", dot:"#80ed99", title:"The System of the World: theory meets star charts", txt:"Jupiter's moons, Saturn's moons, planets, the Moon — each checked against observed periods and distances; the Moon's orbital fall matches terrestrial gravity. Universal gravitation: F ∝ m₁m₂/r².", href:"#book3"},
+  {yr:"1687–1727", who:"Newton; followers", dot:"#4cc9f0", title:"Predictions: tides, oblate Earth, precession, lunar wobbles", txt:"The same law explains the sea, the Earth's shape, and the 26,000-year wobble of the axis — confirmed by 18th-century geodesy.", href:"#moon"},
+  {yr:"1758", who:"Halley (posthumous)", dot:"#f72585", title:"The comet returns on schedule", txt:"Seen Christmas night 1758 as Halley had predicted from Newton's comet theory — gravitation's first prediction beyond the known planets.", href:"#moon"},
+  {yr:"1775", who:"Euler", dot:"#f72585", title:"F = ma written down at last", txt:"Nearly 90 years after the Principia, Euler publishes the algebraic equation that textbooks now attribute to Newton's Second Law.", href:"#laws"}
+];
+const tl = document.getElementById("tl");
+tl.innerHTML = EVENTS.map(e => `
+  <div class="ev" style="--dot:${e.dot}">
+    <div class="yr">${e.yr} · <span class="who">${e.who}</span></div>
+    <h4><a href="${e.href}" style="color:inherit;text-decoration:none;border-bottom:1px dotted ${e.dot}">${e.title}</a></h4>
+    <p>${e.txt}</p>
+  </div>`).join("");
+</script>
+</body>
+</html>
