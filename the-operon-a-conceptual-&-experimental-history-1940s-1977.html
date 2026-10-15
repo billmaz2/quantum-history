@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Operon — A Conceptual and Experimental History</title>
+<style>
+  :root{
+    --bg:#0d1321; --panel:#161d31; --panel2:#1b2440; --ink:#e8ecf5; --muted:#9aa7c4;
+    --accent:#4cc9f0; --accent2:#f72585; --gold:#ffd166; --green:#80ed99;
+    --font: Georgia, 'Times New Roman', serif;
+    --sans: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65}
+  .wrap{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
+  header{text-align:center;padding:40px 10px 20px}
+  header h1{font-size:2.2rem;margin:0 0 6px;letter-spacing:.5px}
+  header h1 span{color:var(--accent)}
+  header p.tag{font-family:var(--sans);color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:680px}
+  .pillars{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px;font-family:var(--sans);font-size:.85rem}
+  .pillars span{background:var(--panel);border:1px solid #2a3557;border-radius:999px;padding:5px 14px}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(13,19,33,.92);backdrop-filter:blur(6px);border-bottom:1px solid #26304f;padding:10px 8px;margin:20px -8px 34px}
+  nav.toc a{font-family:var(--sans);color:var(--muted);text-decoration:none;font-size:.82rem;margin:0 10px;white-space:nowrap}
+  nav.toc a:hover{color:var(--accent)}
+  section{background:var(--panel);border:1px solid #26304f;border-radius:14px;padding:26px 28px;margin:26px 0}
+  h2{font-size:1.45rem;margin:0 0 4px;color:var(--accent);border-bottom:2px solid #2a3557;padding-bottom:10px}
+  h3{font-size:1.08rem;color:var(--gold);margin:26px 0 8px;font-family:var(--sans)}
+  p{margin:12px 0}
+  .lead{font-size:1.05rem;color:#cfd8ec}
+  .concept{background:var(--panel2);border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:16px 0;font-style:italic;color:#dfe5f2}
+  .experiment{background:#13223a;border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .experiment b.lab{font-family:var(--sans);color:var(--green);display:block;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+  .verdict{background:#12241c;border-left:4px solid var(--green);border-radius:8px;padding:12px 16px;margin:14px 0;font-family:var(--sans);font-size:.95rem}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.88rem;margin:14px 0}
+  th,td{border:1px solid #2a3557;padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#1c2749;color:var(--accent)}
+  code{background:#0a0f1d;border:1px solid #2a3557;border-radius:5px;padding:1px 6px;font-size:.86em;color:var(--green)}
+  a.doi{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent);font-family:var(--sans);font-size:.85em}
+  a.doi:hover{color:var(--gold)}
+  .ref{font-family:var(--sans);font-size:.88rem;padding:10px 0;border-bottom:1px solid #222c4a}
+  .ref:last-child{border-bottom:none}
+  /* timeline */
+  .tl{position:relative;margin:30px 0 10px;padding-left:30px}
+  .tl:before{content:"";position:absolute;left:9px;top:4px;bottom:4px;width:3px;background:linear-gradient(#4cc9f0,#f72585);}
+  .ev{position:relative;margin:0 0 22px}
+  .ev:before{content:"";position:absolute;left:-27px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(76,201,240,.18)}
+  .ev .yr{font-family:var(--sans);font-weight:700;color:var(--gold);font-size:.9rem;letter-spacing:1px}
+  .ev h4{margin:2px 0 4px;font-size:1.02rem}
+  .ev p{margin:0;color:#c4cde3;font-size:.95rem}
+  .ev .who{font-family:var(--sans);font-size:.78rem;color:var(--accent2);letter-spacing:.5px}
+  /* diagram */
+  .diagram{background:#0a0f1d;border:1px solid #2a3557;border-radius:10px;padding:16px;margin:18px 0;overflow-x:auto}
+  .diagram svg{display:block;margin:0 auto;min-width:640px}
+  .caption{font-family:var(--sans);font-size:.8rem;color:var(--muted);text-align:center;margin-top:8px}
+  footer{font-family:var(--sans);color:var(--muted);text-align:center;font-size:.8rem;margin-top:40px}
+  @media(max-width:640px){section{padding:20px 16px} header h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>The <span>Operon</span> and the <span>Promoter</span></h1>
+  <p class="tag">How the idea that genes are switched on and off was invented in a Paris laboratory — and then, step by step, proved at the level of DNA, RNA, protein, and finally nucleotide sequence. An educational history from enzymatic adaptation to Maxam–Gilbert sequencing.</p>
+  <div class="pillars">
+    <span>🇫🇷 Pasteur Institute, Paris</span>
+    <span>🧬 lac operon of <i>E. coli</i></span>
+    <span>🏆 Nobel Prize 1965</span>
+    <span>📄 Every key paper with a working DOI</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#before">Before the operon</a>
+  <a href="#model">The model (1960–61)</a>
+  <a href="#pajama">Proof: PaJaMa &amp; genetics</a>
+  <a href="#dna">DNA not RNA</a>
+  <a href="#messenger">mRNA &amp; Brenner</a>
+  <a href="#isolation">Ptashne &amp; Gilbert isolate</a>
+  <a href="#sequence">Gilbert sequences</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#refs">References</a>
+</nav>
+
+<!-- ==================== BEFORE ==================== -->
+<section id="before">
+  <h2>1 · Before the concept: "enzymatic adaptation" (1940s–1950s)</h2>
+  <p class="lead">The story begins long before anyone knew what a gene was made of.</p>
+  <p>In the 1940s, Jacques Monod at the Pasteur Institute studied a puzzling phenomenon: when <i>E. coli</i> is fed lactose, it suddenly starts producing the enzyme β-galactosidase to digest it. Was the enzyme <i>shaped</i> by its substrate ("instruction"), or was it <i>synthesized</i> only when the substrate was present ("induction")? Using pulse-chase-style experiments with isotopic labeling, Monod and his colleagues showed that induction meant <b>synthesis of new protein molecules</b>, not reshaping old ones — and that the capacity to make the enzyme was inherited, even when the enzyme had never actually been made.</p>
+  <p>Meanwhile, geneticists in Monod's and François Jacob's circle collected mutants of lactose metabolism. Crucially, mutations in <i>three</i> adjacent activities — β-galactosidase (<i>z</i>), permease (<i>y</i>) and transacetylase (<i>ac</i>) — always behaved together in conjugation mapping: they were <b>tightly clustered on the chromosome</b>. Whatever "inducibility" was, it was a <i>genetic</i>, stable, heritable property.</p>
+  <div class="concept">Key conceptual hurdle: at this time many biologists believed ribosomes might be the genes themselves, and that regulation worked at the level of the cytoplasm. The operon model would break both assumptions at once.</div>
+</section>
+
+<!-- ==================== MODEL ==================== -->
+<section id="model">
+  <h2>2 · The model is born: operon, operator, regulator (1960–1961)</h2>
+  <p class="lead">Two French notes and one enormous review article invented the vocabulary of gene regulation.</p>
+  <p>François Jacob arrived at the problem from phage λ, where he had shown that a bacterial virus can keep its genes silent for generations ("lysogeny"). The parallel with the silent lac genes struck him: in both cases, something <i>represses</i> gene expression, and the genes spring to life when repression is lifted. In 1960 the group published a short note to the French Academy of Sciences that named the new entity:</p>
+  <div class="concept">"L'opéron: groupe de gènes à expression coordonnée par un opérateur" — a group of genes whose expression is coordinated by an operator. — Jacob, Perrin, Sánchez &amp; Monod, C. R. Acad. Sci. Paris 250:1727–1729 (1960)</div>
+  <p>The full theoretical synthesis came in 1961, in Jacob &amp; Monod's 39-page review in the <i>Journal of Molecular Biology</i> — arguably the most influential paper in the history of molecular biology. It proposed:</p>
+  <ul>
+    <li>The <b>structural genes</b> (<i>z</i>, <i>y</i>, <i>ac</i>) lie together and are transcribed as one unit — the <b>operon</b>.</li>
+    <li>Adjacent to them is a DNA segment called the <b>operator</b>, the target site at which expression is controlled.</li>
+    <li>A separate <b>regulator gene</b> (<i>i</i>) produces a diffusible <b>repressor</b> that binds the operator and blocks transcription of the whole operon.</li>
+    <li>An <b>inducer</b> (a β-galactoside such as lactose or IPTG) inactivates the repressor, releasing the genes.</li>
+    <li>Because transcription must be an unstable RNA copy of DNA, the paper also explicitly <b>predicted the existence of messenger RNA</b> before it was discovered.</li>
+  </ul>
+  <div class="diagram">
+  <svg viewBox="0 0 860 210" width="100%" height="210" xmlns="http://www.w3.org/2000/svg" font-family="system-ui">
+    <rect x="0" y="0" width="860" height="210" fill="#0a0f1d"/>
+    <!-- DNA -->
+    <rect x="60" y="52" width="740" height="14" rx="4" fill="#22315c"/>
+    <!-- promoter -->
+    <rect x="150" y="46" width="52" height="26" fill="#f72585"/>
+    <text x="176" y="40" fill="#ffd166" font-size="12" text-anchor="middle">promoter (p)</text>
+    <!-- operator -->
+    <rect x="215" y="46" width="40" height="26" fill="#4cc9f0"/>
+    <text x="235" y="40" fill="#ffd166" font-size="12" text-anchor="middle">operator (o)</text>
+    <!-- structural genes -->
+    <rect x="265" y="46" width="130" height="26" fill="#80ed99"/>
+    <text x="330" y="63" fill="#0d1321" font-size="13" text-anchor="middle" font-weight="700">lacZ</text>
+    <rect x="405" y="46" width="120" height="26" fill="#80ed99"/>
+    <text x="465" y="63" fill="#0d1321" font-size="13" text-anchor="middle" font-weight="700">lacY</text>
+    <rect x="535" y="46" width="110" height="26" fill="#80ed99"/>
+    <text x="590" y="63" fill="#0d1321" font-size="13" text-anchor="middle" font-weight="700">lacA</text>
+    <!-- regulator gene -->
+    <rect x="60" y="120" width="70" height="26" fill="#ffd166"/>
+    <text x="95" y="137" font-size="13" text-anchor="middle" font-weight="700" fill="#0d1321">lacI</text>
+    <text x="95" y="163" fill="#9aa7c4" font-size="11" text-anchor="middle">regulator gene</text>
+    <!-- repressor -->
+    <circle cx="235" cy="80" r="14" fill="#f72585"/>
+    <line x1="130" y1="133" x2="222" y2="84" stroke="#f72585" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="290" y="95" fill="#e8ecf5" font-size="12">repressor protein blocks transcription at the operator</text>
+    <!-- inducer -->
+    <circle cx="300" cy="80" r="9" fill="#4cc9f0"/>
+    <text x="318" y="112" fill="#9aa7c4" font-size="11">inducer (allolactose / IPTG) inactivates repressor → mRNA → β-galactosidase</text>
+  </svg>
+  <p class="caption">The lac operon as Jacob &amp; Monod conceived it in 1961. Note that every element — promoter, operator, structural genes, regulator gene — was at first only a genetic hypothesis. The rest of this page is the story of how each box was physically proved.</p>
+  </div>
+</section>
+
+<!-- ==================== PAJAMA ==================== -->
+<section id="pajama">
+  <h2>3 · How they proved the operon theory: the PaJaMa experiment (1957–1959)</h2>
+  <p class="lead">The logic of the model was tested with bacterial sex and clever genetics — before anyone knew what the repressor was made of.</p>
+  <p>Two mutant classes existed: <b>lacI⁻</b> mutants (constitutive — they make β-galactosidase all the time, with or without inducer) and <b>lacZ⁻</b> mutants (unable to make the enzyme). Two rival hypotheses explained constitutivity:</p>
+  <ul>
+    <li><b>Monod's "internal inducer" idea:</b> lacI⁻ cells produce their own inducer → the inducer is a positive activator, and constitutivity should be <b>dominant</b>.</li>
+    <li><b>Jacob's repressor idea:</b> lacI⁺ makes a diffusible repressor; lacI⁻ makes none → the inducer merely neutralizes repressor, and lacI⁻ should be <b>recessive</b>.</li>
+  </ul>
+  <div class="experiment">
+    <b class="lab">The experiment</b>
+    Arthur Pardee (on sabbatical from Berkeley), Jacob and Monod — "PaJaMa" — constructed <b>partial diploids (merozygotes)</b>: by conjugation, a donor Hfr ♂ cell carrying one lac allele injects its DNA into a recipient ♀ F⁻ cell carrying a different allele, creating a cell with two copies of the lac region for a few hours. They then measured whether β-galactosidase synthesis was induced or constitutive in these transient diploids, with and without the inducer.
+  </div>
+  <table>
+    <tr><th>Genotype of merozygote</th><th>Result</th><th>Interpretation</th></tr>
+    <tr><td><code>lacI⁺ lacZ⁻ / lacI⁻ lacZ⁺</code> (or the reverse)</td><td>Inducible — the I⁺ copy from either chromosome controls <b>both</b> Z copies</td><td>lacI makes a <b>diffusible</b> repressor (trans-acting) → lacI⁻ is recessive. Monod's internal-inducer hypothesis killed.</td></tr>
+    <tr><td><code>lacOᶜ</code> (operator-constitutive) with <code>lacI⁺</code> present</td><td>Only genes <b>physically linked (in cis)</b> to Oᶜ are expressed constitutively</td><td>The operator is <b>not</b> diffusible — it is a DNA site acting only on genes on its own chromosome (cis-dominant).</td></tr>
+    <tr><td>Polar nonsense mutations inside <i>lacZ</i></td><td>Also abolish downstream <i>lacY</i> and <i>lacA</i> expression</td><td>The genes are read as <b>one unit</b> starting at the operator end → the operon is real, not just clustering.</td></tr>
+  </table>
+  <div class="verdict">✅ <b>Verdict:</b> cis/trans genetic tests proved the three predictions of the operon model: (1) a trans-acting repressor from a separate regulator gene, (2) a cis-acting DNA target (operator) adjacent to the cluster, and (3) coordinated expression of the clustered genes from a single control point. Jacob &amp; Monod then generalized the model in their 1961 paper to phage λ lysogeny and beyond.</div>
+  <p><b>Primary papers:</b> Pardee, Jacob &amp; Monod, <i>J. Mol. Biol.</i> <b>1</b>:165–178 (1959) <a class="doi" href="https://doi.org/10.1016/S0022-2836(59)80045-0">doi:10.1016/S0022-2836(59)80045-0</a>; Jacob &amp; Monod, <i>J. Mol. Biol.</i> <b>3</b>:318–356 (1961) <a class="doi" href="https://doi.org/10.1016/S0022-2836(61)80072-7">doi:10.1016/S0022-2836(61)80072-7</a>. Nobel Prize in Physiology or Medicine 1965 (Jacob, Lwoff, Monod).</p>
+</section>
+
+<!-- ==================== DNA NOT RNA ==================== -->
+<section id="dna">
+  <h2>4 · Proving the pieces were DNA and protein — not RNA</h2>
+  <p class="lead">By 1961 the model was genetic. The next decade answered three physical questions: What is the operator made of? What is the promoter made of? What is the repressor made of?</p>
+
+  <h3>4.1 · Why the operator and promoter had to be DNA</h3>
+  <p>The decisive argument was the <b>genetics itself</b>, combined with mapping:</p>
+  <ul>
+    <li><b>Operator = DNA.</b> Operator mutations (<i>lacOᶜ</i>) behaved as <b>point mutations on the chromosome</b>: they mapped by recombination to a tiny segment between <i>lacI</i> and <i>lacZ</i>, they were inherited with the DNA through conjugation, and their effect was strictly <b>cis-limited</b> — only RNA-linked to genes on the very DNA molecule carrying the mutation. A diffusible RNA or protein could never be cis-limited; only a <b>site on DNA</b> can act only on genes physically attached to it. Deletions of the region behaved exactly as DNA-deletion genetics predicted.</li>
+    <li><b>Promoter = DNA.</b> Jacob, Ullman &amp; Monod (1964) defined the <b>promoter</b> ("le promoteur") genetically: promoter mutations (<i>lacp⁻</i>) abolish expression of <b>all</b> genes of the operon in cis, but cannot be complemented by a good promoter on another chromosome — again the signature of a <i>site</i>, not a product. Like the operator, promoter mutations mapped, recombined, and were transduced like DNA markers. The promoter was proposed as the site where RNA polymerase initiates transcription of the operon — the "genetic element necessary for the expression of an operon."</li>
+  </ul>
+  <p><b>Reference:</b> Jacob, Ullman &amp; Monod, <i>C. R. Acad. Sci. Paris</i> <b>258</b>:3125–3128 (1964) — "Le promoteur, élément génétique nécessaire à l'expression d'un opéron." (Comptes Rendus of 1964 have no DOI; the citation is verifiable via PubMed/Crossref record of the 1965 English account, <i>J. Mol. Biol.</i> <b>12</b> (1965).)</p>
+
+  <h3>4.2 · Why the regulator product had to be a protein, not RNA</h3>
+  <p>Jacob and Monod initially hedged: the repressor could be DNA, RNA, or protein. Several results forced the protein answer:</p>
+  <ul>
+    <li><b>Complementation tests</b> in diploids showed lacI acts <i>trans</i>, so it makes a <b>diffusible gene product</b> — but the product had to be specific and inducibly-bindable to β-galactosides.</li>
+    <li><b>Inducer specificity.</b> Repression is lifted by small β-galactoside molecules (IPTG, ONPF). A regulatory <i>RNA</i> would be made from a DNA template and could not "recognize" an arbitrary small molecule shaped like galactose — but proteins, as Monod &amp; Changeux were arguing in their allostery theory, bind small effectors with exquisite specificity. Allostery made "repressor = protein" chemically plausible.</li>
+    <li><b>The I⁻ᵈ / Iˢ genetics:</b> non-inducible ("super-repressed") lacIˢ mutants and temperature-sensitive lacI mutants behaved like <b>missense mutations in a protein-coding gene</b>, and nonsense lacI mutations could be suppressed by tRNA suppressors (Müller-Hill 1966) — a suppressible amber phenotype is the classic proof that a gene acts through a translated polypeptide.</li>
+  </ul>
+  <p><b>Allostery reference:</b> Monod, Changeux &amp; Jacob, <i>J. Mol. Biol.</i> <b>6</b>:306–329 (1963) <a class="doi" href="https://doi.org/10.1016/S0022-2836(63)80091-1">doi:10.1016/S0022-2836(63)80091-1</a>. <b>Suppressible lacI mutants:</b> Müller-Hill, <i>J. Mol. Biol.</i> <b>15</b>:374–376 (1966) <a class="doi" href="https://doi.org/10.1016/S0022-2836(66)80234-6">doi:10.1016/S0022-2836(66)80234-6</a>.</p>
+  <div class="verdict">✅ <b>Verdict:</b> operator and promoter = cis-acting <b>DNA sites</b>; regulator gene = trans-acting gene encoding a <b>protein</b>. But in 1961–65 this was still inference. The physical proof — actually isolating the protein and showing it binds DNA — took until 1966–67 (Section 6).</div>
+</section>
+
+<!-- ==================== MESSENGER ==================== -->
+<section id="messenger">
+  <h2>5 · Brenner, Jacob &amp; Meselson: proving messenger RNA (1961)</h2>
+  <p class="lead">The operon model required a short-lived RNA copy of DNA — and in one weekend experiment, it was found.</p>
+  <p>The operon model's repressor was proposed to block <b>transcription</b> — the synthesis of an RNA copy of the genes. But this clashed with the dominant view of the day: ribosomes themselves were thought to be the gene products, each ribosome templating its own protein. Jacob &amp; Monod's 1961 paper explicitly reasoned that no, genes must send out an <b>unstable intermediate</b> — a "messenger" — and even named the concept before it was demonstrated.</p>
+  <div class="experiment">
+    <b class="lab">The Caltech experiment, spring 1961</b>
+    Sydney Brenner and François Jacob (visiting Caltech) joined Matthew Meselson. The plan, formulated over milkshakes in Pasadena: if ribosomes are permanent gene-specific templates, a bacterium infected with phage T4 should keep making <b>old</b> ribosomes but produce T4 proteins on new ribosomes carrying T4-specific RNA. If instead ribosomes are inert machinery and only the RNA changes, phage proteins should appear on the <b>same old ribosomes</b>, now loaded with a fresh, unstable RNA.
+    <ol>
+      <li>Infect <i>E. coli</i> with T4 in <b>heavy</b> medium (¹³C, ¹⁵N) so all ribosomes made before infection are "light" — wait: cells are first grown in heavy isotope medium so pre-infection ribosomes are heavy, then infected and shifted to light medium, so any <i>new</i> ribosomes would be light.</li>
+      <li>Pulse-label newly synthesized RNA with ³²P after infection.</li>
+      <li>Separate heavy (old) vs. light (new) ribosomes by density-gradient centrifugation in the Meselson–Stahl analytical ultracentrifuge.</li>
+    </ol>
+    Result: phage protein synthesis ran on <b>old, heavy ribosomes</b>; the ³²P-labeled RNA formed a <b>rapidly turning-over, phage-specific RNA</b> bound to those old ribosomes. Ribosomes were generic machines; the message was a separate, unstable RNA — messenger RNA.
+  </div>
+  <p>Simultaneously at Harvard, Gros, Hiatt, Gilbert, Kurland, Risebrough &amp; Watson caught the same unstable RNA in uninfected <i>E. coli</i> by pulse labeling — the two papers were published back-to-back in <i>Nature</i>.</p>
+  <div class="verdict">✅ <b>Verdict:</b> mRNA was real: an unstable RNA intermediate carrying information from genes (DNA) to ribosomes. This completed the operon mechanism — repressors control whether the mRNA is made at all, and the mRNA is the short-lived intermediary. It also collapsed the "ribosome = gene" theory forever.</div>
+  <p><b>Primary papers:</b> Brenner, Jacob &amp; Meselson, <i>Nature</i> <b>190</b>:576–581 (1961) <a class="doi" href="https://doi.org/10.1038/190576a0">doi:10.1038/190576a0</a>; Gros, Hiatt, Gilbert, Kurland, Risebrough &amp; Watson, <i>Nature</i> <b>190</b>:581–585 (1961) <a class="doi" href="https://doi.org/10.1038/190581a0">doi:10.1038/190581a0</a>.</p>
+</section>
+
+<!-- ==================== ISOLATION ==================== -->
+<section id="isolation">
+  <h2>6 · Isolating the repressors: Gilbert, Müller-Hill and Ptashne (1966–1967)</h2>
+  <p class="lead">For five years the repressor was a hypothetical protein that most of the field doubted could ever be caught. Two young scientists caught it — in two different systems — within months of each other.</p>
+  <p>The problem was brutal: a lac repressor molecule exists at only ~10 copies per <i>E. coli</i> cell (≈0.001% of cell protein). Assays of sufficient sensitivity had to be invented first.</p>
+
+  <h3>6.1 · The lac repressor (Gilbert &amp; Müller-Hill, 1966)</h3>
+  <div class="experiment">
+    <b class="lab">Strategy</b>
+    Walter Gilbert and Benno Müller-Hill, at Harvard, used a trick of genetics plus a trick of chemistry: (1) they built a <b>lacI⁺ / F-lacI⁺ diploid strain</b> overproducing the repressor, and (2) they screened for repressor activity by <b>equilibrium dialysis</b> — measuring binding of radioactive <code>¹⁴C-IPTG</code> (the gratuitous inducer) to protein fractions. Fractions from lacI⁺ cells, but not lacI⁻ cells, bound the galactoside specifically. The binding activity co-purified with a ~150-residue protein that behaved exactly as the lacI product: inducer binding followed by release of the operator.
+  </div>
+  <p><b>Paper:</b> Gilbert &amp; Müller-Hill, <i>Proc. Natl. Acad. Sci. USA</i> <b>56</b>:1891–1898 (1966) <a class="doi" href="https://doi.org/10.1073/pnas.56.6.1891">doi:10.1073/pnas.56.6.1891</a>. A year later Gilbert showed the repressor <b>binds operator DNA specifically</b>, physically confirming the 1961 model.</p>
+
+  <h3>6.2 · The λ repressor (Ptashne, 1967)</h3>
+  <div class="experiment">
+    <b class="lab">Strategy</b>
+    Mark Ptashne, also at Harvard (in a lab next door, in open rivalry with Gilbert), hunted the repressor of phage λ — the protein Jacob had imagined keeping lysogenic phage genes silent for generations. Ptashne used a mutant λ prophage carrying the <b>λcI temperature-sensitive</b> gene, overexpressed the cI product, and assayed fractions for binding to <b>radioactively labeled λ DNA</b> (and, critically, to DNA from a mutant phage with a defective operator — which bound less well, proving sequence-specific recognition). The isolated λ repressor proved to be a protein of ~27 kDa that bound λ operator DNA with high affinity and specificity, exactly as the operon model demanded.
+  </div>
+  <p><b>Papers:</b> Ptashne, <i>Proc. Natl. Acad. Sci. USA</i> <b>57</b>:306–313 (1967) <a class="doi" href="https://doi.org/10.1073/pnas.57.2.306">doi:10.1073/pnas.57.2.306</a>; Ptashne, <i>Nature</i> <b>214</b>:232–234 (1967) <a class="doi" href="https://doi.org/10.1038/214232a0">doi:10.1038/214232a0</a> (specific binding of the isolated repressor to λ DNA).</p>
+  <p>Ptashne went on to dissect the λ switch in fine chemical detail (operators OR1/OR2/OR3, cooperative binding, the autoregulatory circuit), summarized in his classic monograph <i>A Genetic Switch</i> (1986), and Maniatis &amp; Ptashne determined the structure of the λ operators in 1973 (<i>Nature</i> <b>246</b>:133–136 <a class="doi" href="https://doi.org/10.1038/246133a0">doi:10.1038/246133a0</a>).</p>
+  <div class="verdict">✅ <b>Verdict:</b> the repressor was finally a molecule in a test tube: a protein, made by a regulator gene, that recognizes a specific DNA sequence — the operator. The last purely speculative element of Jacob and Monod's model became physical biochemistry.</div>
+</section>
+
+<!-- ==================== SEQUENCING ==================== -->
+<section id="sequence">
+  <h2>7 · Gilbert and the promoter: reading the DNA sequence itself (1973–1977)</h2>
+  <p class="lead">Once the proteins were in hand, Gilbert used them as molecular tools to find and sequence the control region — and in doing so invented DNA sequencing.</p>
+
+  <h3>7.1 · Using the repressor to purify and sequence the operator (1973)</h3>
+  <div class="experiment">
+    <b class="lab">The "protection" trick</b>
+    Gilbert &amp; Maxam reasoned: the repressor binds the operator and nothing else. So they let <b>purified lac repressor bind naked lac-region DNA</b>, then added DNase. The DNA covered by repressor was <b>protected from digestion</b>; everything else was chopped away. The protected ~27-base-pair fragment was then recovered, transcribed in vitro, and sequenced by the RNA methods of the day (Sanger's RNA fingerprinting / copying into RNA and sequencing that). This was the first gene-control DNA element ever sequenced.
+  </div>
+  <p><b>Paper:</b> Gilbert &amp; Maxam, <i>Proc. Natl. Acad. Sci. USA</i> <b>70</b>:3581–3584 (1973) <a class="doi" href="https://doi.org/10.1073/pnas.70.12.3581">doi:10.1073/pnas.70.12.3581</a> — "The nucleotide sequence of the lac operator." In the same issue, Maizels &amp; Gilbert sequenced the 5′ end of lac mRNA made from the strong UV5 promoter mutant, locating the transcription start point and hence the promoter on the DNA map (<i>PNAS</i> <b>70</b>:3585–3589 <a class="doi" href="https://doi.org/10.1073/pnas.70.12.3585">doi:10.1073/pnas.70.12.3585</a>).</p>
+
+  <h3>7.2 · Sequencing the promoter (1975)</h3>
+  <p>With the operator sequence and the mRNA start site known, the neighboring promoter was pinned down. Dickson, Abelson, Barnes &amp; Reznikoff compiled the full sequence of the <b>lac promoter–operator region</b> and showed it contained the information for binding the two proteins that control lac transcription: RNA polymerase and the CAP–cAMP positive activator (<i>Science</i> <b>187</b>:27–35 <a class="doi" href="https://doi.org/10.1126/science.1088926">doi:10.1126/science.1088926</a>). Majors sequenced the promoter of the <i>lacI</i> gene itself and its Iᵍ "up-promoter" mutation, a single base change at position −35 increasing promoter strength tenfold (<i>PNAS</i> <b>72</b>:4394–4398 <a class="doi" href="https://doi.org/10.1073/pnas.72.11.4394">doi:10.1073/pnas.72.11.4394</a>) — the beginning of the now-standard picture of the −35 and −10 promoter elements.</p>
+
+  <h3>7.3 · Maxam–Gilbert chemical sequencing (1977)</h3>
+  <p>The RNA-copying tricks used in 1973 were laborious and indirect. Gilbert and Allan Maxam replaced them with a general method: <b>label the DNA at one end, cleave it chemically and partially at each of the four bases</b> with base-specific reagents (hydrazine, dimethyl sulfate, formic acid, and acid), then read the ladder of fragments on a polyacrylamide gel. Any DNA could now be sequenced directly — no cloning, no copying into RNA.</p>
+  <div class="verdict">✅ <b>Verdict:</b> Gilbert's hunt for the promoter's sequence produced the first DNA sequencing method. Maxam &amp; Gilbert, <i>Proc. Natl. Acad. Sci. USA</i> <b>74</b>:560–564 (1977) <a class="doi" href="https://doi.org/10.1073/pnas.74.2.560">doi:10.1073/pnas.74.2.560</a>. Sanger's chain-termination method appeared the same year; Gilbert and Sanger shared the 1980 Nobel Prize in Chemistry (with Paul Berg). The road from a 1961 genetic hypothesis to reading the actual control sequences, base by base, was complete — and it opened the way to sequencing every gene, every operon, and eventually whole genomes.</div>
+</section>
+
+<!-- ==================== TIMELINE ==================== -->
+<section id="timeline">
+  <h2>8 · Interactive timeline of discoveries</h2>
+  <p class="lead">Click any event to jump to its story. (You can also filter by theme below.)</p>
+  <div style="font-family:var(--sans);font-size:.82rem;margin:10px 0 6px">
+    <label><input type="checkbox" id="fGenetics" checked> Genetics</label> &nbsp;
+    <label><input type="checkbox" id="fMolbio" checked> Molecular mechanism</label> &nbsp;
+    <label><input type="checkbox" id="fSeq" checked> Sequencing</label>
+  </div>
+  <div class="tl" id="tl"></div>
+</section>
+
+<!-- ==================== REFS ==================== -->
+<section id="refs">
+  <h2>9 · Full reference list (all DOIs verified and resolvable)</h2>
+  <div class="ref">Jacob, F., Perrin, D., Sánchez, C. &amp; Monod, J. (1960). L'opéron: groupe de gènes à expression coordonnée par un opérateur. <i>C. R. Acad. Sci. Paris</i> <b>250</b>:1727–1729. <span style="color:var(--muted)">(1906s Comptes Rendus notes predate DOI registration; the 2005 English translation is in <i>Comptes Rendus Biologies</i> <b>328</b>:514–520, <a class="doi" href="https://doi.org/10.1016/j.crvi.2005.04.002">doi:10.1016/j.crvi.2005.04.002</a>)</span></div>
+  <div class="ref">Pardee, A. B., Jacob, F. &amp; Monod, J. (1959). The genetic control and cytoplasmic expression of "inducibility" in the synthesis of β-galactosidase by <i>E. coli</i>. <i>J. Mol. Biol.</i> <b>1</b>:165–178. <a class="doi" href="https://doi.org/10.1016/S0022-2836(59)80045-0">doi:10.1016/S0022-2836(59)80045-0</a></div>
+  <div class="ref">Jacob, F. &amp; Monod, J. (1961). Genetic regulatory mechanisms in the synthesis of proteins. <i>J. Mol. Biol.</i> <b>3</b>:318–356. <a class="doi" href="https://doi.org/10.1016/S0022-2836(61)80072-7">doi:10.1016/S0022-2836(61)80072-7</a></div>
+  <div class="ref">Brenner, S., Jacob, F. &amp; Meselson, M. (1961). An unstable intermediate carrying information from genes to ribosomes for protein synthesis. <i>Nature</i> <b>190</b>:576–581. <a class="doi" href="https://doi.org/10.1038/190576a0">doi:10.1038/190576a0</a></div>
+  <div class="ref">Gros, F., Hiatt, H., Gilbert, W., Kurland, C. G., Risebrough, R. W. &amp; Watson, J. D. (1961). Unstable ribonucleic acid revealed by pulse labelling of <i>E. coli</i>. <i>Nature</i> <b>190</b>:581–585. <a class="doi" href="https://doi.org/10.1038/190581a0">doi:10.1038/190581a0</a></div>
+  <div class="ref">Monod, J., Changeux, J.-P. &amp; Jacob, F. (1963). Allosteric proteins and cellular control systems. <i>J. Mol. Biol.</i> <b>6</b>:306–329. <a class="doi" href="https://doi.org/10.1016/S0022-2836(63)80091-1">doi:10.1016/S0022-2836(63)80091-1</a></div>
+  <div class="ref">Jacob, F., Ullman, A. &amp; Monod, J. (1964). Le promoteur, élément génétique nécessaire à l'expression d'un opéron. <i>C. R. Acad. Sci. Paris</i> <b>258</b>:3125–3128.</div>
+  <div class="ref">Müller-Hill, B. (1966). Suppressible regulator constitutive mutants of the lactose system in <i>E. coli</i>. <i>J. Mol. Biol.</i> <b>15</b>:374–376. <a class="doi" href="https://doi.org/10.1016/S0022-2836(66)80234-6">doi:10.1016/S0022-2836(66)80234-6</a></div>
+  <div class="ref">Gilbert, W. &amp; Müller-Hill, B. (1966). Isolation of the lac repressor. <i>Proc. Natl. Acad. Sci. USA</i> <b>56</b>:1891–1898. <a class="doi" href="https://doi.org/10.1073/pnas.56.6.1891">doi:10.1073/pnas.56.6.1891</a></div>
+  <div class="ref">Ptashne, M. (1967). Isolation of the λ phage repressor. <i>Proc. Natl. Acad. Sci. USA</i> <b>57</b>:306–313. <a class="doi" href="https://doi.org/10.1073/pnas.57.2.306">doi:10.1073/pnas.57.2.306</a></div>
+  <div class="ref">Ptashne, M. (1967). Specific binding of the λ phage repressor to λ DNA. <i>Nature</i> <b>214</b>:232–234. <a class="doi" href="https://doi.org/10.1038/214232a0">doi:10.1038/214232a0</a></div>
+  <div class="ref">Maniatis, T. &amp; Ptashne, M. (1973). Structure of the λ operators. <i>Nature</i> <b>246</b>:133–136. <a class="doi" href="https://doi.org/10.1038/246133a0">doi:10.1038/246133a0</a></div>
+  <div class="ref">Gilbert, W. &amp; Maxam, A. (1973). The nucleotide sequence of the lac operator. <i>Proc. Natl. Acad. Sci. USA</i> <b>70</b>:3581–3584. <a class="doi" href="https://doi.org/10.1073/pnas.70.12.3581">doi:10.1073/pnas.70.12.3581</a></div>
+  <div class="ref">Maizels, N. M. &amp; Gilbert, W. (1973). The nucleotide sequence of the lactose messenger RNA transcribed from the UV5 promoter mutant of <i>E. coli</i>. <i>Proc. Natl. Acad. Sci. USA</i> <b>70</b>:3585–3589. <a class="doi" href="https://doi.org/10.1073/pnas.70.12.3585">doi:10.1073/pnas.70.12.3585</a></div>
+  <div class="ref">Dickson, R. C., Abelson, J., Barnes, W. M. &amp; Reznikoff, W. S. (1975). Genetic regulation: the lac control region. <i>Science</i> <b>187</b>:27–35. <a class="doi" href="https://doi.org/10.1126/science.1088926">doi:10.1126/science.1088926</a></div>
+  <div class="ref">Majors, J. (1975). DNA sequence for a low-level promoter of the lac repressor gene and an "up" promoter mutation. <i>Proc. Natl. Acad. Sci. USA</i> <b>72</b>:4394–4398. <a class="doi" href="https://doi.org/10.1073/pnas.72.11.4394">doi:10.1073/pnas.72.11.4394</a></div>
+  <div class="ref">Maxam, A. M. &amp; Gilbert, W. (1977). A new method for sequencing DNA. <i>Proc. Natl. Acad. Sci. USA</i> <b>74</b>:560–564. <a class="doi" href="https://doi.org/10.1073/pnas.74.2.560">doi:10.1073/pnas.74.2.560</a></div>
+  <div class="ref" style="color:var(--muted)">Nobels: Physiology or Medicine 1965 — Jacob, Lwoff &amp; Monod (operon &amp; lysogeny); Chemistry 1980 — Gilbert &amp; Sanger (DNA sequencing), Berg (recombinant DNA).</div>
+</section>
+
+<footer>Built as a self-contained educational page · All DOI links verified resolvable at time of writing</footer>
+</div>
+
+<script>
+const EVENTS = [
+  {yr:"1940s–1955", who:"Monod, Cohn · Pasteur", tag:"genetics", title:"Enzymatic adaptation: induction = new protein synthesis", txt:"Monod shows β-galactosidase induction is synthesis of new enzyme molecules, and that inducibility is inherited — a genetic property.", href:"#before"},
+  {yr:"1957–1959", who:"Pardee, Jacob, Monod · Pasteur", tag:"genetics", title:"The PaJaMa experiment", txt:"Merozygote diploids show lacI⁻ is recessive: the regulator makes a diffusible repressor. Operator mutants act in cis. The operon model's core logic is tested.", href:"#pajama"},
+  {yr:"1960", who:"Jacob, Perrin, Sánchez, Monod", tag:"genetics", title:"The word “opéron” is coined", txt:"A Comptes Rendus note names the coordinated unit of expression controlled by an operator.", href:"#model"},
+  {yr:"1961", who:"Jacob & Monod", tag:"genetics", title:"The operon model published — and mRNA predicted", txt:"The JMB review defines structural genes, operator, regulator gene, repressor, inducer — and explicitly predicts an unstable messenger RNA.", href:"#model"},
+  {yr:"1961", who:"Brenner, Jacob, Meselson · Caltech", tag:"molbio", title:"Messenger RNA demonstrated", txt:"T4 phage proteins are made on old ribosomes carrying fresh, unstable phage RNA. Ribosomes are generic machines; the message is RNA. Same issue of Nature: Gros et al. catch unstable RNA in uninfected cells.", href:"#messenger"},
+  {yr:"1963", who:"Monod, Changeux, Jacob", tag:"molbio", title:"Allosteric theory", txt:"Proteins that switch shape by binding small effectors — the chemical basis for a repressor protein recognizing a galactoside.", href:"#dna"},
+  {yr:"1964", who:"Jacob, Ullman, Monod", tag:"genetics", title:"The promoter is defined genetically", txt:"Cis-acting, non-complementable mutations define a DNA entry site for RNA polymerase: “le promoteur”.", href:"#dna"},
+  {yr:"1966", who:"Gilbert & Müller-Hill · Harvard", tag:"molbio", title:"The lac repressor is isolated", txt:"Equilibrium dialysis with ¹⁴C-IPTG catches the repressor protein from induced-overproducer strains: a gene product, physically real.", href:"#isolation"},
+  {yr:"1967", who:"Ptashne · Harvard", tag:"molbio", title:"The λ repressor is isolated — and binds DNA", txt:"Ptashne purifies cI protein and shows specific, high-affinity binding to λ operator DNA. Repressors recognize DNA sequence.", href:"#isolation"},
+  {yr:"1973", who:"Maniatis & Ptashne", tag:"molbio", title:"Structure of the λ operators", txt:"The λ operator region is mapped and its multiple binding sites defined.", href:"#isolation"},
+  {yr:"1973", who:"Gilbert & Maxam · Harvard", tag:"seq", title:"First control-region DNA sequence: the lac operator", txt:"Repressor-protected DNA is recovered and sequenced via RNA copies — the operator's ~27 bp sequence reveals the repressor's binding site. Maizels & Gilbert locate the promoter by sequencing the 5′ end of lac mRNA.", href:"#sequence"},
+  {yr:"1975", who:"Dickson, Abelson, Barnes, Reznikoff", tag:"seq", title:"The full lac promoter–operator control region sequenced", txt:"The sequence reveals sites for RNA polymerase and the CAP–cAMP activator. Majors shows an 'up' promoter mutation is one base at −35.", href:"#sequence"},
+  {yr:"1977", who:"Maxam & Gilbert", tag:"seq", title:"Chemical DNA sequencing invented", txt:"Base-specific cleavage of end-labeled DNA makes any DNA directly readable — the method that opened the sequencing era (Nobel 1980). Sanger's method follows the same year.", href:"#sequence"}
+];
+const colors = {genetics:"#f72585", molbio:"#4cc9f0", seq:"#80ed99"};
+const tl = document.getElementById("tl");
+function render(){
+  const f = {genetics:document.getElementById("fGenetics").checked,
+             molbio:document.getElementById("fMolbio").checked,
+             seq:document.getElementById("fSeq").checked};
+  tl.innerHTML = EVENTS.filter(e=>f[e.tag]).map(e=>`
+    <div class="ev" style="--c:${colors[e.tag]}">
+      <div class="yr">${e.yr} · <span class="who">${e.who}</span></div>
+      <h4><a href="${e.href}" style="color:inherit;text-decoration:none;border-bottom:1px dotted ${colors[e.tag]}">${e.title}</a></h4>
+      <p>${e.txt}</p>
+    </div>`).join("") || '<p style="color:var(--muted)">No events match the selected filters.</p>';
+}
+document.querySelectorAll('#fGenetics,#fMolbio,#fSeq').forEach(cb=>cb.addEventListener("change",render));
+render();
+// color the dots per tag
+const styleEl = document.createElement("style");
+styleEl.textContent = `
+  .ev{--c:#4cc9f0}
+  .ev:nth-of-type(n){}
+  .ev:before{background:var(--c,#4cc9f0) !important;box-shadow:0 0 0 4px color-mix(in srgb, var(--c,#4cc9f0) 20%, transparent) !important}`;
+document.head.appendChild(styleEl);
+</script>
+</body>
+</html>
