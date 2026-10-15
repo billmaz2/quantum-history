@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>From Walking Dots to Four Base Lanes — A History of Sequencing</title>
+<style>
+  :root{
+    --bg:#0d1321; --panel:#161d31; --panel2:#1b2440; --ink:#e8ecf5; --muted:#9aa7c4;
+    --accent:#4cc9f0; --accent2:#f72585; --gold:#ffd166; --green:#80ed99;
+    --font: Georgia, 'Times New Roman', serif;
+    --sans: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65}
+  .wrap{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
+  header{text-align:center;padding:40px 10px 20px}
+  header h1{font-size:2.0rem;margin:0 0 6px}
+  header h1 span{color:var(--accent)}
+  header p.tag{font-family:var(--sans);color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:740px}
+  .pillars{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px;font-family:var(--sans);font-size:.85rem}
+  .pillars span{background:var(--panel);border:1px solid #2a3557;border-radius:999px;padding:5px 14px}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(13,19,33,.92);backdrop-filter:blur(6px);border-bottom:1px solid #26304f;padding:10px 8px;margin:20px -8px 34px}
+  nav.toc a{font-family:var(--sans);color:var(--muted);text-decoration:none;font-size:.8rem;margin:0 9px;white-space:nowrap}
+  nav.toc a:hover{color:var(--accent)}
+  section{background:var(--panel);border:1px solid #26304f;border-radius:14px;padding:26px 28px;margin:26px 0}
+  h2{font-size:1.42rem;margin:0 0 4px;color:var(--accent);border-bottom:2px solid #2a3557;padding-bottom:10px}
+  h3{font-size:1.06rem;color:var(--gold);margin:26px 0 8px;font-family:var(--sans)}
+  p{margin:12px 0}
+  .lead{font-size:1.05rem;color:#cfd8ec}
+  .concept{background:var(--panel2);border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:16px 0;font-style:italic;color:#dfe5f2}
+  .experiment{background:#13223a;border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .experiment b.lab{font-family:var(--sans);color:var(--green);display:block;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+  .verdict{background:#12241c;border-left:4px solid var(--green);border-radius:8px;padding:12px 16px;margin:14px 0;font-family:var(--sans);font-size:.95rem}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.88rem;margin:14px 0}
+  th,td{border:1px solid #2a3557;padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#1c2749;color:var(--accent)}
+  code{background:#0a0f1d;border:1px solid #2a3557;border-radius:5px;padding:1px 6px;font-size:.86em;color:var(--green)}
+  a.doi{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent);font-family:var(--sans);font-size:.85em}
+  a.doi:hover{color:var(--gold)}
+  .ref{font-family:var(--sans);font-size:.88rem;padding:10px 0;border-bottom:1px solid #222c4a}
+  .ref:last-child{border-bottom:none}
+  .tl{position:relative;margin:30px 0 10px;padding-left:30px}
+  .tl:before{content:"";position:absolute;left:9px;top:4px;bottom:4px;width:3px;background:linear-gradient(#4cc9f0,#f72585);}
+  .ev{position:relative;margin:0 0 22px}
+  .ev:before{content:"";position:absolute;left:-27px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--dot,#4cc9f0);box-shadow:0 0 0 4px rgba(76,201,240,.15)}
+  .ev .yr{font-family:var(--sans);font-weight:700;color:var(--gold);font-size:.9rem;letter-spacing:1px}
+  .ev h4{margin:2px 0 4px;font-size:1.02rem}
+  .ev p{margin:0;color:#c4cde3;font-size:.95rem}
+  .ev .who{font-family:var(--sans);font-size:.78rem;color:var(--accent2);letter-spacing:.5px}
+  .diagram{background:#0a0f1d;border:1px solid #2a3557;border-radius:10px;padding:16px;margin:18px 0;overflow-x:auto}
+  .diagram svg{display:block;margin:0 auto;min-width:640px}
+  .caption{font-family:var(--sans);font-size:.8rem;color:var(--muted);text-align:center;margin-top:8px}
+  footer{font-family:var(--sans);color:var(--muted);text-align:center;font-size:.8rem;margin-top:40px}
+  @media(max-width:640px){section{padding:20px 16px} header h1{font-size:1.55rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>From <span>Walking Dots</span> to <span>Four Base Lanes</span></h1>
+  <p class="tag">The history of DNA sequencing runs straight through protein chemistry and RNA sequencing: Sanger's insulin fingerprints, Edman's stepwise degradation, Holley's tRNA, the two-dimensional "fingerprint" maps and wandering spots of ³²P-labelled oligonucleotides, the plus-and-minus method, Maxam–Gilbert chemistry — and finally the four-lane dideoxy gel that read DNA like a printed sentence.</p>
+  <div class="pillars">
+    <span>🧪 Protein: insulin 1949–55</span>
+    <span>🕳 RNA: tRNA &amp; 5S 1965–67</span>
+    <span>⬤ Plus/minus "walking dots" 1975</span>
+    <span>📊 Four-lane gels 1977</span>
+    <span>🤖 Automation → HGP</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#protein">Protein sequencing</a>
+  <a href="#rna">RNA sequencing</a>
+  <a href="#earlydna">First DNA sequences</a>
+  <a href="#dots">Walking dots era</a>
+  <a href="#breakthrough">1977 breakthrough</a>
+  <a href="#gel">Four-lane gels</a>
+  <a href="#after">Automation &amp; genomes</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#refs">References</a>
+</nav>
+
+<!-- ==================== PROTEIN ==================== -->
+<section id="protein">
+  <h2>1 · Where "sequence" was invented: proteins first (1943–1958)</h2>
+  <p class="lead">The very idea that a biological polymer has a unique, exact, readout-able sequence of monomers was proved on a protein — not on DNA.</p>
+  <p>In the 1940s it was not obvious that proteins were definite chemicals at all: many believed they were statistical mixtures. Frederick Sanger, in Cambridge, destroyed that idea with insulin. His strategy became the template for every sequencing method since:</p>
+  <ul>
+    <li><b>Label one end.</b> Sanger used fluorodinitrobenzene (FDNB) to tag the free amino groups of a protein, so the N-terminal amino acid of every fragment could be identified by its yellow colour.</li>
+    <li><b>Cut the polymer into small pieces</b> — by partial acid hydrolysis, and more cleanly by proteolytic enzymes (trypsin, pepsin).</li>
+    <li><b>Separate the fragments two-dimensionally</b> — by paper chromatography and electrophoresis, producing the spot patterns Sanger called <b>"fingerprints."</b></li>
+    <li><b>Overlap the fragments.</b> Fragments from different digests share parts of their sequences; overlapping them lets you reconstruct the whole.</li>
+  </ul>
+  <p>The B chain ("phenylalanyl chain") fell in 1951 (<a class="doi" href="https://doi.org/10.1042/bj0490463">Sanger &amp; Tuppy, Biochem. J. 49:463, doi:10.1042/bj0490463</a> and <a class="doi" href="https://doi.org/10.1042/bj0490481">49:481, doi:10.1042/bj0490481</a>), the A chain by 1953, and the disulfide bonds in 1955 (<a class="doi" href="https://doi.org/10.1042/bj0600541">Ryle et al., Biochem. J. 60:541, doi:10.1042/bj0600541</a>). Insulin — 51 amino acids — had <b>one exact sequence</b>. Proteins were molecules. Sanger won his first Nobel Prize in Chemistry in 1958 for this work.</p>
+  <div class="experiment">
+    <b class="lab">Edman's rival approach: strip residues one at a time (1950)</b>
+    Pehr Edman in Sweden took a different route: phenyl isothiocyanate (PITC) couples to the N-terminal residue under mild acid, cleaving <b>only that one amino acid</b> as a phenylthiohydantoin, leaving the rest of the chain intact — so the same peptide can be degraded repeatedly, reading one residue per cycle (Acta Chem. Scand. <b>4</b>:283–293, 1950; <a class="doi" href="https://doi.org/10.3891/acta.chem.scand.04-0283">doi:10.3891/acta.chem.scand.04-0283</a>). Automated as the "sequenator" (Edman &amp; Begg 1967), this dominated protein sequencing for decades — and its logic (stepwise, one-residue-per-cycle) prefigures the chain-terminating logic Sanger later used for DNA.
+  </div>
+  <div class="verdict">✅ <b>What sequencing inherited from proteins:</b> (1) the strategy of fragment, separate in two dimensions, and overlap; (2) the idea of end-labeling; (3) the idea of stepwise degradation; and (4) Sanger himself — who now turned the same way of thinking toward nucleic acids.</div>
+</section>
+
+<!-- ==================== RNA ==================== -->
+<section id="rna">
+  <h2>2 · RNA sequencing: fingerprints, homochromatography, and "wandering spots" (1965–1969)</h2>
+  <p class="lead">Before DNA could be sequenced, RNA could — because RNA comes in small pieces, can be made radioactive, and can be cut at predictable bases with enzymes.</p>
+  <div class="experiment">
+    <b class="lab">Holley's tRNA — the first nucleic acid ever sequenced (1965)</b>
+    Robert Holley's team at Cornell spent seven years on yeast alanine tRNA (77 nucleotides). They cut the RNA into fragments with pancreatic and T1 ribonucleases (which cleave after U and G, respectively), purified the oligonucleotide fragments, sequenced each small fragment, and overlapped them — exactly Sanger's insulin logic transplanted to RNA (<i>Science</i> <b>147</b>:1462–1465, <a class="doi" href="https://doi.org/10.1126/science.147.3664.1462">doi:10.1126/science.147.3664.1462</a>). Nobel Prize 1968, shared with Khorana and Nirenberg.</div>
+  <div class="experiment">
+    <b class="lab">Sanger's radioactive fingerprinting for RNA (1965–67)</b>
+    Sanger, George Brownlee and Bart Barrell replaced chemical fragment identification with radiolabelling: grow cells in <code>³²P</code> so every nucleotide in the RNA is radioactive; digest with RNases; then separate the labeled oligonucleotides in <b>two dimensions</b> — electrophoresis in one direction, "homochromatography" (displacement chromatography on DEAE-paper or thin layers) in the other. Each fragment is a <b>spot on an autoradiograph</b> (<i>J. Mol. Biol.</i> <b>13</b>:373–398, <a class="doi" href="https://doi.org/10.1016/S0022-2836(65)80104-8">doi:10.1016/S0022-2836(65)80104-8</a>). Because T1 digestion gives fragments ending in G, the sequence of each spot can be worked out by further digestion and by <b>mobility-shift analysis</b> — the "wandering spot" method, in which a spot is digested one nucleotide at a time and its <i>walk</i> across the 2D map (each removed base shifts the spot in a characteristic, base-specific direction) is read as sequence. The 120 nucleotides of <i>E. coli</i> 5S rRNA followed in 1967 (Brownlee, Sanger &amp; Barrell, <i>J. Mol. Biol.</i> <b>23</b>:337–353, <a class="doi" href="https://doi.org/10.1016/S0022-2836(67)80109-8">doi:10.1016/S0022-2836(67)80109-8</a>), then tRNAs fell rapidly, and by 1969 fragments of phage R17 RNA were being read.
+  </div>
+  <div class="concept">This is the "walking dots" era in its pure form: sequence information lived in the positions and movements of radioactive spots on two-dimensional maps, deciphered by hand, one oligonucleotide at a time.</div>
+  <div class="verdict">✅ <b>Why RNA sequencing mattered for DNA:</b> it created the tool kit — ³²P end-labelling, base-specific cleavage, and the analysis of families of fragments differing by single bases — and it created the appetite. RNA had 4 letters and small molecules; DNA had 4 letters and huge molecules. The obvious next question was how to read DNA itself.</div>
+</section>
+
+<!-- ==================== EARLY DNA ==================== -->
+<section id="earlydna">
+  <h2>3 · The first true DNA sequences (1968–1973)</h2>
+  <p class="lead">DNA was harder: no convenient base-specific enzymes, enormous molecules, no way to label it at one defined point. The first DNA sequences were wrestled out a few nucleotides at a time.</p>
+  <div class="experiment">
+    <b class="lab">Ray Wu and the λ cohesive ends (1968–1971)</b>
+    Ray Wu exploited a natural gift: bacteriophage λ DNA has single-stranded 12-nucleotide "cohesive ends" — a known starting point. By adding one or a few radioactive nucleotides to the 3′ ends with DNA polymerase and analyzing the products enzymatically, Wu's lab determined the first real DNA sequences: the 12-nucleotide cohesive ends of λ (<i>J. Mol. Biol.</i> <b>51</b>:501–521, <a class="doi" href="https://doi.org/10.1016/0022-2836(70)90004-5">doi:10.1016/0022-2836(70)90004-5</a>) and their completion (<i>J. Mol. Biol.</i> <b>57</b>:491–511, <a class="doi" href="https://doi.org/10.1016/0022-2836(71)90105-7">doi:10.1016/0022-2836(71)90105-7</a>). Twelve bases — a decade after insulin's 51 amino acids.
+  </div>
+  <p>In 1973 Walter Gilbert and Allan Maxam took a different route to their 27-base lac operator sequence (see the <i>lac operon</i> story): they used the purified lac repressor to protect the operator DNA from DNase, recovered the protected fragment, <b>transcribed it into RNA in vitro</b>, and sequenced that RNA by Sanger's fingerprint/wandering-spot methods (<i>PNAS</i> <b>70</b>:3581–3584, <a class="doi" href="https://doi.org/10.1073/pnas.70.12.3581">doi:10.1073/pnas.70.12.3581</a>). Sanger's group likewise read early DNA by copying it into RNA-like substrates — including 50 nucleotides of phage f1 DNA in 1973 using homochromatography and wandering-spot analysis. <b>DNA was being sequenced through the RNA methods, a dozen bases at a time.</b> Something radically faster was needed.</p>
+</section>
+
+<!-- ==================== WALKING DOTS DNA ==================== -->
+<section id="dots">
+  <h2>4 · The "walking dots" of DNA sequencing: plus and minus (1975)</h2>
+  <p class="lead">Sanger's first DNA method read sequence from the characteristic wander of radioactive spots on homochromatography plates — dots that walked in base-specific directions.</p>
+  <div class="experiment">
+    <b class="lab">Plus and minus (Sanger & Coulson, 1975)</b>
+    The insight: DNA polymerase can copy DNA from a primer, and you can <b>control which base the copying stops at</b>. An oligonucleotide primer is annealed to the single-stranded DNA; polymerase extends it in four separate reactions, each <b>missing one</b> dNTP. In the "minus" reaction for, say, A, synthesis stops when the template demands an A — so every product ends exactly one base before an A. The "plus" reactions use the peculiar ability of polymerase to add one extra base and stall, marking positions of that base. The four products are separated on a 2D system (electrophoresis + homochromatography) and <b>read as an autoradiograph of spots</b>: as the products get longer, each successive spot <b>walks in a direction characteristic of the next base</b>, and the sequence is read from the geometry of the walk (<i>J. Mol. Biol.</i> <b>94</b>:441–448, <a class="doi" href="https://doi.org/10.1016/0022-2836(75)90213-2">doi:10.1016/0022-2836(75)90213-2</a>).
+  </div>
+  <p>The plus-and-minus method was genuinely rapid for its day — and Sanger's lab used it to read the entire 5,375-nucleotide genome of bacteriophage φX174, the <b>first complete DNA genome ever sequenced</b> (<i>Nature</i> <b>265</b>:687–695, <a class="doi" href="https://doi.org/10.1038/265687a0">doi:10.1038/265687a0</a>). The paper revealed overlapping genes and stunned the field. But the method was error-prone (30 corrections were later needed), hard to read, and limited to specialized single-stranded templates and natural priming sites. The walking dots had reached their limit.</p>
+</section>
+
+<!-- ==================== 1977 BREAKTHROUGH ==================== -->
+<section id="breakthrough">
+  <h2>5 · 1977: two independent revolutions</h2>
+  <p class="lead">In one year, two laboratories on two sides of the Atlantic replaced spot-reading with something radically simpler: read positions directly off a one-dimensional ladder of fragments.</p>
+  <div class="experiment">
+    <b class="lab">Maxam–Gilbert: chemical sequencing (Harvard)</b>
+    End-label the DNA with ³²P at one end. Then run four tubes of chemistry that cleave the DNA <b>partially and preferentially at one base</b>: dimethyl sulfate (G, and A under acid), hydrazine (C, and C+T with salt omitted). Each tube becomes a nested family of labeled fragments whose lengths record every position of that base. Separate all four on a polyacrylamide gel and read the ladder (<i>PNAS</i> <b>74</b>:560–564, <a class="doi" href="https://doi.org/10.1073/pnas.74.2.560">doi:10.1073/pnas.74.2.560</a>). No enzymes, no primer, any double-stranded DNA. For a decade this was the method of choice for regulatory regions — Gilbert used it on the lac promoter/operator (see the operon page), and it earned a share of the 1980 Nobel Prize.
+  </div>
+  <div class="experiment">
+    <b class="lab">Sanger: chain termination with ddNTPs (Cambridge)</b>
+    Sanger's genius was to reuse the plus-and-minus geometry but make the chain stops <b>chemically permanent and perfectly random</b>. He added the <b>2′,3′-dideoxy</b> analogues of the normal triphosphates to each polymerase reaction: when a ddNTP is incorporated instead of a normal dNTP, the chain lacks the 3′-OH and <b>cannot be extended</b>. One tube per base, each containing a mixture of normal and dideoxy nucleotide, generates a nested ladder of fragments, every one ending <i>exactly at</i> that base. Read the four ladders side by side on a gel, and the sequence reads off bottom-to-top like a sentence (<i>PNAS</i> <b>74</b>:5463–5467, <a class="doi" href="https://doi.org/10.1073/pnas.74.12.5463">doi:10.1073/pnas.74.12.5463</a>).
+  </div>
+  <div class="verdict">✅ <b>What both methods shared:</b> the "ladder" principle — convert a sequence into <b>four nested families of fragments, one per base, differing by one unit of length</b>, and let the gel do the arithmetic. Position on the gel = position in the sequence. The two-dimensional wandering spot was dead; the one-dimensional ladder of four base lanes had arrived.</div>
+</section>
+
+<!-- ==================== FOUR LANES ==================== -->
+<section id="gel">
+  <h2>6 · Reading the four lanes (1977–1983)</h2>
+  <p class="lead">The familiar four-lane autoradiograph — A, C, G, T — is the visual form of the dideoxy method, polished over the following five years.</p>
+  <ul>
+    <li><b>Thin denaturing polyacrylamide gels (1978):</b> Sanger &amp; Coulson showed that very thin gels (<a class="doi" href="https://doi.org/10.1016/0014-5793(78)80145-8">FEBS Lett. 87:107–110, doi:10.1016/0014-5793(78)80145-8</a>) resolve single-base differences far better than the earlier systems — hundreds of readable bases per gel, with the classic four black bands per lane read bottom-up. One person could run dozens of ladders a week.</li>
+    <li><b>Sequencing by shotgun cloning:</b> the M13 vector gave clean single-stranded templates with a universal primer site, so any DNA — not just phage genomes — could be cloned at random, sequenced, and reassembled by overlaps. Sanger's group used "shotgun + dideoxy" to finish the 48,502-base human mitochondrial genome in 1981, then bacteriophage λ (1982), and drew the roadmap that would eventually be scaled to the Human Genome Project.</li>
+    <li><b>Readable technology:</b> ³²P labeling, then ³⁵S for sharper bands; manual film development; and human eyes reading "GATC" off four lanes — the iconic image of the 1980s–90s sequencing lab.</li>
+  </ul>
+  <div class="diagram">
+  <svg viewBox="0 0 760 300" width="100%" height="300" xmlns="http://www.w3.org/2000/svg" font-family="system-ui">
+    <rect width="760" height="300" fill="#0a0f1d"/>
+    <text x="380" y="26" fill="#ffd166" font-size="14" text-anchor="middle" font-weight="700">The four-lane dideoxy gel</text>
+    <!-- lanes -->
+    <g>
+      <rect x="180" y="40" width="40" height="220" fill="#131a2e"/>
+      <rect x="250" y="40" width="40" height="220" fill="#131a2e"/>
+      <rect x="320" y="40" width="40" height="220" fill="#131a2e"/>
+      <rect x="390" y="40" width="40" height="220" fill="#131a2e"/>
+      <text x="200" y="278" fill="#4cc9f0" font-size="14" text-anchor="middle" font-weight="700">A</text>
+      <text x="270" y="278" fill="#80ed99" font-size="14" text-anchor="middle" font-weight="700">C</text>
+      <text x="340" y="278" fill="#f72585" font-size="14" text-anchor="middle" font-weight="700">G</text>
+      <text x="410" y="278" fill="#ffd166" font-size="14" text-anchor="middle" font-weight="700">T</text>
+    </g>
+    <!-- bands: sequence read bottom-up -->
+    <g fill="#e8ecf5">
+      <!-- shortest fragment at bottom: G -->
+      <rect x="320" y="242" width="40" height="7"/>
+      <rect x="390" y="226" width="40" height="7"/>
+      <rect x="320" y="212" width="40" height="7"/>
+      <rect x="180" y="196" width="40" height="7"/>
+      <rect x="250" y="182" width="40" height="7"/>
+      <rect x="320" y="166" width="40" height="7"/>
+      <rect x="180" y="152" width="40" height="7"/>
+      <rect x="250" y="136" width="40" height="7"/>
+      <rect x="390" y="122" width="40" height="7"/>
+      <rect x="320" y="106" width="40" height="7"/>
+      <rect x="390" y="92" width="40" height="7"/>
+      <rect x="250" y="76" width="40" height="7"/>
+      <rect x="180" y="62" width="40" height="7"/>
+    </g>
+    <text x="480" y="60" fill="#9aa7c4" font-size="12">Each band = a fragment that</text>
+    <text x="480" y="76" fill="#9aa7c4" font-size="12">ended when a ddNTP was added.</text>
+    <text x="480" y="100" fill="#ffd166" font-size="12">Read bottom → top:</text>
+    <text x="480" y="120" fill="#e8ecf5" font-size="13" font-weight="700">G T G A C G A C T G T C A</text>
+    <text x="480" y="150" fill="#9aa7c4" font-size="12">The primer is at the bottom of</text>
+    <text x="480" y="166" fill="#9aa7c4" font-size="12">every fragment, so length =</text>
+    <text x="480" y="182" fill="#9aa7c4" font-size="12">distance from the start.</text>
+    <text x="480" y="210" fill="#4cc9f0" font-size="12">1975: spots walked across 2D maps.</text>
+    <text x="480" y="228" fill="#4cc9f0" font-size="12">1977: sequence reads straight up</text>
+    <text x="480" y="246" fill="#4cc9f0" font-size="12">four parallel lanes.</text>
+  </svg>
+  <p class="caption">The ladder that ended the walking-dot era. Each lane contains one dideoxynucleotide; the shortest fragments run fastest (lowest); the sequence is the order of the lanes hit, read from the bottom of the gel upward.</p>
+  </div>
+</section>
+
+<!-- ==================== AFTER 1977 ==================== -->
+<section id="after">
+  <h2>7 · From four lanes to the Human Genome Project (1983–2001)</h2>
+  <p class="lead">The dideoxy chemistry never changed after 1977 — everything that followed was engineering around it.</p>
+  <ul>
+    <li><b>Colored terminators (1987):</b> four fluorescent dyes attached to the ddNTPs themselves, letting all four reactions run in <b>one lane or one capillary</b>, with a laser and detector reading the bases as they pass — the end of film development and of the four-lane autoradiograph, but the direct descendant of it.</li>
+    <li><b>Thermal cycling &amp; automation:</b> cycle sequencing with thermostable polymerase, robotic handling, base-calling software. The Applied Biosystems fluorescence machines of the 1990s read hundreds of bases per reaction with no radioactivity.</li>
+    <li><b>Whole-genome strategies:</b> Sanger's shotgun-plus-overlap strategy, scaled to BAC clones (public HGP) or entire genomes (Venter's Celera), both published in February 2001 (<a class="doi" href="https://doi.org/10.1038/35057062">Lander et al., Nature 409:860, doi:10.1038/35057062</a>; <a class="doi" href="https://doi.org/10.1126/science.1058040">Venter et al., Science 291:1304, doi:10.1126/science.1058040</a>). Maxam–Gilbert chemistry faded away; every base of the first human genome was read by chain termination — Sanger's 1977 reaction, a billion-fold scale-up.</li>
+    <li><b>What came next:</b> pyrosequencing (454), Illumina sequencing-by-synthesis, nanopores — all are conceptually variations on the ladder principle: turn each base into an event you can count or see at a position.</li>
+  </ul>
+  <table>
+    <tr><th>Method</th><th>Year</th><th>How the sequence is "seen"</th><th>Legacy</th></tr>
+    <tr><td>Sanger insulin (FDNB + fingerprints)</td><td>1949–55</td><td>Two-dimensional spots of labeled peptides; overlaps</td><td>The very idea of "a sequence"; fragment-and-overlap strategy</td></tr>
+    <tr><td>Edman degradation</td><td>1950</td><td>One amino acid removed and identified per cycle</td><td>Stepwise degradation logic; automated sequenators</td></tr>
+    <tr><td>Holley tRNA</td><td>1965</td><td>RNase fragments, separated and sequenced one by one</td><td>First nucleic acid sequence</td></tr>
+    <tr><td>Sanger/Brownlee 2D fractionation + wandering spot</td><td>1965–69</td><td>³²P spots walking across electrophoresis/homochromatography maps</td><td>Radioactive labels, base-specific cleavage, mobility-shift "reading"</td></tr>
+    <tr><td>Plus and minus</td><td>1975</td><td>Polymerase stalls, spots walking on 2D plates</td><td>First genome (φX174); the copying/extension idea</td></tr>
+    <tr><td>Maxam–Gilbert</td><td>1977</td><td>Chemical base-specific cleavage → fragment ladder</td><td>The "ladder" principle; 1980 Nobel</td></tr>
+    <tr><td>Dideoxy chain termination</td><td>1977</td><td>ddNTP chain stops → four-lane gel</td><td>All modern sequencing descends from it</td></tr>
+    <tr><td>Fluorescent dye terminators</td><td>1987</td><td>Four colors, one lane, automated base-calling</td><td>HGP-era machines; Sanger sequencing as industry</td></tr>
+  </table>
+</section>
+
+<!-- ==================== TIMELINE ==================== -->
+<section id="timeline">
+  <h2>8 · Interactive timeline: dots → lanes → lasers</h2>
+  <div style="font-family:var(--sans);font-size:.82rem;margin:10px 0 6px">
+    <label><input type="checkbox" class="flt" data-t="protein" checked> Proteins</label> &nbsp;
+    <label><input type="checkbox" class="flt" data-t="rna" checked> RNA &amp; early DNA</label> &nbsp;
+    <label><input type="checkbox" class="flt" data-t="dna" checked> DNA methods</label> &nbsp;
+    <label><input type="checkbox" class="flt" data-t="auto" checked> Automation &amp; genomes</label>
+  </div>
+  <div class="tl" id="tl"></div>
+</section>
+
+<!-- ==================== REFS ==================== -->
+<section id="refs">
+  <h2>9 · References (DOIs verified resolvable)</h2>
+  <div class="ref">Sanger, F. &amp; Tuppy, H. (1951). The amino-acid sequence in the phenylalanyl chain of insulin. I &amp; II. <i>Biochem. J.</i> <b>49</b>:463–481, 481–490. <a class="doi" href="https://doi.org/10.1042/bj0490463">doi:10.1042/bj0490463</a>, <a class="doi" href="https://doi.org/10.1042/bj0490481">doi:10.1042/bj0490481</a></div>
+  <div class="ref">Ryle, A. P., Sanger, F., Smith, L. F. &amp; Kitai, R. (1955). The disulphide bonds of insulin. <i>Biochem. J.</i> <b>60</b>:541–556. <a class="doi" href="https://doi.org/10.1042/bj0600541">doi:10.1042/bj0600541</a></div>
+  <div class="ref">Edman, P. (1950). Method for determination of the amino acid sequence in peptides. <i>Acta Chem. Scand.</i> <b>4</b>:283–293. <a class="doi" href="https://doi.org/10.3891/acta.chem.scand.04-0283">doi:10.3891/acta.chem.scand.04-0283</a></div>
+  <div class="ref">Holley, R. W., Apgar, J., Everett, G. A. et al. (1965). Structure of a ribonucleic acid. <i>Science</i> <b>147</b>:1462–1465. <a class="doi" href="https://doi.org/10.1126/science.147.3664.1462">doi:10.1126/science.147.3664.1462</a></div>
+  <div class="ref">Sanger, F., Brownlee, G. G. &amp; Barrell, B. G. (1965). A two-dimensional fractionation procedure for radioactive nucleotides. <i>J. Mol. Biol.</i> <b>13</b>:373–398. <a class="doi" href="https://doi.org/10.1016/S0022-2836(65)80104-8">doi:10.1016/S0022-2836(65)80104-8</a></div>
+  <div class="ref">Brownlee, G. G., Sanger, F. &amp; Barrell, B. G. (1967). Nucleotide sequence from the low molecular weight ribosomal RNA of <i>E. coli</i>. <i>J. Mol. Biol.</i> <b>23</b>:337–353. <a class="doi" href="https://doi.org/10.1016/S0022-2836(67)80109-8">doi:10.1016/S0022-2836(67)80109-8</a></div>
+  <div class="ref">Wu, R. (1970). Nucleotide sequence analysis of DNA. I. <i>J. Mol. Biol.</i> <b>51</b>:501–521. <a class="doi" href="https://doi.org/10.1016/0022-2836(70)90004-5">doi:10.1016/0022-2836(70)90004-5</a></div>
+  <div class="ref">Wu, R. &amp; Taylor, E. (1971). Nucleotide sequence analysis of DNA. II. <i>J. Mol. Biol.</i> <b>57</b>:491–511. <a class="doi" href="https://doi.org/10.1016/0022-2836(71)90105-7">doi:10.1016/0022-2836(71)90105-7</a></div>
+  <div class="ref">Gilbert, W. &amp; Maxam, A. (1973). The nucleotide sequence of the lac operator. <i>Proc. Natl. Acad. Sci. USA</i> <b>70</b>:3581–3584. <a class="doi" href="https://doi.org/10.1073/pnas.70.12.3581">doi:10.1073/pnas.70.12.3581</a></div>
+  <div class="ref">Sanger, F. &amp; Coulson, A. R. (1975). A rapid method for determining sequences in DNA by primed synthesis with DNA polymerase. <i>J. Mol. Biol.</i> <b>94</b>:441–448. <a class="doi" href="https://doi.org/10.1016/0022-2836(75)90213-2">doi:10.1016/0022-2836(75)90213-2</a></div>
+  <div class="ref">Maxam, A. M. &amp; Gilbert, W. (1977). A new method for sequencing DNA. <i>Proc. Natl. Acad. Sci. USA</i> <b>74</b>:560–564. <a class="doi" href="https://doi.org/10.1073/pnas.74.2.560">doi:10.1073/pnas.74.2.560</a></div>
+  <div class="ref">Sanger, F., Nicklen, S. &amp; Coulson, A. R. (1977). DNA sequencing with chain-terminating inhibitors. <i>Proc. Natl. Acad. Sci. USA</i> <b>74</b>:5463–5467. <a class="doi" href="https://doi.org/10.1073/pnas.74.12.5463">doi:10.1073/pnas.74.12.5463</a></div>
+  <div class="ref">Sanger, F., Air, G. M., Barrell, B. G. et al. (1977). Nucleotide sequence of bacteriophage φX174 DNA. <i>Nature</i> <b>265</b>:687–695. <a class="doi" href="https://doi.org/10.1038/265687a0">doi:10.1038/265687a0</a></div>
+  <div class="ref">Sanger, F. &amp; Coulson, A. R. (1978). The use of thin acrylamide gels for DNA sequencing. <i>FEBS Lett.</i> <b>87</b>:107–110. <a class="doi" href="https://doi.org/10.1016/0014-5793(78)80145-8">doi:10.1016/0014-5793(78)80145-8</a></div>
+  <div class="ref">Lander, E. S. et al. (2001). Initial sequencing and analysis of the human genome. <i>Nature</i> <b>409</b>:860–921. <a class="doi" href="https://doi.org/10.1038/35057062">doi:10.1038/35057062</a></div>
+  <div class="ref">Venter, J. C. et al. (2001). The sequence of the human genome. <i>Science</i> <b>291</b>:1304–1351. <a class="doi" href="https://doi.org/10.1126/science.1058040">doi:10.1126/science.1058040</a></div>
+  <div class="ref" style="color:var(--muted)">Nobels: Chemistry 1958 — F. Sanger (insulin sequence); Chemistry 1980 — Gilbert &amp; Sanger (DNA sequencing), Berg (recombinant DNA); Medicine 1968 — Holley, Khorana &amp; Nirenberg (genetic code &amp; tRNA).</div>
+</section>
+
+<footer>Built as a self-contained educational page · All DOI links verified resolvable at time of writing</footer>
+</div>
+
+<script>
+const EVENTS = [
+  {yr:"1943–1955", who:"Sanger; Tuppy; Thompson; Ryle · Cambridge", tag:"protein", dot:"#f72585", title:"Insulin: the first sequence of anything", txt:"FDNB end-labeling, protease digests, and two-dimensional paper 'fingerprints' prove proteins have exact unique sequences. Nobel 1958.", href:"#protein"},
+  {yr:"1950 / 1967", who:"Edman · Sweden", tag:"protein", dot:"#f72585", title:"Stepwise degradation — one residue per cycle", txt:"PITC strips the N-terminal amino acid cleanly, cycle after cycle; later automated as the sequenator. The logic of stepwise reading is born.", href:"#protein"},
+  {yr:"1965", who:"Holley · Cornell", tag:"rna", dot:"#ffd166", title:"tRNA sequenced — first nucleic acid sequence", txt:"Seven years of RNase digestion, fragment purification and overlap give the 77-nucleotide alanine tRNA. Nobel 1968.", href:"#rna"},
+  {yr:"1965–1969", who:"Sanger, Brownlee, Barrell · Cambridge LMB", tag:"rna", dot:"#ffd166", title:"Radioactive fingerprints & wandering spots", txt:"³²P-labelled oligonucleotides separated two-dimensionally (electrophoresis + homochromatography). Sequence is read from how each spot 'walks' as nucleotides are removed. 5S rRNA, tRNAs and phage RNA follow.", href:"#rna"},
+  {yr:"1968–1973", who:"Wu; Gilbert & Maxam", tag:"rna", dot:"#ffd166", title:"First real DNA sequences — via enzymes and via RNA", txt:"Wu reads λ's 12-base cohesive ends with polymerase-labeled extensions; Gilbert & Maxam read the 27-base lac operator by transcribing protected DNA into RNA and using Sanger's RNA methods.", href:"#earlydna"},
+  {yr:"1975", who:"Sanger & Coulson · Cambridge", tag:"dna", dot:"#4cc9f0", title:"Plus and minus: walking dots applied to DNA", txt:"Polymerase extension blocked at chosen bases, products read from autoradiograph spots walking across 2D homochromatography. Good enough to sequence φX174 — the first full genome (5,375 bases) — but error-prone.", href:"#dots"},
+  {yr:"1977", who:"Maxam & Gilbert · Harvard", tag:"dna", dot:"#80ed99", title:"Chemical sequencing: the fragment ladder", txt:"Base-specific chemical cleavage of end-labeled DNA turns sequence into four families of fragments read on a one-dimensional gel.", href:"#breakthrough"},
+  {yr:"1977", who:"Sanger, Nicklen & Coulson · Cambridge", tag:"dna", dot:"#80ed99", title:"Dideoxy chain termination — the four base lanes", txt:"ddNTPs make chain stops permanent and random. Four reactions, four gel lanes, sequence read straight up. Nobel 1980 (with Gilbert); every later sequencing technology descends from this gel.", href:"#breakthrough"},
+  {yr:"1978–1982", who:"Sanger's group · Cambridge", tag:"dna", dot:"#4cc9f0", title:"Thin gels, M13 shotgun, λ and mitochondria", txt:"Thin denaturing gels resolve hundreds of bases per run; M13 universal-primer cloning makes any DNA sequenceable; the first large genomes (human mitochondrial DNA, 16.6 kb; phage λ, 48.5 kb) are completed by shotgun dideoxy.", href:"#gel"},
+  {yr:"1987", who:"Applied Biosystems et al.", tag:"auto", dot:"#ffd166", title:"Fluorescent dye terminators & automated machines", txt:"Four colored ddNTPs in one lane; lasers and software replace film and eyes. Radioactivity disappears from the routine lab.", href:"#after"},
+  {yr:"2001", who:"IHGSC; Celera", tag:"auto", dot:"#f72585", title:"The Human Genome: Sanger chemistry at planet scale", txt:"3 billion bases read by automated chain-termination machines — the 1977 chemistry scaled a millionfold, finishing a journey that began with insulin spots in 1949.", href:"#after"}
+];
+const tl = document.getElementById("tl");
+function render(){
+  const active = {};
+  document.querySelectorAll(".flt").forEach(cb => active[cb.dataset.t] = cb.checked);
+  tl.innerHTML = EVENTS.filter(e => active[e.tag]).map(e => `
+    <div class="ev" style="--dot:${e.dot}">
+      <div class="yr">${e.yr} · <span class="who">${e.who}</span></div>
+      <h4><a href="${e.href}" style="color:inherit;text-decoration:none;border-bottom:1px dotted ${e.dot}">${e.title}</a></h4>
+      <p>${e.txt}</p>
+    </div>`).join("") || '<p style="color:var(--muted)">No events match the selected filters.</p>';
+}
+document.querySelectorAll(".flt").forEach(cb => cb.addEventListener("change", render));
+render();
+</script>
+</body>
+</html>
