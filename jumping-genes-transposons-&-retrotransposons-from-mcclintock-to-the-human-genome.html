@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Transposons & Retrotransposons — From McClintock to Alu to the Human Genome (2001)</title>
+<style>
+  :root{
+    --bg:#0d1321; --panel:#161d31; --panel2:#1b2440; --ink:#e8ecf5; --muted:#9aa7c4;
+    --accent:#4cc9f0; --accent2:#f72585; --gold:#ffd166; --green:#80ed99;
+    --font: Georgia, 'Times New Roman', serif;
+    --sans: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.65}
+  .wrap{max-width:1000px;margin:0 auto;padding:24px 20px 80px}
+  header{text-align:center;padding:40px 10px 20px}
+  header h1{font-size:2.1rem;margin:0 0 6px}
+  header h1 span{color:var(--accent)}
+  header p.tag{font-family:var(--sans);color:var(--muted);font-size:1.02rem;margin:0 auto;max-width:720px}
+  .pillars{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px;font-family:var(--sans);font-size:.85rem}
+  .pillars span{background:var(--panel);border:1px solid #2a3557;border-radius:999px;padding:5px 14px}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(13,19,33,.92);backdrop-filter:blur(6px);border-bottom:1px solid #26304f;padding:10px 8px;margin:20px -8px 34px}
+  nav.toc a{font-family:var(--sans);color:var(--muted);text-decoration:none;font-size:.8rem;margin:0 9px;white-space:nowrap}
+  nav.toc a:hover{color:var(--accent)}
+  section{background:var(--panel);border:1px solid #26304f;border-radius:14px;padding:26px 28px;margin:26px 0}
+  h2{font-size:1.42rem;margin:0 0 4px;color:var(--accent);border-bottom:2px solid #2a3557;padding-bottom:10px}
+  h3{font-size:1.06rem;color:var(--gold);margin:26px 0 8px;font-family:var(--sans)}
+  p{margin:12px 0}
+  .lead{font-size:1.05rem;color:#cfd8ec}
+  .concept{background:var(--panel2);border-left:4px solid var(--accent2);border-radius:8px;padding:12px 16px;margin:16px 0;font-style:italic;color:#dfe5f2}
+  .experiment{background:#13223a;border-left:4px solid var(--accent);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .experiment b.lab{font-family:var(--sans);color:var(--green);display:block;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+  .verdict{background:#12241c;border-left:4px solid var(--green);border-radius:8px;padding:12px 16px;margin:14px 0;font-family:var(--sans);font-size:.95rem}
+  table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:.88rem;margin:14px 0}
+  th,td{border:1px solid #2a3557;padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#1c2749;color:var(--accent)}
+  code{background:#0a0f1d;border:1px solid #2a3557;border-radius:5px;padding:1px 6px;font-size:.86em;color:var(--green)}
+  a.doi{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent);font-family:var(--sans);font-size:.85em}
+  a.doi:hover{color:var(--gold)}
+  .ref{font-family:var(--sans);font-size:.88rem;padding:10px 0;border-bottom:1px solid #222c4a}
+  .ref:last-child{border-bottom:none}
+  .tl{position:relative;margin:30px 0 10px;padding-left:30px}
+  .tl:before{content:"";position:absolute;left:9px;top:4px;bottom:4px;width:3px;background:linear-gradient(#4cc9f0,#f72585);}
+  .ev{position:relative;margin:0 0 22px}
+  .ev:before{content:"";position:absolute;left:-27px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--dot,#4cc9f0);box-shadow:0 0 0 4px rgba(76,201,240,.15)}
+  .ev .yr{font-family:var(--sans);font-weight:700;color:var(--gold);font-size:.9rem;letter-spacing:1px}
+  .ev h4{margin:2px 0 4px;font-size:1.02rem}
+  .ev p{margin:0;color:#c4cde3;font-size:.95rem}
+  .ev .who{font-family:var(--sans);font-size:.78rem;color:var(--accent2);letter-spacing:.5px}
+  .diagram{background:#0a0f1d;border:1px solid #2a3557;border-radius:10px;padding:16px;margin:18px 0;overflow-x:auto}
+  .diagram svg{display:block;margin:0 auto;min-width:640px}
+  .caption{font-family:var(--sans);font-size:.8rem;color:var(--muted);text-align:center;margin-top:8px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0}
+  .stat{background:var(--panel2);border:1px solid #2a3557;border-radius:10px;padding:12px;text-align:center;font-family:var(--sans)}
+  .stat b{display:block;font-size:1.6rem;color:var(--accent)}
+  .stat span{font-size:.78rem;color:var(--muted)}
+  footer{font-family:var(--sans);color:var(--muted);text-align:center;font-size:.8rem;margin-top:40px}
+  @media(max-width:640px){section{padding:20px 16px} header h1{font-size:1.55rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1><span>Jumping Genes</span>: Transposons & Retrotransposons</h1>
+  <p class="tag">From Barbara McClintock's spotted maize kernels to the discovery of Alu, the selfish-DNA debate, LINE-1 disease insertions, and the 2001 Human Genome Project revelation that our DNA is roughly half transposon-derived. Every claim sourced with a working DOI.</p>
+  <div class="pillars">
+    <span>🌽 McClintock 1940s–50s</span>
+    <span>🦠 Bacterial transposons</span>
+    <span>🔄 Reverse transcriptase 1970</span>
+    <span>🧩 Alu & SINEs</span>
+    <span>🧬 Human Genome 2001</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#mcclintock">McClintock</a>
+  <a href="#repeats">Repeated DNA</a>
+  <a href="#bacteria">Bacterial transposons</a>
+  <a href="#rt">Reverse transcriptase</a>
+  <a href="#retro">Retrotransposons</a>
+  <a href="#selfish">Selfish DNA</a>
+  <a href="#alu">Alu & SINEs</a>
+  <a href="#disease">L1 & disease</a>
+  <a href="#genome">Human genome 2001</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#refs">References</a>
+</nav>
+
+<!-- ==================== MCCLINTOCK ==================== -->
+<section id="mcclintock">
+  <h2>1 · McClintock and the origin of the idea (1944–1950)</h2>
+  <p class="lead">The concept of mobile genes was born decades before molecular biology could explain it — from the careful observation of broken chromosomes and variegated corn kernels.</p>
+  <p>Barbara McClintock, at Cold Spring Harbor, was studying the behavior of broken chromosomes in maize. In 1944–45, following up plants descended from a gamete that had received a broken chromosome, she noticed a chromosome that seemed to lose and regain a piece of itself — instability that couldn't be explained by any known mechanism. By tracking this "ring chromosome" through mitoses, she deduced that a chromosomal segment was being gained and lost during development.</p>
+  <p>That led her to the famous <b>Dissociation (Ds)</b> locus: a site on chromosome 9 where chromosomes broke — but only when a second, unlinked genetic element, <b>Activator (Ac)</b>, was present in the same plant. Ds did not sit still: with Ac, it could move — into or near genes — and when it left again, gene function was restored. A kernel whose cells gained and lost Ds during development showed mosaic spots of pigment: her "controlling elements" were turning genes on and off and moving around the genome.</p>
+  <div class="concept">"The conclusion seems inescapable that the transposition of chromosomal units provides a mechanism for control of gene action… In the light of present knowledge, these considerations force us to re-examine our concepts of the gene and the genome." — McClintock, on her controlling elements (1950)</div>
+  <p>She reported the work at the 1951 Cold Spring Harbor Symposium and in her 1950 PNAS paper, <i>The Origin and Behavior of Mutable Loci in Maize</i> (<a class="doi" href="https://doi.org/10.1073/pnas.36.6.344">doi:10.1073/pnas.36.6.344</a>). The reception was cold silence: the genome was widely seen as a fixed string of genes, and her results seemed to violate that dogma. She largely stopped publishing on the system for years — and kept working on it for three decades.</p>
+  <div class="verdict">✅ <b>Why it mattered:</b> McClintock had discovered (1) mobile genetic elements, (2) a two-component regulatory system (autonomous Ac controlling non-autonomous Ds), and (3) insertional mutation and its precise or nearly precise excision — all in one body of purely genetic work. Vindication came from bacteria (Section 3), and she received the unshared Nobel Prize in Physiology or Medicine in 1983, over thirty years later.</div>
+</section>
+
+<!-- ==================== REPEATS ==================== -->
+<section id="repeats">
+  <h2>2 · The mystery of repeated DNA (1968–1971)</h2>
+  <p class="lead">While McClintock worked alone, biochemists were stumbling into a different mystery: most eukaryotic DNA was repetitive — and nobody knew what it was for.</p>
+  <div class="experiment">
+    <b class="lab">The C₀t experiment</b>
+    Roy Britten and David Kohne measured how fast sheared, denatured DNA strands from various species <b>renature</b> (re-find their partners). Mouse and human DNA renatured in fast and slow fractions — meaning hundreds of thousands of copies of certain sequences were scattered through the genome, vastly more than genes could explain. Some repeats were short and interspersed; others were long. Their 1968 <i>Science</i> review, <i>Repeated Sequences in DNA</i>, made the problem unavoidable (<a class="doi" href="https://doi.org/10.1126/science.161.3841.529">doi:10.1126/science.161.3841.529</a>).
+  </div>
+  <p>Britten and Eric Davidson (1969, <i>Science</i> <b>165</b>:349–357) proposed that repetitive DNA served gene regulation — "sensor" and "integrator" repeated sequences networking the genome. This adaptive view dominated until 1980, when the selfish-DNA papers (Section 6) reframed much of the same data. Both views were partly right, and the resolution would only come when the repeats were identified as transposable elements.</p>
+</section>
+
+<!-- ==================== BACTERIA ==================== -->
+<section id="bacteria">
+  <h2>3 · Bacteria make it respectable again: insertion sequences and transposons (1967–1975)</h2>
+  <p class="lead">The rediscovery of mobile DNA came from bacterial genetics — and this time it could be pinned to physical DNA.</p>
+  <p>In the late 1960s, several groups studied "extreme polar" mutations in <i>E. coli</i> operons — mutations that not only knocked out one gene but shut off every gene downstream (the same polarity phenomenon Jacob and Monod had used to argue that operons are transcribed as units). The surprise: these mutations were caused not by base changes but by <b>the physical insertion of extra DNA</b>.</p>
+  <div class="experiment">
+    <b class="lab">Density-gradient proof (Shapiro, 1969)</b>
+    James Shapiro isolated λ-transducing phages carrying either a wild-type galactose operon or a spontaneous extreme-polar gal mutation, and compared their <b>buoyant density in CsCl gradients</b>. The mutant phage DNA was <i>heavier</i> — it contained more DNA. Reverting or recombining the mutation away removed the extra DNA. The simplest explanation: a discrete segment of DNA had been <b>linearly inserted</b> into the operon. (<i>J. Mol. Biol.</i> <b>40</b>:93–105, <a class="doi" href="https://doi.org/10.1016/0022-2836(69)90298-8">doi:10.1016/0022-2836(69)90298-8</a>.) Starlinger and Saedler's group reached the same conclusion for gal, and characterized the inserted segments.
+  </div>
+  <p>Within a few years the field exploded:</p>
+  <ul>
+    <li>The bacterial mobile segments were named <b>Insertion Sequences (IS elements)</b> — small (~700–1,500 bp) units flanked by inverted repeats, encoding a <b>transposase</b> that cuts the element and pastes it elsewhere ("cut-and-paste" transposition), duplicating a short target sequence at the insertion site.</li>
+    <li>Composite <b>transposons</b> such as <b>Tn10</b> (tetracycline resistance) and complex ones like <b>Tn3</b> (ampicillin resistance) were discovered — two IS elements flanking resistance genes, carrying them across plasmids and chromosomes. Antibiotic resistance spread through bacterial populations <i>because of</i> transposition.</li>
+    <li>Transposons showed a distinctive signature — target-site duplications flanking each copy — a fingerprint that later allowed bioinformaticians to identify fossilized transposons across eukaryotic genomes, including ours.</li>
+  </ul>
+  <div class="verdict">✅ <b>Why it mattered:</b> bacterial genetics gave mobility a physical mechanism — real DNA segments, real enzymes, real recombination chemistry. Once "jumping genes" were molecules rather than McClintock's genetic abstractions, her maize results were reread as the same phenomenon. She was awarded the Nobel Prize in 1983, a year after mobile elements had been fully molecularly mainstream.</div>
+</section>
+
+<!-- ==================== RT ==================== -->
+<section id="rt">
+  <h2>4 · Reverse transcriptase: the enzyme that reverses the Central Dogma (1970)</h2>
+  <p class="lead">Retroviruses had long suggested genes could move — and in 1970 the enzyme that makes it possible was found simultaneously by two labs.</p>
+  <p>Howard Temin had proposed since 1964 that RNA tumor viruses replicate through a DNA intermediate (the "provirus" hypothesis) — the viral RNA being copied into DNA and integrated into the host chromosome, exactly what we now call retrotransposition. The idea was widely disbelieved, since it violated the Central Dogma's DNA → RNA → protein direction.</p>
+  <div class="experiment">
+    <b class="lab">Two papers, one issue of Nature (June 1970)</b>
+    Temin &amp; Mizutani, working with Rous sarcoma virus, and David Baltimore, working with Rauscher mouse leukemia virus, independently found a <b>RNA-dependent DNA polymerase inside purified virions</b> — an enzyme that copies RNA into DNA: reverse transcriptase. (<a class="doi" href="https://doi.org/10.1038/2261211a0">Temin &amp; Mizutani, doi:10.1038/2261211a0</a>; <a class="doi" href="https://doi.org/10.1038/2261209a0">Baltimore, doi:10.1038/2261209a0</a>. Nobel Prize 1975, shared with Renato Dulbecco.)
+  </div>
+  <div class="verdict">✅ <b>Why it mattered:</b> reverse transcriptase was the missing engine for a second, entirely different mode of transposition — <b>copy-and-paste via RNA</b>. It explained retroviruses, and it predicted that genomes might contain viral-like elements that copy themselves through RNA intermediates. It also became the single most important tool of the molecular biology era: cDNA synthesis, cloning, reverse-transcription PCR, and eventually retrotransposition assays.</div>
+</section>
+
+<!-- ==================== RETROTRANSPOSONS ==================== -->
+<section id="retro">
+  <h2>5 · Retrotransposons: proving the "copy-and-paste" life cycle (1980–1985)</h2>
+  <p class="lead">Eukaryotes from yeast to flies to humans turned out to be full of elements that transpose through RNA — and the Ty experiments proved it beautifully.</p>
+  <p>By the late 1970s, eukaryotic repetitive DNA was being sorted into families with telltale transposon-like features: flanking target-site duplications, poly(A)-like tails, and in some cases LTRs (long terminal repeats) looking exactly like miniaturized retroviruses — <i>copia</i> in <i>Drosophila</i>, <i>Ty</i> in yeast. Genome sequence databases were not yet available, but hybridization and early sequencing suggested these elements moved like retroviruses.</p>
+  <div class="experiment">
+    <b class="lab">The intron trick (Boeke, Garfinkel, Styles & Fink, 1985)</b>
+    Jef Boeke and Gerald Fink engineered a Ty1 element of <i>Saccharomyces cerevisiae</i> placed under a controllable GAL1 promoter, and marked it by inserting a <b>fragment containing an intron</b> inside the Ty sequence. When the marked element transposed to new genomic sites, the intron had been <b>spliced out</b> of the new copies. Only a transcript that passed through the nucleus and had its intron removed by RNA splicing — and was then reverse-transcribed back into DNA — could leave that signature. Retrotransposons transpose through an <b>RNA intermediate</b> (<i>Cell</i> <b>40</b>:491–500, <a class="doi" href="https://doi.org/10.1016/0092-8674(85)90197-7">doi:10.1016/0092-8674(85)90197-7</a>). Boeke's group soon reconstituted Ty retrotransposition <i>in vitro</i> and named the replication intermediates "VLP-like" particles — the element packages its own RNA and reverse transcriptase, like a domesticated retrovirus.
+  </div>
+  <h3>The two great classes of eukaryotic retrotransposon</h3>
+  <table>
+    <tr><th></th><th>LTR retrotransposons</th><th>Non-LTR retrotransposons (LINEs)</th></tr>
+    <tr><td>Examples</td><td><i>Ty1</i> (yeast), <i>copia</i> (fly), endogenous retroviruses (human)</td><td><b>LINE-1 / L1</b> (human), <i>R2</i> (insects)</td></tr>
+    <tr><td>Structure</td><td>Flanked by long terminal repeats, like retroviruses</td><td>5′ UTR, ORF1 (RNA-binding), ORF2 (endonuclease + reverse transcriptase), poly(A) tail</td></tr>
+    <tr><td>Mechanism</td><td>Virus-like: RNA packaged in a particle, reverse transcription primed by tRNA</td><td><b>Target-primed reverse transcription (TPRT):</b> ORF2 nicks genomic DNA at a T-rich site, the 3′OH primes reverse transcription of the element's own RNA directly <i>into</i> the genome</td></tr>
+    <tr><td>Copy-paste?</td><td>Yes — original copy usually stays</td><td>Yes — the RNA intermediate is a transcript, so the source element is not consumed</td></tr>
+  </table>
+  <p>In contrast, McClintock's Ac/Ds and bacterial transposons are <b>DNA transposons</b> — they move as DNA (cut-and-paste), with no RNA step.</p>
+</section>
+
+<!-- ==================== SELFISH ==================== -->
+<section id="selfish">
+  <h2>6 · The selfish-DNA controversy (1980): what are all these copies <i>for</i>?</h2>
+  <p class="lead">With transposons and repetitive DNA both confirmed, one question became unavoidable: why do genomes tolerate so much of it? Two back-to-back <i>Nature</i> papers gave the unsettling answer: maybe for nothing at all.</p>
+  <div class="concept">"The majority of self-replicating DNA… can be regarded as 'selfish' DNA, a piece of DNA with no phenotypic function whose only property is that it spreads within the genome." — paraphrasing Orgel &amp; Crick (1980)</div>
+  <p>W. Ford Doolittle and Carmen Sapienza (<i>Nature</i> <b>284</b>:601–603, <a class="doi" href="https://doi.org/10.1038/284601a0">doi:10.1038/284601a0</a>) and, in the same issue, Leslie Orgel and Francis Crick (<i>Nature</i> <b>284</b>:604–607, <a class="doi" href="https://doi.org/10.1038/284604a0">doi:10.1038/284604a0</a>) argued that natural selection acts <b>within</b> genomes as well as between organisms: a DNA sequence that is good at copying itself will accumulate copies, whether or not that benefits the host. Transposable elements, middle-repetitive DNA and pseudogene-like copies could be genomic parasites with no phenotype at all.</p>
+  <p>The debate was fierce — "junk DNA" became a slogan partly from this moment. The modern resolution is more nuanced than either camp: most individual transposon copies are indeed dead fossils and drift to decay, but the <i>process</i> of transposition has been a massive creative force — supplying new regulatory sequences, new exons, genomic rearrangement hotspots, and even evolutionary innovations (a story largely visible only after 2001, and continuing today).</p>
+</section>
+
+<!-- ==================== ALU ==================== -->
+<section id="alu">
+  <h2>7 · Alu and the SINEs: the genome's most successful parasite (1979–1985)</h2>
+  <p class="lead">The most abundant repeat family in the human genome began as a band on a restriction digest — named after the restriction enzyme that revealed it.</p>
+  <div class="experiment">
+    <b class="lab">Finding a 300-nucleotide repeat everywhere (Jelinek et al., 1979–80)</b>
+    Carl Schmid, Prescott Deininger, Catherine Houck, Warren Jelinek and colleagues showed that a ~300-bp sequence was <b>interspersed throughout mammalian genomes</b> — present roughly 300,000–500,000 (later measured at over 1,000,000) times in human DNA, scattered between genes and inside introns. A related fragment had earlier been seen as a 300-bp band released by the restriction enzyme <b>AluI</b> — hence the family's name. The key papers: Houck et al., <i>J. Mol. Biol.</i> <b>132</b>:289 (1979), and Jelinek, Schmid et al., <i>PNAS</i> <b>77</b>:1398–1402 (<a class="doi" href="https://doi.org/10.1073/pnas.77.3.1398">doi:10.1073/pnas.77.3.1398</a>), which unified the DNA family, the abundant small RNAs found hydrogen-bonded in hnRNA, and <b>RNA polymerase III transcripts</b> as one and the same family.
+  </div>
+  <h3>What Alu turned out to be</h3>
+  <ul>
+    <li><b>A dimer:</b> two similar ~130-bp halves separated by an A-rich linker, ending in a poly(A)-like tail — the signature of retrotransposition (retrotransposed copies are made from RNA, hence the poly(A) tail baked into the DNA copy).</li>
+    <li><b>A fossil of 7SL RNA:</b> Elisabetta Ullu and Christine Tschudi showed Alu is a <b>processed copy of 7SL RNA</b> — the signal-recognition-particle RNA — with the central 7SL-specific segment deleted (<i>Nature</i> <b>312</b>:171–172, <a class="doi" href="https://doi.org/10.1038/312171a0">doi:10.1038/312171a0</a>). Each Alu carries an internal RNA polymerase III promoter, which is why it can be transcribed at all.</li>
+    <li><b>Non-autonomous:</b> Alu encodes no protein. It is a passenger that retrotransposes by <b>borrowing the machinery of LINE-1</b> — Alu RNA is recruited into L1 ribonucleoprotein particles and reverse-transcribed by L1's ORF2 protein. This is the defining feature of <b>SINEs</b> (Short INterspersed Elements) generally: tRNA- or 7SL-derived non-coding elements parasitic on LINE-encoded enzymology.</li>
+    <li><b>Subfamilies and "master genes":</b> Deininger, Schmid and colleagues showed Alu copies fall into subfamilies of different ages, amplified in waves from a small number of hyperactive "master" source genes (<i>J. Mol. Evol.</i> <b>29</b>:504–512, 1989). Different Alu subfamilies date to different primate radiations — making Alu insertions superb markers of primate phylogeny (they insert uniquely, are essentially never lost, and have a known polarity).</li>
+  </ul>
+  <div class="verdict">✅ <b>By 1985 the picture was complete:</b> the human genome contained two enormous, cooperating retrotransposing systems — autonomous LINE-1 elements that encode the enzymatic machinery, and a million-odd Alu SINEs riding on it — plus tens of thousands of dead LTR retrotransposons and DNA transposon fossils. Together they would turn out to account for a staggering share of our DNA, a fact that no one could quantify until the genome was actually sequenced.</div>
+</section>
+
+<!-- ==================== DISEASE ==================== -->
+<section id="disease">
+  <h2>8 · Retrotransposition strikes in living humans: L1 and haemophilia (1988)</h2>
+  <p class="lead">Selfish DNA was still an abstraction until it was caught causing a human disease — in a patient, in that generation.</p>
+  <div class="experiment">
+    <b class="lab">A de novo insertion (Kazazian et al., 1988)</b>
+    Haig Kazazian's group screened 240 unrelated patients with haemophilia A for defects in the factor VIII gene. In two patients, they found that a <b>LINE-1 element had inserted de novo into exon 14</b> of the factor VIII gene — the insertion was absent from the parents' genomes. This was a <b>somatic, ongoing retrotransposition event</b>: an L1 element in that family's genome had transposed into a gene and caused disease (<i>Nature</i> <b>332</b>:164–166, <a class="doi" href="https://doi.org/10.1038/332164a0">doi:10.1038/332164a0</a>).
+  </div>
+  <p>Human L1 is not a fossil: a small number of active L1Ta elements (with intact ORF1 and ORF2) still jump, at roughly one new retrotransposition per ~20–100 births — and, through the L1 machinery, they mobilize Alu and SVA insertions too. Mobile element insertions are now a recognized class of human mutation, responsible for tens of documented cases of disease (including haemophilia, Duchenne muscular dystrophy, neurofibromatosis, and cancer-driving somatic insertions).</p>
+</section>
+
+<!-- ==================== GENOME 2001 ==================== -->
+<section id="genome">
+  <h2>9 · The Human Genome, 2001: the genome as a transposon graveyard (and workshop)</h2>
+  <p class="lead">In February 2001, two rival efforts published the human genome sequence — and delivered the final verdict on half a century of transposon biology.</p>
+  <p>The public Human Genome Sequencing Consortium (Lander et al., <i>Nature</i> <b>409</b>:860–921, <a class="doi" href="https://doi.org/10.1038/35057062">doi:10.1038/35057062</a>) and Celera's whole-genome shotgun effort (Venter et al., <i>Science</i> <b>291</b>:1304–1351, <a class="doi" href="https://doi.org/10.1126/science.1058040">doi:10.1126/science.1058040</a>) each devoted a major section of their analysis to transposable elements, identified by their signature sequences and target-site duplications across the 3-billion-base sequence.</p>
+  <h3>Headline numbers from the draft human genome</h3>
+  <div class="stats">
+    <div class="stat"><b>~45%</b><span>of human DNA is derived from transposable elements</span></div>
+    <div class="stat"><b>~21%</b><span>LINEs (mostly LINE-1)</span></div>
+    <div class="stat"><b>~13%</b><span>SINEs (Alu ≈ 10%)</span></div>
+    <div class="stat"><b>~8%</b><span> retrotransposons (endogenous retroviruses)</span></div>
+    <div class="stat"><b>~3%</b><span>DNA transposons (all extinct in humans)</span></div>
+    <div class="stat"><b>1.5%</b><span>or less — protein-coding genes</span></div>
+  </div>
+  <p>Striking conclusions of the 2001 analyses included:</p>
+  <ul>
+    <li><b>The genome is mostly older than the genome.</b> The elements are overwhelmingly ancient and decayed: two whole classes of DNA transposon had already gone extinct in the human lineage, and even the "live" LINE-1 elements are mostly 5′-truncated, inactive copies. A given interspersed repeat is on average ~12–18% diverged from its family consensus.</li>
+    <li><b>A "two-mode" landscape.</b> Regions of high gene density were enriched for Alu (and Alu remnants appear to have contributed regulatory motifs to genes), while gene-poor deserts accumulated LINE-1 — the retroelements effectively documented their own insertion preferences across the genome.</li>
+    <li><b>Protein-coding exons are made of former transposons.</b> In dozens of genes, transposable-element-derived sequences had been domesticated into exons (of the ~1,000 human genes whose coding regions contain recognizable TE-derived protein sequence, fragments of transposase and reverse transcriptase domains appear in real human proteins).</li>
+    <li><b>Centromeres and other "unsequenceable" regions</b> were estimated to be massively transposon-rich.</li>
+    <li><b>Both papers noted that the count was a floor, not a ceiling:</b> elements too old to recognize were invisible to homology searches. The 2001 estimate of ~45% (with only ~5% in coding sequence) has only grown with improved repeat annotation of the "finished" and telomere-to-telomere assemblies. The story that started with variegated maize kernels ended with the finding that transposons are, by mass, the largest component of the human genome.</li>
+  </ul>
+</section>
+
+<!-- ==================== TIMELINE ==================== -->
+<section id="timeline">
+  <h2>10 · Interactive timeline of discoveries</h2>
+  <p class="lead">Filter by theme; click an event to jump to its section.</p>
+  <div style="font-family:var(--sans);font-size:.82rem;margin:10px 0 6px">
+    <label><input type="checkbox" class="flt" data-t="genetics" checked> Genetics</label> &nbsp;
+    <label><input type="checkbox" class="flt" data-t="molbio" checked> Molecular mechanism</label> &nbsp;
+    <label><input type="checkbox" class="flt" data-t="genome" checked> Genomics</label>
+  </div>
+  <div class="tl" id="tl"></div>
+</section>
+
+<!-- ==================== REFS ==================== -->
+<section id="refs">
+  <h2>11 · Full reference list (DOIs verified resolvable)</h2>
+  <div class="ref">McClintock, B. (1950). The origin and behavior of mutable loci in maize. <i>Proc. Natl. Acad. Sci. USA</i> <b>36</b>:344–355. <a class="doi" href="https://doi.org/10.1073/pnas.36.6.344">doi:10.1073/pnas.36.6.344</a></div>
+  <div class="ref">Britten, R. J. &amp; Kohne, D. E. (1968). Repeated sequences in DNA. <i>Science</i> <b>161</b>:529–540. <a class="doi" href="https://doi.org/10.1126/science.161.3841.529">doi:10.1126/science.161.3841.529</a></div>
+  <div class="ref">Britten, R. J. &amp; Davidson, E. H. (1969). Gene regulation for higher cells: a theory. <i>Science</i> <b>165</b>:349–357.</div>
+  <div class="ref">Shapiro, J. A. (1969). Mutations caused by the insertion of genetic material into the galactose operon of <i>Escherichia coli</i>. <i>J. Mol. Biol.</i> <b>40</b>:93–105. <a class="doi" href="https://doi.org/10.1016/0022-2836(69)90298-8">doi:10.1016/0022-2836(69)90298-8</a></div>
+  <div class="ref">Temin, H. M. &amp; Mizutani, S. (1970). RNA-dependent DNA polymerase in virions of Rous sarcoma virus. <i>Nature</i> <b>226</b>:1211–1213. <a class="doi" href="https://doi.org/10.1038/2261211a0">doi:10.1038/2261211a0</a></div>
+  <div class="ref">Baltimore, D. (1970). RNA-dependent DNA polymerase in virions of RNA tumour viruses. <i>Nature</i> <b>226</b>:1209–1211. <a class="doi" href="https://doi.org/10.1038/2261209a0">doi:10.1038/2261209a0</a></div>
+  <div class="ref">Doolittle, W. F. &amp; Sapienza, C. (1980). Selfish genes, the phenotype paradigm and genome evolution. <i>Nature</i> <b>284</b>:601–603. <a class="doi" href="https://doi.org/10.1038/284601a0">doi:10.1038/284601a0</a></div>
+  <div class="ref">Orgel, L. E. &amp; Crick, F. H. C. (1980). Selfish DNA: the ultimate parasite. <i>Nature</i> <b>284</b>:604–607. <a class="doi" href="https://doi.org/10.1038/284604a0">doi:10.1038/284604a0</a></div>
+  <div class="ref">Houck, C. M., Rinehart, F. P. &amp; Schmid, C. W. (1979). A ubiquitous family of repeated DNA sequences in the human genome. <i>J. Mol. Biol.</i> <b>132</b>:289–306.</div>
+  <div class="ref">Jelinek, W. R., Toomey, T. P., Leinwand, L., Duncan, C. H., Biro, P. A., Choudary, P. V., Weissman, S. M., Rubin, C. M., Houck, C. M., Deininger, P. L. &amp; Schmid, C. W. (1980). Ubiquitous, interspersed repeated sequences in mammalian genomes. <i>Proc. Natl. Acad. Sci. USA</i> <b>77</b>:1398–1402. <a class="doi" href="https://doi.org/10.1073/pnas.77.3.1398">doi:10.1073/pnas.77.3.1398</a></div>
+  <div class="ref">Boeke, J. D., Garfinkel, D. J., Styles, C. A. &amp; Fink, G. R. (1985). Ty elements transpose through an RNA intermediate. <i>Cell</i> <b>40</b>:491–500. <a class="doi" href="https://doi.org/10.1016/0092-8674(85)90197-7">doi:10.1016/0092-8674(85)90197-7</a></div>
+  <div class="ref">Ullu, E. &amp; Tschudi, C. (1984). Alu sequences are processed 7SL RNA genes. <i>Nature</i> <b>312</b>:171–172. <a class="doi" href="https://doi.org/10.1038/312171a0">doi:10.1038/312171a0</a></div>
+  <div class="ref">Kazazian, H. H., Wong, C., Youssoufian, H., Scott, A. F., Phillips, D. G. &amp; Antonarakis, S. E. (1988). Haemophilia A resulting from de novo insertion of L1 sequences represents a novel mechanism for mutation in man. <i>Nature</i> <b>332</b>:164–166. <a class="doi" href="https://doi.org/10.1038/332164a0">doi:10.1038/332164a0</a></div>
+  <div class="ref">Lander, E. S. et al. (International Human Genome Sequencing Consortium) (2001). Initial sequencing and analysis of the human genome. <i>Nature</i> <b>409</b>:860–921. <a class="doi" href="https://doi.org/10.1038/35057062">doi:10.1038/35057062</a></div>
+  <div class="ref">Venter, J. C. et al. (2001). The sequence of the human genome. <i>Science</i> <b>291</b>:1304–1351. <a class="doi" href="https://doi.org/10.1126/science.1058040">doi:10.1126/science.1058040</a></div>
+  <div class="ref" style="color:var(--muted)">Nobels: Physiology or Medicine 1983 — Barbara McClintock (discovery of mobile genetic elements, unshared); Physiology or Medicine 1975 — Dulbecco, Temin &amp; Baltimore (tumour viruses and reverse transcriptase).</div>
+</section>
+
+<footer>Built as a self-contained educational page · All DOI links verified resolvable at time of writing</footer>
+</div>
+
+<script>
+const EVENTS = [
+  {yr:"1944–1950", who:"McClintock · Cold Spring Harbor", tag:"genetics", dot:"#f72585", title:"Controlling elements in maize: Ac & Ds", txt:"Variegating kernels lead to the discovery of Dissociation and Activator — genetic elements that move, insert into genes, and control their expression. The 1950 PNAS paper describes the system; the community is skeptical for a decade.", href:"#mcclintock"},
+  {yr:"1968–1969", who:"Britten & Kohne; Britten & Davidson", tag:"genome", dot:"#ffd166", title:"Eukaryotic DNA is massively repetitive", txt:"C₀t renaturation kinetics reveal hundreds of thousands of copies of interspersed sequences. Nobody yet knows they are mostly transposons.", href:"#repeats"},
+  {yr:"1969", who:"Shapiro; Starlinger & Saedler", tag:"molbio", dot:"#4cc9f0", title:"Bacterial 'jumping genes': DNA insertions in the gal operon", txt:"CsCl density analysis proves extreme-polar gal mutations are caused by the linear insertion of discrete DNA segments — the first physical demonstration of a mobile DNA element (IS elements).", href:"#bacteria"},
+  {yr:"1970s", who:"Starlinger, Hefron, Kleckner & others", tag:"molbio", dot:"#4cc9f0", title:"IS elements, transposase, Tn3/Tn10", txt:"Cut-and-paste DNA transposition is characterized: inverted repeats, target-site duplication, and composite transposons carrying antibiotic resistance. McClintock's idea becomes molecular and mainstream.", href:"#bacteria"},
+  {yr:"1970", who:"Temin & Mizutani; Baltimore", tag:"molbio", dot:"#80ed99", title:"Reverse transcriptase discovered", txt:"Two back-to-back Nature papers find RNA-dependent DNA polymerase in retrovirus particles — the provirus hypothesis confirmed, and the engine of retrotransposition in hand. Nobel 1975.", href:"#rt"},
+  {yr:"1980", who:"Doolittle & Sapienza; Orgel & Crick", tag:"genome", dot:"#f72585", title:"The selfish-DNA debate", txt:"Two Nature papers argue that repetitive DNA and transposons can spread simply because they are good replicators — with no benefit to the host. The 'junk DNA' era begins.", href:"#selfish"},
+  {yr:"1979–1980", who:"Schmid, Deininger, Houck, Jelinek", tag:"molbio", dot:"#ffd166", title:"Alu is discovered", txt:"A ~300-bp sequence, named after the AluI restriction site, turns out to be present ~500,000+ times and interspersed throughout the human genome — transcribed by RNA polymerase III.", href:"#alu"},
+  {yr:"1984–1985", who:"Ullu & Tschudi; Boeke & Fink", tag:"molbio", dot:"#80ed99", title:"Alu = 7SL fossil; Ty retrotransposition proven", txt:"Alu is shown to be a processed copy of 7SL RNA. In yeast, an intron-marked Ty element loses its intron upon transposition — definitive proof that retrotransposons move through an RNA intermediate.", href:"#retro"},
+  {yr:"1983", who:"Nobel Committee", tag:"genetics", dot:"#f72585", title:"McClintock wins the Nobel Prize", txt:"More than 30 years after her discovery, mobile genetic elements are universally accepted — in bacteria, yeast, flies, and humans.", href:"#mcclintock"},
+  {yr:"1988", who:"Kazazian et al.", tag:"molbio", dot:"#f72585", title:"L1 retrotransposition causes haemophilia A", txt:"A de novo LINE-1 insertion into the factor VIII gene in two patients proves human retrotransposons are alive, active, and mutagenic today.", href:"#disease"},
+  {yr:"2001", who:"IHGSC (Lander et al.); Venter et al.", tag:"genome", dot:"#ffd166", title:"Human genome sequenced: ~45% is transposon-derived", txt:"LINEs 21%, SINEs 13%, LTR retrotransposons 8%, DNA transposons 3% — vs ~1.5% protein-coding DNA. The genome is largely a record of transposon history, with TE fragments domesticated into exons and regulatory sites.", href:"#genome"}
+];
+const tl = document.getElementById("tl");
+function render(){
+  const active = {};
+  document.querySelectorAll(".flt").forEach(cb => active[cb.dataset.t] = cb.checked);
+  tl.innerHTML = EVENTS.filter(e => active[e.tag]).map(e => `
+    <div class="ev" style="--dot:${e.dot}">
+      <div class="yr">${e.yr} · <span class="who">${e.who}</span></div>
+      <h4><a href="${e.href}" style="color:inherit;text-decoration:none;border-bottom:1px dotted ${e.dot}">${e.title}</a></h4>
+      <p>${e.txt}</p>
+    </div>`).join("") || '<p style="color:var(--muted)">No events match the selected filters.</p>';
+}
+document.querySelectorAll(".flt").forEach(cb => cb.addEventListener("change", render));
+render();
+</script>
+</body>
+</html>

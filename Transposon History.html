@@ -1,0 +1,683 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Transposon History</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Red+Hat+Display:wght@500;700;800&family=Red+Hat+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: kernel-spotting toy up top, a filterable timeline, six chapters (maize, reverse transcription, LINEs, Alu, the 2001 genome, living with transposons), then verified references. Purple = Class I (copy via RNA), amber = Class II (cut and paste). */
+:root {
+  --bg: #F1EFF6;
+  --paper: #FAF9FC;
+  --ink: #1B1530;
+  --muted: #5C566E;
+  --rule: #D3CEE0;
+  --c1: #6A2C91;
+  --c2: #8A5A0E;
+  --c1-wash: #E8DDF2;
+  --c2-wash: #F5E7C8;
+  --hot: #A3260F;
+  --kernel: #E8C547;
+  --spot: #54177F;
+  --k-line: #6A2C91; --k-sine: #C2417C; --k-ltr: #2E6FB5; --k-dna: #B7791F; --k-rest: #CFC9DC; --k-neutral: #6F6987;
+  --on: #FFFFFF; --on-amber: #1B1530; --on-rest: #1B1530;
+  --f-display: "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Literata", Georgia, "Times New Roman", serif;
+  --f-mono: "Red Hat Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #120E1B; --paper: #1A1426; --ink: #ECE8F4; --muted: #A39CB8; --rule: #352D49;
+    --c1: #B592EC; --c2: #E2B04A; --c1-wash: #2A1E40; --c2-wash: #3A2D12; --hot: #FF8F73;
+    --kernel: #C9A233; --spot: #3A1262;
+    --k-line: #9B6FD6; --k-sine: #D95F8C; --k-ltr: #3F86D6; --k-dna: #B8791A; --k-rest: #3B3350; --k-neutral: #8C85A3;
+    --on: #120E1B; --on-amber: #120E1B; --on-rest: #ECE8F4; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #120E1B; --paper: #1A1426; --ink: #ECE8F4; --muted: #A39CB8; --rule: #352D49;
+  --c1: #B592EC; --c2: #E2B04A; --c1-wash: #2A1E40; --c2-wash: #3A2D12; --hot: #FF8F73;
+  --kernel: #C9A233; --spot: #3A1262;
+  --k-line: #9B6FD6; --k-sine: #D95F8C; --k-ltr: #3F86D6; --k-dna: #B8791A; --k-rest: #3B3350; --k-neutral: #8C85A3;
+  --on: #120E1B; --on-amber: #120E1B; --on-rest: #ECE8F4; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 17px; line-height: 1.62;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 64px;
+}
+.wrap { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 60px; }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.1; text-wrap: balance; margin: 0; letter-spacing: -0.015em; }
+h1 { font-size: clamp(2.4rem, 7.5vw, 4.4rem); font-weight: 800; }
+h2 { font-size: clamp(1.55rem, 4vw, 2.1rem); font-weight: 700; }
+h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.005em; }
+p { margin: 0; }
+a { color: var(--c1); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--hot); outline-offset: 2px; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.mono { font-family: var(--f-mono); font-size: 0.86em; }
+.cite { font-family: var(--f-mono); font-size: 0.76em; white-space: nowrap; text-decoration: none; }
+.cite:hover { text-decoration: underline; }
+.section-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
+.section-head .q { max-width: 62ch; color: var(--muted); font-style: italic; }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 28px 44px; align-items: center; }
+.hero-text { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.hero-text .lede { font-size: 1.1rem; max-width: 52ch; }
+.ear { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.ear canvas { display: block; width: 100%; height: auto; border-radius: 4px; }
+.ear-ctl { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-family: var(--f-mono); font-size: 0.76rem; }
+.ear-ctl label { display: flex; align-items: center; gap: 8px; flex: 1 1 220px; min-width: 0; }
+.ear-ctl input[type=range] { flex: 1; min-width: 0; accent-color: var(--c1); }
+.btn { font: inherit; font-family: var(--f-display); font-weight: 700; font-size: 0.86rem; background: var(--ink); color: var(--paper); border: 0; border-radius: 4px; padding: 8px 14px; min-height: 40px; cursor: pointer; }
+.btn.alt { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.ear-stat { font-family: var(--f-mono); font-size: 0.76rem; color: var(--muted); line-height: 1.5; }
+@media (max-width: 760px) { .hero { grid-template-columns: minmax(0, 1fr); } }
+
+/* terms */
+.terms { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; }
+.terms dl { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px 30px; }
+.terms dt { font-family: var(--f-display); font-weight: 700; font-size: 0.98rem; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.terms dd { margin: 3px 0 0; color: var(--muted); font-size: 0.93rem; line-height: 1.5; }
+.chip { font-family: var(--f-mono); font-size: 0.68rem; padding: 1px 7px; border-radius: 3px; font-weight: 500; white-space: nowrap; }
+.chip.c1 { background: var(--c1-wash); color: var(--c1); }
+.chip.c2 { background: var(--c2-wash); color: var(--c2); }
+.chip.gen { background: var(--rule); color: var(--ink); }
+.chip.host { background: transparent; border: 1px solid var(--muted); color: var(--muted); }
+
+/* timeline */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.filters button { font: inherit; font-family: var(--f-mono); font-size: 0.76rem; background: transparent; color: var(--ink); border: 1px solid var(--ink); border-radius: 20px; padding: 7px 14px; min-height: 38px; cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.tl { display: flex; flex-direction: column; }
+.ev { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); gap: 4px 18px; padding: 16px 0; border-top: 1px solid var(--rule); }
+.ev .yr { font-family: var(--f-display); font-weight: 800; font-size: 1.3rem; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.ev .tx { display: flex; flex-direction: column; gap: 6px; min-width: 0; font-size: 0.97rem; line-height: 1.5; }
+.ev .tx b { font-family: var(--f-display); font-weight: 700; }
+.ev .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+@media (max-width: 560px) { .ev { grid-template-columns: minmax(0, 1fr); } }
+
+/* chapters */
+.chapter { display: flex; flex-direction: column; gap: 4px; }
+.step { display: grid; grid-template-columns: 7.2rem minmax(0, 1fr); gap: 6px 22px; padding: 18px 0; border-top: 1px solid var(--rule); }
+.step .tag { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 5px; }
+.step .body { display: flex; flex-direction: column; gap: 10px; min-width: 0; max-width: 66ch; }
+.proves { background: var(--c1-wash); border-radius: 4px; padding: 10px 14px; font-size: 0.95rem; }
+.proves b { font-family: var(--f-display); color: var(--c1); }
+.proves.dna { background: var(--c2-wash); } .proves.dna b { color: var(--c2); }
+.paper { font-family: var(--f-mono); font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+@media (max-width: 640px) { .step { grid-template-columns: minmax(0, 1fr); } }
+
+/* lab boxes */
+.lab { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 22px; display: flex; flex-direction: column; gap: 14px; margin: 14px 0; }
+.lab > .paper { max-width: 70ch; }
+.track { display: flex; flex-direction: column; gap: 6px; }
+.track .row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; }
+.track .nm { font-family: var(--f-display); font-weight: 700; font-size: 0.95rem; }
+.track .ct { font-family: var(--f-mono); font-size: 0.8rem; color: var(--muted); }
+.track svg, .diagram svg { display: block; width: 100%; height: auto; }
+.diagram { overflow-x: auto; }
+.diagram svg { min-width: 560px; }
+.svg-genome { fill: var(--rule); }
+.svg-tick1 { fill: var(--c1); } .svg-tick2 { fill: var(--c2); }
+.svg-txt { font-family: var(--f-mono); font-size: 12px; fill: var(--muted); }
+.svg-txt-on { font-family: var(--f-mono); font-size: 12px; fill: var(--on); text-anchor: middle; font-weight: 500; }
+.svg-line { stroke: var(--ink); stroke-width: 2; fill: none; }
+.svg-box-sine { fill: var(--k-sine); }
+.svg-box-link { fill: var(--muted); }
+.svg-tsd { stroke: var(--hot); stroke-width: 2.5; fill: none; }
+.svg-tsd-t { font-family: var(--f-mono); font-size: 11px; fill: var(--hot); }
+.stepper { display: flex; flex-direction: column; gap: 12px; }
+.dots { display: flex; gap: 6px; flex-wrap: wrap; }
+.dots button { font: inherit; font-family: var(--f-mono); font-size: 0.76rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
+.dots button[aria-current="step"] { background: var(--c1); border-color: var(--c1); color: var(--paper); }
+.stepbody { min-height: 7.5em; max-width: 64ch; }
+.stepbody h3 { margin-bottom: 4px; }
+.stepnav { display: flex; gap: 8px; }
+
+/* composition chart */
+.bars { display: flex; flex-direction: column; gap: 14px; }
+.bar-label { font-family: var(--f-mono); font-size: 0.74rem; color: var(--muted); margin-bottom: 5px; }
+.bar { display: flex; gap: 2px; height: 44px; }
+.seg { min-width: 0; border-radius: 0; display: flex; align-items: center; justify-content: center; font-family: var(--f-mono); font-size: 0.72rem; font-weight: 500; overflow: hidden; white-space: nowrap; }
+.seg:first-child { border-radius: 4px 0 0 4px; } .seg:last-child { border-radius: 0 4px 4px 0; }
+.seg.line { background: var(--k-line); color: var(--on); }
+.seg.sine { background: var(--k-sine); color: var(--on); }
+.seg.ltr { background: var(--k-ltr); color: var(--on); }
+.seg.dna { background: var(--k-dna); color: var(--on-amber); }
+.seg.rest { background: var(--k-rest); color: var(--on-rest); }
+.seg.neutral { background: var(--k-neutral); color: var(--on); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-family: var(--f-mono); font-size: 0.78rem; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+.tablewrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; }
+table { border-collapse: collapse; width: 100%; min-width: 480px; font-size: 0.92rem; }
+th { text-align: left; font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 10px 14px; border-bottom: 2px solid var(--ink); }
+td { padding: 10px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: 0; }
+
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.compare > div { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.compare .hd { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.compare p { font-size: 0.94rem; line-height: 1.5; }
+
+/* refs */
+.refs { display: flex; flex-direction: column; }
+.ref { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 4px 12px; padding: 11px 0; border-top: 1px solid var(--rule); scroll-margin-top: 16px; }
+.ref:target { background: var(--c1-wash); }
+.ref .n { font-family: var(--f-mono); font-size: 0.8rem; color: var(--muted); padding-top: 2px; }
+.ref .t { font-size: 0.95rem; line-height: 1.45; min-width: 0; }
+.ref .doi { font-family: var(--f-mono); font-size: 0.78rem; word-break: break-all; display: inline-block; margin-top: 2px; }
+.nodoi { font-family: var(--f-mono); font-size: 0.76rem; color: var(--muted); }
+.foot { font-size: 0.9rem; color: var(--muted); max-width: 66ch; }
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">Genetics · 1944–2022</div>
+    <h1>Transposon History</h1>
+    <p class="lede">How spotted maize kernels led to genes that cut and paste, to genes that copy themselves through RNA, to the Alu repeat that fills a tenth of the human genome, and to the 2001 draft genome that showed how much of our DNA came from them. Every step names the experiment and the paper, with a DOI that resolves.</p>
+  </div>
+  <figure class="ear" style="margin:0">
+    <canvas id="ear" width="480" height="288" role="img" aria-label="Simulated maize kernels with purple spots where a Ds element has jumped out of a pigment gene"></canvas>
+    <div class="ear-ctl">
+      <label for="rate"><span>Ac activity</span><input id="rate" type="range" min="0" max="100" value="30"></label>
+      <button class="btn" id="reroll" type="button">New ear</button>
+    </div>
+    <p class="ear-stat" id="earstat"></p>
+    <p class="ear-stat">Each purple spot is a lineage in which Ds left the pigment gene. Early excision gives a big sector, late excision a dot. A model of McClintock's variegation, not data.</p>
+  </figure>
+</header>
+
+<section class="terms" aria-labelledby="terms-h">
+  <div class="eyebrow" id="terms-h">Terms used below</div>
+  <dl>
+    <dt>Transposable element <span class="chip gen">any</span></dt>
+    <dd>A stretch of DNA that can change its position in a genome. Also called a transposon or mobile element.</dd>
+    <dt>DNA transposon <span class="chip c2">Class II</span></dt>
+    <dd>Moves as DNA by cut and paste, using an enzyme it encodes (transposase). Usually ends in terminal inverted repeats. McClintock's Ac and Ds are the classic case.</dd>
+    <dt>Retrotransposon <span class="chip c1">Class I</span></dt>
+    <dd>Makes an RNA copy, reverse-transcribes it to DNA and inserts the new copy. The original stays put, so copy number goes up.</dd>
+    <dt>LTR retrotransposon <span class="chip c1">Class I</span></dt>
+    <dd>Has long terminal repeats and resembles a retrovirus. Yeast Ty1 is an example. Endogenous retroviruses belong here.</dd>
+    <dt>LINE <span class="chip c1">Class I</span></dt>
+    <dd>Long interspersed element, a non-LTR retrotransposon that encodes its own reverse transcriptase. Human L1 is about 6 kb.</dd>
+    <dt>SINE <span class="chip c1">Class I</span></dt>
+    <dd>Short interspersed element. It encodes no proteins and borrows the machinery of a LINE. Alu is the human SINE.</dd>
+    <dt>Autonomous / non-autonomous</dt>
+    <dd>An autonomous element encodes what it needs to move (Ac, L1). A non-autonomous one depends on another element's enzyme (Ds, Alu).</dd>
+    <dt>Target site duplication</dt>
+    <dd>A short repeat of host DNA on each side of an insertion, left by the way the element is joined in.</dd>
+  </dl>
+</section>
+
+<section aria-labelledby="tl-h">
+  <div class="section-head">
+    <div class="eyebrow">Timeline</div>
+    <h2 id="tl-h">Seventy-eight years in one list</h2>
+    <p class="q">Filter by the kind of result. Bracketed numbers point to the references at the bottom.</p>
+  </div>
+  <div class="filters" role="group" aria-label="Filter timeline">
+    <button type="button" data-f="all" aria-pressed="true">All</button>
+    <button type="button" data-f="c2" aria-pressed="false">Class II · DNA</button>
+    <button type="button" data-f="c1" aria-pressed="false">Class I · RNA</button>
+    <button type="button" data-f="gen" aria-pressed="false">Genomes</button>
+    <button type="button" data-f="host" aria-pressed="false">Host &amp; function</button>
+  </div>
+  <div class="tl" id="tl">
+    <div class="ev" data-tags="c2"><div class="yr">1944–50</div><div class="tx"><span><b>Jumping in maize.</b> At Cold Spring Harbor, McClintock follows unstable pigment mutants and finds that Ds, which breaks chromosome 9, only acts when Ac is present, and that both can change position. She calls them controlling elements. <a class="cite" href="#r1">[1]</a></span><span class="tags"><span class="chip c2">Class II</span></span></div></div>
+    <div class="ev" data-tags="c2"><div class="yr">1951</div><div class="tx"><span><b>Presented at the Cold Spring Harbor Symposium.</b> McClintock lays out chromosome organisation and gene expression. The idea that genes move met with scepticism for years. <a class="cite" href="#r2">[2]</a></span><span class="tags"><span class="chip c2">Class II</span></span></div></div>
+    <div class="ev" data-tags="c1"><div class="yr">1964</div><div class="tx"><span><b>The provirus hypothesis.</b> Howard Temin proposes that RNA tumour viruses copy their RNA into DNA. Few accept it, because it runs against the DNA-to-RNA direction of the day.</span><span class="tags"><span class="chip c1">Class I</span></span></div></div>
+    <div class="ev" data-tags="c2"><div class="yr">late 1960s</div><div class="tx"><span><b>Insertion sequences in bacteria.</b> Polar mutations in the <em>E. coli</em> galactose operon trace back to short DNA segments that insert into genes. Mobile DNA is not a maize curiosity. (Original papers not cited here.)</span><span class="tags"><span class="chip c2">Class II</span></span></div></div>
+    <div class="ev" data-tags="c1"><div class="yr">1970</div><div class="tx"><span><b>Reverse transcriptase.</b> Baltimore, and Temin with Mizutani, find an RNA-dependent DNA polymerase in tumour virus particles. Baltimore, Dulbecco and Temin share the 1975 Nobel Prize in Physiology or Medicine. <a class="cite" href="#r7">[7]</a> <a class="cite" href="#r8">[8]</a></span><span class="tags"><span class="chip c1">Class I</span></span></div></div>
+    <div class="ev" data-tags="c1 gen"><div class="yr">1980</div><div class="tx"><span><b>An interspersed repeat in primates.</b> Jelinek and colleagues describe a family of roughly 300 bp repeats scattered through mammalian genomes. It is later called Alu, after a restriction site it carries. <a class="cite" href="#r14">[14]</a> A review follows in 1982. <a class="cite" href="#r15">[15]</a></span><span class="tags"><span class="chip c1">Class I</span><span class="chip gen">Genomes</span></span></div></div>
+    <div class="ev" data-tags="c2"><div class="yr">1983</div><div class="tx"><span><b>Ac and Ds are cloned.</b> Fedoroff, Wessler and Shure isolate the maize elements and show what McClintock had inferred. McClintock receives the Nobel Prize in Physiology or Medicine the same year, alone. <a class="cite" href="#r3">[3]</a></span><span class="tags"><span class="chip c2">Class II</span></span></div></div>
+    <div class="ev" data-tags="c1 host"><div class="yr">1984</div><div class="tx"><span><b>Alu comes from 7SL RNA.</b> Ullu and Tschudi show that Alu sequences are processed 7SL RNA genes. <a class="cite" href="#r16">[16]</a> McClintock's Science paper argues the genome responds to stress by restructuring itself. <a class="cite" href="#r4">[4]</a></span><span class="tags"><span class="chip c1">Class I</span><span class="chip host">Host</span></span></div></div>
+    <div class="ev" data-tags="c1"><div class="yr">1985</div><div class="tx"><span><b>Ty elements move through RNA.</b> Boeke, Garfinkel, Styles and Fink mark a yeast Ty element with an intron. Transposed copies had lost it. <a class="cite" href="#r9">[9]</a></span><span class="tags"><span class="chip c1">Class I</span></span></div></div>
+    <div class="ev" data-tags="c1 host"><div class="yr">1988</div><div class="tx"><span><b>L1 causes disease.</b> Kazazian and colleagues find new L1 insertions in the factor VIII gene of haemophilia A patients. <a class="cite" href="#r10">[10]</a></span><span class="tags"><span class="chip c1">Class I</span><span class="chip host">Host</span></span></div></div>
+    <div class="ev" data-tags="c1"><div class="yr">1993</div><div class="tx"><span><b>Target-primed reverse transcription.</b> Luan, Eickbush and colleagues show how a non-LTR element (R2) reverse-transcribes straight onto a nick in the chromosome. <a class="cite" href="#r11">[11]</a></span><span class="tags"><span class="chip c1">Class I</span></span></div></div>
+    <div class="ev" data-tags="c1"><div class="yr">1996</div><div class="tx"><span><b>L1 jumps in a dish.</b> Moran and colleagues build a retrotransposition assay for cultured human cells. <a class="cite" href="#r12">[12]</a> Feng and colleagues show L1 encodes an endonuclease. <a class="cite" href="#r13">[13]</a></span><span class="tags"><span class="chip c1">Class I</span></span></div></div>
+    <div class="ev" data-tags="c2 host"><div class="yr">1998</div><div class="tx"><span><b>The immune system's recombinase can transpose.</b> Agrawal, Eastman and Schatz show RAG1 and RAG2 can move DNA in vitro, pointing to a transposon origin. <a class="cite" href="#r28">[28]</a></span><span class="tags"><span class="chip c2">Class II</span><span class="chip host">Function</span></span></div></div>
+    <div class="ev" data-tags="c1 host"><div class="yr">2000</div><div class="tx"><span><b>A retroviral gene in the placenta.</b> Syncytin, from an ancient retroviral envelope gene, helps form the placental syncytiotrophoblast. <a class="cite" href="#r27">[27]</a></span><span class="tags"><span class="chip c1">Class I</span><span class="chip host">Function</span></span></div></div>
+    <div class="ev" data-tags="gen"><div class="yr">2001</div><div class="tx"><span><b>Two draft human genomes.</b> The public consortium (Nature) and Celera (Science) publish a day apart. About 45% of the sequence is recognisable as transposon-derived. <a class="cite" href="#r19">[19]</a> <a class="cite" href="#r20">[20]</a></span><span class="tags"><span class="chip gen">Genomes</span></span></div></div>
+    <div class="ev" data-tags="c1 gen"><div class="yr">2002</div><div class="tx"><span><b>Alu and human diversity.</b> Batzer and Deininger review Alu subfamilies and insertion polymorphisms as markers of ancestry. <a class="cite" href="#r17">[17]</a></span><span class="tags"><span class="chip c1">Class I</span><span class="chip gen">Genomes</span></span></div></div>
+    <div class="ev" data-tags="c1"><div class="yr">2003</div><div class="tx"><span><b>L1 mobilises Alu.</b> Dewannieux, Esnault and Heidmann tag Alu elements and show LINE machinery moves them. <a class="cite" href="#r18">[18]</a></span><span class="tags"><span class="chip c1">Class I</span></span></div></div>
+    <div class="ev" data-tags="c1 host"><div class="yr">2005</div><div class="tx"><span><b>L1 in neural progenitors.</b> Muotri and colleagues report L1 retrotransposition in neuronal precursor cells, creating somatic mosaicism. <a class="cite" href="#r29">[29]</a></span><span class="tags"><span class="chip c1">Class I</span><span class="chip host">Host</span></span></div></div>
+    <div class="ev" data-tags="host"><div class="yr">2007</div><div class="tx"><span><b>Small RNAs guard the germline.</b> Brennecke and colleagues map piRNA-producing loci that control transposons in <em>Drosophila</em>. <a class="cite" href="#r26">[26]</a> The same year, Wicker and colleagues propose a unified classification. <a class="cite" href="#r24">[24]</a></span><span class="tags"><span class="chip host">Host</span></span></div></div>
+    <div class="ev" data-tags="gen"><div class="yr">2011</div><div class="tx"><span><b>Two-thirds, and counting.</b> de Koning and colleagues use new methods to estimate that repeats make up at least about two-thirds of the human genome. <a class="cite" href="#r21">[21]</a></span><span class="tags"><span class="chip gen">Genomes</span></span></div></div>
+    <div class="ev" data-tags="gen"><div class="yr">2020</div><div class="tx"><span><b>A field guide.</b> Wells and Feschotte survey the diversity of eukaryotic transposable elements. <a class="cite" href="#r25">[25]</a></span><span class="tags"><span class="chip gen">Genomes</span></span></div></div>
+    <div class="ev" data-tags="gen"><div class="yr">2022</div><div class="tx"><span><b>A complete human genome.</b> The T2T consortium closes the remaining gaps, and a companion paper maps the repeat elements in that sequence. <a class="cite" href="#r22">[22]</a> <a class="cite" href="#r23">[23]</a></span><span class="tags"><span class="chip gen">Genomes</span></span></div></div>
+  </div>
+</section>
+
+<section class="chapter" aria-labelledby="ca">
+  <div class="section-head">
+    <div class="eyebrow">Chapter 1 · Class II</div>
+    <h2 id="ca">McClintock and the spotted kernels</h2>
+    <p class="q">Why do some maize kernels carry purple spots, and why does the spotting differ from ear to ear?</p>
+  </div>
+  <div class="step">
+    <div class="tag">Observation</div>
+    <div class="body">
+      <p>McClintock studied maize cytogenetics at Cold Spring Harbor from 1944. She followed unstable alleles that were mutant in one cell and normal in its descendants. Kernels with the colourless allele showed purple sectors, as if a mutation had been reversed in single cells and passed on.</p>
+      <p>The sector's size recorded <b>when</b> the change happened. An early event gave a large sector and a late event a speck. The control panel at the top of this page lets you change the rate and see that logic.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="tag">Experiment · 1950</div>
+    <div class="body">
+      <h3>Ds only acts when Ac is present, and both move</h3>
+      <p>On chromosome 9, McClintock found a site, Ds (Dissociation), where the chromosome broke. Breaks occurred only if a second element, Ac (Activator), was in the genome. Both could change position. When Ds sat inside a pigment gene it blocked the gene, and when it left, the gene worked again in that cell and its descendants. She called them controlling elements and saw them as regulators of gene action.</p>
+      <div class="proves dna"><b>What it proved:</b> parts of the genome are mobile, and one element can control another's movement.</div>
+      <div class="paper">McClintock, <em>PNAS</em> 36:344–355 (1950) <a class="cite" href="#r1">[1]</a> · Cold Spring Harbor Symposium (1951) <a class="cite" href="#r2">[2]</a></div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="tag">Experiment · 1983</div>
+    <div class="body">
+      <h3>Cloning Ac and Ds</h3>
+      <p>Thirty years later Fedoroff, Wessler and Shure isolated the elements as DNA. Ac is an autonomous element. Ds elements are shorter versions that lost the middle of the sequence and so cannot move alone. That matches her genetic result: Ds moves only when Ac supplies the enzyme. McClintock received the Nobel Prize in Physiology or Medicine in 1983, alone, for the discovery of mobile genetic elements.</p>
+      <div class="proves dna"><b>What it proved:</b> controlling elements are specific pieces of DNA, with an autonomous member and non-autonomous relatives.</div>
+      <div class="paper">Fedoroff, Wessler &amp; Shure, <em>Cell</em> 35:235–242 (1983) <a class="cite" href="#r3">[3]</a></div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="tag">Concept · 1984</div>
+    <div class="body">
+      <p>In her 1984 Science paper McClintock argued that the genome responds to stress by activating and restructuring its mobile parts, which she called genomic shock. How general that is remains debated. The paper is still the clearest statement of her view. <a class="cite" href="#r4">[4]</a> For retrospectives, see Fedoroff and Ravindran, both from 2012. <a class="cite" href="#r5">[5]</a> <a class="cite" href="#r6">[6]</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" aria-labelledby="cb">
+  <div class="section-head">
+    <div class="eyebrow">Chapter 2 · Class I</div>
+    <h2 id="cb">Copying through RNA</h2>
+    <p class="q">If an element copies itself, where does the copy come from?</p>
+  </div>
+  <div class="step">
+    <div class="tag">Concept · 1964–70</div>
+    <div class="body">
+      <p>Temin's provirus hypothesis said that RNA tumour viruses make a DNA copy of their genome. In 1970 two groups found the enzyme. Baltimore and Temin with Mizutani each reported an RNA-dependent DNA polymerase in virus particles. <a class="cite" href="#r7">[7]</a> <a class="cite" href="#r8">[8]</a> Information could flow from RNA back into DNA, and a genome could in principle gain sequences that way.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="tag">Experiment · 1985</div>
+    <div class="body">
+      <h3>Boeke and Fink: the intron trick in yeast</h3>
+      <p>Yeast Ty elements look like retroviruses without an envelope. Boeke, Garfinkel, Styles and Fink put an intron into a Ty element, in the orientation that is removed only from the RNA transcript, and put the element under an inducible promoter. Transposed copies had lost the intron. Only an RNA intermediate could explain that.</p>
+      <div class="proves"><b>What it proved:</b> Ty elements move through an RNA intermediate, so they are retrotransposons, relatives of retroviruses that stay inside the cell.</div>
+      <div class="paper">Boeke, Garfinkel, Styles &amp; Fink, <em>Cell</em> 40:491–500 (1985) <a class="cite" href="#r9">[9]</a></div>
+    </div>
+  </div>
+
+  <div class="lab" aria-labelledby="lab1-h">
+    <div>
+      <h3 id="lab1-h">Cut-and-paste versus copy-and-paste</h3>
+      <p class="paper">Press Transpose a few times on each track. Real genomes are more complicated, so see the note below.</p>
+    </div>
+    <div class="track">
+      <div class="row"><span class="nm" style="color:var(--c2)">DNA transposon (cut and paste)</span><span class="ct" id="ct2"></span></div>
+      <svg id="g2" viewBox="0 0 600 40" role="img" aria-label="Genome strip with DNA transposon positions"></svg>
+      <div class="row"><button class="btn" id="go2" type="button">Transpose</button></div>
+    </div>
+    <div class="track">
+      <div class="row"><span class="nm" style="color:var(--c1)">Retrotransposon (copy and paste)</span><span class="ct" id="ct1"></span></div>
+      <svg id="g1" viewBox="0 0 600 40" role="img" aria-label="Genome strip with retrotransposon positions"></svg>
+      <div class="row"><button class="btn" id="go1" type="button">Transpose</button> <button class="btn alt" id="reset" type="button">Reset both</button></div>
+    </div>
+    <p class="paper">A cut-and-paste element can still gain copies. If it jumps from a region that has already replicated into one that has not, or if the cell repairs the gap it left by copying the sister chromosome, the count rises. A retrotransposon adds a copy on every successful event, which is why they build up to hundreds of thousands of copies.</p>
+  </div>
+</section>
+
+<section class="chapter" aria-labelledby="cc">
+  <div class="section-head">
+    <div class="eyebrow">Chapter 3 · LINEs</div>
+    <h2 id="cc">L1: the engine in our genome</h2>
+    <p class="q">Which elements are still moving in people, and how?</p>
+  </div>
+  <div class="step">
+    <div class="tag">Observation · 1988</div>
+    <div class="body">
+      <p>Kazazian and colleagues studied the factor VIII gene in patients with haemophilia A and found L1 sequences inserted into the gene in patients, not present in the parents' copies of it. A mobile element in the human genome had moved recently enough to cause a new mutation.</p>
+      <div class="proves"><b>What it proved:</b> L1 is still active in humans, and retrotransposition is a source of new disease mutations.</div>
+      <div class="paper">Kazazian <em>et al.</em>, <em>Nature</em> 332:164–166 (1988) <a class="cite" href="#r10">[10]</a></div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="tag">Experiment · 1993–96</div>
+    <div class="body">
+      <h3>How a LINE inserts: target-primed reverse transcription</h3>
+      <p>Luan, Korman, Jakubczak and Eickbush studied R2, a non-LTR element of the silkworm that inserts into ribosomal DNA. Its protein cuts one strand of the target and uses the exposed end as a primer to reverse-transcribe the element's RNA directly onto the chromosome. <a class="cite" href="#r11">[11]</a> In 1996 Feng and colleagues showed human L1 encodes an endonuclease needed for retrotransposition, <a class="cite" href="#r13">[13]</a> and Moran and colleagues built the cell assay that made L1 testable. They split a reporter gene with an intron, the same logic as Boeke's yeast experiment, so cells survive selection only after the full cycle of transcription, splicing, reverse transcription and insertion. <a class="cite" href="#r12">[12]</a></p>
+      <div class="paper">Luan <em>et al.</em>, <em>Cell</em> 72:595–605 (1993) · Moran <em>et al.</em>, <em>Cell</em> 87:917–927 (1996) · Feng <em>et al.</em>, <em>Cell</em> 87:905–916 (1996)</div>
+    </div>
+  </div>
+
+  <div class="lab stepper" aria-labelledby="lab2-h">
+    <h3 id="lab2-h">One L1 insertion, step by step</h3>
+    <div class="dots" id="tpdots" role="group" aria-label="Steps"></div>
+    <div class="stepbody" id="tpbody" aria-live="polite"></div>
+    <div class="stepnav"><button class="btn alt" id="tpprev" type="button">Back</button><button class="btn" id="tpnext" type="button">Next</button></div>
+  </div>
+</section>
+
+<section class="chapter" aria-labelledby="cd">
+  <div class="section-head">
+    <div class="eyebrow">Chapter 4 · SINEs</div>
+    <h2 id="cd">Alu: a short repeat that rides on L1</h2>
+    <p class="q">What is the most common transposon in the human genome, and where did it come from?</p>
+  </div>
+  <div class="step">
+    <div class="tag">Discovery · 1980</div>
+    <div class="body">
+      <p>By the late 1970s, reassociation studies showed human DNA contained a very abundant family of repeats about 300 base pairs long. Jelinek and colleagues described it as a family of interspersed repeats found throughout mammalian genomes. It was named Alu after the AluI restriction site that cuts most of its members. <a class="cite" href="#r14">[14]</a> Schmid and Jelinek reviewed what was known two years later. <a class="cite" href="#r15">[15]</a></p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="tag">Experiment · 1984</div>
+    <div class="body">
+      <h3>Alu is a processed 7SL RNA gene</h3>
+      <p>Ullu and Tschudi compared Alu with the gene for 7SL RNA, part of the signal recognition particle. Alu has the features of a dimer of 7SL RNA with a central stretch missing, so it began as a copy of that gene made through RNA.</p>
+      <div class="proves"><b>What it proved:</b> Alu is not a virus-like element. It is a retroposed cellular RNA gene that became a parasite of the retrotransposition machinery.</div>
+      <div class="paper">Ullu &amp; Tschudi, <em>Nature</em> 312:171–172 (1984) <a class="cite" href="#r16">[16]</a></div>
+    </div>
+  </div>
+  <div class="step">
+    <div class="tag">Experiment · 2003</div>
+    <div class="body">
+      <h3>Alu uses L1's enzyme</h3>
+      <p>Alu encodes no proteins. Dewannieux, Esnault and Heidmann marked human Alu elements with a reporter that works only after retrotransposition. Cells that made L1's proteins mobilised the marked Alus, and cells without them did not.</p>
+      <div class="proves"><b>What it proved:</b> Alu is a non-autonomous SINE that depends on LINE proteins, like Ds depending on Ac, but through RNA.</div>
+      <div class="paper">Dewannieux, Esnault &amp; Heidmann, <em>Nat Genet</em> 35:41–48 (2003) <a class="cite" href="#r18">[18]</a></div>
+    </div>
+  </div>
+
+  <div class="lab" aria-labelledby="lab3-h">
+    <div>
+      <h3 id="lab3-h">Anatomy of an Alu insertion</h3>
+      <p class="paper">Approximate proportions. Two related halves, an A-rich linker, a poly(A) tail, and the target site duplications on either side.</p>
+    </div>
+    <div class="diagram">
+      <svg viewBox="0 0 700 170" role="img" aria-label="Alu element: left monomer, A-rich linker, right monomer, poly(A) tail, flanked by target site duplications">
+        <line class="svg-line" x1="10" y1="90" x2="690" y2="90"/>
+        <path class="svg-tsd" d="M40 70 L40 110"/><path class="svg-tsd" d="M44 70 L44 110"/>
+        <path class="svg-tsd" d="M656 70 L656 110"/><path class="svg-tsd" d="M660 70 L660 110"/>
+        <text class="svg-tsd-t" x="20" y="136">TSD</text><text class="svg-tsd-t" x="636" y="136">TSD</text>
+        <rect class="svg-box-sine" x="64" y="72" width="215" height="36" rx="3"/>
+        <text class="svg-txt-on" x="171" y="95">left monomer</text>
+        <rect class="svg-box-link" x="283" y="78" width="40" height="24" rx="3"/>
+        <rect class="svg-box-sine" x="327" y="72" width="260" height="36" rx="3"/>
+        <text class="svg-txt-on" x="457" y="95">right monomer</text>
+        <path d="M591 90 q8 -10 16 0 t16 0 t16 0" class="svg-line" style="stroke:var(--muted)"/>
+        <text class="svg-txt" x="64" y="52">A box</text><text class="svg-txt" x="150" y="52">B box</text>
+        <path class="svg-line" d="M70 56 L70 70 M156 56 L156 70" style="stroke-width:1.5"/>
+        <text class="svg-txt" x="278" y="132">A-rich linker</text>
+        <text class="svg-txt" x="590" y="132">poly(A)</text>
+        <text class="svg-txt" x="64" y="158">about 300 bp in total. The A and B boxes inside the left monomer act as an RNA polymerase III promoter.</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="tag">What it did next</div>
+    <div class="body">
+      <p>Alu elements arose early in primate evolution and number over a million in the human genome, about a tenth of its sequence. They fall into subfamilies of different ages, and the youngest still insert and create polymorphisms between people that are used to study ancestry. Because there are so many similar copies, Alu elements can also pair up wrongly during recombination and cause deletions or duplications. Batzer and Deininger review all of this. <a class="cite" href="#r17">[17]</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" aria-labelledby="ce">
+  <div class="section-head">
+    <div class="eyebrow">Chapter 5 · Genomes</div>
+    <h2 id="ce">What the 2001 genome showed</h2>
+    <p class="q">How much of our DNA is transposon-derived?</p>
+  </div>
+  <div class="step">
+    <div class="tag">Result · 2001</div>
+    <div class="body">
+      <p>In February 2001 the International Human Genome Sequencing Consortium published its draft in Nature, and Celera published its own, built by whole-genome shotgun sequencing, in Science. <a class="cite" href="#r19">[19]</a> <a class="cite" href="#r20">[20]</a> The consortium's analysis recognised that about 45% of the sequence was derived from transposable elements. LINEs were the largest share, then SINEs, then LTR elements, then DNA transposons.</p>
+      <p>Most copies are old and degraded, so the genome reads like a fossil record. DNA transposons and LTR elements were largely inactive for tens of millions of years in the human lineage. L1 and Alu were the main elements still active.</p>
+    </div>
+  </div>
+
+  <div class="lab" aria-labelledby="lab4-h">
+    <div>
+      <h3 id="lab4-h">Share of the human genome</h3>
+      <p class="paper">The 2001 figures are rounded from the consortium's analysis and are approximate. The 2011 bar is a separate estimate and is not directly comparable, because it also counts ancient repeats that earlier methods missed.</p>
+    </div>
+    <div class="bars">
+      <div>
+        <div class="bar-label">2001 draft, by class</div>
+        <div class="bar" role="img" aria-label="Bar chart: LINEs 20 percent, SINEs 13 percent, LTR elements 8 percent, DNA transposons 3 percent, everything else 56 percent">
+          <div class="seg line" style="flex: 20 0 0">20%</div>
+          <div class="seg sine" style="flex: 13 0 0">13%</div>
+          <div class="seg ltr" style="flex: 8 0 0">8%</div>
+          <div class="seg dna" style="flex: 3 0 0"></div>
+          <div class="seg rest" style="flex: 56 0 0">everything else</div>
+        </div>
+      </div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--k-line)"></i>LINEs 20%</span>
+        <span><i class="sw" style="background:var(--k-sine)"></i>SINEs 13% (mostly Alu)</span>
+        <span><i class="sw" style="background:var(--k-ltr)"></i>LTR elements 8%</span>
+        <span><i class="sw" style="background:var(--k-dna)"></i>DNA transposons 3%</span>
+        <span><i class="sw" style="background:var(--k-rest)"></i>everything else 56%</span>
+      </div>
+      <div>
+        <div class="bar-label">2011 estimate, repeat-derived DNA</div>
+        <div class="bar" role="img" aria-label="Bar chart: at least about two thirds of the genome is repeat-derived">
+          <div class="seg neutral" style="flex: 67 0 0">at least about two-thirds</div>
+          <div class="seg rest" style="flex: 33 0 0">the rest</div>
+        </div>
+      </div>
+      <button class="btn alt" id="tbtn" type="button" aria-expanded="false" aria-controls="ttab" style="align-self:flex-start">Show as table</button>
+      <div class="tablewrap" id="ttab" hidden>
+        <table>
+          <thead><tr><th>Class</th><th>Share of genome (2001, approx.)</th><th>Moves by</th></tr></thead>
+          <tbody>
+            <tr><td>LINEs</td><td>20%</td><td>RNA copy, own reverse transcriptase</td></tr>
+            <tr><td>SINEs (mostly Alu)</td><td>13%</td><td>RNA copy, borrows LINE enzyme</td></tr>
+            <tr><td>LTR elements</td><td>8%</td><td>RNA copy, retrovirus-like</td></tr>
+            <tr><td>DNA transposons</td><td>3%</td><td>Cut and paste</td></tr>
+            <tr><td>Everything else</td><td>56%</td><td>Unique sequence, other repeats</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="tag">Since then</div>
+    <div class="body">
+      <p>In 2011 de Koning and colleagues searched the genome without relying on known families, and estimated that repeats make up at least about two-thirds of it. <a class="cite" href="#r21">[21]</a> In 2022 the T2T consortium reported the first complete human genome, closing the gaps that the 2001 drafts left in repeat-rich regions, and a companion paper described the transcription and chromatin state of the repeat elements in it. <a class="cite" href="#r22">[22]</a> <a class="cite" href="#r23">[23]</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" aria-labelledby="cf">
+  <div class="section-head">
+    <div class="eyebrow">Chapter 6 · Host and function</div>
+    <h2 id="cf">Living with transposons</h2>
+    <p class="q">Are they only parasites?</p>
+  </div>
+  <div class="compare">
+    <div>
+      <div class="hd"><h3>Control</h3><span class="chip host">Host</span></div>
+      <p>Cells silence transposons. In the <em>Drosophila</em> germline, clusters of transposon fragments produce piRNAs that guide silencing of matching elements. Brennecke and colleagues mapped these loci in 2007. DNA methylation and chromatin marks also silence elements in plants and mammals. <a class="cite" href="#r26">[26]</a></p>
+    </div>
+    <div>
+      <div class="hd"><h3>Domestication</h3><span class="chip host">Function</span></div>
+      <p>Some transposon genes were adopted by the host. Syncytin, from a retroviral envelope gene, is involved in human placental development. <a class="cite" href="#r27">[27]</a> RAG1 and RAG2, which assemble antibody and T-cell receptor genes, can transpose DNA, which points to a transposon ancestor. <a class="cite" href="#r28">[28]</a></p>
+    </div>
+    <div>
+      <div class="hd"><h3>Mutation and mosaicism</h3><span class="chip host">Host</span></div>
+      <p>New L1 and Alu insertions occasionally disrupt genes and cause disease. <a class="cite" href="#r10">[10]</a> L1 can also act in somatic cells. Muotri and colleagues reported retrotransposition in neural progenitors. <a class="cite" href="#r29">[29]</a></p>
+    </div>
+    <div>
+      <div class="hd"><h3>Classification</h3><span class="chip gen">Genomes</span></div>
+      <p>Wicker and colleagues proposed a unified system that splits elements into Class I and Class II and then into orders and families by how they transpose. <a class="cite" href="#r24">[24]</a> Wells and Feschotte give a current tour of the diversity. <a class="cite" href="#r25">[25]</a></p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="refs-h">
+  <div class="section-head">
+    <div class="eyebrow">References</div>
+    <h2 id="refs-h">Papers and DOIs</h2>
+    <p class="q">Each DOI was matched to the publisher's or PubMed's record for that paper. Four items have no linked DOI and are marked.</p>
+  </div>
+  <div class="refs">
+    <div class="ref" id="r1"><span class="n">[1]</span><div class="t">McClintock B. The origin and behavior of mutable loci in maize. <em>Proc Natl Acad Sci USA</em> 1950; 36:344–355.<br><a class="doi" href="https://doi.org/10.1073/pnas.36.6.344" target="_blank" rel="noopener">doi:10.1073/pnas.36.6.344</a></div></div>
+    <div class="ref" id="r2"><span class="n">[2]</span><div class="t">McClintock B. Chromosome organization and genic expression. <em>Cold Spring Harb Symp Quant Biol</em> 1951; 16:13–47.<br><a class="doi" href="https://symposium.cshlp.org/content/16/13.short" target="_blank" rel="noopener">publisher page</a> <span class="nodoi">(DOI not verified)</span></div></div>
+    <div class="ref" id="r3"><span class="n">[3]</span><div class="t">Fedoroff N, Wessler S, Shure M. Isolation of the transposable maize controlling elements Ac and Ds. <em>Cell</em> 1983; 35:235–242.<br><a class="doi" href="https://doi.org/10.1016/0092-8674(83)90226-X" target="_blank" rel="noopener">doi:10.1016/0092-8674(83)90226-X</a></div></div>
+    <div class="ref" id="r4"><span class="n">[4]</span><div class="t">McClintock B. The significance of responses of the genome to challenge. <em>Science</em> 1984; 226:792–801.<br><a class="doi" href="https://doi.org/10.1126/science.15739260" target="_blank" rel="noopener">doi:10.1126/science.15739260</a></div></div>
+    <div class="ref" id="r5"><span class="n">[5]</span><div class="t">Fedoroff NV. McClintock's challenge in the 21st century. <em>Proc Natl Acad Sci USA</em> 2012; 109.<br><span class="nodoi">DOI not verified, so not linked.</span></div></div>
+    <div class="ref" id="r6"><span class="n">[6]</span><div class="t">Ravindran S. Barbara McClintock and the discovery of jumping genes. <em>Proc Natl Acad Sci USA</em> 2012; 109.<br><a class="doi" href="https://doi.org/10.1073/pnas.1219372109" target="_blank" rel="noopener">doi:10.1073/pnas.1219372109</a></div></div>
+    <div class="ref" id="r7"><span class="n">[7]</span><div class="t">Baltimore D. RNA-dependent DNA polymerase in virions of RNA tumour viruses. <em>Nature</em> 1970; 226:1209–1211.<br><a class="doi" href="https://doi.org/10.1038/2261209a0" target="_blank" rel="noopener">doi:10.1038/2261209a0</a></div></div>
+    <div class="ref" id="r8"><span class="n">[8]</span><div class="t">Temin HM, Mizutani S. RNA-dependent DNA polymerase in virions of Rous sarcoma virus. <em>Nature</em> 1970; 226:1211–1213.<br><span class="nodoi">DOI not verified, so not linked.</span></div></div>
+    <div class="ref" id="r9"><span class="n">[9]</span><div class="t">Boeke JD, Garfinkel DJ, Styles CA, Fink GR. Ty elements transpose through an RNA intermediate. <em>Cell</em> 1985; 40:491–500.<br><a class="doi" href="https://doi.org/10.1016/0092-8674(85)90197-7" target="_blank" rel="noopener">doi:10.1016/0092-8674(85)90197-7</a></div></div>
+    <div class="ref" id="r10"><span class="n">[10]</span><div class="t">Kazazian HH Jr, Wong C, Youssoufian H, Scott AF, Phillips DG, Antonarakis SE. Haemophilia A resulting from de novo insertion of L1 sequences represents a novel mechanism for mutation in man. <em>Nature</em> 1988; 332:164–166.<br><a class="doi" href="https://doi.org/10.1038/332164a0" target="_blank" rel="noopener">doi:10.1038/332164a0</a></div></div>
+    <div class="ref" id="r11"><span class="n">[11]</span><div class="t">Luan DD, Korman MH, Jakubczak JL, Eickbush TH. Reverse transcription of R2Bm RNA is primed by a nick at the chromosomal target site: a mechanism for non-LTR retrotransposition. <em>Cell</em> 1993; 72:595–605.<br><a class="doi" href="https://doi.org/10.1016/0092-8674(93)90078-5" target="_blank" rel="noopener">doi:10.1016/0092-8674(93)90078-5</a></div></div>
+    <div class="ref" id="r12"><span class="n">[12]</span><div class="t">Moran JV, Holmes SE, Naas TP, DeBerardinis RJ, Boeke JD, Kazazian HH Jr. High frequency retrotransposition in cultured mammalian cells. <em>Cell</em> 1996; 87:917–927.<br><a class="doi" href="https://doi.org/10.1016/S0092-8674(00)81998-4" target="_blank" rel="noopener">doi:10.1016/S0092-8674(00)81998-4</a></div></div>
+    <div class="ref" id="r13"><span class="n">[13]</span><div class="t">Feng Q, Moran JV, Kazazian HH Jr, Boeke JD. Human L1 retrotransposon encodes a conserved endonuclease required for retrotransposition. <em>Cell</em> 1996; 87:905–916.<br><a class="doi" href="https://doi.org/10.1016/S0092-8674(00)81997-2" target="_blank" rel="noopener">doi:10.1016/S0092-8674(00)81997-2</a></div></div>
+    <div class="ref" id="r14"><span class="n">[14]</span><div class="t">Jelinek WR, <em>et al.</em> Ubiquitous, interspersed repeated sequences in mammalian genomes. <em>Proc Natl Acad Sci USA</em> 1980; 77:1398–1402.<br><a class="doi" href="https://doi.org/10.1073/pnas.77.3.1398" target="_blank" rel="noopener">doi:10.1073/pnas.77.3.1398</a></div></div>
+    <div class="ref" id="r15"><span class="n">[15]</span><div class="t">Schmid CW, Jelinek WR. The Alu family of dispersed repetitive sequences. <em>Science</em> 1982; 216:1065–1070.<br><a class="doi" href="https://doi.org/10.1126/science.6281889" target="_blank" rel="noopener">doi:10.1126/science.6281889</a></div></div>
+    <div class="ref" id="r16"><span class="n">[16]</span><div class="t">Ullu E, Tschudi C. Alu sequences are processed 7SL RNA genes. <em>Nature</em> 1984; 312:171–172.<br><a class="doi" href="https://doi.org/10.1038/312171a0" target="_blank" rel="noopener">doi:10.1038/312171a0</a></div></div>
+    <div class="ref" id="r17"><span class="n">[17]</span><div class="t">Batzer MA, Deininger PL. Alu repeats and human genomic diversity. <em>Nat Rev Genet</em> 2002; 3:370–379.<br><a class="doi" href="https://doi.org/10.1038/nrg798" target="_blank" rel="noopener">doi:10.1038/nrg798</a></div></div>
+    <div class="ref" id="r18"><span class="n">[18]</span><div class="t">Dewannieux M, Esnault C, Heidmann T. LINE-mediated retrotransposition of marked Alu sequences. <em>Nat Genet</em> 2003; 35:41–48.<br><a class="doi" href="https://doi.org/10.1038/ng1223" target="_blank" rel="noopener">doi:10.1038/ng1223</a></div></div>
+    <div class="ref" id="r19"><span class="n">[19]</span><div class="t">International Human Genome Sequencing Consortium (Lander ES, <em>et al.</em>). Initial sequencing and analysis of the human genome. <em>Nature</em> 2001; 409:860–921.<br><a class="doi" href="https://doi.org/10.1038/35057062" target="_blank" rel="noopener">doi:10.1038/35057062</a></div></div>
+    <div class="ref" id="r20"><span class="n">[20]</span><div class="t">Venter JC, <em>et al.</em> The sequence of the human genome. <em>Science</em> 2001; 291:1304–1351.<br><a class="doi" href="https://doi.org/10.1126/science.1058040" target="_blank" rel="noopener">doi:10.1126/science.1058040</a></div></div>
+    <div class="ref" id="r21"><span class="n">[21]</span><div class="t">de Koning APJ, Gu W, Castoe TA, Batzer MA, Pollock DD. Repetitive elements may comprise over two-thirds of the human genome. <em>PLoS Genet</em> 2011; 7:e1002384.<br><a class="doi" href="https://doi.org/10.1371/journal.pgen.1002384" target="_blank" rel="noopener">doi:10.1371/journal.pgen.1002384</a></div></div>
+    <div class="ref" id="r22"><span class="n">[22]</span><div class="t">Nurk S, <em>et al.</em> The complete sequence of a human genome. <em>Science</em> 2022; 376:44–53.<br><a class="doi" href="https://doi.org/10.1126/science.abj6987" target="_blank" rel="noopener">doi:10.1126/science.abj6987</a></div></div>
+    <div class="ref" id="r23"><span class="n">[23]</span><div class="t">Hoyt SJ, <em>et al.</em> From telomere to telomere: the transcriptional and epigenetic state of human repeat elements. <em>Science</em> 2022; 376:eabk3112.<br><a class="doi" href="https://doi.org/10.1126/science.abk3112" target="_blank" rel="noopener">doi:10.1126/science.abk3112</a></div></div>
+    <div class="ref" id="r24"><span class="n">[24]</span><div class="t">Wicker T, <em>et al.</em> A unified classification system for eukaryotic transposable elements. <em>Nat Rev Genet</em> 2007; 8:973–982.<br><a class="doi" href="https://doi.org/10.1038/nrg2165" target="_blank" rel="noopener">doi:10.1038/nrg2165</a></div></div>
+    <div class="ref" id="r25"><span class="n">[25]</span><div class="t">Wells JN, Feschotte C. A field guide to eukaryotic transposable elements. <em>Annu Rev Genet</em> 2020; 54:539–561.<br><a class="doi" href="https://doi.org/10.1146/annurev-genet-040620-022145" target="_blank" rel="noopener">doi:10.1146/annurev-genet-040620-022145</a></div></div>
+    <div class="ref" id="r26"><span class="n">[26]</span><div class="t">Brennecke J, <em>et al.</em> Discrete small RNA-generating loci as master regulators of transposon activity in <em>Drosophila</em>. <em>Cell</em> 2007; 128:1089–1103.<br><a class="doi" href="https://www.sciencedirect.com/science/article/pii/S0092867407002577" target="_blank" rel="noopener">publisher page</a> <span class="nodoi">(DOI not verified)</span></div></div>
+    <div class="ref" id="r27"><span class="n">[27]</span><div class="t">Mi S, <em>et al.</em> Syncytin is a captive retroviral envelope protein involved in human placental morphogenesis. <em>Nature</em> 2000; 403:785–789.<br><a class="doi" href="https://doi.org/10.1038/35001608" target="_blank" rel="noopener">doi:10.1038/35001608</a></div></div>
+    <div class="ref" id="r28"><span class="n">[28]</span><div class="t">Agrawal A, Eastman QM, Schatz DG. Transposition mediated by RAG1 and RAG2 and its implications for the evolution of the immune system. <em>Nature</em> 1998; 394:744–751.<br><a class="doi" href="https://doi.org/10.1038/29457" target="_blank" rel="noopener">doi:10.1038/29457</a></div></div>
+    <div class="ref" id="r29"><span class="n">[29]</span><div class="t">Muotri AR, Chu VT, Marchetto MCN, Deng W, Moran JV, Gage FH. Somatic mosaicism in neuronal precursor cells mediated by L1 retrotransposition. <em>Nature</em> 2005; 435:903–910.<br><a class="doi" href="https://doi.org/10.1038/nature03663" target="_blank" rel="noopener">doi:10.1038/nature03663</a></div></div>
+  </div>
+  <p class="foot" style="margin-top:20px">Where a paper is behind a paywall, the DOI still resolves to the publisher's abstract page. Percentages in the chart are rounded and approximate. The kernel model, copy-number toy and Alu diagram are teaching illustrations, not data.</p>
+</section>
+
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var css = function (n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); };
+
+  /* Timeline filter */
+  var fb = document.querySelectorAll('.filters button');
+  fb.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-f');
+      fb.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      document.querySelectorAll('#tl .ev').forEach(function (e) {
+        var t = (e.getAttribute('data-tags') || '').split(' ');
+        e.hidden = !(f === 'all' || t.indexOf(f) >= 0);
+      });
+    });
+  });
+
+  /* Maize ear simulation */
+  var COLS = 20, ROWS = 12, CELL = 24, G = 8, NEV = 255;
+  function mulberry(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  var kernels = [], seed = 11;
+  function build() {
+    var rng = mulberry(seed); kernels = [];
+    for (var k = 0; k < COLS * ROWS; k++) {
+      var u = new Float32Array(NEV), x = new Float32Array(NEV), y = new Float32Array(NEV);
+      for (var i = 0; i < NEV; i++) { u[i] = rng(); x[i] = rng(); y[i] = rng(); }
+      kernels.push({ u: u, x: x, y: y });
+    }
+  }
+  function rr(g, x, y, w, h, r) {
+    g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r);
+    g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath();
+  }
+  function drawEar() {
+    var c = $('ear'), g = c.getContext('2d');
+    var p = parseInt($('rate').value, 10) * 0.0002;
+    g.fillStyle = css('--paper'); g.fillRect(0, 0, c.width, c.height);
+    var withSpot = 0;
+    for (var r = 0; r < ROWS; r++) for (var cc = 0; cc < COLS; cc++) {
+      var K = kernels[r * COLS + cc], x0 = cc * CELL + 2, y0 = r * CELL + 2, S = CELL - 4;
+      g.save(); rr(g, x0, y0, S, S, 7); g.clip();
+      g.fillStyle = css('--kernel'); g.fillRect(x0, y0, S, S);
+      g.fillStyle = css('--spot');
+      var any = false;
+      for (var gen = 1; gen <= G; gen++) {
+        var cells = Math.pow(2, gen - 1), base = cells - 1, rad = Math.max(1.1, Math.sqrt(Math.pow(2, -gen)) * S * 0.62);
+        for (var i = 0; i < cells; i++) {
+          if (K.u[base + i] < p) { any = true; g.beginPath(); g.arc(x0 + K.x[base + i] * S, y0 + K.y[base + i] * S, rad, 0, 6.2832); g.fill(); }
+        }
+      }
+      if (any) withSpot++;
+      g.restore();
+    }
+    $('earstat').textContent = withSpot + ' of ' + (COLS * ROWS) + ' kernels have at least one spot.';
+  }
+  build(); drawEar();
+  $('rate').addEventListener('input', drawEar);
+  $('reroll').addEventListener('click', function () { seed = (seed * 7 + 13) % 100000; build(); drawEar(); });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawEar);
+  new MutationObserver(drawEar).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  /* Cut-and-paste vs copy-and-paste */
+  var N = 40, W = 600 / N;
+  var s2 = [20], s1 = [20];
+  function paint(svg, arr, cls) {
+    var h = '';
+    for (var i = 0; i < N; i++) h += '<rect class="svg-genome" x="' + (i * W + 1) + '" y="14" width="' + (W - 2) + '" height="14" rx="2"/>';
+    arr.forEach(function (p) { h += '<rect class="' + cls + '" x="' + (p * W + 1) + '" y="4" width="' + (W - 2) + '" height="30" rx="2"/>'; });
+    svg.innerHTML = h;
+  }
+  function rf(arr) { var p; do { p = Math.floor(Math.random() * N); } while (arr.indexOf(p) >= 0); return p; }
+  function sim() {
+    paint($('g2'), s2, 'svg-tick2'); paint($('g1'), s1, 'svg-tick1');
+    $('ct2').textContent = s2.length + ' cop' + (s2.length === 1 ? 'y' : 'ies');
+    $('ct1').textContent = s1.length + ' cop' + (s1.length === 1 ? 'y' : 'ies');
+  }
+  $('go2').addEventListener('click', function () { s2 = [rf(s2)]; sim(); });
+  $('go1').addEventListener('click', function () { if (s1.length < N) s1.push(rf(s1)); sim(); });
+  $('reset').addEventListener('click', function () { s2 = [20]; s1 = [20]; sim(); });
+  sim();
+
+  /* L1 stepper */
+  var steps = [
+    ['Transcribe', 'RNA polymerase II copies an active L1 into RNA. The transcript carries two open reading frames, ORF1 and ORF2, and ends in a poly(A) tail.'],
+    ['Translate', 'The cell makes ORF1 and ORF2 proteins from the transcript. They bind the RNA that made them, so the element mostly copies itself. This preference for its own RNA is why Alu, without any such proteins, can still be copied in its place.'],
+    ['Nick the target', 'The endonuclease in ORF2 cuts one strand of genomic DNA, at a T-rich stretch. This exposes a free DNA end.'],
+    ['Reverse transcribe', 'The poly(A) tail pairs with the T-rich DNA end, which primes the reverse transcriptase in ORF2. It copies the L1 RNA straight into the chromosome, which is target-primed reverse transcription.'],
+    ['Finish', 'The second strand is cut and filled in, and the cell repairs the ends. The result is a new copy flanked by target site duplications. Most new copies are cut short at the start, so they cannot move again.']
+  ];
+  var cur = 0, dots = $('tpdots');
+  steps.forEach(function (s, i) {
+    var b = document.createElement('button'); b.type = 'button'; b.textContent = i + 1; b.setAttribute('aria-label', 'Step ' + (i + 1) + ': ' + s[0]);
+    b.addEventListener('click', function () { cur = i; showStep(); }); dots.appendChild(b);
+  });
+  function showStep() {
+    $('tpbody').innerHTML = '<h3>' + (cur + 1) + '. ' + steps[cur][0] + '</h3><p></p>';
+    $('tpbody').querySelector('p').textContent = steps[cur][1];
+    Array.prototype.forEach.call(dots.children, function (b, i) { if (i === cur) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
+    $('tpprev').disabled = cur === 0; $('tpnext').disabled = cur === steps.length - 1;
+  }
+  $('tpprev').addEventListener('click', function () { if (cur > 0) { cur--; showStep(); } });
+  $('tpnext').addEventListener('click', function () { if (cur < steps.length - 1) { cur++; showStep(); } });
+  showStep();
+
+  /* Chart table toggle */
+  $('tbtn').addEventListener('click', function () {
+    var open = $('ttab').hidden;
+    $('ttab').hidden = !open; this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    this.textContent = open ? 'Hide table' : 'Show as table';
+  });
+})();
+</script>
+
+</body></html>
