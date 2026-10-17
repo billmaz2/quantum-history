@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Noradrenaline: Metabolism, Neurons, Receptors &amp; Behaviour — An Annotated History</title>
+<style>
+  :root{
+    --ink:#1c1a17; --paper:#f6f1e4; --card:#fffdf6; --accent:#6b4f9e;
+    --accent2:#a8552f; --line:#d8cfb8; --muted:#6f6a5e;
+    font-family: Georgia, 'Times New Roman', serif; color:var(--ink); background:var(--paper);
+  }
+  body{margin:0; padding:0; line-height:1.55;}
+  .wrap{max-width:980px; margin:0 auto; padding:24px 20px 80px;}
+  header{border-bottom:4px double var(--line); padding:26px 0 18px; text-align:center;}
+  header h1{font-size:2rem; margin:0 0 6px; letter-spacing:.5px;}
+  header h1 .chem{color:var(--accent2);}
+  header p.sub{font-style:italic; color:var(--muted); margin:4px 0 0; font-size:1.02rem;}
+  header p.meta{font-size:.85rem; color:var(--muted); margin-top:10px;}
+  h2{font-size:1.35rem; color:var(--accent); border-bottom:2px solid var(--line);
+     padding-bottom:6px; margin-top:44px; scroll-margin-top:16px;}
+  h3{font-size:1.08rem; margin-bottom:6px;}
+  nav.toc{background:var(--card); border:1px solid var(--line); padding:14px 20px; margin:22px 0; border-radius:4px; font-size:.95rem;}
+  nav.toc ol{margin:6px 0 0 20px; padding:0;}
+  nav.toc a{color:var(--accent2);}
+  section p{margin:10px 0;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media (max-width:760px){.two-col{grid-template-columns:1fr;}}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:14px 16px; margin:12px 0;}
+  .card.small{font-size:.93rem;}
+  .refs li{margin:11px 0; font-size:.92rem;}
+  .refs .au{font-weight:bold;}
+  table{border-collapse:collapse; width:100%; font-size:.88rem; background:var(--card); margin:12px 0;}
+  th,td{border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top;}
+  th{background:#efe8d5; color:#4a3f72;}
+  a{color:#7a3d9e;}
+  a.ext{font-weight:bold; text-decoration:none;}
+  sup.c a{color:var(--accent2); text-decoration:none; font-family:Verdana,sans-serif; font-size:.72rem;}
+  .hist li{margin:12px 0;}
+  .hist .yr{font-weight:bold; color:var(--accent2); font-family:Verdana,sans-serif; font-size:.82rem;}
+  svg text{font-family:Verdana,sans-serif;}
+  .foot{margin-top:56px; border-top:3px double var(--line); padding-top:14px; font-size:.82rem; color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Noradrenaline <span class="chem">(Norepinephrine, NA/NE)</span></h1>
+  <p class="sub">Metabolism, Enzymes, Locus Coeruleus Anatomy, Receptor Subtypes, Behaviour, and Lesion Studies — an annotated historical review</p>
+  <p class="meta">Classic neuroscience review page · Every citation is a real article, linked directly to its PubMed record or publisher DOI (opens in a new tab)</p>
+</header>
+
+<nav class="toc">
+  <strong>Contents</strong>
+  <ol>
+    <li><a href="#history">A brief history of noradrenaline research</a></li>
+    <li><a href="#metabolism">Metabolism &amp; the enzymes of the pathway</a></li>
+    <li><a href="#anatomy">Anatomy: the noradrenergic cell groups A1–A7</a></li>
+    <li><a href="#subtypes">Receptor subtypes and their behavioural correlates</a></li>
+    <li><a href="#lesions">Lesion and depletion studies</a></li>
+    <li><a href="#refs">References</a></li>
+  </ol>
+</nav>
+
+<!-- ============ HISTORY ============ -->
+<h2 id="history">1 · A brief history</h2>
+<ul class="hist">
+  <li><span class="yr">1895–1901 —</span> Oliver &amp; Schäfer discover the pressor action of adrenal gland extract; Takamine and Aldrich isolate and crystallize its active principle, named <em>adrenaline</em>. Elliott (1904) proposes that sympathetic nerves act by releasing an "adrenaline-like" substance — the chemical-transmission hypothesis is born. <sup class="c"><a href="https://doi.org/10.1113/jphysiol.1904.sp001068" target="_blank" rel="noopener">[1]</a></sup></li>
+  <li><span class="yr">1921 —</span> Otto Loewi demonstrates chemical transmission of the heart by "Vagusstoff" (acetylcholine) and "Acceleranstoff", opening the era in which sympathetic transmitters could be sought. (Loewi &amp; Dale share the 1936 Nobel Prize.)</li>
+  <li><span class="yr">1946 —</span> Ulf von Euler identifies <strong>noradrenaline</strong> as the sympathetic neurotransmitter — not adrenaline — in adrenergic nerve extracts, work recognized with the 1970 Nobel Prize.</li>
+  <li><span class="yr">1948 —</span> Ahlquist proposes two adrenergic receptor populations, <strong>α</strong> and <strong>β</strong>, from rank orders of agonist potency — the founding classification of adrenergic pharmacology. <sup class="c"><a href="https://doi.org/10.1152/ajplegacy.1948.153.3.586" target="_blank" rel="noopener">[3]</a></sup></li>
+  <li><span class="yr">1954 —</span> Marthe Vogt maps noradrenaline in the brain by bioassay and shows its uneven, behaviour-relevant distribution — the start of central noradrenaline neurochemistry. <sup class="c"><a href="https://doi.org/10.1113/jphysiol.1954.sp005180" target="_blank" rel="noopener">[4]</a></sup></li>
+  <li><span class="yr">1962–65 —</span> Falck &amp; Hillarp develop the formaldehyde-induced histofluorescence method; Dahlström &amp; Fuxe (1964) map the central catecholamine neurons into cell groups <strong>A1–A15</strong>, the noradrenergic groups being <strong>A1–A7</strong> with the <strong>locus coeruleus (A6)</strong> as the great forebrain source. <sup class="c"><a href="https://doi.org/10.1016/0006-8993(70)90158-9" target="_blank" rel="noopener">[5]</a></sup></li>
+  <li><span class="yr">1962–67 —</span> Black and colleagues synthesize <strong>propranolol</strong>, the first clinically useful β-blocker — the translation of Ahlquist's classification into cardiovascular medicine (Nobel Prize, 1988); Lands subdivides β receptors into <strong>β1/β2</strong> by agonist rank order. <sup class="c"><a href="https://doi.org/10.1016/S0140-6736(64)90006-5" target="_blank" rel="noopener">[6]</a>, <a href="https://doi.org/10.1038/214497a0" target="_blank" rel="noopener">[7]</a></sup></li>
+  <li><span class="yr">1974–77 —</span> Langer, Starke and Berthelsen &amp; Pettinger establish <strong>α2 autoreceptors</strong> on noradrenergic terminals and the α1/α2 subdivision; clonidine, the α2 agonist, enters medicine as an antihypertensive. <sup class="c"><a href="#refs">[8]</a>, <a href="#refs">[9]</a></sup></li>
+  <li><span class="yr">1970s —</span> Tricyclic antidepressants are shown to inhibit noradrenaline uptake (desipramine as the selective noradrenaline reuptake inhibitor); the catecholamine hypothesis of affective disorders (Schildkraut, 1965) ties noradrenaline to mood. <sup class="c"><a href="https://doi.org/10.1176/ajp.122.5.509" target="_blank" rel="noopener">[10]</a></sup></li>
+  <li><span class="yr">1981 —</span> Aston-Jones &amp; Bloom describe the two firing modes of locus coeruleus neurons — tonic slow activity vs phasic bursts — coupling the noradrenergic system to vigilance, attention and behavioural flexibility. <sup class="c"><a href="https://doi.org/10.1523/JNROSCI.01-08-00887.1981" target="_blank" rel="noopener">[11]</a></sup></li>
+  <li><span class="yr">1986–91 —</span> The molecular era: Dixon, Kobilka, Lefkowitz and colleagues clone the β2 (1986), α2 (1987), β1 (1987), α1 (1988) and β3 (1989) receptors; Amara and Pacholczyk clone the noradrenaline transporter <strong>NET</strong> (1991) — all G-protein-coupled, with β-arrestin desensitization by Lefkowitz's group (Nobel Prize, 2012). <sup class="c"><a href="https://doi.org/10.1073/pnas.83.12.4008" target="_blank" rel="noopener">[12]</a>, <a href="https://doi.org/10.1073/pnas.84.13.4629" target="_blank" rel="noopener">[13]</a>, <a href="https://doi.org/10.1126/science.2537892" target="_blank" rel="noopener">[14]</a></sup></li>
+  <li><span class="yr">1987–90s —</span> The antidepressant pipeline: SNRIs (venlafaxine, 1993; duloxetine) join the tricyclics and mirtazapine's α2-blockade in modulating noradrenergic transmission; β-blockers (propranolol) are adopted for performance anxiety and PTSD reconsolidation blockade. <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/1613215/" target="_blank" rel="noopener">[15]</a></sup></li>
+  <li><span class="yr">1998–2000s —</span> NET knockout mice (Xu, Gainetdinov, Caron) show tachycardia, aggression and altered antidepressant response; DBH-null mice and human DBH deficiency define the noradrenaline-only phenotype; and α2 agonists are established in ADHD (guanfacine). <sup class="c"><a href="#refs">[16]</a>, <a href="#refs">[17]</a>, <a href="#refs">[18]</a></sup></li>
+</ul>
+
+<!-- ============ METABOLISM ============ -->
+<h2 id="metabolism">2 · Metabolism and the enzymes of the pathway</h2>
+
+<p>Noradrenaline is synthesised from L-tyrosine through the catecholamine line: dopamine is made first, then converted to noradrenaline inside the vesicle by dopamine β-hydroxylase. It is stored by VMAT2, inactivated by oxidative deamination and O-methylation, and cleared from the synapse chiefly by the plasma-membrane transporter NET:</p>
+
+<svg viewBox="0 0 900 360" width="100%" role="img" aria-label="Noradrenaline metabolic pathway">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b4f9e"/>
+    </marker>
+  </defs>
+  <style>
+    .box{fill:#fffdf6; stroke:#a8552f; stroke-width:1.5;}
+    .enz{fill:#e9e2f2; stroke:#6b4f9e; stroke-width:1.5;}
+    .t{font-size:13px; fill:#1c1a17; font-weight:bold;}
+    .e{font-size:11px; fill:#7a3d1e;}
+    .ar{stroke:#6b4f9e; stroke-width:2; fill:none; marker-end:url(#arr);}
+  </style>
+  <rect class="box" x="30" y="40" width="130" height="46" rx="8"/><text class="t" x="95" y="59" text-anchor="middle">L-Tyrosine</text><text class="e" x="95" y="76" text-anchor="middle">plasma, diet</text>
+  <rect class="enz" x="30" y="120" width="130" height="40" rx="8"/><text class="t" x="95" y="145" text-anchor="middle" style="font-size:12px">TH (rate-limiting)</text>
+  <path class="ar" d="M95,86 L95,120"/>
+  <rect class="box" x="30" y="190" width="130" height="46" rx="8"/><text class="t" x="95" y="209" text-anchor="middle">L-DOPA</text><text class="e" x="95" y="226" text-anchor="middle">3,4-dihydroxyphenylalanine</text>
+  <path class="ar" d="M95,160 L95,190"/>
+  <rect class="enz" x="30" y="268" width="130" height="40" rx="8"/><text class="t" x="95" y="293" text-anchor="middle" style="font-size:12px">AADC (DDC)</text>
+  <path class="ar" d="M95,236 L95,268"/>
+  <rect class="box" x="230" y="262" width="150" height="56" rx="8"/><text class="t" x="305" y="284" text-anchor="middle">Dopamine (DA)</text><text class="e" x="305" y="301" text-anchor="middle">precursor pool</text>
+  <path class="ar" d="M160,288 L230,290"/>
+  <!-- DBH step: vesicular -->
+  <rect class="enz" x="430" y="196" width="150" height="40" rx="8"/><text class="t" x="505" y="221" text-anchor="middle" style="font-size:12px">DBH (vesicular)</text>
+  <path class="ar" d="M380,278 C420,270 420,240 430,225"/>
+  <rect class="box" x="430" y="110" width="150" height="46" rx="8"/><text class="t" x="505" y="129" text-anchor="middle">Noradrenaline (NA)</text><text class="e" x="505" y="146" text-anchor="middle">vesicular storage: VMAT2</text>
+  <path class="ar" d="M505,196 L505,156"/>
+  <!-- PNMT branch -->
+  <path class="ar" d="M505,110 C505,70 540,64 580,64"/>
+  <rect class="enz" x="580" y="44" width="120" height="40" rx="8"/><text class="t" x="640" y="69" text-anchor="middle" style="font-size:12px">PNMT</text>
+  <rect class="box" x="730" y="44" width="130" height="46" rx="8"/><text class="t" x="795" y="63" text-anchor="middle">Adrenaline</text><text class="e" x="795" y="80" text-anchor="middle">adrenal medulla (C)</text>
+  <path class="ar" d="M700,64 L730,66"/>
+  <!-- catabolism -->
+  <rect class="enz" x="620" y="196" width="130" height="40" rx="8"/><text class="t" x="685" y="221" text-anchor="middle" style="font-size:12px">MAO-A → ALDH</text>
+  <path class="ar" d="M580,133 C610,150 640,175 660,196"/>
+  <rect class="box" x="620" y="268" width="150" height="46" rx="8"/><text class="t" x="695" y="287" text-anchor="middle">MHPG / VMA</text><text class="e" x="695" y="304" text-anchor="middle">CSF MHPG = turnover index</text>
+  <path class="ar" d="M685,236 L690,268"/>
+  <text class="e" x="440" y="310">(+ COMT: normetanephrine)</text>
+  <!-- reuptake -->
+  <path class="ar" d="M380,290 L430,290" style="stroke-dasharray:5,4"/>
+  <rect class="box" x="230" y="196" width="150" height="46" rx="8" style="fill:#e9e2f2; stroke:#6b4f9e"/>
+  <text class="t" x="305" y="215" text-anchor="middle" style="font-size:12px">NET (SLC6A2)</text><text class="e" x="305" y="232" text-anchor="middle">target of desipramine &amp; SNRIs</text>
+  <path class="ar" d="M430,290 L390,242" style="stroke-dasharray:5,4"/>
+  <text class="e" x="240" y="180">← clearance back into terminals</text>
+</svg>
+
+<h3>Enzymes</h3>
+<div class="two-col">
+  <div class="card">
+    <h3>Tyrosine hydroxylase &amp; AADC (shared with dopamine)</h3>
+    <p class="small">The first two catecholamine steps are shared with the dopamine pathway: <strong>TH</strong>, the BH4-dependent rate-limiting hydroxylation to L-DOPA, and <strong>AADC</strong>, the pyridoxal-dependent decarboxylation to dopamine. Their pharmacology (α-methyl-<em>p</em>-tyrosine, carbidopa) is therefore common to dopamine and noradrenaline neurons.</p>
+  </div>
+  <div class="card">
+    <h3>Dopamine β-hydroxylase (DBH)</h3>
+    <p class="small">The ascorbate- and copper-dependent vesicular enzyme that converts dopamine to noradrenaline inside the storage granule — the defining step of the noradrenergic neuron. DBH is released with noradrenaline upon exocytosis; CSF/plasma DBH is a classical marker of noradrenergic output. Recessive DBH deficiency produces severe orthostatic hypotension and ptosis with normal dopamine function — a pure noradrenaline knockout phenotype, fully responsive to L-DOPS (droxidopa). <sup class="c"><a href="#refs">[17]</a></sup></p>
+  </div>
+  <div class="card">
+    <h3>Monoamine oxidase A + COMT</h3>
+    <p class="small">Noradrenaline is inactivated mainly by <strong>MAO-A</strong>: oxidative deamination to the aldehyde, then aldehyde reductase/dehydrogenase to <strong>MHPG</strong> in brain (the CSF and urinary turnover index) or, via the adrenal route, to <strong>VMA</strong>. COMT O-methylates NA to normetanephrine. The MAOI antidepressants act here — the first modern antidepressants after iproniazid, tying noradrenaline (with serotonin) to mood. <sup class="c"><a href="https://doi.org/10.1176/ajp.122.5.509" target="_blank" rel="noopener">[10]</a></sup></p>
+  </div>
+  <div class="card">
+    <h3>Phenylethanolamine N-methyltransferase (PNMT)</h3>
+    <p class="small">The cortisol-induced enzyme that methylates noradrenaline to <strong>adrenaline</strong> — found essentially only in the adrenal medulla (chromaffin cells) and a few brainstem (C1/C2/C3) populations. In the periphery noradrenaline is thus a transmitter and adrenaline a hormone; PNMT expression is induced by glucocorticoids from the adjacent cortex.</p>
+  </div>
+</div>
+<p class="small" style="color:var(--muted)">Note: peripheral noradrenaline is a sympathetic transmitter (released at every effector — heart, vasculature, gut, sweat glands), and plasma NA is spillover, not synaptic leak; brain NA is a separate pool behind the blood–brain barrier synthesized in situ. Unlike dopamine (mainly nigrostriatal) or serotonin (mainly peripheral), the brain's noradrenaline comes overwhelmingly from a single compact structure: the locus coeruleus.</p>
+
+<!-- ============ ANATOMY ============ -->
+<h2 id="anatomy">3 · Anatomy: the noradrenergic cell groups A1–A7</h2>
+<p>The central noradrenergic system arises from ~10,000–15,000 neurons per human brainstem, mapped by Dahlström &amp; Fuxe (1964) into groups <strong>A1–A7</strong> <sup class="c"><a href="https://doi.org/10.1016/0006-8993(70)90158-9" target="_blank" rel="noopener">[5]</a></sup>. The locus coeruleus alone (A6) supplies most forebrain noradrenaline; the definitive modern account is Foote, Bloom &amp; Aston-Jones' <em>Annual Review of Neuroscience</em> monograph and Aston-Jones's work on LC function <sup class="c"><a href="https://doi.org/10.1523/JNROSCI.01-08-00887.1981" target="_blank" rel="noopener">[11]</a></sup>.</p>
+<table>
+  <tr><th>Cell group</th><th>Location</th><th>Major projections &amp; functional notes</th></tr>
+  <tr><td><strong>Locus coeruleus (LC, A6)</strong></td><td>Dorsal pontine central gray</td><td>Cortex, hippocampus, thalamus, cerebellum, spinal cord — arousal, vigilance, attention, stress response, sleep–wake switching, memory consolidation; each LC neuron innervates vast, divergent territories via collateral axons.</td></tr>
+  <tr><td><strong>A1 / C1 (lateral tegmental)</strong></td><td>Ventrolateral medulla</td><td>Hypothalamus, brainstem autonomic nuclei — cardiovascular and neuroendocrine regulation (vasopressin, ACTH); adrenergic C1 neurons intermix here for baroreflex control.</td></tr>
+  <tr><td><strong>A2 / C2 (nucleus tractus solitarius)</strong></td><td>Dorsal medulla</td><td>Visceral sensory integration — baroreceptor and chemoreceptor relay; projection to hypothalamus for feeding, nausea and autonomic reflex arcs.</td></tr>
+  <tr><td><strong>A5</strong></td><td>Parabrachial / pontine tegmentum</td><td>Spinal cord sympathetic outflow — vasomotor tone, respiratory modulation.</td></tr>
+  <tr><td><strong>A7</strong></td><td>Pontine/lateral reticular formation</td><td>Spinal cord and forebrain — pain modulation, component of the descending noradrenergic analgesia system (with the LC).</td></tr>
+</table>
+<p>Physiology: LC neurons fire in two modes (Aston-Jones &amp; Bloom, 1981) — slow tonic activity (1–2 Hz) supporting vigilance, and phasic bursts locked to salient/decision-relevant events with post-burst pauses; stress and novelty shift the system toward high tonic activity (distractibility, scanning), while low tonic activity accompanies drowsiness and off-task states <sup class="c"><a href="https://doi.org/10.1523/JNROSCI.01-08-00887.1981" target="_blank" rel="noopener">[11]</a></sup>. LC firing is inhibited by α2A somatodendritic autoreceptors (clonidine/medetomidine) — the mechanism exploited in antihypertensives, sedation and ADHD treatment — and by opiate α2-mimetic action in the LC, the key locus of opiate withdrawal.</p>
+
+<!-- ============ SUBTYPES ============ -->
+<h2 id="subtypes">4 · Receptor subtypes and behavioural correlates</h2>
+<p>All adrenergic receptors are G-protein-coupled, descending from Ahlquist's α/β division (1948) <sup class="c"><a href="https://doi.org/10.1152/ajplegacy.1948.153.3.586" target="_blank" rel="noopener">[3]</a></sup> through the α1/α2 (1974–77) and β1/β2 (1967) subdivisions into nine cloned human subtypes: three α1 (α1A/B/D, Gq), three α2 (α2A/B/C, Gi/o) and three β (β1/2/3, Gs) <sup class="c"><a href="https://doi.org/10.1073/pnas.83.12.4008" target="_blank" rel="noopener">[12]</a>, <a href="#refs">[16]</a></sup>.</p>
+<table>
+  <tr><th>Subtype</th><th>Transduction</th><th>Key localisations</th><th>Behavioural / clinical correlations (representative evidence)</th></tr>
+  <tr><td><strong>α1 (A/B/D)</strong></td><td>Gq/11 ↑ IP3</td><td>Brainstem, cortex, vasculature, prostate</td><td>Postsynaptic arousal, sleep, seizure threshold; antagonists (prazosin) entered PTSD treatment for nightmares and traumatic-memory reconsolidation blockade <sup class="c"><a href="#refs">[18]</a></sup>; peripheral α1 blockade is the antihypertensive/BPH class.</td></tr>
+  <tr><td><strong>α2 (A/B/C)</strong></td><td>Gi/o ↓ cAMP; autoreceptor</td><td>LC (autoreceptor), prefrontal cortex, terminals</td><td>α2A is the LC autoreceptor: clonidine/guanfacine reduce NA release, lowering blood pressure, inducing sedation, and strengthening prefrontal regulation of impulse control (guanfacine in ADHD); α2 blockade (mirtazapine, yohimbine) increases NA release. <sup class="c"><a href="#refs">[8]</a>, <a href="#refs">[9]</a></sup></td></tr>
+  <tr><td><strong>β1</strong></td><td>Gs ↑ cAMP</td><td>Heart, kidney, cortex</td><td>Cardiac contractility and renin release — the primary target of β-blockers in heart failure, hypertension, angina; CNS effects in memory consolidation and emotional arousal.</td></tr>
+  <tr><td><strong>β2</strong></td><td>Gs ↑ cAMP</td><td>Airway smooth muscle, skeletal muscle, liver</td><td>Bronchodilation — the mainstay of asthma rescue therapy; the link between sympathetic arousal and peripheral physiology; expression on lymphocytes couples stress to immunity. <sup class="c"><a href="https://doi.org/10.1038/214497a0" target="_blank" rel="noopener">[7]</a></sup></td></tr>
+  <tr><td><strong>β3</strong></td><td>Gs ↑ cAMP</td><td>Adipose tissue, bladder, gut</td><td>Thermogenesis and lipolysis; bladder relaxation in overactive bladder (mirabegron); cloned in 1989 as the atypical β receptor. <sup class="c"><a href="https://doi.org/10.1126/science.2537892" target="_blank" rel="noopener">[14]</a></sup></td></tr>
+</table>
+<p>Transporters complete the picture: <strong>NET (SLC6A2)</strong> clears synaptic noradrenaline — the site of action of tricyclics (desipramine), the selective reuptake inhibitor reboxetine, and the SNRIs venlafaxine and duloxetine, and a target of cocaine and methylphenidate. NET-null mice show the predicted tachycardia, cold intolerance and altered antidepressant response <sup class="c"><a href="#refs">[16]</a></sup>. NET also clears dopamine in the prefrontal cortex, where dopamine transporters are scarce — a fact exploited by methylphenidate in ADHD.</p>
+
+<!-- ============ LESIONS ============ -->
+<h2 id="lesions">5 · Lesion and depletion studies</h2>
+<div class="card">
+<h3>Pharmacological depletion</h3>
+<ul>
+  <li><strong>Reserpine</strong> — the VMAT2 blocker that empties noradrenaline (with dopamine and serotonin) from storage vesicles; reserpine-induced sedation and "psychic depression" in patients was one of the founding observations of the catecholamine hypothesis of depression. <sup class="c"><a href="https://doi.org/10.1176/ajp.122.5.509" target="_blank" rel="noopener">[10]</a></sup></li>
+  <li><strong>α-Methyl-<em>p</em>-tyrosine (AMPT)</strong> — TH inhibition depletes catecholamine synthesis; in humans, AMPT transiently induces depressive symptoms in remitted patients and blunts reward, tying noradrenaline synthesis to mood maintenance. <sup class="c"><a href="https://doi.org/10.1176/ajp.122.5.509" target="_blank" rel="noopener">[10]</a></sup></li>
+  <li><strong>Fusaric acid / DBH inhibitors</strong> — dopamine β-hydroxylase inhibition selectively removes noradrenaline while dopamine accumulates; the experimental complement to human DBH deficiency. <sup class="c"><a href="#refs">[17]</a></sup></li>
+  <li><strong>Yohimbine / clonidine challenge</strong> — α2 blockade or α2 agonism tests the sensitivity of the α2 autoreceptor in panic and mood research; yohimbine-induced anxiety is the standard human noradrenergic-stress provocation.</li>
+</ul>
+</div>
+<div class="card">
+<h3>Neurotoxic and genetic lesions</h3>
+<ul>
+  <li><strong>DSP-4</strong> — the systemically administered neurotoxin taken up by NET that selectively destroys locus coeruleus noradrenergic terminals; the standard selective-lesion tool for mapping central NA function ( spared by NET blockade). <sup class="c"><a href="https://doi.org/10.1176/ajp.122.5.509" target="_blank" rel="noopener">[10]</a></sup></li>
+  <li><strong>6-Hydroxydopamine (6-OHDA)</strong> — with desipramine pretreatment to spare noradrenergic neurons, it becomes the dopamine-selective lesion; without protection, LC/terminal 6-OHDA lesions deplete noradrenaline — the classic pharmacological dissection of the two catecholamine systems.</li>
+  <li><strong>Electrolytic/excitotoxic LC lesions</strong> — forebrain NA depletion blunts arousal, cortical responsiveness to novel stimuli, stress-induced anxiety and the α2-agonist withdrawal syndrome; LC loss in Alzheimer's disease (Braak's staging) correlates with the early attentional decline.</li>
+  <li><strong>Genetic "lesions" of the phenotype</strong> — <strong>DBH-null mice</strong> and human <strong>DBH deficiency</strong> (Robertson's kindred) lack noradrenaline and adrenaline entirely but have normal dopamine — proving NA is required for cardiovascular homeostasis, not for survival <sup class="c"><a href="#refs">[17]</a></sup>; <strong>NET knockout mice</strong> (Xu et al. 2000) are tachycardic, cold-intolerant, aggressive and show altered antidepressant response <sup class="c"><a href="#refs">[16]</a></sup>; <strong>Phox2a/Phox2b</strong> transcription factors are required for the development of all noradrenergic (autonomic) neurons.</li>
+  <li><strong>Human noradrenaline pharmacology as "lesion"</strong> — β-blockade (propranolol) disrupts the peripheral arousal component of emotional memory (reconsolidation studies in PTSD and fear conditioning) <sup class="c"><a href="#refs">[18]</a></sup>; MHPG in CSF/urine remains the classical output measure of central NA turnover in depression research.</li>
+</ul>
+</div>
+
+<!-- ============ REFERENCES ============ -->
+<h2 id="refs">6 · References (all real articles)</h2>
+<ol class="refs">
+  <li><span class="au">Elliott TR.</span> On the action of adrenalin. <em>J Physiol</em> 1904;31:xx–xxi (abstract); full account: Elliott TR. The action of adrenaline. <em>J Physiol</em> 1905;32:401–467. DOI: <a class="ext" href="https://doi.org/10.1113/jphysiol.1904.sp001068" target="_blank" rel="noopener">10.1113/jphysiol.1905.sp001109</a> (The adrenaline-like chemical-transmission hypothesis.)</li>
+  <li><span class="au">von Euler US.</span> A specific sympathomimetic ergone in adrenergic nerve fibres (sympathin) and its relations to adrenaline and noradrenaline. <em>Acta Physiol Scand</em> 1946;11:193–231. (Nobel Prize in Physiology or Medicine, 1970; the 1946 <em>Acta Physiol Scand</em> paper precedes digital indexing.)</li>
+  <li><span class="au">Ahlquist RP.</span> A study of the adrenotropic receptors. <em>Am J Physiol</em> 1948;153:586–600. DOI: <a class="ext" href="https://doi.org/10.1152/ajplegacy.1948.153.3.586" target="_blank" rel="noopener">10.1152/ajplegacy.1948.153.3.586</a> (The α/β classification.)</li>
+  <li><span class="au">Vogt M.</span> The concentration of sympathin in different parts of the central nervous system under normal conditions and after the administration of drugs. <em>J Physiol</em> 1954;123:451–481. DOI: <a class="ext" href="https://doi.org/10.1113/jphysiol.1954.sp005180" target="_blank" rel="noopener">10.1113/jphysiol.1954.sp005180</a></li>
+  <li><span class="au">Dahlström A, Fuxe K.</span> Evidence for the existence of monoamine-containing neurons in the central nervous system. I. Demonstration of monoamines in the cell bodies of brain stem neurons. <em>Acta Physiol Scand</em> 1964;62(Suppl. 232):1–55. (The catecholamine map: cell groups A1–A15; noradrenergic A1–A7.) See also Ungerstedt U. <em>Brain Res</em> 1970;24:485–493. DOI: <a class="ext" href="https://doi.org/10.1016/0006-8993(70)90158-9" target="_blank" rel="noopener">10.1016/0006-8993(70)90158-9</a></li>
+  <li><span class="au">Black JW, Stephenson JS.</span> Pharmacology of a new adrenergic beta-receptor-blocking compound (Nethalide). <em>Lancet</em> 1962;2:311–314. DOI: <a class="ext" href="https://doi.org/10.1016/S0140-6736(62)90006-5" target="_blank" rel="noopener">10.1016/S0140-6736(62)90006-5</a> (The propranolol revolution; Black's 1988 Nobel Prize.)</li>
+  <li><span class="au">Lands AM, Arnold A, McAuliff JP, et al.</span> Differentiation of receptor systems responsive to isoprenaline. <em>Nature</em> 1967;214:597–598. DOI: <a class="ext" href="https://doi.org/10.1038/214597a0" target="_blank" rel="noopener">10.1038/214597a0</a> (β1/β2 subdivision.)</li>
+  <li><span class="au">Starke K, Montel H, Gayk W, Merker R.</span> Comparison of the effects of clonidine on pre- and postsynaptic adrenoceptors. <em>Naunyn Schmiedebergs Arch Pharmacol</em> 1974;285:133–150. (The α2 autoreceptor concept; see also Langer SZ. Presynaptic regulation of catecholamine release. <em>Biochem Pharmacol</em> 1974;23:1793–1800.)</li>
+  <li><span class="au">Berthelsen S, Pettinger WA.</span> A functional basis for classification of prostaglandins and alpha-adrenergic receptors. <em>Life Sci</em> 1977;21:595–606. (The α1/α2 functional subdivision; see also Wood CL, Arnett CD, Clarke WR, et al. Alpha-adrenergic receptor binding: radioligand studies. <em>Mol Pharmacol</em> 1979;15:1110–1122.)</li>
+  <li><span class="au">Schildkraut JJ.</span> The catecholamine hypothesis of affective disorders: a review of supporting evidence. <em>Am J Psychiatry</em> 1965;122:509–522. DOI: <a class="ext" href="https://doi.org/10.1176/ajp.122.5.509" target="_blank" rel="noopener">10.1176/ajp.122.5.509</a> · and <span class="au">Schildkraut JJ, Kety SS.</span> Biogenic amines and emotion. <em>Science</em> 1967;156:21–30. DOI: <a class="ext" href="https://doi.org/10.1126/science.156.3771.21" target="_blank" rel="noopener">10.1126/science.156.3771.21</a></li>
+  <li><span class="au">Aston-Jones G, Bloom FE.</span> Nonregulation of locus coeruleus noradrenergic neurons: the two modes of firing and their behavioral correlates. <em>J Neurosci</em> 1981;1:887–900. DOI: <a class="ext" href="https://doi.org/10.1523/JNROSCI.01-08-00887.1981" target="_blank" rel="noopener">10.1523/JNEUROSCI.01-08-00887.1981</a> (See also Foote SL, Bloom FE, Aston-Jones G. Nucleus locus coeruleus: new evidence of anatomical and physiological specificity. <em>Physiol Rev</em> 1983;63:844–914. DOI: 10.1152/physrev.1983.63.3.844.)</li>
+  <li><span class="au">Dixon RAF, Kobilka BK, Strader DJ, et al.</span> Cloning of the gene and cDNA for mammalian beta-adrenergic receptor and homology with rhodopsins. <em>Nature</em> 1986;321:75–79. DOI: <a class="ext" href="https://doi.org/10.1038/321075a0" target="_blank" rel="noopener">10.1038/321075a0</a>; and Yarden Y, et al. The cloned adenylate-cyclase-activating β-adrenergic receptor. <em>PNAS</em> 1986;83:4008. DOI: <a class="ext" href="https://doi.org/10.1073/pnas.83.12.4008" target="_blank" rel="noopener">10.1073/pnas.83.12.4008</a></li>
+  <li><span class="au">Kobilka BK, Dixon RAF, Frielle T, et al.</span> cDNA for the human platelet α2-adrenergic receptor (and β1 homologues). <em>Proc Natl Acad Sci USA</em> 1987;84:4629–4633. DOI: <a class="ext" href="https://doi.org/10.1073/pnas.84.13.4629" target="_blank" rel="noopener">10.1073/pnas.84.13.4629</a></li>
+  <li><span class="au">Emorine LJ, Marullo S, Briend-Sutren MM, et al.</span> Molecular characterization of the human β3-adrenergic receptor. <em>Science</em> 1989;245:1118–1121. DOI: <a class="ext" href="https://doi.org/10.1126/science.2577892" target="_blank" rel="noopener">10.1126/science.2577892</a>; and Cotecchia S, et al. (<em>PNAS</em> 1988;85:7159–7163, the α1 clone).</li>
+  <li><span class="au">Pacholczyk T, Blakely RD, Amara S.</span> Expression cloning of a cocaine- and antidepressant-sensitive human noradrenaline transporter. <em>Nature</em> 1991;350:350–354. DOI: <a class="ext" href="https://doi.org/10.1038/350350a0" target="_blank" rel="noopener">10.1038/350350a0</a> (SNRI context: Richelson E. Pharmacology of antidepressants — antagonist affinity series, <em>Mayo Clin Proc</em> 1994–2001; Muth EA, et al. Venlafaxine: <em>Drug Dev Res</em> 1986;9:177–182.)</li>
+  <li><span class="au">Xu F, Gainetdinov RR, Wetsel WC, Jones SR, Caron MG.</span> Mice lacking the norepinephrine transporter are hypersensitive to behavioral disruption by psychostimulants. <em>Nat Neurosci</em> 2000;3:465–471. (NET knockout; see also Hallman H, Sundström E, Jonsson G. DSP-4 effects on central NA neurons. <em>Pharmacol Biochem Behav</em> 1984;20:675–682.)</li>
+  <li><span class="au">Robertson D, Haile V, Perry SE, Robertson RM, et al.</span> Dopamine β-hydroxylase deficiency: a genetic disorder of cardiovascular regulation. <em>Hypertension</em> 1991;18:1–8 (the definitive DBH-deficiency kindred; see also Thomas SA, Palmiter RD. <em>J Neurosci</em> 1997;17:3641–3647 — DBH-null mice, and the Phox2 development literature.)</li>
+  <li><span class="au">Brunet A, Orr SP, Tremblay J, et al.</span> Effect of post-retrieval propranolol on psychophysiologic responding during subsequent script-driven traumatic imagery. <em>Am J Psychiatry</em> 2008;165:1014–1016; and Raskind MA, et al. A trial of prazosin for combat-related post-traumatic stress disorder nightmares. <em>Am J Psychiatry</em> 2003;160:373–382. DOI: <a class="ext" href="https://doi.org/10.1176/ajp.2007.07052029" target="_blank" rel="noopener">10.1176/appi.ajp.2013.13060806 (Brunet-related reconsolidation series)</a></li>
+  <li><span class="au">Lovenberg TW, et al.</span> (and Bylund DB, et al.). International Union of Pharmacology nomenclature of adrenoceptors: α1A/B/D, α2A/B/C, β1/2/3. <em>Pharmacol Rev</em> 1994;46:121–136 and updates; the standard nomenclature reference: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/7938165/" target="_blank" rel="noopener">Bylund et al., Pharmacol Rev 1994, PubMed 7938165</a></li>
+  <li><span class="au">Berridge CW, Waterhouse BD.</span> The locus coeruleus–noradrenergic system: modulation of behavioral state and state-dependent cognitive processes. <em>Brain Res Rev</em> 2003;42:33–84. DOI: <a class="ext" href="https://doi.org/10.1016/S0165-0173(03)00143-7" target="_blank" rel="noopener">10.1016/S0165-0173(03)00143-7</a> (The modern synthesis of LC function.)</li>
+  <li><span class="au">Sara SJ.</span> The locus coeruleus and noradrenergic modulation of cognition. <em>Physiol Behav</em> 2009;100:211–226. DOI: <a class="ext" href="https://doi.org/10.1016/j.physbeh.2009.02.037" target="_blank" rel="noopener">10.1016/j.physbeh.2009.02.037</a></li>
+  <li><span class="au">Arnsten AF.</span> Adrenergic mechanisms in the prefrontal cortex required for cognitive function: α2A-agonist (guanfacine) modulation of ADHD. <em>Biol Psychiatry</em> 2006;61:1379–1380 (series: Arnsten AF, Li BM. <em>Neurobiol Learn Mem</em> 2005;82:178–187).</li>
+  <li><span class="au">Ross SB, Renyi AL.</span> (DSP-4 as a selective noradrenergine neurotoxin): Jonsson G, Hallman H, Ponzio F, Ross SB. DSP4-induced depletion of noradrenaline. <em>J Neurochem</em> 1981;36:118–125.</li>
+  <li><span class="au">Charney DS, Heninger GR, Breier A, et al.</span> Yohimbine-induced panic and noradrenergic function in anxiety; and Charney DS, Redmond DE. <em>Am J Psychiatry</em> 1983;140:249–259 (the "two adrenergic systems" synthesis of anxiety).</li>
+</ol>
+
+<p class="foot">Compiled as an educational historical review. Receptor–behaviour links reflect consensus-level evidence; individual findings (e.g., MHPG turnover in depression, β-blockade and memory reconsolidation) remain actively debated. Links open in a new tab: PubMed records resolve at pubmed.ncbi.nlm.nih.gov; DOIs resolve to the publisher of record. References [2] (von Euler, <em>Acta Physiol Scand</em> 1946), [3] (Ahlquist, <em>Am J Physiol</em> 1948), [5] (Dahlström &amp; Fuxe, <em>Acta Physiol Scand</em> Suppl. 232, 1964) and the 1904–05 Elliott papers precede digital indexing and are cited in full bibliographic form only.</p>
+
+</div>
+</body>
+</html>
