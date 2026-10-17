@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tics &amp; Tourette Syndrome: The Gene Hunt — An Annotated History</title>
+<style>
+  :root{
+    --ink:#1c1a17; --paper:#f6f1e4; --card:#fffdf6; --accent:#6b4f9e;
+    --accent2:#a8552f; --line:#d8cfb8; --muted:#6f6a5e;
+    font-family: Georgia, 'Times New Roman', serif; color:var(--ink); background:var(--paper);
+  }
+  body{margin:0; padding:0; line-height:1.55;}
+  .wrap{max-width:980px; margin:0 auto; padding:24px 20px 80px;}
+  header{border-bottom:4px double var(--line); padding:26px 0 18px; text-align:center;}
+  header h1{font-size:1.9rem; margin:0 0 6px; letter-spacing:.5px;}
+  header h1 .chem{color:var(--accent2);}
+  header p.sub{font-style:italic; color:var(--muted); margin:4px 0 0; font-size:1.02rem;}
+  header p.meta{font-size:.85rem; color:var(--muted); margin-top:10px;}
+  h2{font-size:1.35rem; color:var(--accent); border-bottom:2px solid var(--line);
+     padding-bottom:6px; margin-top:44px; scroll-margin-top:16px;}
+  h3{font-size:1.08rem; margin-bottom:6px;}
+  nav.toc{background:var(--card); border:1px solid var(--line); padding:14px 20px; margin:22px 0; border-radius:4px; font-size:.95rem;}
+  nav.toc ol{margin:6px 0 0 20px; padding:0;}
+  nav.toc a{color:var(--accent2);}
+  section p{margin:10px 0;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media (max-width:760px){.two-col{grid-template-columns:1fr;}}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:14px 16px; margin:12px 0;}
+  .card.small{font-size:.93rem;}
+  .refs li{margin:11px 0; font-size:.92rem;}
+  .refs .au{font-weight:bold;}
+  table{border-collapse:collapse; width:100%; font-size:.88rem; background:var(--card); margin:12px 0;}
+  th,td{border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top;}
+  th{background:#efe8d5; color:#4a3f72;}
+  a{color:#7a3d9e;}
+  a.ext{font-weight:bold; text-decoration:none;}
+  sup.c a{color:var(--accent2); text-decoration:none; font-family:Verdana,sans-serif; font-size:.72rem;}
+  .hist li{margin:12px 0;}
+  .hist .yr{font-weight:bold; color:var(--accent2); font-family:Verdana,sans-serif; font-size:.82rem;}
+  .method{background:#efe8d5; border:1px solid var(--line); border-left:4px solid var(--accent); padding:1px 7px;
+          font-family:Verdana,sans-serif; font-size:.68rem; color:#4a3f72; display:inline-block; margin-left:6px; border-radius:2px;}
+  .foot{margin-top:56px; border-top:3px double var(--line); padding-top:14px; font-size:.82rem; color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Tics &amp; Tourette Syndrome <span class="chem">(The Gene Hunt)</span></h1>
+  <p class="sub">How the genes and loci were found — linkage analysis, whole-genome scans, cytogenetics, candidate-gene association, GWAS, CNVs, exome sequencing and biochemistry — an annotated history with papers, PubMed IDs and DOIs</p>
+  <p class="meta">Educational neurogenetics review page · Every citation is a real article, linked to its PubMed record or publisher DOI (opens in a new tab) · Method tags show <span class="method">how each discovery was made</span></p>
+</header>
+
+<nav class="toc">
+  <strong>Contents</strong>
+  <ol>
+    <li><a href="#intro">Why Tourette genetics is hard</a></li>
+    <li><a href="#timeline">Timeline of the gene hunt</a></li>
+    <li><a href="#methods">The discovery methods, explained</a></li>
+    <li><a href="#findings">The genes and loci, and where they stand</a></li>
+    <li><a href="#refs">References</a></li>
+  </ol>
+</nav>
+
+<!-- ============ INTRO ============ -->
+<h2 id="intro">1 · Why Tourette genetics is hard</h2>
+<p><strong>Tourette syndrome (TS)</strong> — chronic multiple motor and vocal tics, defined by Georges Gilles de la Tourette in 1885 — is one of the most heritable neuropsychiatric disorders, yet for thirty years its genes refused to be found. The reason is now textbook: inheritance is <strong>complex</strong> — many loci of small or rare effect, incomplete penetrance, variable expressivity (tics, OCD, ADHD in the same families), and no single "Tourette gene" that is necessary or sufficient <sup class="c"><a href="https://doi.org/10.1038/nrdp.2016.97" target="_blank" rel="noopener">[1]</a></sup>.</p>
+<p>Every method of human genetics has therefore been tried on TS in sequence — segregation analysis, parametric linkage, affected-sib-pair scans, cytogenetic positional cloning, candidate-gene association driven by the dopamine pharmacology of tic suppression, then GWAS, copy-number variants and trio exome sequencing. Each wave taught the field something, and the story of <em>how</em> each finding was made is as instructive as the findings themselves.</p>
+
+<!-- ============ TIMELINE ============ -->
+<h2 id="timeline">2 · Timeline of the gene hunt</h2>
+<ul class="hist">
+  <li><span class="yr">1885 —</span> Gilles de la Tourette describes nine patients with the tic disorder Charcot names after him ("maladie des tics"; <em>Arch Gén Méd</em> 1885, cited bibliographically below — predates digital indexing) <span class="method">clinical description</span></li>
+  <li><span class="yr">1960s–80s —</span> The neuroleptic haloperidol is found to suppress tics — a D2 dopamine receptor blockade — founding the <strong>dopamine hypothesis</strong> that later nominated the first candidate genes; family, twin and adoption studies establish strong heritability; segregation analyses in large pedigrees (Pauls, Kidd, Leckman and colleagues) propose an <strong>autosomal-dominant major gene</strong> — the model that motivated the first genome scans <span class="method">pharmacology / biochemistry · segregation analysis</span></li>
+  <li><span class="yr">1991 —</span> The candidate-gene era opens: Comings and colleagues report association of the <strong>dopamine D2 receptor (DRD2)</strong> locus with TS and related disorders <sup class="c"><a href="#r3">[3]</a></sup>; dozens of studies follow on DRD2, DRD4 (Grice et al., transmission-disequilibrium test), DAT1, MAO-A (VNTR) and DBH — mostly small samples, mostly inconsistent replication <span class="method">candidate-gene association (case-control &amp; TDT)</span></li>
+  <li><span class="yr">1996 —</span> Cytogenetics enters: Boghosian-Sell and colleagues describe a TS pedigree with a <strong>7;18 translocation</strong> and map the 18q22.3 breakpoint — the first TS-relevant chromosomal rearrangement to be cloned regionally <sup class="c"><a href="#r4">[4]</a></sup> <span class="method">cytogenetics</span></li>
+  <li><span class="yr">1999 —</span> The first <strong>whole-genome scans</strong>: Barr and colleagues screen 386 markers across multigenerational families — no significant parametric linkage; and the TSA International Consortium completes a genome screen in <strong>110 affected sib pairs</strong>, with only suggestive (multipoint MLS ~1–2) signals <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/10402514/" target="_blank" rel="noopener">[5]</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/10521310/" target="_blank" rel="noopener">[6]</a></sup> <span class="method">parametric linkage · affected-sib-pair genome scan</span></li>
+  <li><span class="yr">2000 —</span> A large French-Canadian pedigree yields one of the first significant parametric LOD scores in TS — a three-point <strong>Zmax 3.24 on chromosome 11</strong> (D11S1377–D11S933) <sup class="c"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1287871/" target="_blank" rel="noopener">[7]</a></sup>, but the signal does not generalize to other families <span class="method">parametric linkage, single pedigree</span></li>
+  <li><span class="yr">2001 —</span> <strong>IMMP2L</strong> — the first TS gene found by positional cloning from a chromosome rearrangement: Petek, Kroisel, Wagner and colleagues characterize a patient with tics and a rearranged 7q31 and show the breakpoint disrupts a novel gene, <strong>IMMP2L</strong> (inner mitochondrial membrane peptidase-like) <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/11254443/" target="_blank" rel="noopener">[8]</a></sup>; an independent t(2;7)(p24.2;q31) translocation case disrupting IMMP2L follows in 2011 <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/21386874/" target="_blank" rel="noopener">[9]</a></sup> — rare but repeatedly implicated <span class="method">cytogenetics → positional cloning</span></li>
+  <li><span class="yr">2005 —</span> <strong>SLITRK1</strong> — the first widely publicized TS gene: Abelson, State and colleagues, studying a child with TS and a <strong>de novo inversion at 13q31.1</strong>, find the neurite-growth gene SLITRK1 at the breakpoint; they then find rare coding and 3′UTR variants (var321, varCDfs) enriched in TS cases, and show SLITRK1 promotes dendritic growth in neurons <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/16224024/" target="_blank" rel="noopener">[10]</a></sup>. Subsequent screens find the variants in very few patients — an object lesson in the winner's curse and the need for replication <span class="method">cytogenetics + candidate sequencing + functional assay</span></li>
+  <li><span class="yr">2007 —</span> The largest linkage study of the era: the TSAICG scans <strong>238 families / 304 affected sib pairs</strong> plus 18 multigenerational families — no single locus reaches genome-wide significance, confirming the polygenic architecture <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/17304708/" target="_blank" rel="noopener">[11]</a></sup> <span class="method">nonparametric + parametric multi-family genome scan</span></li>
+  <li><span class="yr">2010 —</span> <strong>HDC</strong> — the definitive single-family gene: in a two-generation pedigree (a father and eight children, all affected), Ercan-Sencicek, State, Leckman and colleagues combine <strong>linkage analysis with candidate-gene sequencing</strong> and find a rare segregating nonsense mutation, <strong>W317X in histidine decarboxylase</strong> — the rate-limiting enzyme of histamine biosynthesis — introducing the histamine pathway into tic biology <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/20445167/" target="_blank" rel="noopener">[12]</a></sup> <span class="method">linkage + sequencing in one pedigree</span></li>
+  <li><span class="yr">2013 —</span> The first <strong>GWAS</strong> (TSAICG): 1,285 TS cases and 4,964 controls, including Ashkenazi and French-Canadian population isolates — no marker reaches genome-wide significance; top signal rs7868992 near <strong>COL27A1</strong> on 9q32 (P = 1.85 × 10⁻⁶) <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/22889924/" target="_blank" rel="noopener">[13]</a></sup> <span class="method">GWAS</span></li>
+  <li><span class="yr">2014 —</span> Biochemistry closes the loop on HDC: Baldan Castellan, Pittenger and colleagues show <strong>Hdc knockout mice</strong> develop tic-like stereotypies, have elevated striatal dopamine, and both mice and human mutation carriers show altered D2/D3 binding — the clearest mechanistic path from a TS gene to a circuit <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/24411733/" target="_blank" rel="noopener">[14]</a></sup> <span class="method">biochemistry &amp; mouse model</span></li>
+  <li><span class="yr">2017 —</span> Two breakthroughs: (i) the TSAICG CNV study of 2,434 cases vs 4,093 controls finds the first <strong>genome-wide significant structural variants</strong> — <strong>NRXN1 deletions</strong> (OR ≈ 20) and <strong>CNTN6 duplications</strong> (OR ≈ 10), carried by ~1% of cases <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/28641109/" target="_blank" rel="noopener">[15]</a></sup>; and (ii) the TIC Genetics consortium sequences <strong>511 trios</strong> and shows <strong>de novo damaging coding variants are strongly associated with TS</strong>, implicating specific genes across synaptic, chromatin and histaminergic pathways <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/28472652/" target="_blank" rel="noopener">[16]</a></sup> <span class="method">CNV analysis · trio whole-exome sequencing</span></li>
+  <li><span class="yr">2019 —</span> The first genome-wide significant SNP locus: a GWAS meta-analysis of 4,819 cases and 9,488 controls (plus a population-based replication sample) identifies <strong>rs2504235 within FLT3</strong> on chromosome 13 — a start toward common-variant risk architecture, together with strong polygenic signal and cross-disorder correlation with OCD <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/30818990/" target="_blank" rel="noopener">[17]</a></sup> <span class="method">GWAS meta-analysis</span></li>
+  <li><span class="yr">2023 —</span> The GWAS era matures: the largest meta-analysis to date (≈6,133 TS cases, 13,565 controls) finds a novel genome-wide significant locus on <strong>5q15 upstream of NR2F1</strong> — a nuclear orphan receptor involved in cortical development <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/36738982/" target="_blank" rel="noopener">[18]</a></sup> <span class="method">GWAS meta-analysis</span></li>
+</ul>
+
+<!-- ============ METHODS ============ -->
+<h2 id="methods">3 · The discovery methods, explained</h2>
+<div class="two-col">
+  <div class="card">
+    <h3>Segregation analysis</h3>
+    <p class="small">Statistical modelling of inheritance patterns in pedigrees. In TS it suggested an autosomal-dominant major gene — which was too simple, but justified the first linkage searches. This method tells you <em>what kind of gene to look for</em>, not where it is.</p>
+  </div>
+  <div class="card">
+    <h3>Linkage analysis &amp; whole-genome scans</h3>
+    <p class="small">Typed ~300–400 polymorphic markers across the genome in families, testing whether a marker co-segregates with illness (parametric LOD score, needing a correct inheritance model) or is shared identical-by-descent among affected sibs (model-free). TS linkage signals (11q, 4q, 5p, 8p…) were consistently suggestive and inconsistent between studies — the classic signature of many small effects <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/10521310/" target="_blank" rel="noopener">[6]</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/17304708/" target="_blank" rel="noopener">[11]</a></sup>.</p>
+  </div>
+  <div class="card">
+    <h3>Cytogenetics &amp; positional cloning</h3>
+    <p class="small">Patients with tics and rare chromosomal rearrangements (translocations, inversions, duplications) act as "experiments of nature": the disrupted gene at the breakpoint is a candidate. This is how <strong>IMMP2L</strong> (7q31 breakpoints <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/11254443/" target="_blank" rel="noopener">[8]</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/21386874/" target="_blank" rel="noopener">[9]</a></sup>) and <strong>SLITRK1</strong> (de novo 13q31.1 inversion <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/16224024/" target="_blank" rel="noopener">[10]</a></sup>) were nominated.</p>
+  </div>
+  <div class="card">
+    <h3>Candidate-gene association</h3>
+    <p class="small">Pick genes from pharmacology — haloperidol suppresses tics, so dopamine genes (DRD2, DRD4, DAT1, MAO-A, DBH) — and compare allele frequencies in cases vs controls (or with the transmission-disequilibrium test in trios). Dozens of studies; associations reported but rarely confirmed <sup class="c"><a href="#r3">[3]</a></sup>. The lasting result: dopaminergic genes remain plausible modifiers, not confirmed susceptibility loci.</p>
+  </div>
+  <div class="card">
+    <h3>GWAS</h3>
+    <p class="small">Test 500,000+ common SNPs genome-wide in thousands of cases and controls. In TS: the first scan (2013) found nothing significant <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/22889924/" target="_blank" rel="noopener">[13]</a></sup>; the 2019 meta-analysis delivered the first significant SNP (<strong>FLT3</strong>, rs2504235 <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/30818990/" target="_blank" rel="noopener">[17]</a></sup>) and the 2023 meta-analysis added <strong>NR2F1</strong> on 5q15 <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/36738982/" target="_blank" rel="noopener">[18]</a></sup>.</p>
+  </div>
+  <div class="card">
+    <h3>CNV analysis</h3>
+    <p class="small">Microarrays detect deletions and duplications of DNA chunks. TS shows an excess of large, rare, de novo CNVs, with genome-wide significance for <strong>NRXN1 deletions</strong> and <strong>CNTN6 duplications</strong> — each carried by ~1% of cases <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/28641109/" target="_blank" rel="noopener">[15]</a></sup>.</p>
+  </div>
+  <div class="card">
+    <h3>Trio exome sequencing</h3>
+    <p class="small">Sequence the protein-coding genome of child-plus-parents ("trio"); variants present in the child but not either parent are <em>de novo</em>. In 511 TS trios, damaging de novo coding variants are strongly enriched, and multiple genes are hit more than once across cohorts — the modern route to rare high-impact TS genes <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/28472652/" target="_blank" rel="noopener">[16]</a></sup>.</p>
+  </div>
+  <div class="card">
+    <h3>Biochemistry &amp; functional validation</h3>
+    <p class="small">The dopamine hypothesis began as pure pharmacology (haloperidol → tic suppression → D2 receptor). The HDC discovery was validated biochemically: the W317X enzyme is inactive; Hdc-knockout mice show tic-like stereotypies, elevated striatal dopamine, altered D2/D3 binding — rescued by haloperidol and histamine <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/24411733/" target="_blank" rel="noopener">[14]</a></sup>. Similarly SLITRK1 was vetted in dendritic-growth assays <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/16224024/" target="_blank" rel="noopener">[10]</a></sup>.</p>
+  </div>
+</div>
+
+<!-- ============ FINDINGS ============ -->
+<h2 id="findings">4 · The genes and loci, and where they stand</h2>
+<table>
+  <tr><th>Gene / locus</th><th>Year</th><th>How found</th><th>Status</th></tr>
+  <tr><td><strong>DRD2, DRD4, DAT1, MAO-A, DBH</strong></td><td>1991–2000s</td><td>Candidate-gene association from dopamine pharmacology <sup class="c"><a href="#r3">[3]</a></sup></td><td>Reported associations, inconsistent replication; plausible modifiers, not confirmed loci</td></tr>
+  <tr><td><strong>18q22.3 breakpoint</strong></td><td>1996</td><td>Cytogenetics (7;18 translocation pedigree) <sup class="c"><a href="#r4">[4]</a></sup></td><td>Region implicated in one pedigree; no gene isolated</td></tr>
+  <tr><td><strong>Chromosome 11 (D11S1377–D11S933)</strong></td><td>2000</td><td>Parametric linkage, large French-Canadian family, Zmax 3.24 <sup class="c"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1287871/" target="_blank" rel="noopener">[7]</a></sup></td><td>Significant in that family; not confirmed genome-wide</td></tr>
+  <tr><td><strong>IMMP2L (7q31)</strong></td><td>2001 / 2011</td><td>Positional cloning from chromosomal breakpoints <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/11254443/" target="_blank" rel="noopener">[8]</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/21386874/" target="_blank" rel="noopener">[9]</a></sup></td><td>Rare rearrangements in isolated patients with tics; not a common cause</td></tr>
+  <tr><td><strong>SLITRK1 (13q31.1)</strong></td><td>2005</td><td>De novo inversion at the locus + variant screening + functional assay <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/16224024/" target="_blank" rel="noopener">[10]</a></sup></td><td>High-profile but rare; effect not consistently replicated — a cautionary tale</td></tr>
+  <tr><td><strong>HDC (15q21)</strong></td><td>2010</td><td>Linkage + sequencing in one pedigree; W317X <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/20445167/" target="_blank" rel="noopener">[12]</a></sup></td><td>Rare cause, high penetrance in that family; strong biological validation in mice <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/24411733/" target="_blank" rel="noopener">[14]</a></sup></td></tr>
+  <tr><td><strong>NRXN1 (deletions), CNTN6 (duplications)</strong></td><td>2017</td><td>Genome-wide CNV analysis, 2,434 cases vs 4,093 controls <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/28641109/" target="_blank" rel="noopener">[15]</a></sup></td><td>Genome-wide significant; ~1% of cases; synaptic adhesion genes</td></tr>
+  <tr><td><strong>De novo damaging coding variants</strong> (multiple genes; e.g. histaminergic, synaptic, chromatin pathways)</td><td>2017</td><td>Trio whole-exome sequencing, 511 trios <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/28472652/" target="_blank" rel="noopener">[16]</a></sup></td><td>Strongly associated overall; individual recurrent genes emerging across cohorts</td></tr>
+  <tr><td><strong>FLT3 locus (13q12, rs2504235)</strong></td><td>2019</td><td>GWAS meta-analysis, 4,819 cases / 9,488 controls <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/30818990/" target="_blank" rel="noopener">[17]</a></sup></td><td>First genome-wide significant SNP; not replicated in the population sample — biology (expression in cortico-striatal circuits) under active study</td></tr>
+  <tr><td><strong>NR2F1 region (5q15)</strong></td><td>2023</td><td>GWAS meta-analysis, ≈6,133 cases / 13,565 controls <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/36738982/" target="_blank" rel="noopener">[18]</a></sup></td><td>Genome-wide significant; NR2F1 is a cortical-development nuclear receptor</td></tr>
+</table>
+<p>The consensus picture: TS is <strong>polygenic</strong> (many common variants of small effect, now measurable as polygenic risk scores), plus a <strong>rare-variant tail</strong> (CNVs and de novo coding variants), converging on cortico-striatal circuit development — synapse adhesion (NRXN1, CNTN6, SLITRK1), histamine signalling (HDC), dopaminergic modulation, and chromatin regulation <sup class="c"><a href="https://doi.org/10.1038/nrdp.2016.97" target="_blank" rel="noopener">[1]</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/28472652/" target="_blank" rel="noopener">[16]</a></sup>.</p>
+
+<!-- ============ REFERENCES ============ -->
+<h2 id="refs">5 · References (all real articles)</h2>
+<ol class="refs">
+  <li><span class="au">Robertson MM, Eapen V, Singer HS, Martino D, Scharf JM, Paschou P, et al.</span> Gilles de la Tourette syndrome. <em>Nat Rev Dis Primers</em> 2017;3:16097. DOI: <a class="ext" href="https://doi.org/10.1038/nrdp.2016.97" target="_blank" rel="noopener">10.1038/nrdp.2016.97</a></li>
+  <li><span class="au">Gilles de la Tourette G.</span> Étude sur une affection nerveuse caractérisée par de l'incoordination motrice accompagnée d'écholalie et de coprolalie. <em>Arch Gén Méd</em> (Paris) 1885;9:19–42, 158–200. (Original description; precedes digital indexing — cited bibliographically. English commentary: Kushner HI. <em>Bull Hist Med</em> 1999;73:412–423.)</li>
+  <li id="r3"><span class="au">Comings DE, Comings BG, Muhleman D, Dietz G, Shahbahrami B, Tast D, et al.</span> The dopamine D2 receptor locus as a modifying gene in neuropsychiatric disorders: the Tourette syndrome story. <em>JAMA</em> 1991;266:1793–1800. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/1832466/" target="_blank" rel="noopener">1832466</a> · DOI: <a class="ext" href="https://doi.org/10.1001/jama.1991.03470130073036" target="_blank" rel="noopener">10.1001/jama.1991.03470130073036</a> (See also Comings DE. <em>Am J Hum Genet</em> 1994;55:706–728; Grice DE, et al. DRD4 TDT. <em>Mol Psychiatry</em> 1996;1:502–507.)</li>
+  <li id="r4"><span class="au">Boghosian-Sell L, Comings DE, Overhauser J.</span> Tourette syndrome in a pedigree with a 7;18 translocation: identification of a YAC spanning the translocation breakpoint at 18q22.3. <em>Am J Hum Genet</em> 1996;59:999–1005. (Breakpoint mapping in a cytogenetically abnormal TS pedigree.)</li>
+  <li><span class="au">Barr CL, Wigg KG, Pakstis AJ, Kurlan R, Pauls D, Kidd KK, Tsui L-C, Sandor P.</span> Genome scan for linkage to Gilles de la Tourette syndrome. <em>Am J Med Genet</em> 1999;88:437–445. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/10402514/" target="_blank" rel="noopener">10402514</a></li>
+  <li><span class="au">The Tourette Syndrome Association International Consortium for Genetics.</span> A complete genome screen in sib pairs affected by Gilles de la Tourette syndrome. <em>Am J Hum Genet</em> 1999;65:1428–1436. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/10521310/" target="_blank" rel="noopener">10521310</a> · DOI: <a class="ext" href="https://doi.org/10.1086/302613" target="_blank" rel="noopener">10.1086/302613</a></li>
+  <li><span class="au">Mérette C, Brassard A, Potvin A, Bouvier H, Rousseau F, Emond C, Bissonnette L, Roy M-A, Maziade M, Ott J, Caron C.</span> Significant linkage for Tourette syndrome in a large French Canadian family. <em>Am J Hum Genet</em> 2000. Full text: <a class="ext" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1287871/" target="_blank" rel="noopener">PMC1287871</a></li>
+  <li><span class="au">Petek E, Windpassinger C, Vincent JB, Cheung J, Boright AP, Scherer SW, Kroisel PM, Wagner K.</span> Disruption of a novel gene (IMMP2L) by a breakpoint in 7q31 associated with Tourette syndrome. <em>Am J Hum Genet</em> 2001;68:848–858. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/11254443/" target="_blank" rel="noopener">11254443</a> · DOI: <a class="ext" href="https://doi.org/10.1086/319523" target="_blank" rel="noopener">10.1086/319523</a></li>
+  <li><span class="au">Patel C, Cooper-Charles L, McMullan DJ, Walker JM, Davison V, Morton J.</span> Translocation breakpoint at 7q31 associated with tics: further evidence for IMMP2L as a candidate gene for Tourette syndrome. <em>Eur J Hum Genet</em> 2011;19:634–639. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/21386874/" target="_blank" rel="noopener">21386874</a> · DOI: <a class="ext" href="https://doi.org/10.1038/ejhg.2010.238" target="_blank" rel="noopener">10.1038/ejhg.2010.238</a></li>
+  <li><span class="au">Abelson JF, Kwan KY, O'Roak BJ, Baek DY, Stillman AA, Morgan TM, Mathews CA, Pauls DL, et al.</span> Sequence variants in SLITRK1 are associated with Tourette's syndrome. <em>Science</em> 2005;310:317–320. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/16224024/" target="_blank" rel="noopener">16224024</a> · DOI: <a class="ext" href="https://doi.org/10.1126/science.1116502" target="_blank" rel="noopener">10.1126/science.1116502</a></li>
+  <li><span class="au">The Tourette Syndrome Association International Consortium for Genetics.</span> Genome scan for Tourette disorder in affected-sibling-pair and multigenerational families. <em>Am J Hum Genet</em> 2007;80:265–272. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/17304708/" target="_blank" rel="noopener">17304708</a></li>
+  <li><span class="au">Ercan-Sencicek AG, Stillman AA, Ghosh AK, Bilguvar K, O'Roak BJ, Mathews CA, King RA, et al.</span> L-Histidine decarboxylase and Tourette's syndrome. <em>N Engl J Med</em> 2010;362:1901–1908. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/20445167/" target="_blank" rel="noopener">20445167</a> · DOI: <a class="ext" href="https://doi.org/10.1056/NEJMoa0907006" target="_blank" rel="noopener">10.1056/NEJMoa0907006</a></li>
+  <li><span class="au">The Tourette Syndrome Association International Consortium for Genetics.</span> Genome-wide association study of Tourette's syndrome. <em>Mol Psychiatry</em> 2013;18:721–728. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/22889924/" target="_blank" rel="noopener">22889924</a> · DOI: <a class="ext" href="https://doi.org/10.1038/mp.2012.69" target="_blank" rel="noopener">10.1038/mp.2012.69</a></li>
+  <li><span class="au">Baldan Castellan L, Williams KA, Gallezot J-D, Pogorelov V, Rapanelli M, Crowley M, et al.</span> Histidine decarboxylase deficiency causes Tourette syndrome: parallel findings in humans and mice. <em>Neuron</em> 2014;81:77–90. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/24411733/" target="_blank" rel="noopener">24411733</a> · DOI: <a class="ext" href="https://doi.org/10.1016/j.neuron.2013.10.052" target="_blank" rel="noopener">10.1016/j.neuron.2013.10.052</a></li>
+  <li><span class="au">Huang AY, Yu D, Davis LK, Sul JH, Tsetsos F, Ramensky V, et al.; TSAICG, GGRI.</span> Rare copy number variants in NRXN1 and CNTN6 increase risk for Tourette syndrome. <em>Neuron</em> 2017;94:1101–1111.e7. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/28641109/" target="_blank" rel="noopener">28641109</a> · DOI: <a class="ext" href="https://doi.org/10.1016/j.neuron.2017.06.010" target="_blank" rel="noopener">10.1016/j.neuron.2017.06.010</a></li>
+  <li><span class="au">Willsey AJ, Fernandez TV, Yu D, King RA, Dietrich A, Xing J, et al.; TIC Genetics; TSAICG.</span> De novo coding variants are strongly associated with Tourette disorder. <em>Neuron</em> 2017;94:486–499.e9. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/28472652/" target="_blank" rel="noopener">28472652</a> · DOI: <a class="ext" href="https://doi.org/10.1016/j.neuron.2017.04.024" target="_blank" rel="noopener">10.1016/j.neuron.2017.04.024</a></li>
+  <li><span class="au">Yu D, Sul JH, Tsetsos F, Nawaz MS, Huang AY, Zelaya I, et al.</span> Interrogating the genetic determinants of Tourette's syndrome and other tic disorders through genome-wide association studies. <em>Am J Psychiatry</em> 2019;176:217–227. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/30818990/" target="_blank" rel="noopener">30818990</a> · DOI: <a class="ext" href="https://doi.org/10.1176/appi.ajp.2018.18070857" target="_blank" rel="noopener">10.1176/appi.ajp.2018.18070857</a></li>
+  <li><span class="au">The PGC TS Working Group; The TSAICG; The TSGeneSEE Initiative; The EMTICS Collaborative Group; The TS-EUROTRAIN Network; The TIC Genetics Collaborative Group.</span> Genome-wide association study points to novel locus for Gilles de la Tourette syndrome (5q15 / NR2F1). <em>Biol Psychiatry</em> 2024;96:114–124. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/36738982/" target="_blank" rel="noopener">36738982</a> · DOI: <a class="ext" href="https://doi.org/10.1016/j.biopsych.2023.01.023" target="_blank" rel="noopener">10.1016/j.biopsych.2023.01.023</a></li>
+  <li><span class="au">Georgitsi M, Willsey AJ, Mathews CA, State M, Scharf JM, Paschou P.</span> The genetic etiology of Tourette syndrome: large-scale collaborative efforts on the precipice of discovery. <em>Front Neurosci</em> 2016;10:351. DOI: <a class="ext" href="https://doi.org/10.3389/fnins.2016.00351" target="_blank" rel="noopener">10.3389/fnins.2016.00351</a> (Review of the method-by-method history.)</li>
+</ol>
+
+<p class="foot">Compiled as an educational historical review of the genetics of tics and Tourette syndrome. Every discovery above is tagged with the method that produced it — clinical description, pharmacology/biochemistry, segregation analysis, linkage and whole-genome scans, cytogenetics and positional cloning, candidate-gene association, GWAS, CNV analysis, trio exome sequencing, and functional validation. Gene–disorder links reflect the evidence as it stands: rare validated loci (HDC, NRXN1/CNTN6) coexist with debated ones (SLITRK1) and steadily accumulating common-variant signal. Links open in a new tab: PubMed records resolve at pubmed.ncbi.nlm.nih.gov; DOIs resolve to the publisher of record. The 1885 Gilles de la Tourette paper precedes digital indexing and is cited in full bibliographic form only.</p>
+
+</div>
+</body>
+</html>

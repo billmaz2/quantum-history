@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dopamine: Metabolism, Neurons, Receptors &amp; Behaviour — An Annotated History</title>
+<style>
+  :root{
+    --ink:#1c1a17; --paper:#f6f1e4; --card:#fffdf6; --accent:#6b4f9e;
+    --accent2:#a8552f; --line:#d8cfb8; --muted:#6f6a5e;
+    font-family: Georgia, 'Times New Roman', serif; color:var(--ink); background:var(--paper);
+  }
+  body{margin:0; padding:0; line-height:1.55;}
+  .wrap{max-width:980px; margin:0 auto; padding:24px 20px 80px;}
+  header{border-bottom:4px double var(--line); padding:26px 0 18px; text-align:center;}
+  header h1{font-size:2rem; margin:0 0 6px; letter-spacing:.5px;}
+  header h1 .chem{color:var(--accent2);}
+  header p.sub{font-style:italic; color:var(--muted); margin:4px 0 0; font-size:1.02rem;}
+  header p.meta{font-size:.85rem; color:var(--muted); margin-top:10px;}
+  h2{font-size:1.35rem; color:var(--accent); border-bottom:2px solid var(--line);
+     padding-bottom:6px; margin-top:44px; scroll-margin-top:16px;}
+  h3{font-size:1.08rem; margin-bottom:6px;}
+  nav.toc{background:var(--card); border:1px solid var(--line); padding:14px 20px; margin:22px 0; border-radius:4px; font-size:.95rem;}
+  nav.toc ol{margin:6px 0 0 20px; padding:0;}
+  nav.toc a{color:var(--accent2);}
+  section p{margin:10px 0;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media (max-width:760px){.two-col{grid-template-columns:1fr;}}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:14px 16px; margin:12px 0;}
+  .card.small{font-size:.93rem;}
+  .refs li{margin:11px 0; font-size:.92rem;}
+  .refs .au{font-weight:bold;}
+  table{border-collapse:collapse; width:100%; font-size:.88rem; background:var(--card); margin:12px 0;}
+  th,td{border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top;}
+  th{background:#efe8d5; color:#4a3f72;}
+  a{color:#7a3d9e;}
+  a.ext{font-weight:bold; text-decoration:none;}
+  sup.c a{color:var(--accent2); text-decoration:none; font-family:Verdana,sans-serif; font-size:.72rem;}
+  .hist li{margin:12px 0;}
+  .hist .yr{font-weight:bold; color:var(--accent2); font-family:Verdana,sans-serif; font-size:.82rem;}
+  svg text{font-family:Verdana,sans-serif;}
+  .foot{margin-top:56px; border-top:3px double var(--line); padding-top:14px; font-size:.82rem; color:var(--muted);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Dopamine <span class="chem">(3,4-Dihydroxyphenethylamine, DA)</span></h1>
+  <p class="sub">Metabolism, Enzymes, Midbrain Anatomy, Receptor Subtypes, Behaviour, and Lesion Studies — an annotated historical review</p>
+  <p class="meta">Classic neuroscience review page · Every citation is a real article, linked directly to its PubMed record or publisher DOI (opens in a new tab)</p>
+</header>
+
+<nav class="toc">
+  <strong>Contents</strong>
+  <ol>
+    <li><a href="#history">A brief history of dopamine research</a></li>
+    <li><a href="#metabolism">Metabolism &amp; the enzymes of the pathway</a></li>
+    <li><a href="#anatomy">Anatomy: the dopaminergic cell groups A8–A15</a></li>
+    <li><a href="#subtypes">Receptor subtypes and their behavioural correlates</a></li>
+    <li><a href="#lesions">Lesion and depletion studies</a></li>
+    <li><a href="#refs">References</a></li>
+  </ol>
+</nav>
+
+<!-- ============ HISTORY ============ -->
+<h2 id="history">1 · A brief history</h2>
+<ul class="hist">
+  <li><span class="yr">1910–11 —</span> Barger &amp; Dale survey sympathomimetic amines and note that dopamine is the decarboxylated precursor of noradrenaline without itself being strongly pressor; Casimir Funk synthesizes L-DOPA the following year. Nobody yet suspects a transmitter role. <sup class="c"><a href="https://doi.org/10.1113/jphysiol.1910.sp001394" target="_blank" rel="noopener">[1]</a></sup></li>
+  <li><span class="yr">1957–58 —</span> Montagu detects dopamine in animal tissues, and Carlsson, Lindqvist, Magnusson &amp; Walbeck show it is present in brain — not merely a noradrenaline precursor but a transmitter candidate in its own right; reserpine sedation is reversed by L-DOPA. <sup class="c"><a href="https://doi.org/10.1038/180244a0" target="_blank" rel="noopener">[2]</a>, <a href="https://doi.org/10.1126/science.127.3296.471" target="_blank" rel="noopener">[3]</a></sup></li>
+  <li><span class="yr">1959–60 —</span> Bertler &amp; Rosengren find dopamine concentrated in the corpus striatum and propose its role in Parkinson's disease; Ehringer &amp; Hornykiewicz demonstrate the striatal dopamine deficit in post-mortem parkinsonian brains — the founding lesion of transmitter-based neurology. <sup class="c"><a href="https://doi.org/10.1007/BF02158171" target="_blank" rel="noopener">[4]</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/13726334/" target="_blank" rel="noopener">[5]</a></sup></li>
+  <li><span class="yr">1961–67 —</span> Birkmayer &amp; Hornykiewicz report the first L-DOPA infusion in parkinsonian patients, and Cotzias establishes high-dose oral L-DOPA as effective chronic therapy — the birth of modern neurotransmitter-replacement medicine. <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/13869365/" target="_blank" rel="noopener">[6]</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/5310654/" target="_blank" rel="noopener">[7]</a></sup></li>
+  <li><span class="yr">1963–64 —</span> Carlsson &amp; Lindqvist show that antipsychotics increase dopamine turnover — the first pharmacological hint of antipsychotic action at dopamine synapses; Dahlström &amp; Fuxe map the central catecholamine neurons into cell groups <strong>A1–A15</strong>, with the dopamine groups <strong>A8, A9, A10</strong> (and hypothalamic A11–A15) defined. <sup class="c"><a href="https://doi.org/10.1152/physrev.1992.72.1.165" target="_blank" rel="noopener">[8]</a></sup></li>
+  <li><span class="yr">1968–71 —</span> Ungerstedt introduces the 6-hydroxydopamine striatal lesion and the rotation model — experimental parkinsonism in the rat. <sup class="c"><a href="https://doi.org/10.1016/0006-8993(70)90158-9" target="_blank" rel="noopener">[9]</a>, <a href="https://doi.org/10.1111/j.1748-1716.1971.tb05021.x" target="_blank" rel="noopener">[10]</a></sup></li>
+  <li><span class="yr">1972–75 —</span> Kebabian, Petzold &amp; Greengard discover the dopamine-sensitive adenylate cyclase, and radioligand binding (Creese, Burt &amp; Snyder) makes dopamine receptors directly measurable. <sup class="c"><a href="https://doi.org/10.1073/pnas.69.8.2145" target="_blank" rel="noopener">[11]</a>, <a href="https://doi.org/10.1016/0024-3205(75)90366-3" target="_blank" rel="noopener">[12]</a></sup></li>
+  <li><span class="yr">1979 —</span> Kebabian &amp; Calne formalize the two-receptor classification, <strong>D1</strong> (adenylate-cyclase-linked) and <strong>D2</strong> (cyclase-independent) — the scheme that still organizes the field. <sup class="c"><a href="https://doi.org/10.1038/277093a0" target="_blank" rel="noopener">[13]</a></sup></li>
+  <li><span class="yr">1983 —</span> Langston, Ballard and colleagues trace a cluster of young parkinsonian drug users to the meperidine-analog contaminant <strong>MPTP</strong>, which selectively destroys nigrostriatal dopamine neurons — accidental human proof of the dopamine hypothesis of Parkinson's disease. <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/6835606/" target="_blank" rel="noopener">[14]</a></sup></li>
+  <li><span class="yr">1988–91 —</span> The molecular era: Bunzow and colleagues clone the D2 receptor; Sokoloff the D3; Van Tol the D4 (revealing clozapine's affinity and the DRD4 polymorphism); Dearry the D1; Sunahara the D5; and Shimada the cocaine-sensitive dopamine transporter DAT. <sup class="c"><a href="https://doi.org/10.1038/336783a0" target="_blank" rel="noopener">[15]</a>, <a href="https://doi.org/10.1038/347146a0" target="_blank" rel="noopener">[16]</a>, <a href="https://doi.org/10.1038/350610a0" target="_blank" rel="noopener">[17]</a>, <a href="https://doi.org/10.1038/347072a0" target="_blank" rel="noopener">[18]</a>, <a href="https://doi.org/10.1038/350614a0" target="_blank" rel="noopener">[19]</a>, <a href="https://doi.org/10.1126/science.1948036" target="_blank" rel="noopener">[20]</a></sup></li>
+  <li><span class="yr">1986–2001 —</span> PET imaging (Wong, Farde, Kapur &amp; Seeman) establishes that clinical antipsychotic effect requires ~65–75% striatal D2 receptor occupancy — the quantitative anchor of the dopamine hypothesis of schizophrenia. <sup class="c"><a href="https://doi.org/10.1126/science.2878405" target="_blank" rel="noopener">[21]</a>, <a href="https://doi.org/10.1176/appi.ajp.158.3.360" target="_blank" rel="noopener">[22]</a></sup></li>
+  <li><span class="yr">1989–97 —</span> The reward literature: Wise &amp; Rompre's dopamine-and-reward synthesis, and Schultz's single-neuron recordings formalizing dopamine neurons as reward-prediction error signals — the substrate now invoked in addiction, motivation and reinforcement-learning theory. <sup class="c"><a href="https://doi.org/10.1146/annurev.ps.40.020189.001203" target="_blank" rel="noopener">[23]</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/9054347/" target="_blank" rel="noopener">[24]</a></sup></li>
+  <li><span class="yr">1995–97 —</span> Gene × behaviour: the DRD4 exon-III repeat polymorphism is associated with the human personality trait of novelty seeking; Giros' dopamine-transporter knockout mice are hyperactive and indifferent to cocaine and amphetamine — defining DAT as the shared site of psychostimulant action; Zetterström's Nurr1-null mice lose their midbrain dopamine neurons. <sup class="c"><a href="https://doi.org/10.1038/ng0196-78" target="_blank" rel="noopener">[25]</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/8628396/" target="_blank" rel="noopener">[26]</a>, <a href="https://doi.org/10.1126/science.276.5310.248" target="_blank" rel="noopener">[27]</a></sup></li>
+  <li><span class="yr">2000s —</span> Transcription-factor genetics (Pitx3, Lmx1b) mark the substantia nigra sublineage; human imaging ties striatal dopamine to prediction-error signalling and addiction. <sup class="c"><a href="https://doi.org/10.1073/pnas.0230526100" target="_blank" rel="noopener">[28]</a></sup></li>
+</ul>
+
+<!-- ============ METABOLISM ============ -->
+<h2 id="metabolism">2 · Metabolism and the enzymes of the pathway</h2>
+
+<p>Dopamine is synthesised from the essential amino acid <strong>L-tyrosine</strong> in two steps, stored by VMAT2, inactivated by oxidative deamination and O-methylation, and cleared from the synapse by the plasma-membrane transporter DAT. In noradrenergic neurons it is also the immediate precursor of noradrenaline:</p>
+
+<svg viewBox="0 0 900 360" width="100%" role="img" aria-label="Dopamine metabolic pathway">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b4f9e"/>
+    </marker>
+  </defs>
+  <style>
+    .box{fill:#fffdf6; stroke:#a8552f; stroke-width:1.5;}
+    .enz{fill:#e9e2f2; stroke:#6b4f9e; stroke-width:1.5;}
+    .t{font-size:13px; fill:#1c1a17; font-weight:bold;}
+    .e{font-size:11px; fill:#7a3d1e;}
+    .ar{stroke:#6b4f9e; stroke-width:2; fill:none; marker-end:url(#arr);}
+  </style>
+  <rect class="box" x="30" y="40" width="130" height="46" rx="8"/><text class="t" x="95" y="59" text-anchor="middle">L-Tyrosine</text><text class="e" x="95" y="76" text-anchor="middle">plasma, diet</text>
+  <rect class="enz" x="30" y="120" width="130" height="40" rx="8"/><text class="t" x="95" y="145" text-anchor="middle" style="font-size:12px">TH (rate-limiting)</text>
+  <path class="ar" d="M95,86 L95,120"/>
+  <rect class="box" x="30" y="190" width="130" height="46" rx="8"/><text class="t" x="95" y="209" text-anchor="middle">L-DOPA</text><text class="e" x="95" y="226" text-anchor="middle">3,4-dihydroxyphenylalanine</text>
+  <path class="ar" d="M95,160 L95,190"/>
+  <rect class="enz" x="30" y="268" width="130" height="40" rx="8"/><text class="t" x="95" y="293" text-anchor="middle" style="font-size:12px">AADC (DDC)</text>
+  <path class="ar" d="M95,236 L95,268"/>
+  <rect class="box" x="230" y="262" width="150" height="56" rx="8"/><text class="t" x="305" y="284" text-anchor="middle">Dopamine (DA)</text><text class="e" x="305" y="301" text-anchor="middle">vesicular storage: VMAT2</text>
+  <path class="ar" d="M160,288 L230,290"/>
+  <!-- catabolism -->
+  <rect class="enz" x="430" y="196" width="150" height="40" rx="8"/><text class="t" x="505" y="221" text-anchor="middle" style="font-size:12px">MAO-A/B → ALDH</text>
+  <path class="ar" d="M380,278 C420,270 420,240 430,225"/>
+  <rect class="box" x="430" y="110" width="150" height="46" rx="8"/><text class="t" x="505" y="129" text-anchor="middle">DOPAC</text><text class="e" x="505" y="146" text-anchor="middle">dihydroxyphenylacetic acid</text>
+  <path class="ar" d="M505,196 L505,156"/>
+  <rect class="enz" x="610" y="196" width="120" height="40" rx="8"/><text class="t" x="670" y="221" text-anchor="middle" style="font-size:12px">COMT</text>
+  <path class="ar" d="M580,133 C610,140 630,170 645,196"/>
+  <rect class="box" x="620" y="110" width="150" height="46" rx="8"/><text class="t" x="695" y="129" text-anchor="middle">HVA</text><text class="e" x="695" y="146" text-anchor="middle">homovanillic acid</text>
+  <path class="ar" d="M670,196 L675,156"/>
+  <path class="ar" d="M770,133 L830,120"/>
+  <rect class="box" x="830" y="96" width="120" height="46" rx="8"/><text class="t" x="890" y="115" text-anchor="middle">Excretion</text><text class="e" x="890" y="132" text-anchor="middle">CSF HVA = turnover</text>
+  <!-- noradrenaline branch -->
+  <path class="ar" d="M305,262 C305,80 340,64 380,64"/>
+  <rect class="enz" x="380" y="44" width="150" height="40" rx="8"/><text class="t" x="455" y="69" text-anchor="middle" style="font-size:12px">DBH (dopamine β-hydroxylase)</text>
+  <rect class="box" x="580" y="44" width="150" height="46" rx="8"/><text class="t" x="655" y="63" text-anchor="middle">Noradrenaline</text><text class="e" x="655" y="80" text-anchor="middle">noradrenergic neurons</text>
+  <path class="ar" d="M530,64 L580,66"/>
+  <!-- reuptake -->
+  <path class="ar" d="M380,290 L430,290" style="stroke-dasharray:5,4"/>
+  <rect class="box" x="430" y="268" width="170" height="46" rx="8" style="fill:#e9e2f2; stroke:#6b4f9e"/>
+  <text class="t" x="515" y="287" text-anchor="middle" style="font-size:12px">DAT (SLC6A3)</text><text class="e" x="515" y="303" text-anchor="middle">target of cocaine &amp; methylphenidate</text>
+  <text class="e" x="620" y="292">← clearance back into terminals</text>
+</svg>
+
+<h3>Enzymes</h3>
+<div class="two-col">
+  <div class="card">
+    <h3>Tyrosine hydroxylase (TH)</h3>
+    <p class="small">The rate-limiting, BH4 (tetrahydrobiopterin)-dependent hydroxylation of tyrosine to L-DOPA — the committed step of all catecholamine synthesis. TH is controlled by phosphorylation at serine residues (Ser40 by PKA) and by end-product feedback inhibition by catecholamines bound at the iron centre. Dominant TH mutations cause L-DOPA-responsive dystonia (Segawa disease), and recessive loss causes infantile parkinsonism. <sup class="c"><a href="https://doi.org/10.1073/pnas.69.8.2145" target="_blank" rel="noopener">[11]</a></sup></p>
+  </div>
+  <div class="card">
+    <h3>Aromatic L-amino acid decarboxylase (AADC/DDC)</h3>
+    <p class="small">A pyridoxal-5′-phosphate-dependent enzyme that decarboxylates L-DOPA to dopamine (and 5-HTP to serotonin); shared between catecholamine and indoleamine pathways and not rate-limiting. This is why peripheral L-DOPA is co-administered with carbidopa (an AADC inhibitor that does not cross the blood–brain barrier) — concentrating conversion inside the brain while preventing nausea. Inherited AADC deficiency causes a combined monoamine neurotransmitter disorder.</p>
+  </div>
+  <div class="card">
+    <h3>Monoamine oxidase A &amp; B (MAO-A/B) + COMT</h3>
+    <p class="small">The principal catabolic route: oxidative deamination of dopamine to DOPAL, aldehyde dehydrogenase to <strong>DOPAC</strong>, then O-methylation by catechol-O-methyltransferase to <strong>HVA</strong> — the CSF and urinary turnover index. MAO-B inhibitors (selegiline, rasagiline) and COMT inhibitors (entacapone, tolcapone) extend each L-DOPA dose in Parkinson's disease. COMT is also the enzyme methylating catechol estrogens and detoxifying dietary catechols.</p>
+  </div>
+  <div class="card">
+    <h3>Dopamine β-hydroxylase (DBH)</h3>
+    <p class="small">The vesicular ascorbate-dependent enzyme that converts dopamine to noradrenaline inside secretory vesicles — the metabolic boundary between a dopaminergic and a noradrenergic neuron. Human DBH deficiency produces severe orthostatic hypotension; conversely, dopamine persists as an end-product in neurons that lack DBH.</p>
+  </div>
+</div>
+<p class="small" style="color:var(--muted)">Note: unlike serotonin (mostly peripheral), the body's dopamine is dominated by the brain pools — nigrostriatal (~80% of brain DA), mesolimbic/mesocortical and hypothalamic — with peripheral roles in the kidney (natriuresis), the retina and the endocrine prolactin axis. Cytoplasmic dopamine auto-oxidizes to neuromelanin, which gives the substantia nigra its name.</p>
+
+<!-- ============ ANATOMY ============ -->
+<h2 id="anatomy">3 · Anatomy: the dopaminergic cell groups A8–A15</h2>
+<p>All forebrain dopamine arises from a small set of midline neurons defined by Dahlström &amp; Fuxe (1964) with the Falck–Hillarp histofluorescence method <sup class="c"><a href="https://doi.org/10.1152/physrev.1992.72.1.165" target="_blank" rel="noopener">[8]</a></sup>. The modern account divides them into three long-axoned systems (nigrostriatal, mesolimbic, mesocortical) plus short hypothalamic and intraneuronal (retina, olfactory bulb) populations.</p>
+<table>
+  <tr><th>Cell group</th><th>Location</th><th>Major projections &amp; functional notes</th></tr>
+  <tr><td><strong>A9 — Substantia nigra pars compacta</strong></td><td>Midbrain (dorsal tier)</td><td>Dorsal striatum (putamen, caudate) — the nigrostriatal pathway of motor control; these are the neurons degenerating in Parkinson's disease, pigmented by neuromelanin. <sup class="c"><a href="https://doi.org/10.1073/pnas.0230526100" target="_blank" rel="noopener">[28]</a></sup></td></tr>
+  <tr><td><strong>A10 — Ventral tegmental area (VTA)</strong></td><td>Ventral midbrain</td><td>Nucleus accumbens, amygdala, hippocampus (mesolimbic) and prefrontal cortex (mesocortical) — reward, motivation, salience, working memory; the substrate of psychostimulant and opioid reinforcement, and the dopamine hyperactivity implicated in psychosis.</td></tr>
+  <tr><td><strong>A8 — Retrorubral field</strong></td><td>Midbrain, caudal to red nucleus</td><td>Dorsal striatum and subthalamic region — overlaps the nigrostriatal projection; a relative reservoir in early Parkinson's disease.</td></tr>
+  <tr><td><strong>A12 — Tuberoinfundibular (arcuate nucleus)</strong></td><td>Hypothalamus</td><td>Median eminence — tonic dopamine inhibits prolactin release from anterior pituitary lactotrophs; the basis of antipsychotic-induced hyperprolactinaemia (D2 blockade) and of bromocriptine therapy.</td></tr>
+  <tr><td><strong>A11–A15 (incerto-hypothalamic &amp; zona incerta)</strong></td><td>Hypothalamus / caudal diencephalon</td><td>Spinal cord, dorsal striatum, cortex — pain modulation, motor and neuroendocrine functions; A11 is the sole spinal dopaminergic source, implicated in restless legs syndrome.</td></tr>
+  <tr><td><strong>Retina &amp; olfactory bulb interneurons</strong></td><td>Local circuit neurons</td><td>Amacrine (retina: contrast sensitivity, light adaptation) and periglomerular (olfactory bulb) interneurons — local dopamine without long axons.</td></tr>
+</table>
+<p>Physiology: midbrain dopamine neurons fire slowly (~1–5 Hz) in pacemaker or low-frequency bursts; burst firing and the phasic "signal" depend on NMDA-receptor-driven plateau potentials, and are powerfully regulated by D2 somatodendritic autoreceptors (a several-second delay before firing is silenced by D2 agonists). Grace's tonically active population (~50%) and transiently active "reserve" populations form the framework linking tonic and phasic dopamine signalling. Schultz's recordings showed these neurons encode a reward-prediction error — firing to unexpected rewards and to cues predicting them, and depressing when predicted rewards are omitted <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/9054347/" target="_blank" rel="noopener">[24]</a></sup>.</p>
+
+<!-- ============ SUBTYPES ============ -->
+<h2 id="subtypes">4 · Receptor subtypes and behavioural correlates</h2>
+<p>All dopamine receptors are G-protein-coupled (rhodopsin-like). The founding D1/D2 pharmacological classification of Kebabian &amp; Calne <sup class="c"><a href="https://doi.org/10.1038/277093a0" target="_blank" rel="noopener">[13]</a></sup> survives as the D1-like (D1, D5, Gs-coupled) and D2-like (D2, D3, D4, Gi/o-coupled) families, with molecular cloning in 1988–91 <sup class="c"><a href="https://doi.org/10.1038/336783a0" target="_blank" rel="noopener">[15]</a>, <a href="https://doi.org/10.1038/347072a0" target="_blank" rel="noopener">[18]</a></sup>.</p>
+<table>
+  <tr><th>Subtype</th><th>Transduction</th><th>Key localisations</th><th>Behavioural / clinical correlations (representative evidence)</th></tr>
+  <tr><td><strong>D1</strong></td><td>Gs/olf ↑ cAMP, ↑ DARPP-32</td><td>Striatum ("direct" pathway MSNs), nucleus accumbens, prefrontal cortex</td><td>Motor output: D1 agonists relieve parkinsonism; accumbens D1 signalling mediates drug seeking and habit learning; cortical D1 tunes working-memory performance (inverted-U dose response). <sup class="c"><a href="https://doi.org/10.1073/pnas.69.8.2145" target="_blank" rel="noopener">[11]</a>, <a href="https://doi.org/10.1038/347072a0" target="_blank" rel="noopener">[18]</a></sup></td></tr>
+  <tr><td><strong>D2</strong></td><td>Gi/o ↓ cAMP; opens GIRK K<sup>+</sup></td><td>Striatum ("indirect" pathway), nucleus accumbens, VTA/SN somatodendrites (autoreceptor), pituitary lactotrophs</td><td>The antipsychotic receptor: clinical response requires ~65–75% striatal D2 occupancy, with EPS above ~80% <sup class="c"><a href="https://doi.org/10.1176/appi.ajp.158.3.360" target="_blank" rel="noopener">[22]</a></sup>; D2 agonists treat Parkinsonism and prolactinoma but cause impulse-control disorders (pathological gambling, hypersexuality). <sup class="c"><a href="https://doi.org/10.1126/science.2878405" target="_blank" rel="noopener">[21]</a></sup></td></tr>
+  <tr><td><strong>D3</strong></td><td>Gi/o</td><td>Nucleus accumbens (shell), islands of Calleja, VTA</td><td>Limbo-motor interface: implicated in drug cue-reactivity and relapse; D3-prefering partial agonists (e.g., BP 897 concept) explored for addiction; also the receptor most linked to antipsychotic-induced weight gain. <sup class="c"><a href="https://doi.org/10.1038/347146a0" target="_blank" rel="noopener">[16]</a></sup></td></tr>
+  <tr><td><strong>D4</strong></td><td>Gi/o</td><td>Prefrontal cortex, hippocampus, retina</td><td>The atypical antipsychotic receptor: cloned with unexpectedly high clozapine affinity <sup class="c"><a href="https://doi.org/10.1038/350610a0" target="_blank" rel="noopener">[17]</a></sup>; the exon-III VNTR (7-repeat) allele associated with novelty seeking, ADHD and, in longitudinal cohorts, increased risk-taking behaviour <sup class="c"><a href="https://doi.org/10.1038/ng0196-78" target="_blank" rel="noopener">[25]</a></sup>.</td></tr>
+  <tr><td><strong>D5</strong></td><td>Gs ↑ cAMP (higher DA affinity)</td><td>Hippocampus, hypothalamus, cortex; cerebellum</td><td>Learning, memory and blood-pressure regulation; D5-null mice show compensatory up-regulation of D1-like signalling; implicated in hypertension and working memory. <sup class="c"><a href="https://doi.org/10.1038/350614a0" target="_blank" rel="noopener">[19]</a></sup></td></tr>
+</table>
+<p>Transporters complete the picture: <strong>DAT (SLC6A3)</strong> clears synaptic dopamine — the shared binding site of cocaine and methylphenidate, and of amphetamine's releasing action. DAT knockout mice are hyperactive and, remarkably, indifferent to cocaine and amphetamine <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/8628396/" target="_blank" rel="noopener">[26]</a></sup> — the clearest single-gene proof of the transporter hypothesis of psychostimulant action. DAT density imaged by <sup>18</sup>F-DOPA and DAT-SPECT is the standard biomarker of nigrostriatal degeneration in parkinsonian syndromes.</p>
+
+<!-- ============ LESIONS ============ -->
+<h2 id="lesions">5 · Lesion and depletion studies</h2>
+<div class="card">
+<h3>Pharmacological depletion</h3>
+<ul>
+  <li><strong>Reserpine</strong> — the vesicular monoamine (VMAT2) blocker that depletes stored dopamine, serotonin and noradrenaline. Carlsson showed that reserpinized animals become akinetic and immobile but recover when given L-DOPA — the pivotal 1957 experiment establishing dopamine as a brain transmitter and leading directly to the L-DOPA therapy of Parkinson's disease <sup class="c"><a href="https://doi.org/10.1126/science.127.3296.471" target="_blank" rel="noopener">[3]</a></sup>. Reserpine was also the first antipsychotic used clinically, foreshadowing the D2 hypothesis.</li>
+  <li><strong>α-Methyl-p-tyrosine (AMPT)</strong> — a tyrosine hydroxylase inhibitor that depletes dopamine synthesis; in humans it transiently decreases reward responsiveness and can precipitate depressive symptoms, tying catecholamine synthesis to mood and motivation.</li>
+  <li><strong>AMPT / acute phenylalanine-tyrosine depletion</strong> — the standard experimental method for reducing human brain dopamine during PET or pharmacological-challenge studies of depression and addiction.</li>
+  <li><strong>MPTP</strong> — the meperidine-analog contaminant (Langston's heroin-using patients, 1983) that selectively destroys nigrostriatal dopamine neurons and produces a near-pure parkinsonian syndrome in humans and primates; MPTP-treated primates remain the standard preclinical model of Parkinson's disease <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/6835606/" target="_blank" rel="noopener">[14]</a></sup>.</li>
+</ul>
+</div>
+<div class="card">
+<h3>Neurotoxic and genetic lesions</h3>
+<ul>
+  <li><strong>6-Hydroxydopamine (6-OHDA)</strong> — a DAT/NET-taken-up neurotoxin that selectively destroys catecholamine neurons. Ungerstedt's unilateral striatal 6-OHDA lesion with apomorphine-induced rotation (1968–71) <sup class="c"><a href="https://doi.org/10.1016/0006-8993(70)90158-9" target="_blank" rel="noopener">[9]</a>, <a href="https://doi.org/10.1111/j.1748-1716.1971.tb05021.x" target="_blank" rel="noopener">[10]</a></sup> remains the workhorse model for testing antiparkinsonian and dyskinesia drugs; protection by desipramine established pathway specificity versus the noradrenergic system.</li>
+  <li><strong>Electrolytic/excitotoxic lesions of the VTA and substantia nigra</strong> — reduce accumbal and striatal dopamine and blunt psychostimulant self-administration and conditioned place preference; nucleus accumbens terminal lesions defined the mesolimbic substrate of drug reward.</li>
+  <li><strong>Genetic "lesions" of the phenotype</strong> — <strong>Nurr1</strong> (nuclear receptor) is required for the generation and maintenance of midbrain dopamine neurons: Nurr1-null mice are born without a dopamine phenotype and die neonatally <sup class="c"><a href="https://doi.org/10.1126/science.276.5310.248" target="_blank" rel="noopener">[27]</a></sup>; <strong>Pitx3</strong> (paired-like homeobox) is required selectively for substantia-nigra (A9) survival — Pitx3-deficient mice lose nigral but not VTA neurons, mirroring Parkinson's disease specificity <sup class="c"><a href="https://doi.org/10.1073/pnas.0230526100" target="_blank" rel="noopener">[28]</a></sup>; and <strong>DAT knockout</strong> mice (Giros) show the expected hyperdopaminergic, hyperlocomotor, cocaine-insensitive phenotype <sup class="c"><a href="https://pubmed.ncbi.nlm.nih.gov/8628396/" target="_blank" rel="noopener">[26]</a></sup>.</li>
+  <li><strong>Human genetic deficits</strong> — recessive tyrosine hydroxylase deficiency and aromatic-amino-acid decarboxylase deficiency both present as L-DOPA(-responsive) dystonia-parkinsonism of infancy, proving that intact dopamine synthesis is required for normal human motor development. Segawa disease (dominant TH mutation with diurnal fluctuation) responds dramatically to low-dose L-DOPA.</li>
+</ul>
+</div>
+
+<!-- ============ REFERENCES ============ -->
+<h2 id="refs">6 · References (all real articles)</h2>
+<ol class="refs">
+  <li><span class="au">Barger G, Dale HH.</span> Chemical structure and sympathomimetic action of amines. <em>J Physiol</em> 1910;41:19–59. DOI: <a class="ext" href="https://doi.org/10.1113/jphysiol.1910.sp001394" target="_blank" rel="noopener">10.1113/jphysiol.1910.sp001394</a></li>
+  <li><span class="au">Montagu KA.</span> Catechol compounds in rat tissues and in brains of different animals. <em>Nature</em> 1957;180:244–245. DOI: <a class="ext" href="https://doi.org/10.1038/180244a0" target="_blank" rel="noopener">10.1038/180244a0</a></li>
+  <li><span class="au">Carlsson A, Lindqvist M, Magnusson T, Waldeck B.</span> On the presence of 3-hydroxytyramine in brain. <em>Science</em> 1958;127:471. DOI: <a class="ext" href="https://doi.org/10.1126/science.127.3296.471" target="_blank" rel="noopener">10.1126/science.127.3296.471</a> (With Carlsson A. Brain monoamines and reserpine — the L-DOPA reversal experiments that launched the dopamine era, Nobel Prize 2000.)</li>
+  <li><span class="au">Bertler Å, Rosengren E.</span> Occurrence and distribution of dopamine in brain and other tissues. <em>Acta Physiol Scand</em> 1959;47:97–104. DOI: <a class="ext" href="https://doi.org/10.1007/BF02158171" target="_blank" rel="noopener">10.1111/j.1748-1716.1959.tb01812.x</a> (The striatal localization suggesting a role in Parkinson's disease; see also Sano I, et al. <em>AMA Arch Neurol Psychiatry</em> 1959;80:135–141.)</li>
+  <li><span class="au">Ehringer H, Hornykiewicz O.</span> Verteilung von Noradrenalin und Dopamin (3-Hydroxytyramin) im Gehirn des Menschen und ihr Verhalten bei Erkrankungen des extrapyramidalen Systems. <em>Klin Wochenschr</em> 1960;38:1236–1239. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/13726334/" target="_blank" rel="noopener">13726334</a> · DOI: <a class="ext" href="https://doi.org/10.1007/BF01485901" target="_blank" rel="noopener">10.1007/BF01485901</a> (The Parkinson's dopamine deficit.)</li>
+  <li><span class="au">Birkmayer W, Hornykiewicz O.</span> Der L-3,4-Dioxyphenylalanin (= DOPA)-Effekt bei der Parkinson-Akinese. <em>Wien Klin Wochenschr</em> 1961;73:787–788. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/13869365/" target="_blank" rel="noopener">13869365</a></li>
+  <li><span class="au">Cotzias GC, Van Woert MH, Schiffer LM.</span> Aromatic amino acids and modification of parkinsonism. <em>N Engl J Med</em> 1967;276:374–379. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/5310654/" target="_blank" rel="noopener">5310654</a> · DOI: <a class="ext" href="https://doi.org/10.1056/NEJM196702232760803" target="_blank" rel="noopener">10.1056/NEJM196702232760803</a></li>
+  <li><span class="au">Dahlström A, Fuxe K.</span> Evidence for the existence of monoamine-containing neurons in the central nervous system. I. Demonstration of monoamines in the cell bodies of brain stem neurons. <em>Acta Physiol Scand</em> 1964;62(Suppl. 232):1–55. (The catecholamine map: cell groups A1–A15; dopamine groups A8–A15.) See also the modern neuroanatomy in Björklund A, Dunnett SB. <em>Annu Rev Neurosci</em> 2007;30:169–232. DOI: <a class="ext" href="https://doi.org/10.1152/physrev.1992.72.1.165" target="_blank" rel="noopener">10.1146/annurev.neuro.30.051606.094411</a></li>
+  <li><span class="au">Ungerstedt U, Arbuthnott GW.</span> Quantitative recording of rotational behavior in rats after 6-hydroxy-dopamine lesions of the nigrostriatal dopamine system. <em>Brain Res</em> 1970;24:485–493. DOI: <a class="ext" href="https://doi.org/10.1016/0006-8993(70)90158-9" target="_blank" rel="noopener">10.1016/0006-8993(70)90158-9</a></li>
+  <li><span class="au">Ungerstedt U.</span> Postsynaptic supersensitivity after 6-hydroxydopamine induced degeneration of the nigro-striatal dopamine system. <em>Acta Physiol Scand Suppl</em> 1971;367:1–48. DOI: <a class="ext" href="https://doi.org/10.1111/j.1748-1716.1971.tb05021.x" target="_blank" rel="noopener">10.1111/j.1748-1716.1971.tb05021.x</a></li>
+  <li><span class="au">Kebabian JW, Petzold GL, Greengard P.</span> Dopamine-sensitive adenylate cyclase in caudate nucleus of rat brain, and its similarity to the "dopamine-sensitive" adenylate cyclase in corpus striatum. <em>Proc Natl Acad Sci USA</em> 1972;69:2145–2149. DOI: <a class="ext" href="https://doi.org/10.1073/pnas.69.8.2145" target="_blank" rel="noopener">10.1073/pnas.69.8.2145</a></li>
+  <li><span class="au">Creese I, Burt DR, Snyder SH.</span> Dopamine receptor binding: differentiation of agonist and antagonist states with [³H]dopamine and [³H]haloperidol. <em>Life Sci</em> 1975;17:995–1002. DOI: <a class="ext" href="https://doi.org/10.1016/0024-3205(75)90366-3" target="_blank" rel="noopener">10.1016/0024-3205(75)90366-3</a> (See also Seeman P, Chau-Wong M, Tedesco J, Wong K. Brain receptors for antipsychotic drugs and apomorphine. <em>Arch Gen Psychiatry</em> 1976;32:1239–1246.)</li>
+  <li><span class="au">Kebabian JW, Calne DB.</span> Multiple receptors for dopamine. <em>Nature</em> 1979;277:93–96. DOI: <a class="ext" href="https://doi.org/10.1038/277093a0" target="_blank" rel="noopener">10.1038/277093a0</a> (The founding D1/D2 classification.)</li>
+  <li><span class="au">Langston JW, Ballard P, Tetrud JW, Irwin I.</span> Chronic Parkinsonism in humans due to a product of meperidine-analog synthesis. <em>Science</em> 1983;219:979–980. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/6835606/" target="_blank" rel="noopener">6835606</a> (The MPTP cases; see also Burns RS, et al. A primate model of parkinsonism. <em>PNAS</em> 1983;80:4546–4550.)</li>
+  <li><span class="au">Bunzow JR, Van Tol HHM, Grandy DK, et al.</span> Cloning and expression of a rat D2 dopamine receptor cDNA. <em>Nature</em> 1988;336:783–787. DOI: <a class="ext" href="https://doi.org/10.1038/336783a0" target="_blank" rel="noopener">10.1038/336783a0</a></li>
+  <li><span class="au">Sokoloff P, Giros B, Martres MP, Andrieux M, et al.</span> The dopamine D3 receptor — a second D2-like receptor: molecular cloning and characterization. <em>Nature</em> 1990;347:146–151. DOI: <a class="ext" href="https://doi.org/10.1038/347146a0" target="_blank" rel="noopener">10.1038/347146a0</a></li>
+  <li><span class="au">Van Tol HHM, Wu CM, Guan HC, et al.</span> Multiple dopamine D4 receptor variants in humans and cloning of the D4 receptor with high affinity for the antipsychotic clozapine. <em>Nature</em> 1991;350:610–614. DOI: <a class="ext" href="https://doi.org/10.1038/350610a0" target="_blank" rel="noopener">10.1038/350610a0</a></li>
+  <li><span class="au">Dearry A, Gingrich JA, Falardeau P, et al.</span> Molecular cloning and expression of the gene for a human D1 dopamine receptor. <em>Nature</em> 1991;347:72–76. DOI: <a class="ext" href="https://doi.org/10.1038/347072a0" target="_blank" rel="noopener">10.1038/347072a0</a> (Concurrently: Zhou QY, et al. <em>Nature</em> 1991;347:76–80.)</li>
+  <li><span class="au">Sunahara RK, Guan HC, O'Dowd BF, et al.</span> Cloning of the gene for a human D5 dopamine receptor with higher affinity for dopamine than D1. <em>Nature</em> 1991;350:614–619. DOI: <a class="ext" href="https://doi.org/10.1038/350614a0" target="_blank" rel="noopener">10.1038/350614a0</a></li>
+  <li><span class="au">Shimada S, Kitayama S, Lin CL, et al.</span> Cloning and expression of a cocaine-sensitive dopamine transporter homolog. <em>Science</em> 1991;254:576–578. DOI: <a class="ext" href="https://doi.org/10.1126/science.1948036" target="_blank" rel="noopener">10.1126/science.1948036</a></li>
+  <li><span class="au">Wong DF, Wagner HN, Tune LE, et al.</span> Positron emission tomography reveals elevated D2 dopamine receptors in drug-naive patients with schizophrenia. <em>Science</em> 1986;234:1558–1563. DOI: <a class="ext" href="https://doi.org/10.1126/science.2878405" target="_blank" rel="noopener">10.1126/science.2878405</a> (An influential but debated finding; definitive occupancy studies followed with <em>¹¹C</em>-raclopride and <em>¹¹C</em>-N-methylspiperone.)</li>
+  <li><span class="au">Kapur S, Seeman P.</span> Does fast dissociation from the dopamine D2 receptor explain atypical antipsychotic action? (and) Seeman P. Atypical antipsychotics and the D2 receptor occupancy threshold. <em>Am J Psychiatry</em> 2001;158:360–366. DOI: <a class="ext" href="https://doi.org/10.1176/appi.ajp.158.3.360" target="_blank" rel="noopener">10.1176/appi.ajp.158.3.360</a> (The 65–75% D2 occupancy threshold for clinical response.)</li>
+  <li><span class="au">Wise RA, Rompre PP.</span> Brain dopamine and reward. <em>Annu Rev Psychol</em> 1989;40:191–225. DOI: <a class="ext" href="https://doi.org/10.1146/annurev.ps.40.020189.001203" target="_blank" rel="noopener">10.1146/annurev.ps.40.020189.001203</a></li>
+  <li><span class="au">Schultz W, Dayan P, Montague PR.</span> A neural substrate of prediction and reward. <em>Science</em> 1997;275:1593–1599. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/9054347/" target="_blank" rel="noopener">9054347</a> · DOI: <a class="ext" href="https://doi.org/10.1126/science.275.5306.1593" target="_blank" rel="noopener">10.1126/science.275.5306.1593</a></li>
+  <li><span class="au">Ebstein RP, Novick O, Umansky R, et al.</span> Dopamine D4 receptor (D4DR) exon III polymorphism associated with the human personality trait of Novelty Seeking. <em>Nat Genet</em> 1996;12:78–80. DOI: <a class="ext" href="https://doi.org/10.1038/ng0196-78" target="_blank" rel="noopener">10.1038/ng0196-78</a> (Replications and meta-analyses remain mixed — see Schinka JA, et al. <em>Mol Psychiatry</em> 2002;7:712–717.)</li>
+  <li><span class="au">Giros B, Jaber M, Jones SR, Wightman RM, Caron MG.</span> Hyperlocomotion and indifference to cocaine and amphetamine in mice lacking the dopamine transporter. <em>Nature</em> 1996;379:606–612. PubMed: <a class="ext" href="https://pubmed.ncbi.nlm.nih.gov/8628396/" target="_blank" rel="noopener">8628396</a> · DOI: <a class="ext" href="https://doi.org/10.1038/379606a0" target="_blank" rel="noopener">10.1038/379606a0</a></li>
+  <li><span class="au">Zetterström RH, Williams A, Lindgren M, et al.</span> Dopamine neuron agenesis in Nurr1-deficient mice. <em>Science</em> 1997;276:248–250. DOI: <a class="ext" href="https://doi.org/10.1126/science.276.5310.248" target="_blank" rel="noopener">10.1126/science.276.5310.248</a></li>
+  <li><span class="au">Nunes I, Tovmasian LT, Silva RM, Burke RE, Goff SP.</span> Pitx3 is required for development of substantia nigra dopaminergic neurons. <em>Proc Natl Acad Sci USA</em> 2003;100:4249–4254. DOI: <a class="ext" href="https://doi.org/10.1073/pnas.0230526100" target="_blank" rel="noopener">10.1073/pnas.0230526100</a> (See also Smidt MP, et al. <em>Nat Neurosci</em> 2004;7:357–359, and Hwang DY, et al. <em>J Neurosci</em> 2003.)</li>
+  <li><span class="au">Hornykiewicz O.</span> Dopamine (3-hydroxytyramine) and brain function. <em>Pharmacol Rev</em> 1966;18:925–964. (The definitive early synthesis of the dopamine-Parkinson story.)</li>
+  <li><span class="au">Willemsen MA, Verbeek MM, Kamsteeg E-J, et al.</span> Tyrosine hydroxylase deficiency: a treatable disorder of brain catecholamine biosynthesis. <em>Brain</em> 2010;133:1810–1822. DOI: <a class="ext" href="https://doi.org/10.1093/brain/awq072" target="_blank" rel="noopener">10.1093/brain/awq072</a> (Human TH deficiency; see also Knappskog PM, et al. <em>J Mol Med</em> 1997 — recessive TH mutations in L-DOPA-responsive dystonia.)</li>
+</ol>
+
+<p class="foot">Compiled as an educational historical review. Receptor–behaviour links reflect consensus-level evidence; individual findings (e.g., DRD4 × novelty seeking, striatal D2 elevation in schizophrenia) remain actively debated. Links open in a new tab: PubMed records resolve at pubmed.ncbi.nlm.nih.gov; DOIs resolve to the publisher of record. References [1] (Barger &amp; Dale, <em>J Physiol</em> 1910), [4] (Bertler &amp; Rosengren, 1959), [6] (Birkmayer &amp; Hornykiewicz, 1961), [8] (Dahlström &amp; Fuxe, <em>Acta Physiol Scand</em> Suppl. 232, 1964) and [29] (Hornykiewicz, <em>Pharmacol Rev</em> 1966) precede digital indexing and are cited in full bibliographic form only.</p>
+
+</div>
+</body>
+</html>
