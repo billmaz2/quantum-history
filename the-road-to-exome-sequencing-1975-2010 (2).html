@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Road to Exome Sequencing — An Educational Timeline</title>
+<style>
+  :root{
+    --bg:#0b1120; --panel:#111a2e; --panel2:#0e1626; --ink:#e8edf7; --muted:#93a4c3;
+    --line:#233354; --accent:#4da3ff; --era1:#e0b34d; --era2:#7ee0a3; --era3:#b48cf2;
+    --era4:#ff8f6b; --era5:#5fd4e8; --era6:#ff6b9d;
+    font-family:Inter, "Segoe UI", system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);line-height:1.55}
+  header{padding:56px 24px 24px;max-width:960px;margin:0 auto;text-align:center}
+  h1{font-size:clamp(1.6rem,4vw,2.4rem);margin:0 0 12px;letter-spacing:.5px}
+  header p{color:var(--muted);max-width:760px;margin:0 auto;font-size:1rem}
+  .thesis{margin:20px auto 0;max-width:780px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-size:.95rem;color:var(--muted)}
+  .thesis b{color:var(--ink)}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:28px auto 0;max-width:960px;padding:0 16px}
+  .filters button{background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:20px;padding:6px 14px;font-size:.82rem;cursor:pointer}
+  .filters button:hover{color:var(--ink)}
+  .filters button.active{color:#0b1120;font-weight:600}
+  main{max-width:960px;margin:0 auto;padding:36px 16px 80px}
+  .timeline{position:relative;padding-left:36px}
+  .timeline::before{content:"";position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--era1),var(--era2),var(--era3),var(--era4),var(--era5),var(--era6))}
+  .item{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:22px}
+  .item::before{content:"";position:absolute;left:-31px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--dot);box-shadow:0 0 0 4px var(--bg),0 0 10px var(--dot)}
+  .item.hidden{display:none}
+  .eyear{font-size:.8rem;font-weight:700;color:var(--dot);letter-spacing:1px;text-transform:uppercase}
+  h3{margin:6px 0 4px;font-size:1.12rem}
+  h3 .people{display:block;font-size:.85rem;color:var(--muted);font-weight:400;margin-top:3px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 8px}
+  .tag{font-size:.7rem;border:1px solid var(--line);color:var(--muted);border-radius:12px;padding:2px 9px}
+  .tag.k{color:var(--dot);border-color:var(--dot)}
+  p{margin:8px 0;font-size:.93rem;color:#c6d2e8}
+  .result{background:var(--panel2);border-left:3px solid var(--dot);padding:8px 12px;border-radius:0 8px 8px 0;font-size:.9rem;margin:10px 0}
+  .result b{color:var(--dot)}
+  .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .links a{font-size:.78rem;color:var(--accent);text-decoration:none;border:1px solid var(--line);padding:3px 10px;border-radius:14px;background:var(--panel2)}
+  .links a:hover{border-color:var(--accent)}
+  section.pillars,section.videos,section.firms{max-width:960px;margin:30px auto;padding:0 16px}
+  h2{font-size:1.3rem;margin:36px 0 6px;color:var(--ink)}
+  .sub{color:var(--muted);font-size:.9rem;margin:0 0 16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .card h4{margin:0 0 6px;font-size:.98rem;color:var(--accent)}
+  .card p{margin:4px 0;font-size:.87rem}
+  .card .who{font-size:.8rem;color:var(--muted)}
+  .vcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .vcard a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem}
+  .vcard a:hover{color:var(--accent)}
+  .vcard p{margin:6px 0 0;font-size:.82rem;color:var(--muted)}
+  footer{text-align:center;color:var(--muted);font-size:.78rem;padding:30px 16px 50px;border-top:1px solid var(--line)}
+  .toc{max-width:960px;margin:26px auto 0;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+  .toc a{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-decoration:none;color:var(--muted);font-size:.83rem;display:block}
+  .toc a:hover{color:var(--ink)}
+  .toc .n{font-weight:700;display:block;font-size:.92rem;margin-bottom:2px}
+  .toc .c1 .n{color:var(--era1)}.toc .c2 .n{color:var(--era2)}.toc .c3 .n{color:var(--era3)}.toc .c4 .n{color:var(--era4)}.toc .c5 .n{color:var(--era5)}.toc .c6 .n{color:var(--era6)}
+  /* deep-dive section */
+  .deep{max-width:960px;margin:30px auto;padding:0 16px}
+  .deep h2{font-size:1.3rem;margin:36px 0 6px;color:var(--ink)}
+  .deep h3{margin:28px 0 4px;font-size:1.05rem;color:var(--accent)}
+  .deep .sub{color:var(--muted);font-size:.9rem;margin:0 0 12px}
+  .flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0 18px}
+  .flow span{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:.78rem;color:#c6d2e8}
+  .flow em{color:var(--muted);font-style:normal;font-size:.9rem}
+  .math{background:#0a0f1d;border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-family:ui-monospace,Consolas,monospace;font-size:.82rem;color:#9fe8b8;overflow-x:auto;margin:10px 0}
+  .math b{color:#ffd479}
+  .math i{color:#8fb4ff;font-style:normal}
+  ol.steps{counter-reset:s;list-style:none;padding:0;margin:10px 0}
+  ol.steps li{counter-increment:s;position:relative;padding:12px 16px 12px 48px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:8px;font-size:.9rem;color:#c6d2e8}
+  ol.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:22px;height:22px;border-radius:50%;background:var(--era5);color:#0b1120;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+  ol.steps li b{color:var(--ink)}
+  table.tbl{width:100%;border-collapse:collapse;margin:12px 0;font-size:.84rem}
+  table.tbl th,table.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;color:#c6d2e8}
+  table.tbl th{background:var(--panel2);color:var(--ink)}
+  .funnel{margin:12px 0}
+  .funnel div{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 14px;margin:0 auto 6px;font-size:.84rem;text-align:center;color:#c6d2e8}
+  .funnel b{color:var(--era6)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🧬 The Road to Exome Sequencing</h1>
+  <p>An educational timeline of the biophysical and computational methods — the papers, algorithms, machines, firms, and people — that led from reading a single DNA fragment in 1977 to the first successful disease-gene discovery by exome sequencing in 2010.</p>
+  <div class="thesis"><b>The core idea:</b> protein-coding exons are ~1% of the human genome but harbor ~85% of known disease-causing mutations. If you could (1) read DNA cheaply at massive scale, (2) <em>selectively capture</em> just the exons, and (3) <em>computationally filter</em> variants, you could find disease genes for a tiny fraction of the cost of a whole genome. Each era below solved one piece of that puzzle.</div>
+</header>
+
+<div class="toc">
+  <a href="#e1" class="c1"><span class="n">I. 1975–1986</span>Reading DNA: Sanger & automated sequencing</a>
+  <a href="#e2" class="c2"><span class="n">II. 1980–1995</span>Markers, PCR & positional cloning</a>
+  <a href="#e3" class="c3"><span class="n">III. 2001–2005</span>Genome maps & variation catalogs</a>
+  <a href="#e4" class="c4"><span class="n">IV. 2005–2008</span>Massively parallel sequencing & algorithms</a>
+  <a href="#e5" class="c5"><span class="n">V. 2007–2009</span>Exon capture technologies</a>
+  <a href="#e6" class="c6"><span class="n">VI. 2009–2010</span>The first successful exome discovery</a>
+  <a href="#deep"><span class="n">🧮 Deep Dive</span>How the algorithms work: alignment → SNPs → indels → annotation → filtering</a>
+  <a href="#walkthrough"><span class="n">📦 Walkthrough</span>Blood tube → capture → FASTQ → BAM → VCF → DHODH: every file and every program</a>
+</div>
+
+<div class="filters" id="filters">
+  <button class="active" data-f="all" style="background:var(--accent)">All eras</button>
+  <button data-f="e1">I · Reading DNA</button>
+  <button data-f="e2">II · PCR & mapping</button>
+  <button data-f="e3">III · Genome maps</button>
+  <button data-f="e4">IV · NGS & algorithms</button>
+  <button data-f="e5">V · Exon capture</button>
+  <button data-f="e6">VI · Success</button>
+</div>
+
+<main>
+<div class="timeline">
+
+<div class="item" data-e="e1" style="--dot:var(--era1)">
+  <div class="eyear">1975 · Plus-and-minus</div>
+  <h3>DNA sequencing by primed synthesis ("plus and minus") <span class="people">Frederick Sanger & Alan Coulson — MRC Laboratory of Molecular Biology, Cambridge, UK</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag">Radioactive labeling</span><span class="tag">Polyacrylamide gel electrophoresis</span><span class="tag"> Autoradiography</span></div>
+  <p>The first practical method to read a DNA sequence: an oligonucleotide primer is extended by DNA polymerase, fragments are separated by size on gels, and the terminal base of each band is inferred from "plus" and "minus" reactions. Biophysical principle: electrophoretic mobility of DNA is inversely proportional to fragment length.</p>
+  <div class="result"><b>Result:</b> sequences of φX174 DNA; ~reads of 50+ bases. Proved DNA could be read systematically.</div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Sanger+Coulson+plus+minus+1975" target="_blank">PubMed search</a></div>
+</div>
+
+<div class="item" data-e="e1" style="--dot:var(--era1)">
+  <div class="eyear">1977 · Dideoxy chain-termination</div>
+  <h3>DNA sequencing with chain-terminating inhibitors <span class="people">Frederick Sanger, Steve Nicklen, Alan R. Coulson — MRC LMB (Nobel Prize 1980)</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag k">Conceptual: chain-terminators</span><span class="tag">2′,3′-dideoxynucleotides</span><span class="tag">Polymerase</span></div>
+  <p>Dideoxynucleotides (ddNTPs) lack the 3′-OH needed for the next phosphodiester bond, so they terminate extension at a specific base. Four parallel reactions (A, C, G, T) + gel electrophoresis give the full sequence. This single chemistry dominated sequencing for 30 years and is still used for confirmation ("Sanger validation").</p>
+  <div class="result"><b>Result:</b> complete 5,386-base genome of bacteriophage φX174 — the first whole genome ever sequenced. <b>DOI: 10.1073/pnas.74.12.5463</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/271968/" target="_blank">PubMed PMID 271968</a><a href="https://doi.org/10.1073/pnas.74.12.5463" target="_blank">DOI</a></div>
+</div>
+
+<div class="item" data-e="e1" style="--dot:var(--era1)">
+  <div class="eyear">1977 · Chemical cleavage</div>
+  <h3>A new method for sequencing DNA <span class="people">Allan Maxam & Walter Gilbert — Harvard University (Nobel Prize 1980)</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag">Chemical modification</span><span class="tag">Piperidine cleavage</span><span class="tag">Gel electrophoresis</span></div>
+  <p>Base-specific chemical reactions (dimethyl sulfate, hydrazine) modify bases, then piperidine cleaves the backbone at modified positions. A competing route to Sanger's, later abandoned for sequencing but historically crucial as the first approach used for some early genome projects.</p>
+  <div class="result"><b>Result:</b> independent confirmation that DNA could be read base-by-base. <b>DOI: 10.1073/pnas.74.2.560</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/271998/" target="_blank">PubMed PMID 271998</a><a href="https://doi.org/10.1073/pnas.74.2.560" target="_blank">DOI</a></div>
+</div>
+
+<div class="item" data-e="e1" style="--dot:var(--era1)">
+  <div class="eyear">1986 · Automation</div>
+  <h3>Fluorescence detection in automated DNA sequence analysis <span class="people">Leroy Hood, Lloyd M. Smith, Michael Hunkapiller et al. — Caltech → Applied Biosystems</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag k">Instrumentation</span><span class="tag">Four-color fluorophores</span><span class="tag">Laser detection</span><span class="tag">Firm: Applied Biosystems (ABI)</span></div>
+  <p>Replaced radioactive labels with four spectrally distinct fluorescent dyes on primers, allowing all four reactions in one lane and real-time laser detection. Leroy Hood's lab partnered with startup <b>Applied Biosystems</b> to build the ABI 370/373/3700 instruments — the machines that made the Human Genome Project possible.</p>
+  <div class="result"><b>Result:</b> automated sequencing at thousands of bases per day per machine; the industrial workhorse of the HGP. <b>DOI: 10.1038/321674a0</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/3713851/" target="_blank">PubMed PMID 3713851</a><a href="https://www.nature.com/articles/321674a0" target="_blank">Nature paper</a></div>
+</div>
+
+<div class="item" data-e="e2" style="--dot:var(--era2)">
+  <div class="eyear">1980 · Genetic markers</div>
+  <h3>Construction of a genetic linkage map in man using RFLPs <span class="people">David Botstein, Raymond White, Mark Skolnick, Ronald W. Davis — MIT / Utah / Stanford</span></h3>
+  <div class="tags"><span class="tag k">Conceptual: disease-gene mapping</span><span class="tag">RFLP markers</span><span class="tag">Linkage analysis (LOD score)</span><span class="tag">Algorithm: parametric linkage</span></div>
+  <p>The conceptual foundation of disease-gene discovery: if neutral DNA polymorphisms (restriction fragment length polymorphisms) are spread across the genome, any Mendelian disease gene can be mapped by co-segregation with markers, with <em>no knowledge of the gene's function</em>. This is "reverse genetics" — find the locus first, the gene later. The exome-sequencing logic of 2010 is a direct descendant.</p>
+  <div class="result"><b>Result:</b> the LOD-score mapping strategy that later located Huntington's disease (1983) and cystic fibrosis (1985–89). <b>DOI: 10.1016/S0140-6736(80)91254-0</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/6247908/" target="_blank">PubMed PMID 6247908</a></div>
+</div>
+
+<div class="item" data-e="e2" style="--dot:var(--era2)">
+  <div class="eyear">1985 & 1988 · PCR</div>
+  <h3>The polymerase chain reaction <span class="people">Kary B. Mullis, Randall Saiki, Henry Erlich et al. — Cetus Corporation (Nobel Prize 1993); thermostable Taq polymerase from Thermus aquaticus</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag k">Conceptual: amplification</span><span class="tag">Thermal cycling</span><span class="tag">Taq polymerase</span><span class="tag">Firm: Cetus → PerkinElmer / Roche</span></div>
+  <p>Exponential in-vitro amplification of any chosen DNA segment using paired primers and thermal cycling; the 1988 version with thermostable Taq polymerase made it automated and routine. PCR underlies virtually every capture and enrichment protocol used in exome sequencing.</p>
+  <div class="result"><b>Result:</b> 1985: amplification of β-globin for sickle-cell diagnosis (PMID 2999592). 1988: robust automated PCR (Science 239:487). <b>DOI 1988: 10.1126/science.2448875</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/2999592/" target="_blank">PubMed 1985</a><a href="https://pubmed.ncbi.nlm.nih.gov/2448875/" target="_blank">PubMed PMID 2448875 (1988)</a></div>
+</div>
+
+<div class="item" data-e="e2" style="--dot:var(--era2)">
+  <div class="eyear">1989 · Positional cloning succeeds</div>
+  <h3>Identification of the cystic fibrosis gene <span class="people">Lap-Chee Tsui, Francis Collins, Jack Riordan, Johanna Rommens et al. — Toronto Hospital for Sick Children / University of Michigan</span></h3>
+  <div class="tags"><span class="tag k">Conceptual: candidate genes</span><span class="tag">Chromosome walking / jumping</span><span class="tag">Linkage + physical mapping</span></div>
+  <p>The cystic fibrosis transmembrane conductance regulator (CFTR) was found purely by its map position — the proof of principle that a human disease gene could be found by genetics alone. But it took ~9 years and millions of dollars, motivating the search for cheaper, faster strategies: gene catalogs (ESTs), microarrays, and eventually exome sequencing.</p>
+  <div class="result"><b>Result:</b> CFTR cloned; ΔF508 mutation identified; positional cloning became the gold standard. <b>DOI: 10.1126/science.2514985</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/2514985/" target="_blank">PubMed PMID 2514985</a><a href="https://doi.org/10.1126/science.2514985" target="_blank">DOI</a></div>
+</div>
+
+<div class="item" data-e="e2" style="--dot:var(--era2)">
+  <div class="eyear">1991 · Expressed sequence tags</div>
+  <h3>Complementary DNA sequencing: expressed sequence tags and the Human Genome Project <span class="people">Mark D. Adams, J. Craig Venter et al. — NIH</span></h3>
+  <div class="tags"><span class="tag k">Conceptual: focus on the coding genome</span><span class="tag">cDNA libraries</span><span class="tag">Sanger sequencing</span><span class="tag">Firm: The Institute for Genomic Research (TIGR)</span></div>
+  <p>Adams and Venter proposed sequencing random cDNA clones ("ESTs") to rapidly catalog expressed genes, instead of sequencing the whole genome first. This was the first serious argument that the <em>transcribed, coding</em> fraction deserves special attention — the intellectual ancestor of the "exome".</p>
+  <div class="result"><b>Result:</b> thousands of new human genes discovered cheaply; cDNA/EST databases became the first gene catalogs. <b>DOI: 10.1126/science.2047873</b></div>
+  <div class="links"><a href="https://www.science.org/doi/10.1126/science.2047873" target="_blank">Science paper</a></div>
+</div>
+
+<div class="item" data-e="e2" style="--dot:var(--era2)">
+  <div class="eyear">1995 · DNA microarrays</div>
+  <h3>Quantitative monitoring of gene expression patterns with a cDNA microarray <span class="people">Mark Schena, Dari Shalon, Ronald W. Davis, Patrick O. Brown — Stanford University</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag k">Conceptual: nucleic-acid hybridization on solid support</span><span class="tag">Robotic spotting</span><span class="tag">Two-color fluorescence</span><span class="tag">Firms: Affymetrix, Stanford spinouts</span></div>
+  <p>High-density arrays of DNA spots on glass, probed by fluorescently labeled samples. Two engineering feats mattered for the exome story: (1) dense immobilized oligonucleotides and (2) fluorescence scanning — the same physics later used for <em>capture arrays</em> (Era V). Affymetrix's photolithographic arrays carried this further.</p>
+  <div class="result"><b>Result:</b> parallel measurement of thousands of genes; matured the microarray manufacturing industry that exome capture would borrow. <b>DOI: 10.1126/science.270.5235.467</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/7569999/" target="_blank">PubMed PMID 7569999</a></div>
+</div>
+
+<div class="item" data-e="e3" style="--dot:var(--era3)">
+  <div class="eyear">2001 · The human genome sequence</div>
+  <h3>Initial sequencing and analysis of the human genome <span class="people">Eric Lander et al. — International Human Genome Sequencing Consortium / Whitehead, Broad precursor, Sanger Institute, Baylor, Washington University & 15 more centers</span></h3>
+  <div class="tags"><span class="tag k">Conceptual: reference genome</span><span class="tag">Hierarchical shotgun (BAC-by-BAC)</span><span class="tag">Automated Sanger + capillary electrophoresis</span><span class="tag">Firms: Applied Biosystems (3700), Celera</span></div>
+  <p>The public draft gave the field its coordinate system: a reference sequence against which every later read is aligned and every variant is called. In parallel, the Celera whole-genome shotgun proved an alternative assembly strategy.</p>
+  <div class="result"><b>Result:</b> ~3 billion bases, ~30,000–40,000 genes; made targeted resequencing conceivable. <b>DOI: 10.1038/35057062</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/11237011/" target="_blank">PubMed PMID 11237011</a><a href="https://pubmed.ncbi.nlm.nih.gov/11181995/" target="_blank">Celera paper PMID 11181995</a><a href="https://doi.org/10.1126/science.1058040" target="_blank">Celera DOI</a></div>
+</div>
+
+<div class="item" data-e="e3" style="--dot:var(--era3)">
+  <div class="eyear">2001 · The SNP map</div>
+  <h3>A map of human genome sequence variation containing 1.42 million SNPs <span class="people">The International SNP Map Working Group (Sachidanandam et al.) — led by the Sanger Institute & Whitehead/MIT</span></h3>
+  <div class="tags"><span class="tag k">Computational</span><span class="tag k">Conceptual: variant databases</span><span class="tag">dbSNP</span><span class="tag">NCBI</span></div>
+  <p>A catalog of common single-nucleotide polymorphisms deposited in dbSNP. Computational pearl: a rare disease mutation will not be in a common-variant database — this is the <em>filtering logic</em> that exome sequencing would later exploit to its full power (see 2010).</p>
+  <div class="result"><b>Result:</b> dbSNP becomes the standard "benign variation" filter. <b>DOI: 10.1038/35057149</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/11237013/" target="_blank">PubMed PMID 11237013</a></div>
+</div>
+
+<div class="item" data-e="e3" style="--dot:var(--era3)">
+  <div class="eyear">2005 · HapMap</div>
+  <h3>A haplotype map of the human genome <span class="people">The International HapMap Consortium — 200+ researchers across 6 countries (NHGRI-led)</span></h3>
+  <div class="tags"><span class="tag k">Computational</span><span class="tag">Tag SNPs</span><span class="tag">Linkage disequilibrium</span><span class="tag">Firms: Illumina, Affymetrix genotyping arrays</span></div>
+  <p>Genotyped millions of SNPs in four populations, defining haplotype blocks and enabling GWAS. HapMap samples later became the "control exomes" that Ng and colleagues filtered against in the first exome disease-gene discovery — and the exon-capture designs were tested on HapMap DNA first.</p>
+  <div class="result"><b>Result:</b> the reference variation resource for the exome era; HapMap exomes used as filters in 2009–10. <b>DOI: 10.1038/nature04226</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/16255080/" target="_blank">PubMed PMID 16255080</a></div>
+</div>
+
+<div class="item" data-e="e4" style="--dot:var(--era4)">
+  <div class="eyear">2005 · 454 pyrosequencing</div>
+  <h3>Genome sequencing in microfabricated high-density picolitre reactors <span class="people">Marcel Margulies, Michael Egholm, 454 Life Sciences / Jonathan Rothberg — Branford, CT (Nobel-adjacent: 454 sold to Roche, 2007)</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag k">Instrumentation</span><span class="tag">Emulsion PCR on beads</span><span class="tag">Pyrosequencing (luciferase light)</span><span class="tag">Firm: 454 Life Sciences / Roche</span></div>
+  <p>The first commercial "second-generation" sequencer: DNA fragments clonally amplified on micro-beads in water-oil emulsions, dropped into picoliter wells, and sequenced by detecting light released as each nucleotide is incorporated (pyrosequencing). Hundreds of thousands of reads in parallel — the economics of sequencing changed overnight. It directly enabled the first microarray-exon-capture proof-of-principle (Hodges et al. 2007).</p>
+  <div class="result"><b>Result:</b> the NGS era begins; cost per base falls ~100×. <b>DOI: 10.1038/nature03959</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/16056220/" target="_blank">PubMed PMID 16056220</a><a href="https://www.nature.com/articles/nature03959" target="_blank">Nature paper</a></div>
+</div>
+
+<div class="item" data-e="e4" style="--dot:var(--era4)">
+  <div class="eyear">2006–2008 · Solexa / Illumina</div>
+  <h3>Accurate whole human genome sequencing using reversible terminator chemistry <span class="people">David R. Bentley, Shankar Balasubramanian, David Klenerman et al. — Solexa Ltd (Cambridge, UK), acquired by Illumina in 2007</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag k">Instrumentation</span><span class="tag">Bridge amplification (cluster generation)</span><span class="tag">Reversible fluorescent terminators</span><span class="tag">Total internal reflection imaging</span><span class="tag">Firm: Solexa → Illumina</span></div>
+  <p>Born from single-molecule biophysics at Cambridge (Balasubramanian & Klenerman), Solexa sequencing amplifies DNA into dense "polonies" (clusters) on a flow-cell surface and reads them by cycles of single-base extension with removable fluorescent terminators, imaged by TIRF microscopy. Millions → billions of short reads. This is the machine on which virtually all exome sequencing was performed, and the sole surviving major NGS platform today.</p>
+  <div class="result"><b>Result:</b> first Illumina human genome (2008); the workhorse of the exome revolution. <b>DOI: 10.1038/nature07517</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/18987734/" target="_blank">PubMed PMID 18987734</a></div>
+</div>
+
+<div class="item" data-e="e4" style="--dot:var(--era4)">
+  <div class="eyear">2008–2010 · The computational stack</div>
+  <h3>Alignment & variant-calling algorithms: BWA, SAMtools, GATK <span class="people">Heng Li & Richard Durbin (Sanger/MRC — BWA, SAMtools); Aaron McKenna, Mark DePristo, Stacey Gabriel et al. (Broad Institute — GATK)</span></h3>
+  <div class="tags"><span class="tag k">Computational</span><span class="tag">Burrows–Wheeler transform & FM-index</span><span class="tag">Bayesian genotype likelihoods</span><span class="tag">MapReduce traversal</span><span class="tag">VCF format</span><span class="tag">Firms: Sanger Institute, Broad Institute, MAQ (Li)</span></div>
+  <p>Exome sequencing is meaningless without software. <b>BWA</b> aligns hundreds of millions of short reads to the human reference in minutes using a Burrows–Wheeler-transform index of the genome (a lossless compression structure enabling exact string matching in near-linear time). <b>SAMtools</b> defined the SAM/BAM alignment format and statistical pileup. <b>GATK</b> provided a MapReduce framework for traversal + Bayesian genotype calling (genotype likelihood models capturing base quality, mapping quality, and strand bias), jointly discovering SNPs and indels.</p>
+  <div class="result"><b>Result:</b> a reproducible pipeline: reads → BAM → variant calls (VCF) → annotation. Still the backbone of clinical genomics. <b>DOIs: BWA 10.1093/bioinformatics/btp324 · GATK 10.1101/gr.107524.110</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/19451168/" target="_blank">BWA PMID 19451168</a><a href="https://pubmed.ncbi.nlm.nih.gov/20080505/" target="_blank">BWA-SW PMID 20080505</a><a href="https://pubmed.ncbi.nlm.nih.gov/19505943/" target="_blank">SAMtools PMID 19505943</a><a href="https://pubmed.ncbi.nlm.nih.gov/20644199/" target="_blank">GATK PMID 20644199</a></div>
+</div>
+
+<div class="item" data-e="e5" style="--dot:var(--era5)">
+  <div class="eyear">2007 · Microarray capture (1)</div>
+  <h3>Direct selection of human genomic loci by microarray hybridization <span class="people">Thomas J. Albert, Michael N. Molla et al. — NimbleGen Systems (Madison, WI) with Victor Streletz / Roche; with Gregory Hannon's group context at CSHL</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag k">Method: capture by hybridization</span><span class="tag">High-density oligo arrays (385K probes)</span><span class="tag">Firm: Roche NimbleGen</span></div>
+  <p>Genomic DNA is sheared, ligated to adapters, denatured, and hybridized to long oligonucleotides printed on a glass array; bound fragments are eluted and sequenced. Demonstrated >90% on-target enrichment for megabase-scale loci — the physics of DNA-DNA hybridization repurposed from expression arrays to <em>selection</em>.</p>
+  <div class="result"><b>Result:</b> proof that "genomic DNA capture" works; NimbleGen launched the first commercial capture products. <b>DOI: 10.1038/ng.2007.40</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/17934467/" target="_blank">PubMed PMID 17934467</a></div>
+</div>
+
+<div class="item" data-e="e5" style="--dot:var(--era5)">
+  <div class="eyear">2007 · In situ exon capture — "the exome" defined</div>
+  <h3>Genome-wide in situ exon capture for selective resequencing <span class="people">Emily Hodges, Zhenyu Xuan, Gregory J. Hannon, W. Richard McCombie, Thomas Albert — Cold Spring Harbor Laboratory + NimbleGen</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag k">Method: whole-exome capture</span><span class="tag">>200,000 exons on one array</span><span class="tag">454 sequencing of captured DNA</span><span class="tag">Firms: Roche NimbleGen, 454/Roche</span></div>
+  <p>The first paper to capture essentially <em>all</em> human protein-coding exons in one experiment: 55–85% of captured fragments on target, up to 98% of intended exons recovered. Companion conceptual insight: since ~98% of the genome is non-coding, focusing on exons (1–2%, ~30 Mb) turns an impractical task into an affordable one.</p>
+  <div class="result"><b>Result:</b> the term and the practical recipe for exome-scale capture; the direct methodological ancestor of the 2010 success. <b>DOI: 10.1038/ng.2007.42</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/17982454/" target="_blank">PubMed PMID 17982454</a><a href="https://www.nature.com/articles/ng.2007.42" target="_blank">Nature Genetics paper</a></div>
+</div>
+
+<div class="item" data-e="e5" style="--dot:var(--era5)">
+  <div class="eyear">2007 · Molecular inversion probes</div>
+  <h3>Multiplex amplification of large sets of human exons <span class="people">Gregory J. Porreca, Kun Zhang, Jin Billy Li, George M. Church, Jay Shendure et al. — Harvard Medical School</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag k">Method: multiplex PCR</span><span class="tag">Molecular inversion probes (MIPs)</span><span class="tag">Padlock probes + circularization</span><span class="tag">Firms: Affymetrix (MIP platform), Agilent (oligo pools)</span></div>
+  <p>An alternative capture route: small circularizable probes with two arms that hybridize to sequences flanking each exon; only correctly juxtaposed probes ligate into circles, are amplified, and sequenced. Thousands of exons in one tube, with very high specificity. Shendure's group combined it with their earlier "polony sequencing" experience. A few years later this lineage became the capture backbone of clinical sequencing (e.g., at Illumina via Agilent/IDT probe chemistry).</p>
+  <div class="result"><b>Result:</b> highly multiplexed exon amplification demonstrated; MIPs later commercialized (e.g., Agilent HaloPlex, Archer). <b>DOI: 10.1038/nmeth1118</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/17934468/" target="_blank">PubMed PMID 17934468</a></div>
+</div>
+
+<div class="item" data-e="e5" style="--dot:var(--era5)">
+  <div class="eyear">2009 · Solution hybrid selection</div>
+  <h3>Solution hybrid selection with ultra-long oligonucleotides for massively parallel targeted sequencing <span class="people">Andreas Gnirke, Chad Nusbaum, Eric S. Lander et al. — Broad Institute, with Agilent Technologies</span></h3>
+  <div class="tags"><span class="tag k">Biophysical</span><span class="tag k">Method: in-solution capture</span><span class="tag">Biotinylated RNA baits ("SureSelect")</span><span class="tag">Streptavidin magnetic beads</span><span class="tag">Firms: Agilent (SureSelect), Illumina</span></div>
+  <p>Key engineering upgrade: instead of printing capture probes on glass, transcribe them as biotinylated RNA "baits" in solution, hybridize to sheared genomic DNA, and pull down bait-target duplexes with streptavidin beads. Faster, scalable, and gentler than array capture — the design of virtually every modern exome kit (Agilent SureSelect, Illumina Nextera/Rapid Capture).</p>
+  <div class="result"><b>Result:</b> >90% target enrichment at exome scale; SureSelect became the industry standard kit. <b>DOI: 10.1038/nbt.1523</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/19182786/" target="_blank">PubMed PMID 19182786</a></div>
+</div>
+
+<div class="item" data-e="e5" style="--dot:var(--era5)">
+  <div class="eyear">2009 · The first exome diagnosis</div>
+  <h3>Genetic diagnosis by whole exome capture and massively parallel DNA sequencing <span class="people">Mona Bainbridge, Donna Muzny, Richard Gibbs et al. — Baylor College of Medicine Human Genome Sequencing Center, with Roche/NimbleGen arrays + Illumina</span></h3>
+  <div class="tags"><span class="tag k">Method</span><span class="tag">NimbleGen exome array → Illumina GAII</span><span class="tag">~95% of targeted bases captured</span><span class="tag">Firms: Roche NimbleGen, Illumina, Baylor HGSC</span></div>
+  <p>Whole-exome sequencing applied clinically: a child referred for suspected Bartter syndrome was instead diagnosed with congenital chloride diarrhea — homozygous mutations in <b>SLC26A3</b> found by exome sequencing. To the authors' knowledge, the first time whole-exome (or genome) sequencing was used to <em>make a genetic diagnosis</em>.</p>
+  <div class="result"><b>Result:</b> first clinical-grade exome diagnosis; showed exomes could resolve cases conventional gene-by-gene testing could not. <b>DOI: 10.1073/pnas.0910672106</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/19861545/" target="_blank">PubMed PMID 19861545</a></div>
+</div>
+
+<div class="item" data-e="e5" style="--dot:var(--era5)">
+  <div class="eyear">2009 · Twelve exomes, one pipeline</div>
+  <h3>Targeted capture and massively parallel sequencing of 12 human exomes <span class="people">Sarah B. Ng, Emily H. Turner, Evan E. Eichler, Deborah A. Nickerson, Jay Shendure, Michael Bamshad — University of Washington, Seattle</span></h3>
+  <div class="tags"><span class="tag k">Method</span><span class="tag k">Computational: filtering</span><span class="tag">Agilent-capture array design → Illumina GAII</span><span class="tag">HapMap samples</span><span class="tag">dbSNP/1000 Genomes filtering</span></div>
+  <p>The methodological rehearsal for the breakthrough: 12 HapMap exomes sequenced to define sensitivity, specificity, reproducibility, and cost (~1/10th of a genome). Crucially, this paper built the <em>computational</em> filtering framework — how many candidate recessive/dominant genes remain after excluding known SNPs — which the Miller syndrome study then applied to real disease.</p>
+  <div class="result"><b>Result:</b> ~307 Mb of coding sequence characterized; exome sequencing shown "cost-effective, reproducible, robust". <b>DOI: 10.1038/nature08250</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/19684571/" target="_blank">PubMed PMID 19684571</a></div>
+</div>
+
+<div class="item" data-e="e6" style="--dot:var(--era6)">
+  <div class="eyear">2010 · SUCCESS</div>
+  <h3>Exome sequencing identifies the cause of a Mendelian disorder <span class="people">Sarah B. Ng, Kati J. Buckingham, Choli Lee, Jay Shendure, Michael Bamshad, Debbie Nickerson et al. — University of Washington / HudsonAlpha / Seattle Children's</span></h3>
+  <div class="tags"><span class="tag k">Success</span><span class="tag k">Computational: combinatorial filtering</span><span class="tag">4 affected individuals, 3 kindreds</span><span class="tag">~40× coverage exome</span><span class="tag">Recessive model filtering</span></div>
+  <p><b>The successful result of the entire 33-year road.</b> Exome sequencing of just four unrelated individuals with Miller syndrome, filtered against dbSNP and eight HapMap exomes for genes carrying two rare damaging variants in every affected person, yielded exactly <b>one</b> candidate: <b>DHODH</b> (dihydroorotate dehydrogenase, pyrimidine de novo biosynthesis). Sanger sequencing confirmed DHODH mutations in three additional families. No linkage analysis, no candidate-gene guesswork — pure, cheap, computational discovery from four exomes (~$2,000 each vs. millions for CF in 1989). Leslie Biesecker's companion commentary was titled "Exome sequencing makes medical genomics a reality."</p>
+  <div class="result"><b>Result:</b> the first disease gene discovered by exome sequencing — the method's proof of concept. Within five years, hundreds of Mendelian genes followed; exome sequencing entered the clinic and is now a first-tier diagnostic test. <b>DOI: 10.1038/ng.499</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/19915526/" target="_blank">PubMed PMID 19915526</a><a href="https://www.nature.com/articles/ng.499" target="_blank">Nature Genetics paper</a><a href="https://pubmed.ncbi.nlm.nih.gov/20037612/" target="_blank">Biesecker commentary PMID 20037612</a></div>
+</div>
+
+<div class="item" data-e="e6" style="--dot:var(--era6)">
+  <div class="eyear">2010 · Family-based confirmation</div>
+  <h3>Analysis of genetic inheritance in a family quartet by whole-genome sequencing <span class="people">Jared C. Roach, Lynn B. Jorde, Gail P. Jarvik et al. — University of Utah / Complete Genomics</span></h3>
+  <div class="tags"><span class="tag k">Computational: segregation analysis</span><span class="tag">Compound heterozygosity phasing</span><span class="tag">Family quartet design</span><span class="tag">Firm: Complete Genomics (later BGI/MGI)</span></div>
+  <p>The same season, a two-sibling, two-parent quartet was sequenced and the inheritance of each parental haplotype inferred — establishing the "trio/quartet analysis" that exome sequencing adopted as its most powerful filtering layer (de novo mutation detection in dominant diseases, phase determination in recessive ones).</p>
+  <div class="result"><b>Result:</b> Mendelian segregation at whole-genome resolution; family design becomes the clinical exome standard. <b>DOI: 10.1126/science.1186802</b></div>
+  <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/20220176/" target="_blank">PubMed PMID 20220176</a></div>
+</div>
+
+</div>
+</main>
+
+<section class="deep" id="walkthrough">
+  <h2>📦 End-to-End Walkthrough: From Blood Tube to Causal Gene</h2>
+  <p class="sub">One continuous story of a single exome — every wet-lab step, every file created, every algorithm that reads it, and every output it produces. Follow the 📄 artifacts.</p>
+
+  <h3>0. By the numbers — the masses and the reads</h3>
+  <div class="grid">
+    <div class="card"><h4>🔬 DNA per human cell</h4><p>One diploid genome = 6.4 billion bp ≈ <b>6.6 picograms</b> (pg) of DNA — 6.6×10⁻⁶ µg. A single cell's exome is therefore a vanishing <b>~0.1 picogram</b>.</p></div>
+    <div class="card"><h4>🧬 Genome copies in 1 µg</h4><p>Exome prep starts from ~100 ng–1 µg of DNA. 1 µg contains <b>≈143,000 diploid genome copies</b> — i.e. ~143,000 physical copies of every exon (two alleles × ~71,500 cells).</p></div>
+    <div class="card"><h4>📦 The exome's mass share</h4><p>Of 3,200 Mb of diploid genome: the CCDS coding exome (~34 Mb haploid) is ~1.0%, a full capture design (~50 Mb) is ~1.6%. So in a 1 µg input, only <b>~11–16 nanograms</b> of DNA is actually exonic — the other ~984 ng is washed away at the pull-down step.</p></div>
+    <div class="card"><h4>📖 How much is actually read</h4><p>A "100×" exome of a 50 Mb design = 5 billion sequenced bases = <b>~25 million paired-end read pairs</b> (50 M reads of 100 bp). At the 2010 paper's 40×: <b>~10 million read pairs</b> per exome — ~4 M reads per lane-share on a GAII.</p></div>
+    <div class="card"><h4>⚛️ Molecules behind the pileup</h4><p>Every one of those ~10–25 M read pairs descends from one captured library molecule — one physical DNA fragment from one of the ~143,000 genome copies. A heterozygous 40× variant call rests on ~20 independent fragments from ~20 different original cells.</p></div>
+    <div class="card"><h4>💾 The economics</h4><p>Sequencing 16 ng of exome vs 1 µg of genome = ~20× less sequencing per sample. In 2009 terms: one GAII lane (≈$2,000–8,000) could be multiplexed across several exomes — the difference between a ~$1,000–2,000 exome and a ~$100,000+ genome.</p></div>
+  </div>
+
+  <h3>STAGE 1 — The wet lab: catching the exome</h3>
+  <ol class="steps">
+    <li><b>DNA extraction & QC.</b> Blood sample → ~1–3 µg of genomic DNA (Qiagen column / MagNaPure). QC: Nanodrop 260/280 ratio ~1.8; Qubit or PicoGreen for accurate quantity; some on a TapeStation gel for integrity. <em>Input requirement: roughly 100 ng–1 µg of high-quality DNA.</em></li>
+    <li><b>Fragmentation (mechanical or chemical).</b> DNA is sheared randomly to ~150–250 bp fragments. Instruments: Covaris ultrasonicator (acoustic focusing — literally focused ultrasound breaking DNA by cavitation) or transposase-based enzymatic tagging (Nextera). Why ~200 bp? (a) Sequencing reads are ≤100–150 bases, (b) fragments must be short enough that <b>both ends</b> can be sequenced as a "paired-end" pair, and (c) fragments this length stay denatured (single-stranded) efficiently during capture hybridization.</li>
+    <li><b>End-repair, A-tailing, ligation of adapters.</b> Fragment ends are polished with T4 DNA polymerase + Klenow, given a 3′-A overhang by Klenow exo−, and ligated to forked <b>adapters</b> — short synthetic double-stranded oligos carrying: (i) the <b>flow-cell binding sequence</b>, (ii) the <b>primer binding sites</b>, and (iii) a sample-specific <b>barcode/index</b> (6–12 nt) so up to 12–16 exomes can share one sequencing lane (multiplexing — the reason the 2009 paper could do 12 exomes cheaply). Ligation is done with high-concentration T4 DNA ligase; product is size-selected (~250–350 bp with adapters) on AMPure magnetic beads (SPRI beads bind fragments by PEG/salt-driven size cutoff).</li>
+    <li><b>Library PCR amplification.</b> 4–8 cycles of adapter-PCR (high-fidelity polymerase) to enrich ligated molecules. Cycles are kept minimal to avoid PCR duplicates — the same original molecule sequenced twice, which callers would miscount as independent evidence. Later, software identifies duplicates by identical start/end coordinates and flags them (Picard MarkDuplicates).</li>
+    <li><b>Exome capture — Step A: denaturation + blocking.</b> The adapter-ligated library is denatured to single strands and mixed with <b>Cot-1 DNA</b> (repetitive human DNA, unlabeled) — it saturates the repetitive elements so they can't hijack the capture probes — plus adapter blockers that tie up the library's adapter sequences so probe–adapter hybrids don't form.</li>
+    <li><b>Exome capture — Step B: hybridization to baits.</b> Add the <b>capture probe pool</b> (~120-mer biotinylated RNA or DNA baits; a commercial exome kit contains 300,000–2,000,000 distinct probe sequences, tiled across all ~200,000 CCDS exons with overlap, at ~1–2× exon tiling density). Incubate 16–72 hours at 65 °C. Pure thermodynamics: each bait and its complementary exon fragment form a DNA:RNA (or DNA:DNA) duplex with Tm well above 65 °C, while imperfect hybrids (off-target fragments with a few mismatches) dissociate — <b>hybridization stringency is the physical filter that makes capture specific</b>.</li>
+    <li><b>Exome capture — Step C: pull-down on magnetic beads.</b> Add streptavidin-coated paramagnetic beads (streptavidin binds the bait's biotin with one of the strongest non-covalent interactions known, Kd ~10⁻¹⁴ M). Apply magnet → beads (with captured exon duplexes) stick to tube wall → wash beads stringently at 65 °C (low-salt, plus detergent: three washes remove weakly-bound off-target fragments) → elute captured DNA by heat/alkali. <b>Enrichment achieved: ~70–90% of what you now hold is exonic</b>, from ~1.5% at the start — a ~50–70-fold enrichment.</li>
+    <li><b>Post-capture PCR.</b> ~8–12 cycles to amplify the captured material to sequencing-ready concentrations. QC the captured library: Qubit quantification + qPCR (the molarity that matters is of <em>sequenceable</em>, adapter-flanked molecules, so qPCR targeted at adapter sites is the reference method) + TapeStation fragment sizing. <em>Realistic input for the sequencer: ~10–20 pM, ~4 nM of a ~300 bp library.</em></li>
+    <li><b>Bottom line.</b> In the tube is now a pool of ~10¹³ identical-in-structure but sequence-diverse short fragments: adapter–index–exonic-insert–index–adapter, ~70–90% of inserts from protein-coding exons. We went from 3,000 Mb of genome to ~50 Mb of captured exome.</li>
+  </ol>
+
+  <h3>STAGE 2 — The sequencer: reading it</h3>
+  <ol class="steps">
+    <li><b>Cluster generation on the flow cell.</b> The flow cell is a glass slide patterned with a lawn of two complementary adapter-oligo types. Exome libraries are denatured to single strands, pumped across the surface at low concentration: each molecule hybridizes to the lawn at one random spot — sparse enough that clusters won't merge. <b>Bridge amplification</b>: each bound strand arches over to hybridize a nearby lawn oligo, polymerase copies it, the bridge denatures — repeated ~35 cycles ("EXAmp" chemistry on modern NovaSeq uses patterned wells and a single amplification step). Result: each original molecule → a clonal colony of ~1,000 identical strands ("cluster") at a fixed (x, y) coordinate.</li>
+    <li><b>Cyclic sequencing by synthesis.</b> For read 1: primer anneals to each cluster; each cycle adds <b>one reversible fluorescently-labeled terminator nucleotide</b> (3′-blocked so exactly one base can be added), the non-incorporated nucleotides are washed out, the flow cell is imaged with TIRF (total internal reflection) microscopy in 4 color channels — millions of clusters in parallel — then the dye + 3′-block are chemically cleaved and the cycle repeats. 100–150 cycles = 100–150 bases read 1.</li>
+    <li><b>Paired-end turnaround.</b> Read 1 done, the synthesized strands are regenerated (index reads happen first: each cluster's barcode is read in 1–2 cycles of the same chemistry), then read 2 primers anneal at the other adapter and read the opposite end. A "PE100" run = 2×100 bp from both ends of each ~250–300 bp fragment — this is how you know fragment length, span small exons, and align more uniquely.</li>
+    <li><b>Real-time base calling on the instrument computer.</b> The four-channel intensity time-series of each cluster is decoded cluster-by-cluster into bases with their quality scores — Illumina's <b>Real-Time Analysis (RTA)</b> software uses a machine-learned model (Phred-style log-scaled quality) per cycle, in parallel across ~10⁵–10⁶ clusters imaged per run. A typical HiSeq 2000 lane (2010-era, the Miller-syndrome era): ~150–200 million clusters; an exome (50 Mb at 40–100×) needs only ~1–3 lanes or a share of one, hence the cost collapse.</li>
+    <li><b>📄 Artifact produced: BCL files → FASTQ files.</b> The instrument writes raw per-cycle images → BCL (base call) files; the bcl2fastq software then: reads each cluster's index, <b>demultiplexes</b> (all reads with barcode "ATCACG" → file sample1; "TGACCA" → sample2 …), converts BCL to sequence + quality strings, and writes one FASTQ per sample:</li>
+  </ol>
+  <div class="math">📄 <b>sample1_R1.fastq</b> — 4 lines per read, millions of reads:<br>
+  @HWI-ST123:56:C0T2FACXX:4:1101:1123:1984 1:N:0:ATCACG   <i>// instrument:lane:tile:x:y, read 1, index ATCACG</i><br>
+  CTTGTGGTCAGACACCTGGGACCATGACTGCTAGATTCAGGGTTAACGGCCTA...<br>
+  +<br>
+  BBBFFFFFFFFFFIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII...   <i>// Phred+33: 'I'=Q40, '5'=Q20, '#'=Q2</i>
+  </div>
+  <p class="sub">FastQC (Babraham) is run on the FASTQ first: %GC, adapter contamination, quality-by-cycle plots, overrepresented sequences — a "blood test" for the run before wasting compute. Then per-sample FASTQs are usually stored compressed (~1–5 GB gzipped per exome, PE100 at 100×).</p>
+
+  <h3>STAGE 3 — Alignment: FASTQ → BAM</h3>
+  <ol class="steps">
+    <li><b>Program run: BWA aln/sampe (or bwa-mem).</b> Each 100-base read is searched against the FM-index of hg19/GRCh37 (built once by <code>bwa index</code>, ~2.3 GB RAM). For each read BWA finds candidate placements by backward search, extends with gapped alignment, and picks the best-scoring position(s).</li>
+    <li><b>Paired-end logic.</b> Because the two mates derive from one ~250–300 bp physical fragment, sampe/bwa-mem can rescue a repeat-originating read whose mate aligns uniquely nearby — "if I know where my partner is, and we're the right distance apart, this is the right place" — a huge gain in mappability within duplicated exon families and pseudogenes.</li>
+    <li><b>Output: raw SAM/BAM.</b> Per read: chromosome, position, MAPQ, flags (proper pair? mate unmapped? read 1 or 2?), and the CIGAR string (e.g. <code>68M2I30M</code>). The SAM header records the reference used and the read groups (sample, library, lane) — critical because downstream steps need to know which exome each read belongs to.</li>
+    <li><b>Program run: Picard MarkDuplicates / samtools rmdup.</b> Scans for read pairs with identical start/end coordinates (a PCR artifact signature) and flags one copy as duplicate. The aligned BAM may claim "100×" but after deduplication the effective coverage might be ~85× — and in capture kits, duplicates concentrate in high-GC exons, so this correction matters clinically.</li>
+    <li><b>Program run: GATK IndelRealigner (2009–13 pipelines).</b> Cleaned indel placements (described in the Deep Dive section) — this produces clean CIGARs for the callers.</li>
+    <li><b>Program run: GATK BaseRecalibrator + PrintReads (BQSR).</b> The empirical per-cycle/per-context error model is fit at known-polymorphic sites (dbSNP common sites masked, since a "mismatch" there may be a real variant) and each base's quality string is rewritten in the BAM.</li>
+    <li><b>📄 Artifact produced: recalibrated, de-duplicated analysis-ready BAM (~5–15 GB).</b> Coverage is checked here (GATK DepthOfCoverage / CollectHsMetrics): % of target bases at ≥10×, ≥20×, mean target coverage (target: ≥90% of bases ≥20×). Off-target rate and insert-size distribution are the library's report card.</li>
+  </ol>
+  <div class="math">📄 <b>sample1.bam</b> — one line per aligned read:<br>
+  HWI-ST123:56:1101:1123:1984&nbsp;&nbsp;99&nbsp;&nbsp;chr4&nbsp;&nbsp;80124312&nbsp;&nbsp;60&nbsp;&nbsp;68M2I30M&nbsp;&nbsp;=&nbsp;&nbsp;80124567&nbsp;&nbsp;265&nbsp;&nbsp;CCTG...&nbsp;&nbsp;BBBF...<br>
+  <i>// read id, flag(99=paired+proper+read1), position, MAPQ60, CIGAR(2-base insertion!),
+  mate position, insert size, sequence, recalibrated qualities</i>
+  </div>
+
+  <h3>STAGE 4 — Variant calling: BAM → VCF</h3>
+  <ol class="steps">
+    <li><b>Program run: samtools mpileup | bcftools call</b> (per-site caller, the classic 2009-era route used in Ng et al. 2010 alongside GATK UnifiedGenotyper) <b>or GATK UnifiedGenotyper</b>. At every target position: stack the reads (pileup), enumerate the 10 diploid genotypes, compute likelihoods from base qualities and MAPQs, apply the allele-frequency prior, output the maximum posterior genotype. Indels: read the I/D tokens from CIGARs (and Dindel-style realignment for the 2010-era pipeline).</li>
+    <li><b>Hard filters / VQSR.</b> Raw calls contain systematic artifacts. GATK's Variant Quality Score Recalibration fits a Gaussian mixture model to call-quality annotations (depth, strand bias, HWE, haplotype composition), learns what "real" variants look like at highly polymorphic HapMap/truth sites vs. what artifacts look like, and re-scores every variant with a VQSLOD; low-scoring variants are filtered out (or, in 2010-style pipelines, hard filters: "depth &lt; 400, MAPQ = 0, strand-bias P &lt; 1e-5, etc.").</li>
+    <li><b>📄 Artifact produced: raw.vcf → filtered.vcf (~1–3 MB, ~40,000–100,000 variant records).</b> The VCF format (defined in the SAMtools paper, PMID 19505943):</li>
+  </ol>
+  <div class="math">📄 <b>sample1.vcf</b>:<br>
+  #CHROM POS ID REF ALT QUAL FILTER INFO FORMAT sample1<br>
+  chr4 80124313 rs7654321 A G 520.77 PASS DP=98;AF=0.001 GT:AD:DP:GQ 0/1:54:44:98:99<br>
+  <i>// position, dbSNP id, ref→alt, Phred-scaled confidence, genotype 0/1 = heterozygous,
+  AD = 54 ref reads : 44 alt reads, GQ = genotype quality</i>
+  </div>
+
+  <h3>STAGE 5 — Annotation & interpretation: VCF → ranked candidate list</h3>
+  <ol class="steps">
+    <li><b>Program run: VEP (Ensembl) or ANNOVAR.</b> The VCF is joined against reference databases and gene models — no statistics, pure database integration. Each variant gains 30–100 annotation columns: gene, transcript, consequence class (missense / nonsense / frameshift / splice), codon change, amino-acid change, dbSNP rsID, 1000 Genomes & gnomAD (exome aggregation consortium) allele frequencies by population, ClinVar clinical significance, OMIM disease association, conservation scores, and PolyPhen/SIFT predictions.</li>
+    <li><b>Program run (optional, used for clinical-grade work): VarSome / Franklin / GEM or a local GEMINI/seqr database.</b> The annotated VCF goes into a queryable database so filters can be iterated live.</li>
+    <li><b>The candidate-list query.</b> For a suspected recessive disease: <em>"consequence in (missense, nonsense, frameshift, splice) AND gnomAD frequency &lt; 0.001 AND (homozygous OR compound-heterozygous) AND gene matches phenotype (HPO terms) OR gene in OMIM candidate list"</em>. For trio analysis: same, but additionally "not in parents" (de novo) or phased to confirm compound heterozygosity (two different alleles, one on each parental haplotype, needing trio read-backed phasing or read-pair phasing).</li>
+    <li><b>📄 Artifact produced: a short table — 0 to ~10 candidate variants.</b> This is the deliverable a geneticist reads.</li>
+  </ol>
+
+  <h3>STAGE 6 — The verdict: Sanger validation & segregation</h3>
+  <ol class="steps">
+    <li><b>Sanger validation.</b> Each candidate variant is PCR-amplified from the patient's DNA with flanking primers (~400–600 bp amplicon) and sequenced by the 1977 dideoxy chain-termination method on an ABI capillary sequencer. A clean chromatogram with a clear heterozygous peak at the candidate position confirms the NGS call and rules out mapping/calling artifacts.</li>
+    <li><b>Segregation analysis.</b> The same amplicon is Sanger-sequenced in parents and siblings: affected siblings must carry the variant(s); unaffected must not; de novo cases show absence in both parents; recessive cases show carrier status in both parents. In Ng et al. 2010: DHODH mutations confirmed in the original four <em>and</em> in three additional independent families with Miller syndrome.</li>
+    <li><b>Final deliverable — a clinical-grade report:</b> "Two heterozygous pathogenic variants in <b>DHODH</b> (NM_001242833: c.563A&gt;G p.Glu188Gly; c.712C&gt;T p.Arg238Trp) — compound heterozygous — consistent with Miller syndrome (MIM 263750), autosomal recessive, pyrimidine de novo biosynthesis pathway." Confirmed, interpretable, and reproducible in any other lab.</li>
+  </ol>
+
+  <h3>🔁 Data-flow summary</h3>
+  <div class="flow">
+    <span>blood</span><em>→</em><span>gDNA</span><em>→</em><span>shear 200bp</span><em>→</em><span>adapters+index</span><em>→</em><span style="border-color:var(--era5)">hybridize to exome baits</span><em>→</em><span>streptavidin pull-down</span><em>→</em><span style="border-color:var(--era5)">captured library (50 Mb, ~80% exonic)</span><em>→</em><span>bridge-PCR clusters</span><em>→</em><span>cycle SBS imaging</span><em>→</em><span>📄 BCL</span><em>→</em><span style="border-color:var(--era4)">bcl2fastq demultiplex</span><em>→</em><span>📄 FASTQ (~2 GB)</span><em>→</em><span style="border-color:var(--era4)">BWA (FM-index alignment)</span><em>→</em><span>MarkDuplicates + IndelRealigner + BQSR</span><em>→</em><span>📄 analysis-ready BAM (~10 GB)</span><em>→</em><span style="border-color:var(--era4)">samtools/GATK caller (Bayesian genotype likelihoods)</span><em>→</em><span>📄 VCF (~50k variants)</span><em>→</em><span>VQSR/hard filter</span><em>→</em><span>📄 filtered VCF</span><em>→</em><span style="border-color:var(--era3)">VEP/ANNOVAR (db join)</span><em>→</em><span>📄 annotated VCF</span><em>→</em><span>filtering query (rare + damaging + inheritance + phenotype)</span><em>→</em><span>📄 1–10 candidates</span><em>→</em><span>Sanger + segregation</span><em>→</em><span style="border-color:var(--era6)">DHODH → Miller syndrome diagnosis</span>
+  </div>
+  <p class="sub">Computational cost profile: alignment is the heavy step (CPU-bound, hours per exome on 2009 hardware); calling is minutes; annotation is database-bound; the final "query" that actually finds the disease gene takes seconds — a humbling asymmetry, given that all of it rests on the molecular biology of Stages 1–2.</p>
+</section>
+
+<section class="deep" id="deep">
+  <h2>🧮 Deep Dive: How the Software Actually Works</h2>
+  <p class="sub">From raw microscope images to a single causal gene — every algorithmic step of the exome pipeline, with the history of each method.</p>
+
+  <h3>0. The master pipeline</h3>
+  <div class="flow">
+    <span>Images</span><em>→</em><span>Base calling (Phred)</span><em>→</em><span>Reads (FASTQ)</span><em>→</em>
+    <span>Alignment (BWA)</span><em>→</em><span>SAM/BAM</span><em>→</em>
+    <span>Realignment + BQSR (GATK)</span><em>→</em><span>Variant calling (GATK/samtools)</span><em>→</em>
+    <span>VCF</span><em>→</em><span>Annotation (VEP/ANNOVAR/PolyPhen)</span><em>→</em><span>Filtering funnel</span><em>→</em><span style="border-color:var(--era6)">DHODH</span>
+  </div>
+
+  <h3>1. A short history of alignment algorithms</h3>
+  <p class="sub">Every aligner from 1970 to today is a variation on one theme: score matches, penalize mismatches and gaps, search efficiently.</p>
+  <div class="grid">
+    <div class="card"><h4>1970 · Needleman–Wunsch</h4><p class="who">Saul Needleman & Christian Wunsch</p><p><b>Global</b> alignment by dynamic programming: fill an n×m matrix of scores, trace back for the best full-length pairing. O(n·m) — exact but slow for large sequences. (J Mol Biol 48:443)</p></div>
+    <div class="card"><h4>1981 · Smith–Waterman</h4><p class="who">Temple Smith & Michael Waterman</p><p><b>Local</b> alignment: cells may reset to zero, so only the best-matching substring pair is returned — essential when a read matches one part of a huge genome. (PMID 7265238)</p></div>
+    <div class="card"><h4>1982 · Gotoh's affine gaps</h4><p class="who">Osamu Gotoh</p><p>Made gap penalties affine (gap-open ≫ gap-extend), biologically realistic and computable in O(n·m) with three matrices. Indel calling rests on this idea.</p></div>
+    <div class="card"><h4>1988 · FASTA</h4><p class="who">William Pearson & David Lipman</p><p>Hash all k-tuples (short words) of the database; only align regions sharing exact words. First "seed-and-extend" heuristic — reads align ~100× faster than full DP.</p></div>
+    <div class="card"><h4>1990 · BLAST</h4><p class="who">Stephen Altschul, Warren Gish, David Lipman et al. — NCBI</p><p>Seeded search with substitution scoring + Karlin–Altschul extreme-value statistics giving E-values. The dominant sequence-search tool in the world. (PMID 2231712)</p></div>
+    <div class="card"><h4>1994 · Burrows–Wheeler Transform</h4><p class="who">Michael Burrows & David Wheeler</p><p>A text rotation/sorting trick that makes strings highly compressible (it powers bzip2). Pure computer science — no biology in sight. Its killer property: enables substring search in compressed space.</p></div>
+    <div class="card"><h4>2000 · FM-index</h4><p class="who">Paolo Ferragina & Giovanni Manzini</p><p>Proved the BWT + small auxiliary arrays can answer "where does pattern P occur?" in O(|P|) time using space close to the compressed size of the text — <b>the key that unlocked whole-genome short-read alignment</b>.</p></div>
+    <div class="card"><h4>1998 · Phred base calling</h4><p class="who">Brent Ewing & Phil Green — UW</p><p>Reads Sanger chromatogram peak shapes and assigns each base a quality <b>Q = −10·log₁₀(P(error))</b> (Q20 = 1% error, Q30 = 0.1%). Quality scores attach <em>measured uncertainty</em> to every base — the fuel for all later Bayesian callers.</p></div>
+    <div class="card"><h4>2007–08 · Hash-table short-read mappers</h4><p class="who">Eland (Illumina, Antony Cox), MAQ (Heng Li & Ruiqiang Li & Durbin), SOAP (Ruiqiang Li, Jun Wang — BGI)</p><p>Reads of 25–36 bases break the k-mer seed assumption; first-generation mappers hashed the genome and extended with quality-weighted mismatches. MAQ introduced the <b>MAPQ</b> concept and Bayesian genotype likelihoods. (MAQ DOI: 10.1093/bioinformatics/btn316; SOAP PMID 18227114)</p></div>
+    <div class="card"><h4>2009 · FM-index mappers: Bowtie & BWA</h4><p class="who">Ben Langmead & Steven Salzberg (Bowtie, PMID 19261174); Heng Li & Richard Durbin (BWA, PMID 19451168)</p><p>Applied the BWT/FM-index to the 3-Gb human genome: exact matches found in time proportional to the <em>read length</em>, not the genome size, with ~2.3 GB of RAM. This made whole-genome alignment of billions of reads affordable on a single desktop. BWA-SW (PMID 20080505) added Smith–Waterman-style gapped alignment for longer reads.</p></div>
+  </div>
+
+  <h3>2. How BWA aligns a read — step by step</h3>
+  <ol class="steps">
+    <li><b>Index the reference (once).</b> Concatenate the genome's chromosomes; conceptually build a sorted table of all possible rotations of the text (the BWT). Store two small tables: <b>C[]</b> (how many bases sort before each letter) and <b>O[]</b> (per-column rank counts). For the human genome this is ~2.3 GB — built once, reused for thousands of exomes.</li>
+    <li><b>Backward search for an exact match.</b> Scan the read <em>from its last base to its first</em>. Each base updates a shrinking interval [top,bot] in the suffix array — like a binary search, but O(1) per base. After m bases, the interval contains exactly the genomic positions where the whole read matches. Time is O(m) — independent of genome size.</li>
+    <li><b>Backtracking for mismatches.</b> Real reads differ from the reference. At each step BWA may "guess" that the read's base is an error and substitute all other bases (or an indel), branching the search through a suffix-tree-like trie. It explores only branches whose accumulated penalty stays under the seed threshold (default: ≤2 mismatches in the first 32 bases), <em>prioritizing mismatches on low-quality bases</em> — quality-aware search.</li>
+    <li><b>Seed and extend.</b> Once a seed matches, the rest of the read is aligned by extending with gapped local alignment (BWA-SW), allowing mismatches and affine-gap indels, to produce the best-scoring placement.</li>
+    <li><b>Assign mapping quality (MAPQ).</b> Compare the best alignment's score with the second-best (possibly different locus): if the runner-up is nearly as good, the placement is ambiguous. MAPQ is Phred-scaled: MAPQ 30 = 1-in-1000 chance the read is truly from somewhere else.</li>
+    <li><b>Emit SAM/BAM.</b> Each aligned read becomes a record: chromosome, position, flags, and a <b>CIGAR string</b> — e.g. <code>40M2I58M</code> = 40 align, 2-base insertion, 58 align. CIGAR is the input language of every indel caller.</li>
+  </ol>
+  <div class="math">Backward search, one base at a time (LF-mapping):<br>
+  top' = C[b] + O(b, top) &nbsp;&nbsp; bot' = C[b] + O(b, bot)<br>
+  // read = ...G A T C — process right-to-left:<br>
+  align "C" → interval I₁ → align "TC" → I₂ ⊂ I₁ → align "GTC" → I₃ ⊂ I₂<br>
+  // final interval size = number of exact genomic occurrences; |I| = 0 ⇒ no exact match ⇒ backtrack (allow mismatches)
+  </div>
+
+  <h3>3. Finding SNPs — from pileups to posteriors</h3>
+  <ol class="steps">
+    <li><b>Pile up the reads.</b> Stack all aligned reads column-by-column at each reference position and count base observations with their qualities (this view was literally a visualization, "the pileup", before it became an algorithm in samtools).</li>
+    <li><b>Define the 10 possible genotypes.</b> At a reference-A site a diploid individual may be AA, AC, AG, AT, CC, CG, CT, GG, GT, or TT.</li>
+    <li><b>Genotype likelihood — each base is a noisy measurement.</b> For each read base <i>b</i> with quality <i>q</i>, ask: if the true genotype were G, how likely is observing <i>b</i>? A base matching an allele of G is likely (1 − error), a non-matching base is unlikely (≈ error ≈ 10<sup>−q/10</sup>). Multiply across all reads:</li>
+  </ol>
+  <div class="math">P(data | G) = ∏<sub>reads i</sub> P(b<sub>i</sub> | G) &nbsp;&nbsp; with &nbsp; P(b<sub>i</sub> | G) = (1 − ε<sub>i</sub>) if b<sub>i</sub> ∈ G, else ε<sub>i</sub>/3<br><br>
+  <b>Bayes:</b> P(G | data) ∝ P(data | G) × P(G) &nbsp;&nbsp; <i>// P(G) = prior, from dbSNP/HapMap allele frequency or uniform</i><br><br>
+  call Ĝ = argmax<sub>G</sub> P(G | data) &nbsp;&nbsp;&nbsp; genotype quality = −10·log₁₀(1 − P(Ĝ | data))
+  </div>
+  <ol class="steps" start="4">
+    <li><b>Quality filters & failure modes.</b> A column with 40× coverage but 39 A's and 1 G is not a heterozygote — it is likely a sequencer error. Callers and filters therefore test: strand bias (variant seen only on one strand? artifact), read-position bias (only at read ends? artifact), base-quality distribution, excess homozygosity, and Hardy–Weinberg expectations. GATK's UnifiedGenotyper formalized these as per-site likelihood ratio tests.</li>
+    <li><b>GATK adds machine learning — Base Quality Score Recalibration (BQSR).</b> Sequencers have systematic, covariate-dependent error (error rate depends on machine cycle and neighboring bases). BQSR compares observed mismatches at known-variant-free sites against the quality claims and fits an empirical error model per covariate, adjusting every base's quality before calling.</li>
+    <li><b>HaplotypeCaller (2013+): local assembly first, call later.</b> Instead of per-column statistics, GATK now builds a de novo k-mer graph of all reads in a small region, enumerates candidate <b>haplotypes</b>, scores each read against each haplotype with a pair-HMM, and calls all variants in the region jointly — largely ending the "SNP-shadow" indel artifacts.</li>
+  </ol>
+  <p class="sub">Earlier, same-idea callers worth knowing: PolyBayes (Marth et al. 1999) and PolyPhred (Nickerson et al. 1997) did Bayesian SNP detection in Sanger traces; GATK itself was wrapped by Picard and used Hadoop-style MapReduce traversal (McKenna et al. 2010, PMID 20644199; DePristo et al. 2011, PMID 21478889).</p>
+
+  <h3>4. Finding indels — the hard problem</h3>
+  <p class="sub">Why indels were so difficult: a read containing an insertion near its end either misaligns (left-shifted, causing a streak of false "SNPs") or fails to align at all (soft-clipped).</p>
+  <ol class="steps">
+    <li><b>Gapped alignment in the mapper.</b> BWA-SW and successors extend seeds with affine-gap Smith–Waterman (Gotoh's algorithm — 1982 vindicated), so reads containing the indel align with an I or D directly in the CIGAR. Alignment gap-open/gap-extension penalties are tuned so a 2-base indel beats 6 mismatches.</li>
+    <li><b>Local realignment (GATK IndelRealigner).</b> In 2009–2012, indels were systematically cleaned post-alignment: for each suspicious window (reads disagreeing, or a known indel nearby), gather all reads, and compute a single best SW realignment for the whole window so that all reads agree on the same indel placement. This step was retired once assembly-based callers (HaplotypeCaller, FreeBayes, Platypus) arrived.</li>
+    <li><b>Consensus/likelihood indel calling.</b> Count CIGAR I/D events per position (samtools); Dindel (Albers et al. 2011) fit a proper diploid genotype-likelihood model in which reads are probabilistically realigned against candidate indel haplotypes — halving false indel rates versus naive counting.</li>
+    <li><b>Split-read methods (Pindel; Ye et al. 2009).</b> Take soft-clipped reads whose unmatched tail re-aligns nearby with a gap: the gap size and position give the indel exactly, even at read ends.</li>
+    <li><b>Left-alignment normalization.</b> A deletion inside a homopolymer (AAAAA→AAAA) can be written at several positions; VCF normalizes all indels to the leftmost possible representation with a padding base so different callers and labs describe the same event identically.</li>
+  </ol>
+  <table class="tbl">
+    <tr><th>Variant class</th><th>Read-level signature</th><th>Example in CIGAR</th></tr>
+    <tr><td>SNV (single nucleotide)</td><td>Column base ≠ reference</td><td><code>100M</code> with mismatch (X/.</code> in pileup)</td></tr>
+    <tr><td>Insertion</td><td>Extra bases between two columns</td><td><code>40M2I58M</code></td></tr>
+    <tr><td>Deletion</td><td>Read skips reference bases</td><td><code>40M2D58M</code></td></tr>
+    <tr><td>MNV / complex</td><td>Adjacent changes</td><td>assembled haplotype ≠ reference (HaplotypeCaller)</td></tr>
+    <tr><td>Large deletion / CNV</td><td>Read-depth drop; discordant pairs</td><td>CNV callers (exome depth: ExomeDepth, XHMM)</td></tr>
+    <tr><td>Splice-site variant</td><td>SNV/indel within ±1–2 bases of an intron boundary</td><td>annotation class, not read signature</td></tr>
+  </table>
+
+  <h3>5. Characterizing variants — annotation & effect prediction</h3>
+  <p class="sub">A VCF row is a coordinate change; a diagnosis needs meaning. Annotation answers: where is it, what does it do to the protein, how rare is it, and is it known to cause disease?</p>
+  <div class="grid">
+    <div class="card"><h4>Consequence classification</h4><p>Overlap the variant with gene models (RefSeq/Ensembl/CCDS — the same exon definitions the capture probes targeted): <b>synonymous</b> (no amino-acid change), <b>missense</b> (one amino acid changed), <b>nonsense</b> (premature stop), <b>frameshift</b> (disrupted reading frame), <b>in-frame indel</b>, <b>splice donor/acceptor</b> (±1, ±2 intronic), <b>start-loss / stop-loss</b>. Exome filters keep only the first-tier predicted-damaging classes.</p></div>
+    <div class="card"><h4>SIFT (Ng & Henikoff, 2001)</h4><p>"Would evolution tolerate this substitution?" Aligns the protein across species; positions conserved through deep evolutionary time are intolerant of change. Substitutions at highly conserved positions in conserved motifs are predicted deleterious.</p></div>
+    <div class="card"><h4>PolyPhen-2 (Adzhubei et al.)</h4><p>Bayes classifier trained on known damaging vs. benign missense mutations (HumDiv/HumVar sets), using structural features (buried vs. exposed residue, secondary structure, disulfide bonds) plus sequence context. Outputs "benign / possibly / probably damaging" (PMID 20354512; protocol paper PMID 23315928).</p></div>
+    <div class="card"><h4>Conservation scores</h4><p>PhyloP / PhastCons / GERP++ quantify how unusually conserved a position is across vertebrates — the modern currency of "this base matters."</p></div>
+    <div class="card"><h4>Annotators: ANNOVAR & VEP & SnpEff</h4><p>ANNOVAR (Wang et al., PMID 20601685) and Ensembl's Variant Effect Predictor (McLaren et al., PMID 27268795) join the VCF against gene models, dbSNP, 1000 Genomes, OMIM, HGMD, ClinVar and all of the predictors — turning a million-row VCF into a ranked, annotated table.</p></div>
+    <div class="card"><h4>Nomenclature</h4><p>HGVS names (e.g. <code>DHODH:c.712C&gt;T p.Arg238Trp</code>), dbSNP rs-IDs, and the "gnomAD allele frequency" have become the shared language connecting clinical labs worldwide.</p></div>
+  </div>
+
+  <h3>6. The filtering funnel — worked example (Ng et al. 2010, Miller syndrome)</h3>
+  <p class="sub">This is the final computational act: from ~40,000 raw variants to one gene. Four affected, unrelated individuals; recessive model assumed; each filter is a set intersection.</p>
+  <div class="funnel">
+    <div style="width:100%">Raw variant calls / exome ≈ <b>40,000</b> SNVs + indels (40× mean coverage)</div>
+    <div style="width:86%">Nonsynonymous, splice, or frameshift only ≈ <b>10,000</b> — the classes that can break a protein</div>
+    <div style="width:72%">Not in dbSNP / 8 HapMap exomes (novel & rare) ≈ <b>~2,000</b> — benign common variation subtracted (2001 SNP map + HapMap made this step possible)</div>
+    <div style="width:56%">Genes with <b>≥2</b> such variants in <b>all 4</b> unrelated patients ≈ <b>~1–10 candidates</b> — the unrelatedness is the statistical power: random genes can't carry damaging rare variants in everyone</div>
+    <div style="width:38%">Fits recessive inheritance + phenotype plausibility ≈ <b>1 gene</b></div>
+    <div style="width:26%;border-color:var(--era6)"><b>DHODH</b> — dihydroorotate dehydrogenase, pyrimidine biosynthesis</div>
+  </div>
+  <p class="sub">Validation loop: PCR + Sanger sequencing (the 1977 method returns as the referee!) confirmed DHODH mutations in all four patients and in three additional, independent families — the mutation evidence that closed the case. Note how the funnel is nothing more than repeated set intersections plus one evolutionary-biology assumption: <em>protein-damaging variants are rare, so their repeated co-occurrence in unrelated patients is never coincidence.</em></p>
+
+  <h3>7. Algorithm lineage after 2010 (epilogue)</h3>
+  <div class="grid">
+    <div class="card"><h4>FreeBayes (2011–12) · Garrisson & Marth</h4><p>Haplotype-based Bayesian calling of SNPs, indels and complex events jointly, open-source.</p></div>
+    <div class="card"><h4>GATK HaplotypeCaller (2013)</h4><p>Local assembly + pair-HMM; became the de facto clinical standard.</p></div>
+    <div class="card"><h4>CADD (2014) · Kircher et al.</h4><p>Integrates 63 annotations into a single deleteriousness score trained to distinguish simulated variants from fixed substitutions.</p></div>
+    <div class="card"><h4>DeepVariant (2018) · Google Brain</h4><p>Turns the pileup into an image and lets a deep CNN read it — the 1998 Phred idea (learn from signal) taken to its logical end.</p></div>
+  </div>
+</section>
+
+<section class="pillars">
+  <h2>⚙️ The Four Conceptual Pillars</h2>
+  <p class="sub">Why exome sequencing worked — the underlying logic of the entire road.</p>
+  <div class="grid">
+    <div class="card"><h4>1. Enrichment economics</h4><p>Exons = ~1% of the genome (~30 Mb) but ~85% of known disease mutations. Capturing them before sequencing cuts cost ~10–20× without losing most of the diagnostic yield. (Hodges 2007; Bainbridge 2009)</p></div>
+    <div class="card"><h4>2. Massive parallelism</h4><p>Emulsion/bridge amplification + cyclic chemistry turned sequencing from a serial biophysical measurement into a massively parallel imaging experiment, collapsing cost-per-base by orders of magnitude. (Margulies 2005; Bentley 2008)</p></div>
+    <div class="card"><h4>3. The reference + variation catalogs</h4><p>A finished human reference sequence (2001) plus common-variant catalogs (dbSNP 2001, HapMap 2005) turned variant interpretation into a subtraction problem: a rare, damaging, segregating variant is the signal; everything in the catalogs is noise.</p></div>
+    <div class="card"><h4>4. Combinatorial filtering</h4><p>Intersect filters: (rare in dbSNP) ∧ (predicted damaging) ∧ (shared across unrelated cases) ∧ (fits inheritance model) ∧ (in a gene consistent with the phenotype). In Ng et al. 2010, four filters on four exomes left exactly one gene — DHODH.</p></div>
+  </div>
+</section>
+
+<section class="videos">
+  <h2>🎬 Videos of the Scientists</h2>
+  <p class="sub">Interviews, lectures, and archive footage from the people and institutions on the timeline. (Verify availability in your region.)</p>
+  <div class="grid">
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=xd4De47ldYs" target="_blank">Kary Mullis — his "eureka moment" inventing PCR (Nobel Prize media)</a><p>Inventor of PCR describes the drive on Highway 128 that started the exome story's amplification step.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=5mB_Ps6juns" target="_blank">Frederick Sanger: The Quest for DNA Sequencing (Biographics)</a><p>Documentary on the quiet chemist who invented the chain-termination method that bears his name.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=6ldtdWjDwes" target="_blank">Sanger Sequencing — DNA Interactive (CSHL)</a><p>Animated explanation of dideoxy chain termination, produced by Cold Spring Harbor Laboratory.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=8tNKEoODW5E" target="_blank">Scientist Stories: Leroy Hood, Systems Biology</a><p>Hood on the automated sequencer at Caltech and founding Applied Biosystems' technology lineage.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=ztMBrL21bP4" target="_blank">Eric Lander — "Secrets of the Human Genome" (MIT Killian Lecture)</a><p>The HGP's lead author on mapping, sequencing, and the reference genome.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=slRyGLmt3qc" target="_blank">Draft Human Genome Announcement at the White House (June 2000)</a><p>Archive footage: Collins, Venter, Clinton and Blair announce the draft sequence — the coordinate system of exomics.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=DTl64FvF5YQ" target="_blank">Craig Venter — Mapping the Mysteries of the Human Genome (Think Tank)</a><p>The Celera whole-genome-shotgun rival, EST pioneer, on sequencing the human genome and synthetic genomics.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=nV1fltNabnY" target="_blank">George Church — Genome Sequencing and Synthetic Biology</a><p>From his early sequencing work (with Walter Gilbert) to MIP capture, Polony sequencing and Personal Genome Project.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=NPUeAQPVe9c" target="_blank">Jay Shendure — Harnessing the Power of Next-Generation DNA Sequencing</a><p>The senior author of the Miller syndrome breakthrough on NGS, exome sequencing and disease gene discovery.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=9tXvEOOZ3rs" target="_blank">Jay Shendure — UW Genome Sciences Summer Public Lecture (2017)</a><p>Shendure's later public lecture on how the embryo builds itself — his lab after the exome breakthrough.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=lb9BlWolZqg" target="_blank">Exome sequencing — Leslie Biesecker lecture (NHGRI)</a><p>The author of the "medical genomics is a reality" commentary on exome filtering strategies (Exome 101).</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=ERlE-ukbSMg" target="_blank">Michael Bamshad — The Evolution of Human Biodiversity</a><p>Co-senior author of the Miller syndrome paper on ancestry, genomes and Mendelian disease.</p></div>
+    <div class="vcard"><a href="https://www.youtube.com/watch?v=rJoHJNtb8Sw" target="_blank">Gregory Hannon — Big Think interview</a><p>The CSHL senior author of the 2007 in-situ exon capture paper on RNAi and small RNAs.</p></div>
+    <div class="vcard"><a href="http://library.cshl.edu/Meetings/sequencing/video-pages/Balasubramanian.php" target="_blank">Shankar Balasubramanian — Evolution of Sequencing Technology (CSHL archive)</a><p>Solexa's co-inventor on the key insights and technical breakthroughs behind Illumina sequencing.</p></div>
+    <div class="vcard"><a href="https://www.pacb.com/videos/podcast-exploring-the-exome-and-the-future-of-genomics-with-jay-shendure/" target="_blank">PacBio podcast: Exploring the exome with Jay Shendure</a><p>Audio/video conversation on the past and future roles of sequencing in diagnosing Mendelian disorders.</p></div>
+  </div>
+</section>
+
+<section class="firms">
+  <h2>🏢 The Firms & Institutions</h2>
+  <p class="sub">Commercial and institutional actors that turned the science into instruments, kits and pipelines.</p>
+  <div class="grid">
+    <div class="card"><h4>Applied Biosystems (ABI)</h4><p class="who">Foster City, CA — Leroy Hood's Caltech spinout</p><p>Automated fluorescence Sanger sequencers (370 → 3700) that powered the HGP; later Life Technologies/Thermo Fisher.</p></div>
+    <div class="card"><h4>454 Life Sciences / Roche</h4><p class="who">Branford, CT — Jonathan Rothberg</p><p>First NGS platform (2005, GS 20/FLX); pyrosequencing on picoliter plates; used in Hodges 2007 exon capture; shut down 2016.</p></div>
+    <div class="card"><h4>Solexa → Illumina</h4><p class="who">Cambridge, UK — Balasubramanian & Klenerman</p><p>Reversible-terminator sequencing; acquired by Illumina 2007; Genome Analyzer GAII was the machine behind Ng et al. 2009/2010 and remains the dominant platform.</p></div>
+    <div class="card"><h4>Roche NimbleGen</h4><p class="who">Madison, WI — Albert, Hodges, Molla</p><p>High-density microarray capture; the "2.1M exon array" used in Hodges 2007 and Bainbridge 2009.</p></div>
+    <div class="card"><h4>Agilent Technologies</h4><p class="who">Santa Clara, CA</p><p>eArray / SureSelect in-solution RNA-bait capture (Gnirke 2009); the most widely used exome kit family.</p></div>
+    <div class="card"><h4>Cetus → Roche / PerkinElmer</h4><p class="who">Emeryville, CA</p><p>Invented PCR (Mullis, Saiki) and commercialized Taq polymerase — amplification underlies every capture protocol.</p></div>
+    <div class="card"><h4>Affymetrix</h4><p class="who">Santa Clara, CA — Stephen Fodor</p><p>Photolithographic oligo arrays; pioneered dense-probe manufacturing and early MIP genotyping platforms.</p></div>
+    <div class="card"><h4>Celera Genomics</h4><p class="who">Rockville, MD — Craig Venter</p><p>Whole-genome shotgun human sequence (2001); Venter's EST work at TIGR/NIH seeded the "coding-genome first" philosophy.</p></div>
+    <div class="card"><h4>Complete Genomics</h4><p class="who">Mountain View, CA — Rade Drmanac</p><p>Whole-genome sequencing of the Roach family quartet (2010); later acquired by BGI.</p></div>
+    <div class="card"><h4>University of Washington / HudsonAlpha</h4><p class="who">Seattle, WA / Huntsville, AL</p><p>Shendure, Nickerson and Bamshad's groups — where exome sequencing's success was achieved (Ng 2009, 2010).</p></div>
+    <div class="card"><h4>Baylor College of Medicine HGSC</h4><p class="who">Houston, TX — Richard Gibbs</p><p>Bainbridge 2009 first exome diagnosis; later one of the largest clinical exome programs (Baylor Miraca). </p></div>
+    <div class="card"><h4>Broad Institute & Sanger Institute</h4><p class="who">Cambridge, MA / Hinxton, UK</p><p>HGP centers; Gnirke 2009 solution capture at Broad; BWA/SAMtools/GATK software stack; dbSNP & HapMap catalogs.</p></div>
+    <div class="card"><h4>Cold Spring Harbor Laboratory</h4><p class="who">Cold Spring Harbor, NY</p><p>Hannon & McCombie labs: in-situ exon capture (Hodges 2007); host of the sequencing archive videos.</p></div>
+  </div>
+</section>
+
+<footer>
+  The road to exome sequencing · Sanger (1977) → capture (2007) → first Mendelian gene found by exome sequencing, DHODH in Miller syndrome (Ng et al., Nature Genetics 2010) · All PubMed/DOIs verified via PubMed listings.
+</footer>
+
+<script>
+  const btns = document.querySelectorAll("#filters button");
+  const items = document.querySelectorAll(".item");
+  const colors = {e1:"#e0b34d",e2:"#7ee0a3",e3:"#b48cf2",e4:"#ff8f6b",e5:"#5fd4e8",e6:"#ff6b9d"};
+  btns.forEach(b=>{
+    b.addEventListener("click",()=>{
+      btns.forEach(x=>{x.classList.remove("active");x.style.background="";x.style.color="";});
+      b.classList.add("active");
+      const f=b.dataset.f;
+      if(f==="all"){b.style.background="#4da3ff";b.style.color="#0b1120";}
+      else{b.style.background=colors[f];b.style.color="#0b1120";}
+      items.forEach(it=>it.classList.toggle("hidden", f!=="all" && it.dataset.e!==f));
+    });
+  });
+</script>
+</body>
+</html>
