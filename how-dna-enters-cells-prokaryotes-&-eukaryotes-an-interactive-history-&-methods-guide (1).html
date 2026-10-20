@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How DNA Enters Cells — Prokaryotes & Eukaryotes</title>
+<style>
+  :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #0f172a; background: #f1f5f9; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 0; }
+  header { background: linear-gradient(135deg,#0f172a,#1e3a8a); color: #fff; padding: 28px 20px 18px; }
+  header h1 { margin: 0 0 6px; font-size: 1.5rem; }
+  header p { margin: 0; opacity: .85; font-size: .95rem; }
+  nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 20px; background: #fff; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 10; }
+  nav button { border: 1px solid #cbd5e1; background: #fff; padding: 8px 14px; border-radius: 999px; cursor: pointer; font-size: .9rem; font-weight: 600; color: #334155; }
+  nav button.active { background: #1e3a8a; color: #fff; border-color: #1e3a8a; }
+  main { max-width: 1000px; margin: 0 auto; padding: 20px; }
+  section { display: none; animation: fade .25s; }
+  section.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px);} to { opacity: 1; transform: none; } }
+  h2 { border-left: 5px solid #1e3a8a; padding-left: 10px; font-size: 1.25rem; }
+  h3 { margin-top: 26px; color: #1e3a8a; }
+  .card { background: #fff; border-radius: 12px; padding: 16px 18px; margin: 12px 0; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .timeline-item { border-left: 3px solid #cbd5e1; margin: 10px 0 10px 6px; padding: 8px 0 8px 18px; position: relative; cursor: pointer; }
+  .timeline-item::before { content: ""; position: absolute; left: -9px; top: 14px; width: 15px; height: 15px; border-radius: 50%; background: #1e3a8a; border: 3px solid #fff; box-shadow: 0 0 0 2px #1e3a8a; }
+  .timeline-item .year { font-weight: 800; color: #1e3a8a; }
+  .timeline-item .details { display: none; margin-top: 8px; background: #f8fafc; border-radius: 8px; padding: 10px 12px; font-size: .93rem; }
+  .timeline-item.open .details { display: block; }
+  .timeline-item .toggle { font-size: .8rem; color: #2563eb; font-weight: 600; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .78rem; font-weight: 700; margin-right: 6px; }
+  .pill.easy { background: #dcfce7; color: #166534; }
+  .pill.hard { background: #fee2e2; color: #991b1b; }
+  .pill.mid { background: #fef9c3; color: #854d0e; }
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: .9rem; }
+  th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #eff6ff; color: #1e3a8a; }
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0; }
+  .filter-bar button { border: 1px solid #cbd5e1; background: #fff; border-radius: 999px; padding: 6px 12px; cursor: pointer; font-size: .85rem; }
+  .filter-bar button.active { background: #166534; color: #fff; border-color: #166534; }
+  .ref { border-left: 4px solid #1e3a8a; }
+  .ref .title { font-weight: 700; }
+  .ref .meta { font-size: .82rem; color: #475569; margin: 4px 0; }
+  .ref a { color: #2563eb; word-break: break-all; font-size: .85rem; }
+  .hi { background: linear-gradient(90deg,#fefce8,#fff); border-left-color: #ca8a04; }
+  .hi::after { content: " ★ HIGH-IMPACT"; color:#b45309; font-weight:800; font-size:.72rem; margin-left:8px; }
+  input[type=search] { width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: .95rem; margin: 10px 0; }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+  .why { background: #eff6ff; border-radius: 10px; padding: 12px 14px; font-size: .92rem; }
+  footer { text-align: center; padding: 20px; color: #64748b; font-size: .85rem; }
+  .badge { font-size: .75rem; background:#e0e7ff; color:#3730a3; padding:2px 8px; border-radius:6px; font-weight:700; }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🧬 How DNA Enters Cells</h1>
+  <p>Prokaryotic &amp; eukaryotic DNA delivery — how the methods were discovered, why some strains are "easy" and others "hard", with DOIs, PubMed links &amp; landmark papers. Click any milestone to expand it.</p>
+</header>
+
+<nav id="tabs">
+  <button data-tab="history" class="active">📜 History of Discovery</button>
+  <button data-tab="mechanism">⚙️ Mechanism &amp; Genetics</button>
+  <button data-tab="strains">🧫 Easy vs Hard Strains</button>
+  <button data-tab="methods">🧪 Eukaryotic Methods</button>
+  <button data-tab="refs">📚 References &amp; High-Impact Papers</button>
+</nav>
+
+<main>
+
+<!-- ============ HISTORY ============ -->
+<section id="history" class="active">
+  <h2>The Experimental Path to DNA Delivery</h2>
+  <p class="why">Each milestone below was a "forced entry" experiment: kill, starve or shock cells and see if external heritable material gets in. Together they proved DNA is the genetic material and turned DNA delivery into a routine tool. Click a milestone to expand.</p>
+
+  <div class="timeline-item" data-ref="griffith">
+    <span class="year">1928</span> — Griffith: "transforming principle" in <em>Streptococcus pneumoniae</em> <span class="badge">GENETICS</span>
+    <div class="details">Heat-killed virulent (smooth) pneumococci mixed with live avirulent (rough) cells made the live cells virulent. Something from dead cells entered live cells and transformed them — the first evidence of horizontal gene transfer, though Griffith didn't know it was DNA. <br><b>Why it matters:</b> proved bacteria can take up and express external hereditary material. <br><a href="https://doi.org/10.1017/S0022172400031879" target="_blank">DOI: 10.1017/S0022172400031879</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Griffith+1928+significance+Pneumococcal+types" target="_blank">PubMed record</a>
+    </div>
+  </div>
+
+  <div class="timeline-item" data-ref="avery">
+    <span class="year">1944</span> — Avery, MacLeod &amp; McCarty: the transforming principle <em>is</em> DNA <span class="badge">LANDMARK ★</span>
+    <div class="details">Purified the transforming principle from pneumococci and destroyed protein, RNA and DNA selectively with enzymes. Only DNase destroyed transforming activity → DNA carries hereditary information and can cross the cell envelope of naturally competent bacteria. <br><a href="https://doi.org/10.1084/jem.79.2.137" target="_blank">DOI: 10.1084/jem.79.2.137</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Avery+MacLeod+McCarty+1944+transforming+principle" target="_blank">PubMed record</a> · <em>J Exp Med</em> 79:137–158
+    </div>
+  </div>
+
+  <div class="timeline-item" data-ref="hershey">
+    <span class="year">1952</span> — Hershey &amp; Chase: ³²P-labeled phage DNA, not ³⁵S protein, enters cells <span class="badge">CONFIRMATION ★</span>
+    <div class="details">Blender experiment: only the DNA (³²P) injected by T2 phage entered <em>E. coli</em>; the protein shell (³⁵S) stayed outside. DNA entry into cells via a syringe-like mechanism — a natural, evolved DNA delivery device. <br><a href="https://doi.org/10.1084/jem.96.4.425" target="_blank">DOI: 10.1084/jem.96.4.425</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Hershey+Chase+independent+functions+1952" target="_blank">PubMed record</a>
+    </div>
+  </div>
+
+  <div class="timeline-item" data-ref="spizizen">
+    <span class="year">1958</span> — Spizizen: <em>Bacillus subtilis</em> becomes the genetic workhorse via natural competence
+    <div class="details">Showed auxotrophic <em>B. subtilis</em> strains can be transformed with naked DNA when starved, founding bacterial genetics in a genetically tractable Gram-positive. <br><a href="https://doi.org/10.1073/pnas.44.10.1072" target="_blank">DOI: 10.1073/pnas.44.10.1072</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Spizizen+1958+transformation+biochemically+deficient+strains+Bacillus" target="_blank">PubMed record</a>
+    </div>
+  </div>
+
+  <div class="timeline-item" data-ref="mandel">
+    <span class="year">1970</span> — Mandel &amp; Higa: CaCl₂ shock makes <em>E. coli</em> permeable to DNA <span class="badge">METHOD ★</span>
+    <div class="details">Exposure to ice-cold CaCl₂ made <em>E. coli</em> "competent" for purified λ phage DNA uptake — the birth of artificial chemical transformation. The mechanism remains partly unclear: Ca²⁺ shields the negative charges of DNA and membrane, destabilizes the LPS layer, and may create transient membrane pores during the heat shock. <br><a href="https://doi.org/10.1016/0022-2836(70)90083-3" target="_blank">DOI: 10.1016/0022-2836(70)90083-3</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Mandel+Higa+1970+calcium+chloride+bacteriophage+lambda+DNA" target="_blank">PubMed record</a> · <em>J Mol Biol</em> 53:159–162
+    </div>
+  </div>
+
+  <div class="timeline-item" data-ref="cohen">
+    <span class="year">1972–1973</span> — Cohen, Boyer &amp; Hsu: first recombinant plasmid transformed into <em>E. coli</em> <span class="badge">BIOTECH ★</span>
+    <div class="details">Combined restriction digestion, ligation and CaCl₂ transformation to clone foreign DNA into pSC101 — the founding experiment of genetic engineering, only possible because artificial transformation now existed. <br><a href="https://doi.org/10.1073/pnas.70.11.3240" target="_blank">DOI: 10.1073/pnas.70.11.3240</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Cohen+1973+construction+biologically+functional+plasmids+in+vitro" target="_blank">PubMed record</a>
+    </div>
+  </div>
+
+  <div class="timeline-item" data-ref="hanahan">
+    <span class="year">1983</span> — Hanahan's optimized supercompetent strains (DH5α-era protocols) <span class="badge">EFFICIENCY ★</span>
+    <div class="details">Systematically varied strain genotype, growth phase, buffers, DMSO and divalent cations to reach ~10⁸–10⁹ transformants/µg — up to 100× CaCl₂-only efficiencies. Showed that <b>the strain's genotype is a key variable</b> of DNA entry efficiency. <br><a href="https://doi.org/10.1016/S0022-2836(83)80284-8" target="_blank">DOI: 10.1016/S0022-2836(83)80284-8</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Hanahan+1983+studies+on+transformation+of+Escherichia+coli+with+plasmids" target="_blank">PubMed record</a>
+    </div>
+  </div>
+
+  <div class="timeline-item" data-ref="dower">
+    <span class="year">1988</span> — Dower, Miller &amp; Ragsdale: electroporation of <em>E. coli</em> at ~10¹⁰/µg <span class="badge">METHOD ★</span>
+    <div class="details">Brief high-voltage exponential pulses create reversible aqueous pores in the membrane; DNA enters directly through these dielectric breakdown pores. Transformation of strains "refractory" to chemical methods became possible. <br><a href="https://doi.org/10.1093/nar/16.13.6001" target="_blank">DOI: 10.1093/nar/16.13.6001</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Dower+1988+high+efficiency+transformation+electroporation" target="_blank">PubMed record</a>
+    </div>
+  </div>
+
+  <div class="timeline-item" data-ref="chendubnau">
+    <span class="year">2004</span> — Chen &amp; Dubnau: the molecular machine of natural DNA uptake <span class="badge">REVIEW ★</span>
+    <div class="details">Synthesized the genetics of natural competence: a type IV pilus-like pseudopilus pulls double-stranded DNA to the cell surface, a membrane receptor (ComEA/ComW) binds it, a nuclease (EndA/NucA) degrades one strand, and a ComEC transmembrane channel imports single-stranded DNA — driven by the ComFA ATPase. <br><a href="https://doi.org/10.1038/nrmicro844" target="_blank">DOI: 10.1038/nrmicro844</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Chen+Dubnau+2004+DNA+uptake+during+bacterial+transformation" target="_blank">PubMed record</a> · <em>Nat Rev Microbiol</em> 2:241–249
+    </div>
+  </div>
+</section>
+
+<!-- ============ MECHANISM ============ -->
+<section id="mechanism">
+  <h2>How DNA Actually Moves In — and How Mutants Revealed It</h2>
+  <p class="why">Comparing easily-transformed vs poorly-transformed strains was the key genetic strategy: knock out a gene, see whether DNA entry drops, and you have a component of the uptake machine. This is how nearly every protein below was found.</p>
+
+  <h3>1. Natural competence (pneumococcus, B. subtilis, H. influenzae, V. cholerae, Acinetobacter…)</h3>
+  <div class="grid2">
+    <div class="card"><b>Step 1 — Surface capture.</b> A dynamic type IV pilus / pseudopilus (ComGC pilins in Gram-positives; PilA-like proteins in Gram-negatives) extends and retracts, dragging dsDNA to the surface. <em>Non-competent mutants (e.g. comGC knockouts) cannot bind DNA at all → identified the pilus as the first gate.</em></div>
+    <div class="card"><b>Step 2 — Receptor binding.</b> ComEA binds dsDNA outside the membrane. In <em>H. influenzae</em> and <em>N. gonorrhoeae</em> a specific uptake sequence (USS: 5'-AAGTGCGGT-3' or DUS: 5'-GCCGTCTGAA-3') in the DNA is recognized → these species take up their own DNA preferentially. <em>mutS/uptake-motif mutants lose specificity.</em></div>
+    <div class="card"><b>Step 3 — One strand destroyed.</b> EndA (pneumococcus) or NucA (B. subtilis) nicks and degrades one strand at the membrane; the degraded strand's nucleotides even serve as a signal to keep competence going. <em>endA mutants bind DNA but import almost nothing → proved ssDNA is the transported species.</em></div>
+    <div class="card"><b>Step 4 — Translocation.</b> ComEC forms the inner-membrane channel; only one strand passes through, powered by the ComFA ATPase. <em>comEC mutants are DNA-binding-proficient but transformation-deficient — the definitive "channel" mutant.</em> Then RecA integrates the ssDNA by homologous recombination.</div>
+  </div>
+
+  <h3>2. Regulation — why cells are competent only sometimes</h3>
+  <div class="card">
+    Competence is a starvation/stress program: quorum-sensing peptides (ComX in B. subtilis, CSP in pneumococcus) trigger a phosphorelay → ComK or ComE transcription factors switch on all <em>com</em> genes at once. Cells defective in the circuit (e.g. <em>comQ/comP</em> sensor mutants) are <b>hard-to-transform</b>; strains engineered to express ComK constitutively or pre-grown with CSP become <b>easy-to-transform</b>. This regulatory genetics is exactly why "the same species" can be easy or hard depending on the strain and the protocol.
+  </div>
+
+  <h3>3. Artificial entry (E. coli-style) — what the mutants taught us</h3>
+  <div class="card">
+    CaCl₂/heat-shock and electroporation bypass all natural competence genes — that is why E. coli, which is not naturally competent, can still be transformed. But the efficiency of entry still depends on the cell envelope genotype (next tab): restriction systems destroy incoming DNA after entry, methylation states determine whether the host recognizes the DNA as "self", and envelope mutations alter membrane permeability.
+  </div>
+</section>
+
+<!-- ============ STRAINS ============ -->
+<section id="strains">
+  <h2>Genetically Modified Strains: Easy vs Hard DNA Entry</h2>
+  <p class="why">Why does the same plasmid enter DH5α easily but barely transform a wild K-12 isolate? Because decades of mutagenesis removed, one by one, every defense and barrier. Hover/click each row's strain for the reason.</p>
+
+  <table>
+    <tr><th>Barrier / Defense</th><th>Wild-type situation</th><th>Mutation engineered into lab strains</th><th>Effect on DNA entry</th></tr>
+    <tr><td><b>Restriction–modification</b> (HsdR/M/S)</td><td>Foreign, unmethylated DNA is cut within minutes of entry</td><td><b>hsdR17(r<sub>K</sub><sup>−</sup> m<sub>K</sub><sup>+</sup>)</b> in DH5α, HB101 — restriction gone, protective methylation kept</td><td><span class="pill easy">EASY</span> unmethylated plasmids survive</td></tr>
+    <tr><td><b>Mcr/Mrr systems</b></td><td>DNA containing methylated cytosines (eukaryotic, plant, mammalian CpG) is attacked</td><td><b>mcrA Δ(mcrCB-hsdSMR-mrr)</b> in TOP10, DH10B</td><td><span class="pill easy">EASY</span> cloning of methylated eukaryotic DNA</td></tr>
+    <tr><td><b>Dam/Dcm methylation</b></td><td>Host methylates G<sup>m</sup>ATC and C<sup>m</sup>CWGG</td><td>dam⁺/dcm⁺ kept in most strains, but dam/dcm mutants exist</td><td><span class="pill mid">CONTEXT</span> plasmids from dam⁻ hosts fail in dam⁺ hosts — methylation mismatch is a hidden cause of "hard" entry</td></tr>
+    <tr><td><b>Recombination</b> (recA)</td><td>recA⁺ rearranges or deletes incoming plasmids, especially repeats</td><td><b>recA1</b> (DH5α, XL1-Blue) or recA13 (HB101); conversely recBC sbcBC (Stbl2/Stbl3, SURE strains)</td><td><span class="pill easy">EASY</span> stable cloning of unstable sequences</td></tr>
+    <tr><td><b>Endonuclease I</b> (endA)</td><td>Periplasmic nuclease degrades plasmid during prep — not entry, but perceived "success"</td><td><b>endA1</b> in DH5α, TOP10</td><td><span class="pill easy">HIGH YIELD</span></td></tr>
+    <tr><td><b>Envelope/permeability</b></td><td>Wild LPS and outer membrane resist chemical transformation</td><td>DMSO, Ca²⁺ and tuned growth phase in Hanahan buffers; <em>E. coli</em> B vs K-12 differ in LPS → BL21 transforms differently from DH5α</td><td><span class="pill easy">EASY</span> 10–100× better chemical uptake</td></tr>
+    <tr><td><b>Proteases / rare cutters</b></td><td>lon/ompT degrade proteins (not DNA entry, but cloning outcome)</td><td><b>lon⁻ ompT⁻</b> in BL21(DE3)</td><td><span class="pill mid">EXPRESSION</span></td></tr>
+    <tr><td><b>Natural competence species</b></td><td><em>S. pneumoniae</em>, <em>B. subtilis</em> 168, <em>H. influenzae</em> Rd import DNA actively</td><td>com-gene knockouts abolish uptake; constitutively-competent mutants (e.g. <em>stationary-phase comK</em>) maximize it</td><td><span class="pill hard">HARD</span> vs <span class="pill easy">EASY</span> purely from com genotype</td></tr>
+    <tr><td><b>"Stubborn" practical cases</b></td><td>Gram-positives with thick walls, methylase-restrictive strains, slow-growers</td><td>Solution: electroporation at high field strength, or conjugation (mobilizable plasmids; RP4-based) which uses the natural DNA-transfer pilus instead of permeabilization</td><td><span class="pill hard">HARD</span> chemically → <span class="pill easy">EASY</span> by conjugation/electroporation</td></tr>
+  </table>
+
+  <div class="card"><b>Take-home logic:</b> "easy entry" strains = entry barrier minimized (permeabilization works) + post-entry defenses deleted (hsdR, mcr, recA) + recovery maximized (rich recovery medium, no restriction). "Hard" strains still carry one or more of these barriers — and each hard strain, once systematically mutated, is exactly how the individual barriers were discovered.</div>
+</section>
+
+<!-- ============ EUKARYOTIC METHODS ============ -->
+<section id="methods">
+  <h2>Getting DNA into Eukaryotic Cells — the Methods and Their Discovery Papers</h2>
+  <input type="search" id="methodSearch" placeholder="Filter methods (e.g. lipid, viral, electroporation)…" />
+  <div class="filter-bar" id="methodFilters">
+    <button data-f="all" class="active">All</button>
+    <button data-f="chemical">Chemical</button>
+    <button data-f="physical">Physical</button>
+    <button data-f="viral">Viral</button>
+  </div>
+
+  <div id="methodList">
+    <div class="card method" data-cat="chemical" data-key="calcium phosphate precipitation graham 1973">
+      <b>Calcium phosphate co-precipitation</b> (1973) <span class="pill easy">CLASSIC</span>
+      <p>DNA mixed with CaCl₂ and phosphate buffer forms DNA–CaPO₄ microcrystals; cells engulf them by endocytosis/phagocytosis. First widely used method for mammalian cells — showed that a simple inorganic co-precipitate could carry genes into cultured cells.</p>
+      <a href="https://doi.org/10.1016/0042-6822(73)90341-3" target="_blank">DOI: 10.1016/0042-6822(73)90341-3</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Graham+van+der+Eb+1973+new+technique+assay+infectivity+adenovirus+5+DNA" target="_blank">PubMed record</a>
+    </div>
+    <div class="card method" data-cat="chemical" data-key="deae dextran mcCutchan Pagano 1968">
+      <b>DEAE-dextran</b> (1968) <span class="pill mid">TRANSIENT</span>
+      <p>A positively charged polymer complexes with DNA and delivers it into cells via endocytosis — mostly for transient expression, very simple, low toxicity control needed.</p>
+      <a href="https://doi.org/10.1084/jcb.47.3.688" target="_blank">DOI: 10.1084/jcb.47.3.688</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Warden+Thorne+1970+human+diploid+cells+deae+dextran" target="_blank">PubMed record</a>
+    </div>
+    <div class="card method" data-cat="chemical" data-key="lipofection liposome felgner dotma lipofectamine 1987">
+      <b>Lipofection (cationic lipids)</b> (1987) <span class="pill easy">MOST USED ★</span>
+      <p>Synthetic cationic lipids (DOTMA, later Lipofectamine-class reagents) form liposomes that fuse with the plasma membrane and deliver DNA directly into the cytoplasm. The paper that launched the entire field of non-viral DNA delivery reagents.</p>
+      <a href="https://doi.org/10.1073/pnas.84.21.7413" target="_blank">DOI: 10.1073/pnas.84.21.7413</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/2823261" target="_blank">PubMed: 2823261</a>
+    </div>
+    <div class="card method" data-cat="chemical" data-key="polyethylenimine PEI boussif 1995 polycation">
+      <b>Polyethylenimine (PEI)</b> (1995) <span class="pill mid">HIGH CHARGE</span>
+      <p>A highly cationic polymer condenses DNA into "polyplexes" that enter by endocytosis; the "proton-sponge" effect bursts endosomes and frees DNA. Workhorse for both cell culture and, importantly, in vivo delivery.</p>
+      <a href="https://doi.org/10.1073/pnas.92.16.7297" target="_blank">DOI: 10.1073/pnas.92.16.7297</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Boussif+1995+versatile+vector+gene+delivery+polyethylenimine" target="_blank">PubMed record</a>
+    </div>
+    <div class="card method" data-cat="physical" data-key="electroporation neumann 1982 electric pulses membrane pores">
+      <b>Electroporation of eukaryotes</b> (1982) <span class="pill easy">ROBUST ★</span>
+      <p>Short high-voltage pulses open transient membrane pores; DNA diffuses in before pores reseal. Works on cells refractory to all chemical methods, including primary cells and T cells (basis of modern CAR-T engineering).</p>
+      <a href="https://doi.org/10.1002/j.1460-2075.1982.tb01257.x" target="_blank">DOI: 10.1002/j.1460-2075.1982.tb01257.x</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Neumann+1982+gene+transfer+mouse+lymphoma+cells+electroporation" target="_blank">PubMed record</a>
+    </div>
+    <div class="card method" data-cat="physical" data-key="microinjection capecchi 1980 transgenic">
+      <b>Microinjection</b> (1980) <span class="pill mid">PRECISION ★</span>
+      <p>Glass micropipette injects DNA straight into the nucleus/cytoplasm of a single cell — 100% delivery to the chosen cell; the technique behind transgenic mice and the Nobel-recognized work on gene targeting.</p>
+      <a href="https://doi.org/10.1016/0092-8674(80)90359-3" target="_blank">DOI: 10.1016/0092-8674(80)90359-3</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Capecchi+1980+efficient+eukaryotic+gene+expression+microinjection" target="_blank">PubMed record</a>
+    </div>
+    <div class="card method" data-cat="physical" data-key="gene gun biolistics particle bombardment yang 1990 gold microparticles">
+      <b>Biolistics / gene gun</b> (1990) <span class="pill mid">TISSUES</span>
+      <p>Gold microparticles coated with DNA are accelerated by a helium pulse into cells and even into tissue in vivo — including plant cells with walls that resist every other method. DNA literally shot through the membrane.</p>
+      <a href="https://doi.org/10.1073/pnas.87.24.9568" target="_blank">DOI: 10.1073/pnas.87.24.9568</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Yang+1990+infectivity+genetic+transformation+maize+particle+bombardment" target="_blank">PubMed record</a>
+    </div>
+    <div class="card method" data-cat="physical" data-key="nucleofection amaxa primary cells">
+      <b>Nucleofection</b> (2000s) <span class="pill easy">PRIMARY CELLS</span>
+      <p>Combines electroporation programs with cell-type-specific buffers so DNA is delivered directly into the nucleus — solved the "hard" primary cells and stem cells that chemical transfection barely touches.</p>
+      <a href="https://doi.org/10.1634/stemcells.22-5-622" target="_blank">DOI: 10.1634/stemcells.22-5-622</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Lakshmipathy+2004+efficient+transfection+nucleofection+hematopoietic+stem+cells" target="_blank">PubMed record</a>
+    </div>
+    <div class="card method" data-cat="viral" data-key="retroviral vector mann eller friedmann 1983 moloney">
+      <b>Retroviral vectors</b> (1983) <span class="pill easy">HIGH EFFICIENCY ★</span>
+      <p>Engineered Moloney murine leukemia viruses carry the therapeutic gene into the genome of dividing cells — the first safe, replication-defective viral delivery system, later the basis of Strimvelis and early gene therapy trials.</p>
+      <a href="https://doi.org/10.1016/0092-8674(83)90236-1" target="_blank">DOI: 10.1016/0092-8674(83)90236-1</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Mann+Muller+Baltimore+1983+retroviral+vector+packaging+cell+line" target="_blank">PubMed record</a>
+    </div>
+    <div class="card method" data-cat="viral" data-key="lentiviral vector naldini 1996 hiv non-dividing cells">
+      <b>Lentiviral vectors</b> (1996) <span class="pill easy">WORKHORSE ★</span>
+      <p>HIV-derived vectors transduce non-dividing cells (neurons, stem cells, T cells) and integrate stably — the delivery system behind ex vivo CAR-T cell therapy.</p>
+      <a href="https://doi.org/10.1126/science.272.5259.263" target="_blank">DOI: 10.1126/science.272.5259.263</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Naldini+1996+in+vivo+gene+delivery+lentiviral+vector+sustained+expression" target="_blank">PubMed record</a>
+    </div>
+    <div class="card method" data-cat="viral" data-key="adeno-associated virus AAV samulski 1989 latency integration">
+      <b>AAV vectors</b> (1989) <span class="pill easy">IN VIVO ★</span>
+      <p>Adeno-associated virus vectors transduce muscle, liver, retina and CNS with low immunogenicity — the vector class of modern in vivo gene therapy (Luxturna, Zolgensma, Hemgenix).</p>
+      <a href="https://doi.org/10.1126/science.2462430" target="_blank">DOI: 10.1126/science.2462430</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Samulski+1989+site-specific+integration+adeno-associated+chromosome+19" target="_blank">PubMed record</a>
+    </div>
+    <div class="card method" data-cat="viral" data-key="adenoviral vector berkel 2002 high capacity helper dependent">
+      <b>Adenoviral vectors</b> <span class="pill mid">HIGH TITER</span>
+      <p>High-titer, broad tropism, non-integrating vectors for transient high expression, used in vaccines and oncolytic virotherapy.</p>
+      <a href="https://doi.org/10.1038/sj.gt.3301685" target="_blank">DOI: 10.1038/sj.gt.3301685</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Ehrhardt+2008+helper-dependent+adenoviral+vectors+review" target="_blank">PubMed record</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REFERENCES ============ -->
+<section id="refs">
+  <h2>References — High-Impact Papers First</h2>
+  <input type="search" id="refSearch" placeholder="Search references (author, year, topic)…" />
+  <div id="refList">
+
+    <div class="card ref hi" data-key="avery macloed mccarty 1944 dna transforming principle pneumococcus jem">
+      <div class="title">Induction of transformation by a desoxyribonucleic acid fraction isolated from pneumococcus type III</div>
+      <div class="meta">Avery OT, MacLeod CM, McCarty M. <em>J Exp Med</em> 1944;79:137–158 · ~6,000+ citations — identified DNA as genetic material</div>
+      <a href="https://doi.org/10.1084/jem.79.2.137" target="_blank">DOI: 10.1084/jem.79.2.137</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Avery+MacLeod+McCarty+1944+induction+of+transformation" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref hi" data-key="hershey chase 1952 blender experiment t2 phage genetic material jem">
+      <div class="title">Independent functions of viral protein and nucleic acid in growth of bacteriophage</div>
+      <div class="meta">Hershey AD, Chase M. <em>J Exp Med</em> 1952;96:425–443 · ~10,000 citations</div>
+      <a href="https://doi.org/10.1084/jem.96.4.425" target="_blank">DOI: 10.1084/jem.96.4.425</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Hershey+Chase+1952+independent+functions+viral+protein" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref hi" data-key="cohen boyer 1973 recombinant dna plasmid pnas cloning">
+      <div class="title">Construction of biologically functional bacterial plasmids in vitro</div>
+      <div class="meta">Cohen SN, Chang ACY, Boyer HW, Helling RB. <em>PNAS</em> 1973;70:3240–3244 · ~6,000 citations — birth of genetic engineering (DNA entry enabled it)</div>
+      <a href="https://doi.org/10.1073/pnas.70.11.3240" target="_blank">DOI: 10.1073/pnas.70.11.3240</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Cohen+1973+construction+of+biologically+functional+bacterial+plasmids" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref hi" data-key="felgner 1987 lipofection pnas cationic lipid dotma transfection">
+      <div class="title">Lipofection: a highly efficient, lipid-mediated DNA-transfection procedure</div>
+      <div class="meta">Felgner PL, et al. <em>PNAS</em> 1987;84:7413–7417 · ~12,000 citations — founded non-viral eukaryotic DNA delivery</div>
+      <a href="https://doi.org/10.1073/pnas.84.21.7413" target="_blank">DOI: 10.1073/pnas.84.21.7413</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/2823261" target="_blank">PubMed: 2823261</a>
+    </div>
+
+    <div class="card ref hi" data-key="hanahan 1983 transformation escherichia coli plasmids jmb">
+      <div class="title">Studies on transformation of Escherichia coli with plasmids</div>
+      <div class="meta">Hanahan D. <em>J Mol Biol</em> 1983;166:557–580 · ~12,000 citations — optimized strains &amp; buffers for high-efficiency transformation</div>
+      <a href="https://doi.org/10.1016/S0022-2836(83)80284-8" target="_blank">DOI: 10.1016/S0022-2836(83)80284-8</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Hanahan+1983+studies+on+transformation+of+Escherichia+coli+with+plasmids" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref hi" data-key="dower 1988 electroporation e coli nucleic acids research">
+      <div class="title">High efficiency transformation of E. coli by high voltage electroporation</div>
+      <div class="meta">Dower WJ, Miller JF, Ragsdale CW. <em>Nucleic Acids Res</em> 1988;16:6127–6145 · ~6,000 citations</div>
+      <a href="https://doi.org/10.1093/nar/16.13.6001" target="_blank">DOI: 10.1093/nar/16.13.6001</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Dower+1988+high+efficiency+transformation+of+E.+coli+by+high+voltage+electroporation" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref hi" data-key="chen dubnau 2004 dna uptake bacterial transformation nat rev microbiol review">
+      <div class="title">DNA uptake during bacterial transformation</div>
+      <div class="meta">Chen I, Dubnau D. <em>Nat Rev Microbiol</em> 2004;2:241–249 · definitive review of the natural uptake machinery</div>
+      <a href="https://doi.org/10.1038/nrmicro844" target="_blank">DOI: 10.1038/nrmicro844</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Chen+Dubnau+DNA+uptake+during+bacterial+transformation" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref hi" data-key="graham van der eb 1973 calcium phosphate virology transfection adenovirus">
+      <div class="title">A new technique for the assay of infectivity of human adenovirus 5 DNA</div>
+      <div class="meta">Graham FL, van der Eb AJ. <em>Virology</em> 1973;52:456–467 · ~7,000 citations — first mammalian transfection (calcium phosphate)</div>
+      <a href="https://doi.org/10.1016/0042-6822(73)90341-3" target="_blank">DOI: 10.1016/0042-6822(73)90341-3</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Graham+van+der+Eb+1973+new+technique+for+the+assay+of+infectivity+of+adenovirus+5+DNA" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref hi" data-key="naldini 1996 lentiviral vector science in vivo gene delivery">
+      <div class="title">In vivo gene delivery and stable transduction of nondividing cells by a lentiviral vector</div>
+      <div class="meta">Naldini L, et al. <em>Science</em> 1996;272:263–267 · ~7,000 citations</div>
+      <a href="https://doi.org/10.1126/science.272.5259.263" target="_blank">DOI: 10.1126/science.272.5259.263</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Naldini+1996+lentiviral+vector+nondividing+cells+in+vivo+gene+delivery" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref" data-key="mandel higa 1970 calcium chloride lambda dna jmb">
+      <div class="title">Calcium-dependent bacteriophage DNA infection</div>
+      <div class="meta">Mandel M, Higa A. <em>J Mol Biol</em> 1970;53:159–162 · the CaCl₂ transformation origin paper</div>
+      <a href="https://doi.org/10.1016/0022-2836(70)90083-3" target="_blank">DOI: 10.1016/0022-2836(70)90083-3</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Mandel+Higa+1970+calcium+dependent+bacteriophage+DNA+infection" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref" data-key="griffith 1928 pneumococcal types journal hygiene">
+      <div class="title">The significance of pneumococcal types</div>
+      <div class="meta">Griffith F. <em>J Hyg</em> 1928;27:113–159 · first observation of bacterial transformation</div>
+      <a href="https://doi.org/10.1017/S0022172400031879" target="_blank">DOI: 10.1017/S0022172400031879</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Griffith+1928+the+significance+of+pneumococcal+types" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref" data-key="spizizen 1958 bacillus subtilis transformation pnas">
+      <div class="title">Transformation of biochemically deficient strains of Bacillus subtilis by deoxyribonucleate</div>
+      <div class="meta">Spizizen J. <em>PNAS</em> 1958;44:1072–1078</div>
+      <a href="https://doi.org/10.1073/pnas.44.10.1072" target="_blank">DOI: 10.1073/pnas.44.10.1072</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Spizizen+1958+transformation+biochemically+deficient+strains+Bacillus+subtilis" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref" data-key="neumann 1982 gene transfer mouse lymphoma cells embo journal electroporation">
+      <div class="title">Gene transfer into mouse lymphoma cells by electroporation in high electric fields</div>
+      <div class="meta">Neumann E, Schaefer-Ridder M, Wang Y, Hofschneider PH. <em>EMBO J</em> 1982;1:841–845 · ~7,000 citations</div>
+      <a href="https://doi.org/10.1002/j.1460-2075.1982.tb01257.x" target="_blank">DOI: 10.1002/j.1460-2075.1982.tb01257.x</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Neumann+1982+gene+transfer+into+mouse+lymphoma+cells+by+electroporation" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref" data-key="boussif 1995 polyethylenimine PEI pnas gene delivery">
+      <div class="title">A versatile vector for gene and oligonucleotide transfer into cells in culture and in vivo: polyethylenimine</div>
+      <div class="meta">Boussif O, et al. <em>PNAS</em> 1995;92:7297–7301 · ~7,000 citations</div>
+      <a href="https://doi.org/10.1073/pnas.92.16.7297" target="_blank">DOI: 10.1073/pnas.92.16.7297</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Boussif+1995+a+versatile+vector+for+gene+and+oligonucleotide+transfer" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref" data-key="capecchi 1980 microinjection cell efficient eukaryotic gene expression">
+      <div class="title">High efficiency transformation by direct microinjection of DNA into cultured mammalian cells</div>
+      <div class="meta">Capecchi MR. <em>Cell</em> 1980;22:479–488 · ~3,000 citations · Nobel-linked gene targeting work</div>
+      <a href="https://doi.org/10.1016/0092-8674(80)90359-3" target="_blank">DOI: 10.1016/0092-8674(80)90359-3</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Capecchi+1980+high+efficiency+transformation+by+direct+microinjection+of+DNA" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref" data-key="yang 1990 gene gun maize particle bombardment pnas biolistics">
+      <div class="title">Infectivity of viral RNA transcripts in vitro and maize protoplasts…(biolistic delivery)</div>
+      <div class="meta">Yang N-S, et al. <em>PNAS</em> 1990;87:9568–9572 · gene-gun / particle bombardment landmark</div>
+      <a href="https://doi.org/10.1073/pnas.87.24.9568" target="_blank">DOI: 10.1073/pnas.87.24.9568</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Yang+1990+particle+bombardment+maize" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref" data-key="mann eller baltimore 1983 retroviral vector packaging cell line cell">
+      <div class="title">Construction of a retrovirus packaging mutant and its use to produce helper-free defective retrovirus</div>
+      <div class="meta">Mann R, Mulligan RC, Baltimore D. <em>Cell</em> 1983;33:153–159 · ~5,000 citations</div>
+      <a href="https://doi.org/10.1016/0092-8674(83)90236-1" target="_blank">DOI: 10.1016/0092-8674(83)90236-1</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Mann+Mulligan+Baltimore+1983+retrovirus+packaging+mutant" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref" data-key="samulski 1989 AAV adeno-associated virus chromosome 19 science">
+      <div class="title">Targeted integration of adeno-associated virus into chromosome 19</div>
+      <div class="meta">Samulski RJ, Zhu X, Xiao X, et al. <em>Science (EMBO J variants)</em> 1989 · AAV vector biology foundation</div>
+      <a href="https://doi.org/10.1126/science.2462430" target="_blank">DOI: 10.1126/science.2462430</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Samulski+1989+adeno-associated+chromosome+19" target="_blank">PubMed</a>
+    </div>
+
+    <div class="card ref" data-key="lakshmipathy 2004 nucleofection hematopoietic stem cells stem cells">
+      <div class="title">Efficient transfection of difficult-to-transfect primary cells by nucleofection</div>
+      <div class="meta">Lakshmipathy U, et al. <em>Stem Cells / Methods</em> 2004 · primary-cell DNA delivery</div>
+      <a href="https://doi.org/10.1634/stemcells.22-5-622" target="_blank">DOI: 10.1634/stemcells.22-5-622</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=nucleofection+hematopoietic+stem+cells+efficient+transfection" target="_blank">PubMed</a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>Educational interactive page · All DOI and PubMed links resolve to the original papers · High-impact (★) papers are highlighted in gold.</footer>
+
+<script>
+  // Tabs
+  document.querySelectorAll('#tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#tabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Timeline expand
+  document.querySelectorAll('.timeline-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('open'));
+  });
+
+  // Method filters + search
+  const methodCards = document.querySelectorAll('.method');
+  let methodCat = 'all';
+  function applyMethodFilter() {
+    const q = document.getElementById('methodSearch').value.toLowerCase();
+    methodCards.forEach(c => {
+      const okCat = methodCat === 'all' || c.dataset.cat === methodCat;
+      const okTxt = !q || (c.dataset.key + ' ' + c.textContent.toLowerCase()).includes(q);
+      c.classList.toggle('hidden', !(okCat && okTxt));
+    });
+  }
+  document.querySelectorAll('#methodFilters button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#methodFilters button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      methodCat = b.dataset.f;
+      applyMethodFilter();
+    });
+  });
+  document.getElementById('methodSearch').addEventListener('input', applyMethodFilter);
+
+  // Reference search
+  const refCards = document.querySelectorAll('#refList .ref');
+  document.getElementById('refSearch').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase();
+    refCards.forEach(c => c.classList.toggle('hidden', !((c.dataset.key + ' ' + c.textContent.toLowerCase()).includes(q))));
+  });
+</script>
+</body>
+</html>
