@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Understanding Sensorimotor OCD — An Educational Guide</title>
+<style>
+  :root {
+    --ink: #1e293b;
+    --muted: #64748b;
+    --brand: #4f46e5;
+    --brand-soft: #eef2ff;
+    --accent: #0d9488;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+  }
+  header {
+    background: linear-gradient(135deg, #312e81 0%, #4f46e5 55%, #0d9488 100%);
+    color: #fff;
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 10px; font-size: clamp(1.6rem, 4vw, 2.4rem); }
+  header p { margin: 0 auto; max-width: 640px; opacity: .92; }
+  .tag {
+    display: inline-block; margin-bottom: 14px; padding: 4px 14px;
+    border-radius: 999px; background: rgba(255,255,255,.18);
+    font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+  }
+  nav.toc {
+    max-width: 880px; margin: -22px auto 0; padding: 14px 20px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+    box-shadow: 0 6px 18px rgba(30,41,59,.08);
+  }
+  nav.toc a {
+    text-decoration: none; color: var(--brand); font-size: .85rem;
+    padding: 5px 12px; border-radius: 8px; background: var(--brand-soft);
+  }
+  main { max-width: 880px; margin: 0 auto; padding: 28px 20px 60px; }
+  section { margin: 40px 0; scroll-margin-top: 16px; }
+  h2 {
+    font-size: 1.35rem; margin: 0 0 6px; color: #312e81;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h2 .num {
+    background: var(--brand); color: #fff; width: 32px; height: 32px; flex: 0 0 32px;
+    border-radius: 9px; display: inline-flex; align-items: center; justify-content: center;
+    font-size: .9rem;
+  }
+  .lead { color: var(--muted); margin: 0 0 18px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 16px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 18px; box-shadow: 0 2px 8px rgba(30,41,59,.05);
+  }
+  .card h3 { margin: 0 0 8px; font-size: 1rem; color: var(--accent); }
+  .card p { margin: 0; font-size: .92rem; color: var(--ink); }
+  .quote {
+    border-left: 4px solid var(--brand); background: var(--brand-soft);
+    padding: 14px 18px; border-radius: 0 12px 12px 0; margin: 18px 0; font-style: italic;
+  }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; font-size: .92rem; }
+  th, td { padding: 10px 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+  th { background: var(--brand-soft); color: #312e81; }
+  tr:last-child td { border-bottom: none; }
+  .cycle {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: stretch; margin-top: 16px;
+  }
+  .step {
+    flex: 1 1 150px; background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 12px 14px; position: relative; font-size: .9rem;
+  }
+  .step strong { color: var(--brand); display: block; margin-bottom: 4px; }
+  .arrow { align-self: center; color: var(--brand); font-weight: 700; font-size: 1.2rem; }
+  .note {
+    background: #ecfeff; border: 1px solid #a5f3fc; border-radius: 12px;
+    padding: 14px 18px; margin-top: 18px; font-size: .92rem;
+  }
+  ul.refs { padding-left: 0; list-style: none; margin-top: 14px; }
+  ul.refs li {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 14px; margin-bottom: 8px; font-size: .9rem;
+  }
+  ul.refs a { color: var(--brand); word-break: break-all; }
+  footer { text-align: center; color: var(--muted); font-size: .82rem; padding: 24px; border-top: 1px solid var(--border); }
+  a.ext { color: var(--brand); }
+  @media (max-width: 560px) { .arrow { display: none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="tag">Educational Guide</span>
+  <h1>Understanding Sensorimotor OCD</h1>
+  <p>When awareness of your own body — breathing, blinking, swallowing — becomes impossible to “un-notice.” What it is, why it happens, and how it is treated.</p>
+</header>
+
+<nav class="toc" aria-label="Table of contents">
+  <a href="#what">What it is</a>
+  <a href="#symptoms">Signs &amp; symptoms</a>
+  <a href="#cycle">The vicious cycle</a>
+  <a href="#vs">Vs. health anxiety</a>
+  <a href="#treatment">Treatment</a>
+  <a href="#ssris">SSRIs &amp; dosing</a>
+  <a href="#matrix">Therapy matrix</a>
+  <a href="#self-help">Self-help</a>
+  <a href="#references">References</a>
+</nav>
+
+<main>
+
+<section id="what">
+  <h2><span class="num">1</span> What is Sensorimotor OCD?</h2>
+  <p class="lead">Also called <strong>somatic OCD</strong>, <strong>hyperawareness OCD</strong>, or <strong>body-focused OCD</strong>.</p>
+  <p>Sensorimotor OCD is a subtype of obsessive-compulsive disorder in which a person becomes hyper-focused on automatic bodily processes — functions the body performs thousands of times a day without conscious input, such as breathing, blinking, swallowing, the heartbeat, or even the resting position of the tongue.</p>
+  <p>For most people these processes stay in the background. For someone with sensorimotor OCD, they move to the foreground — and seem to refuse to leave. The core fear is usually not that the bodily function is dangerous, but rather the distressing belief that the awareness itself will <em>never fade back into the background</em>: <em>“What if I’m stuck like this forever?”</em></p>
+  <div class="quote">“What if I never breathe automatically again?” · “What if I can never concentrate on anything else?” — typical sensorimotor obsessions</div>
+  <p>The label describes a <strong>theme</strong> of OCD, not a separate disorder. It involves the same mechanism as all OCD: intrusive, unwanted intrusive attention, followed by mental rituals and resistance that paradoxically keep the awareness locked in place. Clinicians have described these experiences as “sensorimotor obsessions,” and research notes that systematic study of prevalence and optimal treatment is still developing.</p>
+</section>
+
+<section id="symptoms">
+  <h2><span class="num">2</span> Common Signs &amp; Symptoms</h2>
+  <p class="lead">Symptoms centre on hyperawareness of normally automatic processes.</p>
+  <div class="cards">
+    <div class="card"><h3>Breathing</h3><p>Constantly noticing each inhale and exhale, or the urge to control the breathing rhythm manually.</p></div>
+    <div class="card"><h3>Blinking</h3><p>Tracking every blink, counting blinks, or worrying the eyes feel “wrong” and will never return to automatic.</p></div>
+    <div class="card"><h3>Swallowing</h3><p>Monitoring saliva and each swallow; fear of choking or of never swallowing “automatically” again.</p></div>
+    <div class="card"><h3>Heartbeat</h3><p>Fixating on the pulse, especially when trying to work, relax, or fall asleep.</p></div>
+    <div class="card"><h3>Body position</h3><p>Awareness of where the tongue rests, how the hands sit, how it “feels” to occupy the body.</p></div>
+    <div class="card"><h3>Visual / auditory focus</h3><p>Inability to “unsee” or ignore something in the visual field, or hyperawareness of tinnitus-like sounds, floaters, or eye movements.</p></div>
+  </div>
+  <p style="margin-top:18px"><strong>Common compulsions</strong> are mostly mental: distraction attempts, reassurance-seeking, mentally checking whether the awareness is still there, and trying to force the sensation back into the background. These offer only temporary relief — and strengthen the cycle.</p>
+  <div class="note">⚠️ A distinctive feature: the meta-fear of “<strong>obsessing about obsessing</strong>” — distress that the awareness itself is permanent or a sign the mind is broken. Distress is usually driven by impaired concentration at work, in social life, and when falling asleep.</div>
+</section>
+
+<section id="cycle">
+  <h2><span class="num">3</span> The Vicious Cycle</h2>
+  <p class="lead">Why trying to stop noticing makes it worse.</p>
+  <div class="cycle">
+    <div class="step"><strong>1. Trigger</strong>A bodily sensation enters awareness (e.g., you notice your breathing).</div>
+    <div class="arrow">→</div>
+    <div class="step"><strong>2. Intrusive fixation</strong>The mind flags it as a threat: “I can’t stop noticing this.”</div>
+    <div class="arrow">→</div>
+    <div class="step"><strong>3. Anxiety &amp; resistance</strong>Fear of it lasting forever; you try to push the sensation away.</div>
+    <div class="arrow">→</div>
+    <div class="step"><strong>4. Mental rituals</strong>Distraction, checking, reassurance, control attempts.</div>
+    <div class="arrow">→</div>
+    <div class="step"><strong>5. Reinforcement</strong>Resistance keeps attention glued to the sensation — the brain learns it is “important,” and the cycle repeats.</div>
+  </div>
+  <p style="margin-top:16px">Attention naturally fluctuates. The problem is not the sensation itself — everyone notices their breathing sometimes. The problem is the <strong>struggle against the awareness</strong>, which turns a passing noticing into a permanent spotlight.</p>
+</section>
+
+<section id="vs">
+  <h2><span class="num">4</span> Sensorimotor OCD vs. Health Anxiety</h2>
+  <p class="lead">These look similar from the outside, but the structure differs — and the distinction matters for treatment.</p>
+  <table>
+    <thead><tr><th scope="col"></th><th scope="col">Sensorimotor OCD</th><th scope="col">Health anxiety (illness anxiety)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Focus</strong></td><td>Unwanted awareness of the sensation itself (“I can’t stop noticing my blinking”)</td><td>Fear of having / contracting a disease (“what if this is a brain tumour?”)</td></tr>
+      <tr><td><strong>Feared outcome</strong></td><td>Being stuck in awareness forever; losing the ability to function or “go crazy”</td><td>Being diagnosed with, suffering from, or dying of an illness</td></tr>
+      <tr><td><strong>Compulsions</strong></td><td>Mental distraction, monitoring, control attempts</td><td>Body checking, googling symptoms, doctor visits, reassurance-seeking</td></tr>
+      <tr><td><strong>Response to tests</strong></td><td>Tests rarely sought; the sensation is accepted as normal but the awareness is feared</td><td>Normal results bring only short-lived relief</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="treatment">
+  <h2><span class="num">5</span> Evidence-Based Treatment</h2>
+  <p class="lead">Recovery is absolutely possible. The core skill is changing your <em>relationship</em> with the awareness, not eliminating it.</p>
+  <div class="cards">
+    <div class="card"><h3>CBT + ERP</h3><p>Cognitive-behavioural therapy with Exposure and Response Prevention is the gold standard. With ERP, most people with OCD achieve significant symptom reduction. For sensorimotor OCD, <strong>response prevention matters more than exposure</strong>: you cannot avoid your own breathing, so the work is dropping the mental rituals and letting the awareness be present.</p></div>
+    <div class="card"><h3>Acceptance &amp; mindfulness</h3><p>Mindfulness and acceptance-based approaches (including ACT) teach you to observe sensations without treating them as threats or commands. Randomized trials support ACT as an effective OCD treatment; many protocols integrate it with ERP.</p></div>
+    <div class="card"><h3>ATT / attention training</h3><p>Attention-training components help widen the attentional spotlight and rebuild flexible focus, rather than fighting the sensation directly.</p></div>
+    <div class="card"><h3>Medication</h3><p>SSRIs may be prescribed, typically alongside therapy, especially when symptoms are severe — a decision to make with a clinician.</p></div>
+  </div>
+  <div class="note">💡 Specialised OCD treatment matters: general anxiety therapy without OCD expertise often fails here, and therapists without OCD training may accidentally reinforce the compulsions.</div>
+</section>
+
+<section id="ssris">
+  <h2><span class="num">6</span> Medication Deep-Dive: SSRIs in OCD</h2>
+  <p class="lead">SSRIs are the first-line pharmacotherapy for OCD in all major guidelines (APA, NICE, WFSBP) — but OCD dosing is different from depression dosing: <strong>higher doses, and much longer trials</strong>.</p>
+
+  <h3 style="margin:22px 0 8px">Key rules for OCD pharmacotherapy</h3>
+  <ul>
+    <li><strong>Start low, titrate high.</strong> OCD typically needs the higher end of the dose range; meta-analyses show higher SSRI doses are more effective than low or medium doses in OCD.</li>
+    <li><strong>Be patient.</strong> An adequate trial means <strong>8–12 weeks at the maximum tolerated dose</strong> (≥4–6 weeks at max dose) before declaring failure. Stopping too soon is one of the most common reasons people “fail” multiple medications. Full effect can take up to 12 weeks or longer.</li>
+    <li><strong>Maintenance.</strong> Adults who respond should usually continue the SSRI for <strong>at least 12 months after remission</strong>; OCD relapses frequently with early discontinuation.</li>
+    <li><strong>Not all SSRIs beat each other.</strong> Head-to-head comparisons show broadly similar efficacy within the class; the choice is driven by tolerability, interactions, age, pregnancy considerations, and prior response. About 40–60% of patients don’t achieve adequate relief with a single trial.</li>
+    <li><strong>For sensorimotor OCD specifically:</strong> SSRIs don’t target hyperawareness itself — they lower overall obsessional intensity, making ERP work more accessible. Medication works best combined with ERP, not instead of it.</li>
+  </ul>
+
+  <h3 style="margin:26px 0 8px">Most prescribed SSRIs: doses used in OCD</h3>
+  <table>
+    <thead><tr><th scope="col">Drug (brand)</th><th scope="col">Typical OCD dose</th><th scope="col">Max (usual)</th><th scope="col">FDA-approved for OCD</th><th scope="col">Notes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Sertraline</strong> (Zoloft)</td><td>100–200 mg/day</td><td>200 mg</td><td>Yes</td><td>Very commonly first choice: broad evidence base, good tolerability, safer in pregnancy/cardiac patients. Start 50 mg.</td></tr>
+      <tr><td><strong>Fluoxetine</strong> (Prozac)</td><td>40–80 mg/day</td><td>80 mg</td><td>Yes</td><td>Long half-life → easier discontinuation, fewer missed-dose issues. Start 20 mg.</td></tr>
+      <tr><td><strong>Fluvoxamine</strong> (Luvox)</td><td>100–300 mg/day</td><td>300 mg</td><td>Yes</td><td>Potent anti-obsessional; often second-line due to drug-interaction profile. Start 50 mg.</td></tr>
+      <tr><td><strong>Paroxetine</strong> (Paxil)</td><td>40–60 mg/day</td><td>60 mg</td><td>Yes (adults)</td><td>Most anticholinergic SSRI; avoid in pregnancy; worst discontinuation syndrome — taper very slowly.</td></tr>
+      <tr><td><strong>Escitalopram</strong> (Lexapro)</td><td>20–40 mg/day</td><td>40 mg</td><td>No (off-label)</td><td>Off-label but evidence comparable to approved SSRIs; good tolerability.</td></tr>
+      <tr><td><strong>Citalopram</strong> (Celexa)</td><td>20–60 mg/day (limit 40 mg)</td><td>40 mg (20 mg if &gt;65)</td><td>No (off-label)</td><td>QTc dose limits; less used for OCD.</td></tr>
+      <tr><td><strong>Clomipramine</strong> (Anafranil) <em>— TCA, not SSRI</em></td><td>100–250 mg/day</td><td>250 mg</td><td>Yes</td><td>Historically the largest effect sizes in meta-analyses, but second-line due to anticholinergic, cardiac, seizure and overdose risks. ECG monitoring.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">🔧 <strong>If the first SSRI fails:</strong> optimize the dose first (APA guidelines even permit off-label high-dose prescribing, e.g. sertraline up to 400 mg, in resistant cases, specialist-led). Then switch SSRI (≈20% gain), or try clomipramine. <strong>Augmentation:</strong> low-dose risperidone or aripiprazole have the best evidence (roughly a third of resistant patients respond; stronger effect if tics or poor insight) — quetiapine and olanzapine lack add-on benefit. Glutamate agents (memantine, N-acetylcysteine) are experimental adjuncts. Benzodiazepines are <em>not</em> recommended for core OCD symptoms.</div>
+</section>
+
+<section id="matrix">
+  <h2><span class="num">7</span> Psychotherapy Matrix: What Works for Sensorimotor OCD</h2>
+  <p class="lead">Sensorimotor OCD has one crucial twist: the trigger is internal and ever-present, so the therapy must change the <em>relationship with awareness</em> — not remove the sensation.</p>
+  <table>
+    <thead><tr>
+      <th scope="col">Therapy</th><th scope="col">How it works</th><th scope="col">Evidence for OCD</th><th scope="col">Fit for sensorimotor OCD</th><th scope="col">Typical course</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>ERP</strong> (Exposure &amp; Response Prevention)</td>
+        <td>Deliberately attend to the triggering sensation while blocking the compulsive response (checking, controlling, mental reassurance). Inhibitory learning decouples sensation → ritual.</td>
+        <td>★★★★★ Gold standard; ~80% achieve significant symptom reduction; effective across subtypes.</td>
+        <td><strong>Best fit</strong> — but adapted: response prevention is the star, since you can’t “expose less.” You can’t stop breathing or blinking; the work is dropping reactivity to awareness.</td>
+        <td>16–24 sessions (12–20 typical); improvement often within 8–12 sessions. Telehealth ERP is as effective as in-person.</td>
+      </tr>
+      <tr>
+        <td><strong>CBT (cognitive restructuring)</strong></td>
+        <td>Challenges catastrophic appraisals: “awareness must be controlled,” “this means I’m broken,” “it will never fade.”</td>
+        <td>★★★★☆ Strong.</td>
+        <td><strong>Strong complement to ERP</strong> — the core dysfunctional belief here is that awareness itself is dangerous/permanent. Note: generic CBT not tailored to OCD can worsen symptoms.</td>
+        <td>12–20 sessions.</td>
+      </tr>
+      <tr>
+        <td><strong>ACT</strong> (Acceptance &amp; Commitment Therapy)</td>
+        <td>Defusion &amp; acceptance: notice the sensation without obeying or fighting it; behaviour guided by values instead of symptom-removal.</td>
+        <td>★★★★☆ Moderate–strong (RCTs show significant symptom reduction vs relaxation, gains maintained at follow-up).</td>
+        <td><strong>Excellent fit</strong> — especially when control-based attempts themselves amplify distress. Integrated into many modern ERP protocols.</td>
+        <td>8–16 sessions.</td>
+      </tr>
+      <tr>
+        <td><strong>Mindfulness-based approaches</strong></td>
+        <td>Observe bodily sensations non-judgmentally; body-scan practice trains flexible attention-shifting without hyper-focusing.</td>
+        <td>★★★☆☆ Supportive adjunct.</td>
+        <td><strong>Useful but with a caveat:</strong> helpful for practicing attention flexibility; can backfire if used as an avoidance/neutralizing ritual or “cure” — and should never replace ERP.</td>
+        <td>Ongoing practice, integrated into ERP.</td>
+      </tr>
+      <tr>
+        <td><strong>Attention Training / ATT</strong></td>
+        <td>Widens the attentional spotlight and rebuilds flexible attention control; distinguishing <em>awareness</em> from <em>attention</em>.</td>
+        <td>★★★☆☆ Limited but targeted evidence (metacognitive framework).</td>
+        <td><strong>Promising for this subtype</strong> — the disorder is fundamentally an attention-control trap, which ATT addresses directly.</td>
+        <td>Weekly sessions + daily 10–12 min practice.</td>
+      </tr>
+      <tr>
+        <td><strong>Combined ERP + SSRI</strong></td>
+        <td>Medication lowers obsessional drive; therapy changes behaviour and beliefs.</td>
+        <td>★★★★★ Strongest combined evidence.</td>
+        <td><strong>Recommended for severe or partially responding cases.</strong></td>
+        <td>SSRI trial 8–12 weeks minimum; ERP in parallel.</td>
+      </tr>
+      <tr>
+        <td><strong>Generic relaxation / anxiety management</strong></td>
+        <td>Progressive muscle relaxation, paced breathing, stress reduction.</td>
+        <td>★★☆☆☆ Not an OCD treatment.</td>
+        <td><strong>Usually counterproductive</strong> — guided breathing and body relaxation direct more attention toward the body, feeding the very hyperawareness that is the problem.</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Somatic/body-based therapies</strong> (somatic experiencing etc.)</td>
+        <td>Body-focused processing developed for trauma.</td>
+        <td>★☆☆☆☆ No OCD evidence.</td>
+        <td><strong>Generally contraindicated</strong> — they intensify the attentional pattern that is the disorder.</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Supportive / psychodynamic therapy alone</strong></td>
+        <td>Insight, stress-processing, emotional support.</td>
+        <td>★☆☆☆☆ No evidence for OCD symptoms.</td>
+        <td><strong>Insufficient alone</strong> — meaningful change requires the specific behavioural intervention (ERP).</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note">📌 Bottom line: the effective package is <strong>ERP (with response prevention as the active ingredient) + cognitive/acceptance components ± SSRI</strong>. Approaches that increase body-attention or that don’t target the OCD cycle tend to maintain or worsen the problem.</div>
+</section>
+
+<section id="self-help">
+  <h2><span class="num">8</span> Self-Help Strategies That Support Recovery</h2>
+  <ul>
+    <li><strong>Stop arguing with the awareness.</strong> Aim for a “maybe it stays, maybe it goes” attitude — embrace uncertainty instead of seeking a guarantee it will fade.</li>
+    <li><strong>Label it, don’t fight it.</strong> “I’m having a sensorimotor obsession” creates distance; “I can’t stand this” tightens the loop.</li>
+    <li><strong>Drop the rituals.</strong> Reduce distraction attempts and mental checking gradually; they are the fuel of the cycle.</li>
+    <li><strong>Live your life anyway.</strong> Keep working, socialising, and sleeping as normal as possible — value-driven activity shrinks the obsession’s importance.</li>
+    <li><strong>Limit reassurance-seeking</strong>, including endless symptom googling.</li>
+    <li><strong>Seek an OCD specialist</strong> — ideally one experienced in sensorimotor/somatic presentations. Many people with OCD go undiagnosed for years; you don’t have to wait.</li>
+  </ul>
+</section>
+
+<section id="references">
+  <h2><span class="num">9</span> References &amp; Further Reading</h2>
+  <ul class="refs">
+    <li>Bio Behavioral Institute — <em>Sensorimotor OCD: When You Can’t Stop Noticing Your Own Body</em> · <a href="https://www.biobehavioralinstitute.com/blog/sensorimotor-ocd" target="_blank" rel="noopener">biobehavioralinstitute.com/blog/sensorimotor-ocd</a></li>
+    <li>Federico Ferrarese (CBT therapist) — <em>Hyperawareness OCD: Revealed</em> · <a href="https://www.federicoferrarese.co.uk/2024/09/11/hyperawareness-ocd-revealed/" target="_blank" rel="noopener">federicoferrarese.co.uk — hyperawareness-ocd-revealed</a></li>
+    <li>Federico Ferrarese — <em>Sensorimotor OCD vs Health Anxiety: 8 Important Facts</em> · <a href="https://www.federicoferrarese.co.uk/2025/09/29/sensorimotor-ocd-2/" target="_blank" rel="noopener">federicoferrarese.co.uk — sensorimotor-ocd-2</a></li>
+    <li>Neurolaunch — <em>Somatic OCD Treatment: Evidence-Based Approaches</em> · <a href="https://neurolaunch.com/somatic-ocd-treatment/" target="_blank" rel="noopener">neurolaunch.com/somatic-ocd-treatment</a></li>
+    <li>OCD &amp; Anxiety Program of Southern California — <em>Sensorimotor OCD: When the Mind Gets Stuck on Overdrive</em> · <a href="https://www.ocd-anxiety.com/blog/Sensorimotor-OCD-Treatment" target="_blank" rel="noopener">ocd-anxiety.com — Sensorimotor-OCD-Treatment</a></li>
+    <li>IOCDF (International OCD Foundation) — subtype overviews and therapist directory · <a href="https://iocdf.org/" target="_blank" rel="noopener">iocdf.org</a></li>
+    <li>NOCD — sensorimotor/somatic OCD education and ERP-based therapy · <a href="https://www.treatmyocd.com/" target="_blank" rel="noopener">treatmyocd.com</a></li>
+    <li>Read the original clinical description: Williams, D. C., &amp; McKinney, A. P. (2015). <em>Sensorimotor obsessions in OCD: an exploration of terminology, phenomenology, and treatment</em>. DOI: <a href="https://doi.org/10.1186/s40445-015-0023-y" target="_blank" rel="noopener">10.1186/s40445-015-0023-y</a></li>
+    <li>NICE Clinical Guideline CG31 — OCD and body dysmorphic disorder: treatment (SSRI trial durations, augmentation steps) · <a href="https://www.nice.org.uk/guidance/cg31" target="_blank" rel="noopener">nice.org.uk/guidance/cg31</a></li>
+    <li>Frontiers in Psychiatry (2021) — <em>Optimal Dose of Serotonin Reuptake Inhibitors for OCD: Systematic Review and Dose–Response Meta-Analysis</em> · <a href="https://doi.org/10.3389/fpsyt.2021.717999" target="_blank" rel="noopener">doi.org/10.3389/fpsyt.2021.717999</a></li>
+    <li>Frontiers in Psychiatry (2023) — <em>Therapies for OCD: Current State of the Art and Perspectives for Treatment-Resistant Patients</em> · <a href="https://doi.org/10.3389/fpsyt.2023.1065812" target="_blank" rel="noopener">doi.org/10.3389/fpsyt.2023.1065812</a></li>
+    <li>Neurolaunch — <em>Lexapro for OCD: Effectiveness and Dosage</em> (SSRI dose comparison table) · <a href="https://neurolaunch.com/lexapro-for-ocd/" target="_blank" rel="noopener">neurolaunch.com/lexapro-for-ocd</a></li>
+    <li>OCD Center of Los Angeles — <em>Sensorimotor / Hyperawareness OCD</em> (ERP examples for this subtype) · <a href="https://ocdla.com/sensorimotor-hyperawareness-ocd" target="_blank" rel="noopener">ocdla.com/sensorimotor-hyperawareness-ocd</a></li>
+    <li>Murad Counseling — <em>Sensorimotor OCD: Body Awareness &amp; ERP Therapy</em> (what ERP is/isn’t for this subtype; contraindicated approaches) · <a href="https://muradcounseling.com/ocd-themes/sensorimotor-ocd/" target="_blank" rel="noopener">muradcounseling.com — sensorimotor-ocd</a></li>
+    <li>The OCD &amp; Anxiety Center — <em>Sensorimotor OCD: Symptoms and Treatments</em> (awareness vs. attention; body-scan attention shifting) · <a href="https://theocdandanxietycenter.com/sensorimotor-ocd-symptoms-and-treatment/" target="_blank" rel="noopener">theocdandanxietycenter.com — sensorimotor-ocd</a></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  This page is for education only and is not a substitute for professional diagnosis or treatment. If symptoms cause significant distress, consult a qualified mental-health professional experienced in OCD.
+</footer>
+
+</body>
+</html>
