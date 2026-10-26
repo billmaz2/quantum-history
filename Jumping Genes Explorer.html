@@ -1,0 +1,294 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Jumping Genes Explorer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: lab-notebook column. Sticky chip filter, vertical timeline with year gutter, bench simulator, comparison table, reference list. */
+:root{
+  --bg:#f1f5f3; --panel:#ffffff; --fg:#13231f; --muted:#52645f; --rule:#cdd9d4;
+  --accent:#0d6d8a;   /* host DNA / primary */
+  --insert:#b3245e;   /* inserted element */
+  --tsd:#c28a00;      /* target-site duplication */
+  --ok:#2f7d4f;
+  --f-display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1714; --panel:#14221e; --fg:#e4efea; --muted:#9bb0a8; --rule:#2a3d37;
+  --accent:#5cc3e0; --insert:#ff6b9a; --tsd:#f0b429; --ok:#6fcf97; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1714; --panel:#14221e; --fg:#e4efea; --muted:#9bb0a8; --rule:#2a3d37;
+  --accent:#5cc3e0; --insert:#ff6b9a; --tsd:#f0b429; --ok:#6fcf97; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  padding-block:0 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--tsd);outline-offset:2px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+header.top{padding-block:40px 24px;border-bottom:2px solid var(--fg)}
+header.top h1{font-size:clamp(2rem,7vw,3.4rem);letter-spacing:-.02em;margin-block:10px 14px}
+header.top p{margin:0;max-width:60ch;color:var(--muted);font-size:1.05rem}
+.strand{display:flex;gap:2px;margin-top:22px;font-family:var(--f-mono);font-size:13px;flex-wrap:wrap;overflow-wrap:anywhere}
+.strand span{padding:2px 5px;background:var(--panel);border:1px solid var(--rule)}
+.strand .i{background:var(--insert);color:#fff;border-color:var(--insert)}
+.strand .t{background:var(--tsd);color:#1a1300;border-color:var(--tsd)}
+section{padding-block:40px 8px}
+section>h2{font-size:1.7rem;margin-block:6px 10px}
+section>p.lede{max-width:62ch;color:var(--muted);margin:0 0 20px}
+
+/* overview trio */
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.trio>div{background:var(--panel);border:1px solid var(--rule);padding:16px;min-width:0}
+.trio h3{font-size:1.15rem;margin-bottom:6px}
+.trio .tag{font-family:var(--f-mono);font-size:12px;color:var(--insert)}
+.trio p{margin:6px 0 0;font-size:.97rem}
+
+/* timeline */
+.chips{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding-block:10px;display:flex;gap:8px;flex-wrap:wrap;z-index:5;border-bottom:1px solid var(--rule)}
+.chip{font-family:var(--f-display);font-size:14px;font-weight:500;border:1.5px solid var(--fg);background:transparent;color:var(--fg);padding:6px 12px;cursor:pointer;border-radius:999px}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+ol.tl{list-style:none;margin:18px 0 0;padding:0;border-left:2px solid var(--rule)}
+ol.tl li{position:relative;padding:0 0 18px 18px}
+ol.tl li::before{content:"";position:absolute;left:-7px;top:9px;width:12px;height:12px;background:var(--bg);border:2px solid var(--c,var(--accent));border-radius:50%}
+.ev{background:var(--panel);border:1px solid var(--rule);width:100%;text-align:left;font:inherit;color:inherit;padding:12px 14px;cursor:pointer;display:block}
+.ev .yr{font-family:var(--f-mono);font-size:13px;font-weight:500;color:var(--c,var(--accent))}
+.ev .hd{font-family:var(--f-display);font-weight:700;font-size:1.08rem;display:block;margin-top:2px}
+.ev .cat{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);float:right;margin-left:8px}
+.ev .more{display:none;margin-top:10px;font-weight:400;font-size:.97rem}
+.ev[aria-expanded="true"] .more{display:block}
+.ev .more a{overflow-wrap:anywhere}
+.ev .more ul{margin:8px 0 0;padding-left:18px}
+li[data-c="mu"]{--c:var(--insert)} li[data-c="is"]{--c:var(--accent)} li[data-c="tn"]{--c:var(--ok)} li[data-c="mech"]{--c:var(--tsd)} li[data-c="maize"]{--c:var(--muted)}
+
+/* experiments */
+details.x{background:var(--panel);border:1px solid var(--rule);margin-bottom:10px}
+details.x summary{cursor:pointer;padding:12px 14px;font-family:var(--f-display);font-weight:700;list-style:none}
+details.x summary::after{content:"+";float:right;font-family:var(--f-mono)}
+details.x[open] summary::after{content:"\2212"}
+details.x .b{padding:0 14px 14px;display:grid;gap:10px}
+.b h4{margin:0;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.b p{margin:2px 0 0}
+
+/* bench */
+.bench{background:var(--panel);border:1px solid var(--fg);padding:16px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.row label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);min-width:0}
+select,input[type=range]{font:inherit;color:var(--fg);background:var(--bg);border:1.5px solid var(--fg);padding:6px 8px;max-width:100%}
+input[type=range]{padding:0;accent-color:var(--insert);flex:1 1 160px}
+.seq{font-family:var(--f-mono);font-size:15px;overflow-x:auto;white-space:nowrap;padding:12px;background:var(--bg);border:1px solid var(--rule);letter-spacing:.06em}
+.seq .host{color:var(--accent)} .seq .tsd{background:var(--tsd);color:#1a1300;padding:1px 2px} .seq .el{background:var(--insert);color:#fff;padding:1px 6px;margin:0 2px}
+.note{font-size:.95rem;margin:10px 0 0;color:var(--muted)}
+.genes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:6px}
+.gene{border:1.5px solid var(--fg);padding:8px;text-align:center;font-family:var(--f-mono);font-size:13px;cursor:pointer;background:var(--bg);color:var(--fg)}
+.gene[aria-pressed="true"]{border-color:var(--insert);box-shadow:inset 0 0 0 2px var(--insert)}
+.bar{height:10px;background:var(--rule);margin-top:6px;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;background:var(--accent);transition:width .3s}
+.bar.off i{background:var(--insert)}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--f-mono);font-size:12px;margin-top:10px}
+.legend b{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:5px}
+
+/* table */
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.93rem}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--f-display);font-size:.9rem}
+td:first-child,th:first-child{font-family:var(--f-display);font-weight:700;white-space:nowrap}
+
+/* refs */
+.refs{columns:1;padding-left:20px;margin:0}
+.refs li{margin-bottom:8px;overflow-wrap:anywhere;font-size:.95rem}
+footer{margin-top:32px;padding-top:14px;border-top:1px solid var(--rule);color:var(--muted);font-size:.9rem}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Bacterial genetics · 1944 to 2012</div>
+  <h1>How Mu, IS elements and transposons were found</h1>
+  <p>Three kinds of mobile DNA were discovered in E. coli by different routes: a mutagenic phage, mutations that would not revert, and drug resistance that moved between plasmids. Each result turned out to describe the same process, transposition.</p>
+  <div class="strand" aria-hidden="true"><span>G</span><span>C</span><span>T</span><span>A</span><span>G</span><span class="t">G</span><span class="t">C</span><span class="t">A</span><span class="t">T</span><span class="t">T</span><span class="i">IS / Tn / Mu</span><span class="t">G</span><span class="t">C</span><span class="t">A</span><span class="t">T</span><span class="t">T</span><span>C</span><span>G</span><span>A</span></div>
+</header>
+
+<section id="overview">
+  <div class="eyebrow">The three discoveries</div>
+  <h2>Where each element came from</h2>
+  <p class="lede">All three are DNA segments that move to new sites without needing sequence homology and without the host's RecA recombination system.</p>
+  <div class="trio">
+    <div><span class="tag">Phage Mu</span><h3>A virus that mutates its host</h3>
+      <p>Larry Taylor (UC Berkeley) noticed in the late 1950s that infection by phage Mu-1 produced mutations at many different loci in E. coli. He named it Mu for "mutator" and compared it to McClintock's controlling elements in maize (PNAS, 1963). Its genome is 36,717 nucleotides.</p></div>
+    <div><span class="tag">IS elements</span><h3>Mutations that would not revert normally</h3>
+      <p>Strongly polar mutations in the gal and lac operons did not behave like point mutations, frameshifts or deletions. Shapiro in London and Jordan, Saedler and Starlinger in Cologne showed by the end of 1968 that they were insertions of DNA pieces. They were named insertion sequences (IS).</p></div>
+    <div><span class="tag">Tn elements</span><h3>Resistance genes that jump</h3>
+      <p>Antibiotic resistance spread between plasmids even in recA mutant hosts. Hedges and Jacob (1974) called these units of transposition "transposons". Tn3 carries ampicillin resistance. Tn5 and Tn10 are composite: a resistance gene flanked by two IS copies.</p></div>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="eyebrow">Timeline</div>
+  <h2>From maize kernels to purified enzymes</h2>
+  <p class="lede">Filter by element type and tap an entry for the experiment and its source links.</p>
+  <div class="chips" id="chips" role="group" aria-label="Filter timeline">
+    <button class="chip" data-f="all" aria-pressed="true">All</button>
+    <button class="chip" data-f="maize" aria-pressed="false">Maize</button>
+    <button class="chip" data-f="mu" aria-pressed="false">Mu</button>
+    <button class="chip" data-f="is" aria-pressed="false">IS</button>
+    <button class="chip" data-f="tn" aria-pressed="false">Tn</button>
+    <button class="chip" data-f="mech" aria-pressed="false">Mechanism</button>
+  </div>
+  <ol class="tl" id="tl"></ol>
+</section>
+
+<section id="experiments">
+  <div class="eyebrow">Experiments</div>
+  <h2>Four experiments that defined the concept</h2>
+  <p class="lede">What was done, what was seen, and what it proved.</p>
+
+  <details class="x" open><summary>1. Mu-induced mutations at many loci (Taylor, 1963)</summary><div class="b">
+    <div><h4>Done</h4><p>E. coli K-12 was infected with Mu-1 and lysogens were screened for new nutritional requirements and other mutant phenotypes.</p></div>
+    <div><h4>Seen</h4><p>Mutations appeared at many different genes, and the phage was the cause. Later work found a prophage sitting inside the mutated gene.</p></div>
+    <div><h4>Showed</h4><p>A phage genome can integrate into many sites and disrupt the gene it lands in. Bukhari and Zipser (1972) tested this at a single gene and found Mu DNA inserted at many positions within it. Electron microscopy (Martuscelli et al., 1971) showed Mu inserted as a linear piece in lysogens.</p></div>
+  </div></details>
+
+  <details class="x"><summary>2. Polar gal and lac mutations are insertions (1967 to 1972)</summary><div class="b">
+    <div><h4>Done</h4><p>Spontaneous gal mutations were selected for failure to grow on galactose. They were mapped, tested for reversion and suppression, and the DNA from reverting and non-reverting strains was compared by density and by electron microscopy.</p></div>
+    <div><h4>Seen</h4><p>The mutations were strongly polar, shutting off genes downstream in the operon. Suppressors and mutagens that act on point mutations did not affect them. Reversion by recombination or loss changed the DNA's buoyant density, consistent with foreign DNA being present. Heteroduplex electron microscopy then located the insertions, and lac and gal insertions turned out to be a small set of specific sequences.</p></div>
+    <div><h4>Showed</h4><p>Short, specific DNA segments (IS elements) insert into genes, silence downstream genes and can be lost again. Multiple copies of IS1 and IS2 exist in E. coli K-12 and on F and R plasmids.</p></div>
+  </div></details>
+
+  <details class="x"><summary>3. Ampicillin resistance moves without RecA (1974 to 1979)</summary><div class="b">
+    <div><h4>Done</h4><p>Ampicillin resistance was followed between plasmids in conjugation crosses, in hosts with and without the recA gene. The moved segment was then mapped by heteroduplex electron microscopy, and Tn3 was later sequenced.</p></div>
+    <div><h4>Seen</h4><p>The resistance gene moved equally well in recA strains, so homologous recombination was not needed. Tn3 is 4,957 bp with 38 bp inverted repeats. Besides the bla gene it encodes a transposase and a resolvase. Insertion leaves a 5 bp direct repeat.</p></div>
+    <div><h4>Showed</h4><p>Genes can ride on a transposable unit. Composite elements such as Tn10 (about 9.3 kb, flanked by IS10) and Tn5 (flanked by IS50) are two IS copies carrying a gene between them, and the IS copies can also move on their own.</p></div>
+  </div></details>
+
+  <details class="x"><summary>4. Replicative transposition and cointegrates (1979 to 1985)</summary><div class="b">
+    <div><h4>Done</h4><p>Cointegrate structures (two replicons fused with two copies of the element) were analysed for Mu and Tn3. Mizuuchi (1983) then reproduced Mu transposition in vitro with purified components.</p></div>
+    <div><h4>Seen</h4><p>Mu replication is tied to transposition, and the element stays at its donor site while a copy arrives at a new one. Craigie and Mizuuchi (1985) isolated the strand-transfer intermediate in which donor and target DNA are covalently joined.</p></div>
+    <div><h4>Showed</h4><p>Shapiro's 1979 model: element ends join the target through staggered cuts, creating replication forks at each end. Replication through the element gives the cointegrate, and resolution gives one copy at each site. Tn10 and Tn5 behave differently from Tn3: Tn5 transposition does not depend on recA, while its cointegrate formation does.</p></div>
+  </div></details>
+</section>
+
+<section id="bench">
+  <div class="eyebrow">Bench</div>
+  <h2>Insert an element and see what happens</h2>
+  <p class="lede">A schematic of two consequences discussed above. Moving the slider changes the insertion point and shows the duplicated target sequence. Choosing a gene shows polarity in the gal operon (order galE, galT, galK).</p>
+  <div class="bench">
+    <div class="row"><label for="el">Element</label>
+      <select id="el">
+        <option value="5|Mu">Mu (5 bp)</option>
+        <option value="5|Tn3">Tn3 (5 bp)</option>
+        <option value="5|IS2">IS2 (5 bp)</option>
+        <option value="9|IS1">IS1 (9 bp)</option>
+        <option value="9|Tn10">Tn10 (9 bp)</option>
+        <option value="9|Tn5">Tn5 (9 bp)</option>
+      </select></div>
+    <div class="row"><label for="pos">Insertion point</label><input type="range" id="pos" min="1" max="12" value="5"></div>
+    <div class="seq" id="seq" aria-live="polite"></div>
+    <p class="note" id="seqnote"></p>
+
+    <div class="row" style="margin-top:18px"><label>Hit which gene?</label></div>
+    <div class="genes" id="genes">
+      <button class="gene" data-g="0" aria-pressed="false">galE<div class="bar"><i></i></div></button>
+      <button class="gene" data-g="1" aria-pressed="true">galT<div class="bar"><i></i></div></button>
+      <button class="gene" data-g="2" aria-pressed="false">galK<div class="bar"><i></i></div></button>
+    </div>
+    <p class="note" id="polnote"></p>
+    <div class="legend"><span><b style="background:var(--accent)"></b>host DNA / expression</span><span><b style="background:var(--tsd)"></b>target-site duplication</span><span><b style="background:var(--insert)"></b>inserted element / lost expression</span></div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="eyebrow">Comparison</div>
+  <h2>Mu, IS, Tn3 and composite transposons</h2>
+  <div class="scroll"><table>
+    <tr><th>Feature</th><th>Phage Mu</th><th>IS element</th><th>Tn3 (class II)</th><th>Tn5 / Tn10 (class I)</th></tr>
+    <tr><td>Found by</td><td>Mutator phage, 1963</td><td>Polar gal / lac mutations, 1967 to 1969</td><td>Ampicillin resistance moving between plasmids, 1974 to 1975</td><td>Kanamycin and tetracycline resistance moving, 1975</td></tr>
+    <tr><td>Carries</td><td>Phage genes (55 proteins)</td><td>Transposase only</td><td>bla, transposase, resolvase</td><td>Resistance gene between two IS copies</td></tr>
+    <tr><td>Ends</td><td>Mu ends</td><td>Short inverted repeats</td><td>38 bp inverted repeats</td><td>IS50 (Tn5) or IS10 (Tn10)</td></tr>
+    <tr><td>Target repeat</td><td>5 bp</td><td>IS1 9 bp, IS2 5 bp</td><td>5 bp</td><td>9 bp</td></tr>
+    <tr><td>Mechanism</td><td>Replicative, tied to phage DNA replication</td><td>Varies by element</td><td>Replicative, forms cointegrates</td><td>Tn10 not seen to form cointegrates in classic experiments</td></tr>
+  </table></div>
+</section>
+
+<section id="refs">
+  <div class="eyebrow">Sources</div>
+  <h2>References and links</h2>
+  <ol class="refs" id="reflist"></ol>
+  <footer>Dates and details follow the linked papers and reviews. The bench is a teaching schematic, not measured data.</footer>
+</section>
+</div>
+
+<script>
+var EV=[
+{y:"1944 to 1950",c:"maize",t:"McClintock finds Ac and Ds in maize",d:"Studying chromosome breakage and kernel colour patterns at Cold Spring Harbor, Barbara McClintock found a locus (Ds) that breaks chromosomes and moves, and an activator (Ac) needed for it. Her 1950 PNAS paper described mutable loci. She received the 1983 Nobel Prize.",r:[["PNAS Classic Article commentary (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC3528533"],["McClintock 1950, original paper (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC1063197"],["Embryo Project: McClintock's maize experiments","https://embryo.asu.edu/pages/barbara-mcclintocks-transposon-experiments-maize-1931-1951"]]},
+{y:"Late 1950s",c:"mu",t:"Taylor observes mutator phage Mu-1",d:"Larry Taylor at UC Berkeley saw that a temperate phage of E. coli K-12 induced mutations at many loci.",r:[["Bacteriophage Mu (Wikipedia)","https://en.wikipedia.org/wiki/Bacteriophage_Mu"]]},
+{y:"1963",c:"mu",t:"Taylor publishes bacteriophage-induced mutation",d:"The PNAS paper reported Mu-1 induced mutations and likened them to McClintock's controlling elements, hence the name Mu.",r:[["Taylor 1963, PNAS (PMC)","https://www.ncbi.nlm.nih.gov/pmc/articles/PMC221271"]]},
+{y:"1964",c:"tn",t:"Phage P1 picks up a resistance gene",d:"One of the earliest observations of a compound transposon moving was acquisition of chloramphenicol resistance by phage P1 from the multiresistance plasmid Rms14.",r:[["TnPedia: compound transposons","https://tncentral.ncc.unesp.br/TnPedia/index.php/Transposons_families/compound_transposons"]]},
+{y:"1966 to 1968",c:"is",t:"Strong polar mutations in gal and lac",d:"Malamy (lac) and Saedler and Starlinger (gal) isolated polar mutations that did not look like point mutations. Jordan, Saedler and Starlinger concluded in 1968 that O0 and strong polar gal mutations are insertions.",r:[["Jordan, Saedler, Starlinger 1968, Mol Gen Genet","https://doi.org/10.1007/BF00433726"],["Starlinger and Saedler, Citation Classic","https://garfield.library.upenn.edu/classics1984/A1984SP75200001.pdf"]]},
+{y:"1969",c:"is",t:"Shapiro proposes insertion of foreign DNA into gal",d:"Shapiro showed that extreme polar gal mutations behave as linear insertions of foreign DNA, including a change in buoyant density on reversion. His 1967 Cambridge thesis contains the first suggestion of transposable elements in bacteria.",r:[["Shapiro 1969, J Mol Biol (PDF copy)","https://bi116.caltech.edu/documents/7723/Wk2-Shapiro.pdf"],["Shapiro 1969, DOI","https://doi.org/10.1016/0022-2836(69)90298-8"]]},
+{y:"1971",c:"mu",t:"Electron microscopy shows linear insertion of Mu",d:"Martuscelli, Taylor and colleagues found that Mu-1 is inserted as a linear piece of DNA in lysogenic bacteria.",r:[["Martuscelli et al. 1971, J Virol","https://doi.org/10.1128/jvi.8.4.551-563.1971"]]},
+{y:"1972",c:"mu",t:"Mu inserts at random within a single gene",d:"Bukhari and Zipser reported random insertion of Mu-1 DNA within one gene, Nature New Biology.",r:[["Bukhari and Zipser 1972, Nature New Biology","https://www.doi.org/10.1038/NEWBIO236240A0"]]},
+{y:"1972",c:"is",t:"IS named and mapped by electron microscopy",d:"Starlinger and Saedler suggested the name IS (insertion sequence) after considering PS (polar sequence). Malamy, Fiandt and Szybalski used heteroduplex electron microscopy to show that lac polar insertions consist of only a few specific sequences. Saedler and Heiss (1973) found multiple IS1 and IS2 copies in the K-12 chromosome.",r:[["Malamy, Fiandt and Szybalski 1972","https://www.doi.org/10.1007/BF00333859"],["Starlinger and Saedler, Citation Classic","https://garfield.library.upenn.edu/classics1984/A1984SP75200001.pdf"],["IS2 and IS5 in Mu mutants and lambda (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC222181"]]},
+{y:"1974",c:"tn",t:"Hedges and Jacob coin \"transposon\"",d:"They showed ampicillin resistance moving from RP4 to other replicons and designated DNA sequences with transposition potential as transposons.",r:[["Hedges and Jacob 1974, Mol Gen Genet","https://doi.org/10.1007/BF00268228"],["TnPedia: Tn3 family","https://tncentral.ncc.unesp.br/TnPedia/index.php/Transposons_families/Tn3_family"]]},
+{y:"1975",c:"tn",t:"Tn3, Tn5 and Tn10 characterised",d:"Heffron, Rubens and Falkow described translocation of the ampicillin resistance sequence (Tn3). Berg and colleagues showed transposition of R factor genes to phage lambda (Tn5, kanamycin). Kleckner, Chan, Tye and Botstein used a tetracycline resistance element with an inverted repetition for mutagenesis (Tn10).",r:[["Berg et al. 1975, PNAS","https://doi.org/10.1073/pnas.72.9.3628"],["Rubens, Heffron and Falkow, J Bacteriol (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC218236"],["Transposon Registry (Tn1 to Tn7)","https://transposon.lstmed.ac.uk/tn-registry"]]},
+{y:"1979",c:"tn",t:"Tn3 sequenced",d:"Heffron and colleagues reported the 4,957 bp Tn3 sequence: 38 bp inverted repeats and genes for transposase, resolvase and beta-lactamase.",r:[["Heffron et al. 1979, Cell","https://doi.org/10.1016/0092-8674(79)90228-9"]]},
+{y:"1979",c:"mech",t:"Shapiro's replicative transposition model",d:"A four-step model in which element ends join target DNA and replication forks form at each end, so the element stays at the donor site while moving to a new one. It explained Mu replication and Tn3 cointegrates.",r:[["Shapiro 1979, PNAS (PDF)","https://shapiro.bsd.uchicago.edu/Shapiro.1979.MolecularModel.pdf"],["Harshey 2012, The Mu story (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC3562280"]]},
+{y:"1981 to 1982",c:"mech",t:"Models for cointegrates versus direct transposition",d:"Galas and Chandler proposed a model allowing either cointegrate formation or direct transposition. Hirschel, Galas and Chandler showed Tn5 transposition does not need recA while Tn5 cointegrate formation does.",r:[["Galas and Chandler 1981 (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC320274"],["Hirschel, Galas and Chandler 1982 (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC346708"]]},
+{y:"1983",c:"mech",t:"Mu transposition in a test tube",d:"Mizuuchi reproduced Mu transposition in vitro. Ac and Ds were also cloned by Fedoroff and colleagues, and McClintock received the Nobel Prize.",r:[["Mizuuchi 1983, Cell","https://doi.org/10.1016/0092-8674(83)90111-3"]]},
+{y:"1985",c:"mech",t:"Strand-transfer intermediate isolated",d:"Craigie and Mizuuchi described the structure in which Mu donor DNA and target DNA are covalently joined at the start of transposition.",r:[["Craigie and Mizuuchi 1985, Cell","https://doi.org/10.1016/s0092-8674(85)80067-2"],["Defined strand-transfer system (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC391374"]]},
+{y:"2012",c:"mu",t:"The Mu story reviewed",d:"Harshey's review traces how Mu provided the first molecular evidence of insertion elements in E. coli and a model for many later studies of transposition.",r:[["Harshey 2012, Mobile DNA (PMC)","https://pmc.ncbi.nlm.nih.gov/articles/PMC3562280"]]}
+];
+var CAT={maize:"Maize",mu:"Mu",is:"IS",tn:"Tn",mech:"Mechanism"};
+var tl=document.getElementById("tl"),refs={};
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+EV.forEach(function(e,i){
+  var li=document.createElement("li");li.dataset.c=e.c;
+  var links=e.r.map(function(r){refs[r[1]]=r[0];return '<li><a href="'+r[1]+'" target="_blank" rel="noopener">'+esc(r[0])+'</a></li>'}).join("");
+  li.innerHTML='<button class="ev" aria-expanded="'+(i===2?"true":"false")+'"><span class="cat">'+CAT[e.c]+'</span><span class="yr">'+e.y+'</span><span class="hd">'+esc(e.t)+'</span><span class="more"><span>'+esc(e.d)+'</span><ul>'+links+'</ul></span></button>';
+  tl.appendChild(li);
+});
+tl.addEventListener("click",function(ev){
+  if(ev.target.closest("a"))return;
+  var b=ev.target.closest(".ev");if(!b)return;
+  b.setAttribute("aria-expanded",b.getAttribute("aria-expanded")==="true"?"false":"true");
+});
+document.getElementById("chips").addEventListener("click",function(ev){
+  var c=ev.target.closest(".chip");if(!c)return;
+  document.querySelectorAll(".chip").forEach(function(x){x.setAttribute("aria-pressed",x===c?"true":"false")});
+  var f=c.dataset.f;
+  tl.querySelectorAll("li").forEach(function(li){li.hidden=!(f==="all"||li.dataset.c===f)});
+});
+var rl=document.getElementById("reflist");
+Object.keys(refs).forEach(function(u){var li=document.createElement("li");li.innerHTML='<a href="'+u+'" target="_blank" rel="noopener">'+esc(refs[u])+'</a>';rl.appendChild(li)});
+
+/* bench */
+var TARGET="GCTAGGCATTCGATCCGTAAGCTTA";
+var el=document.getElementById("el"),pos=document.getElementById("pos"),seq=document.getElementById("seq"),sn=document.getElementById("seqnote");
+function drawSeq(){
+  var p=el.value.split("|"),n=parseInt(p[0],10),name=p[1];
+  var i=parseInt(pos.value,10);
+  var tsd=TARGET.substr(i,n);
+  seq.innerHTML='<span class="host">'+TARGET.slice(0,i)+'</span><span class="tsd">'+tsd+'</span><span class="el">'+name+'</span><span class="tsd">'+tsd+'</span><span class="host">'+TARGET.slice(i+n)+'</span>';
+  sn.textContent=name+" inserts into the target and the "+n+" bp it staggers across ("+tsd+") ends up on both sides as a direct repeat.";
+}
+el.addEventListener("change",drawSeq);pos.addEventListener("input",drawSeq);drawSeq();
+var gb=document.querySelectorAll(".gene"),pn=document.getElementById("polnote");
+var NAMES=["galE","galT","galK"];
+function drawGenes(h){
+  gb.forEach(function(b,k){
+    var on=(k===h);b.setAttribute("aria-pressed",on?"true":"false");
+    var bar=b.querySelector(".bar"),fill=b.querySelector("i");
+    var off=(k>=h);
+    bar.className="bar"+(off?" off":"");
+    fill.style.width=(k<h?"100%":(k===h?"0%":"15%"));
+  });
+  pn.textContent=h===2?"The insertion is in galK, the last gene. galE and galT are still made; only galK is lost.":"The insertion is in "+NAMES[h]+". Genes upstream are still expressed, while "+NAMES.slice(h).join(" and ")+" lose expression. This is polarity, and it was the clue that pointed to insertions.";
+}
+gb.forEach(function(b,k){b.addEventListener("click",function(){drawGenes(k)})});
+drawGenes(1);
+</script>
+
+</body></html>

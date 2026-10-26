@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>From Quantum Mechanics to Quantum Electrodynamics — A Historical Journey</title>
+<style>
+  :root {
+    --bg: #0b1021;
+    --panel: #141b33;
+    --panel2: #1b2342;
+    --ink: #e8ecf7;
+    --dim: #9aa5c4;
+    --accent: #62d0ff;
+    --accent2: #ffb454;
+    --exp: #7ce38b;
+    --con: #ff8fa3;
+    font-family: "Georgia", "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    background-image: radial-gradient(1200px 600px at 80% -10%, #1c2a55 0%, transparent 60%),
+                      radial-gradient(900px 500px at -10% 30%, #221a3d 0%, transparent 55%);
+    line-height: 1.65;
+  }
+  header {
+    padding: 64px 24px 32px; text-align: center;
+  }
+  header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.6rem); margin: 0 0 12px;
+    letter-spacing: .5px;
+    background: linear-gradient(90deg, var(--accent), #b28bff, var(--accent2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  header p { color: var(--dim); max-width: 760px; margin: 0 auto; }
+  .legend {
+    display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;
+    margin-top: 18px; font-size: .9rem; color: var(--dim);
+  }
+  .legend span::before { content: "● "; }
+  .legend .l-con::before { color: var(--con); }
+  .legend .l-exp::before { color: var(--exp); }
+  .legend .l-both::before { color: var(--accent2); }
+
+  nav.toc {
+    max-width: 900px; margin: 24px auto; padding: 0 16px;
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+  }
+  nav.toc a {
+    color: var(--accent); text-decoration: none; font-size: .85rem;
+    background: var(--panel); border: 1px solid #2a3457; border-radius: 999px;
+    padding: 6px 14px; font-family: system-ui, sans-serif;
+  }
+  nav.toc a:hover { background: var(--panel2); }
+
+  main { max-width: 900px; margin: 0 auto; padding: 24px 16px 80px; }
+
+  section.era {
+    margin: 48px 0;
+  }
+  section.era > h2 {
+    font-size: 1.4rem; color: var(--accent2);
+    border-bottom: 1px solid #2a3457; padding-bottom: 8px;
+  }
+  section.era > p.era-intro { color: var(--dim); font-style: italic; }
+
+  .event {
+    position: relative; background: var(--panel);
+    border: 1px solid #26305a; border-radius: 14px;
+    padding: 20px 22px; margin: 18px 0;
+    box-shadow: 0 6px 24px rgba(0,0,0,.25);
+  }
+  .event .year {
+    position: absolute; top: -14px; left: 18px;
+    background: linear-gradient(90deg, var(--accent), #7aa5ff);
+    color: #06122a; font-weight: bold; font-family: system-ui, sans-serif;
+    padding: 3px 12px; border-radius: 999px; font-size: .85rem;
+  }
+  .event h3 { margin: 10px 0 6px; font-size: 1.1rem; }
+  .tags { margin: 4px 0 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    font-size: .72rem; font-family: system-ui, sans-serif;
+    padding: 2px 10px; border-radius: 999px; border: 1px solid transparent;
+  }
+  .tag.concept { color: var(--con); border-color: var(--con); }
+  .tag.experiment { color: var(--exp); border-color: var(--exp); }
+  .tag.both { color: var(--accent2); border-color: var(--accent2); }
+  .people { color: var(--dim); font-size: .88rem; margin: 2px 0 8px; }
+  .people b { color: var(--ink); font-weight: normal; }
+  .event p { margin: 8px 0; font-size: .97rem; }
+  .event .example {
+    background: var(--panel2); border-left: 3px solid var(--accent);
+    border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: .92rem;
+  }
+  .event .example .lbl {
+    display: block; color: var(--accent); font-family: system-ui, sans-serif;
+    font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .event .example .num {
+    font-family: "Courier New", monospace; color: var(--accent2);
+  }
+  details.math summary {
+    cursor: pointer; color: var(--accent); font-family: system-ui, sans-serif;
+    font-size: .85rem; margin-top: 10px; user-select: none;
+  }
+  details.math .formula {
+    background: #0e1530; border-radius: 8px; padding: 12px 14px; margin-top: 10px;
+    font-family: "Courier New", monospace; font-size: .95rem; overflow-x: auto;
+    color: #c9e3ff;
+  }
+  .feynman {
+    display: flex; gap: 10px; align-items: center; justify-content: center;
+    margin: 10px 0 4px; color: var(--dim); font-size: .8rem; flex-wrap: wrap;
+  }
+
+  blockquote.keyidea {
+    margin: 28px 0; padding: 16px 20px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(98,208,255,.08), rgba(255,180,84,.08));
+    border: 1px solid #2a3457;
+  }
+  blockquote.keyidea b { color: var(--accent); }
+
+  footer { text-align: center; color: var(--dim); font-size: .85rem; padding: 30px 16px 50px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>From Quantum Mechanics to Quantum Electrodynamics</h1>
+  <p>A historical timeline (1900–1950) tracing how our understanding of light and matter evolved —
+     from Planck's desperate "act of despair" to Feynman diagrams and the most precisely tested theory in science.
+     Each entry separates the <i>conceptual</i> leaps from the <i>experimental</i> evidence that forced them.</p>
+  <div class="legend">
+    <span class="l-con">Conceptual breakthrough</span>
+    <span class="l-exp">Experimental milestone</span>
+    <span class="l-both">Concept + experiment intertwined</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#era1">I · The Quantum Is Born (1900–1912)</a>
+  <a href="#era2">II · The Old Quantum Theory (1913–1922)</a>
+  <a href="#era3">III · Quantum Mechanics Proper (1923–1927)</a>
+  <a href="#era4">IV · Fields &amp; the Dirac Era (1927–1932)</a>
+  <a href="#era5">V · The Crisis (1930s)</a>
+  <a href="#era6">VI · Renormalization &amp; QED (1947–1950)</a>
+  <a href="#legacy">Legacy</a>
+</nav>
+
+<main>
+
+<!-- ============ ERA 1 ============ -->
+<section class="era" id="era1">
+  <h2>Era I · The Quantum Is Born (1900–1912)</h2>
+  <p class="era-intro">Classical physics said hot objects should radiate infinite energy. They don't. Fixing that single problem planted the seed of everything that follows.</p>
+
+  <div class="event">
+    <span class="year">1900</span>
+    <h3>Planck's Quantum of Action</h3>
+    <div class="tags"><span class="tag concept">Concept</span></div>
+    <p class="people"><b>Max Planck</b> — Berlin</p>
+    <p>To derive the spectrum of light from a hot object (blackbody radiation), Planck assumed that
+       energy is exchanged between matter and light only in discrete packets: <i>E = nhν</i>.
+       He called the mathematics a lucky guess; the constant <i>h</i> was introduced as a bookkeeping device.</p>
+    <div class="example"><span class="lbl">Detailed example — Ultraviolet catastrophe</span>
+      Classical physics (Rayleigh–Jeans law) predicts that a warm oven at temperature <i>T</i> emits
+      spectral energy density <span class="num">u(ν) = 8πkTν²/c³</span>, which grows <i>without bound</i> as frequency
+      increases — implying every object should instantly blaze with ultraviolet and X-rays.
+      Planck's formula <span class="num">u(ν) = 8πhν³/c³ · 1/(e^{hν/kT} − 1)</span> instead falls off exponentially at high ν,
+      because each quantum costs <i>hν</i> and high-energy quanta become exponentially rare.
+      Planck fitted the data with <span class="num">h ≈ 6.55×10⁻³⁴ J·s</span> — within 1% of today's value.</div>
+  </div>
+
+  <div class="event">
+    <span class="year">1905</span>
+    <h3>Einstein's Light Quanta (the Photoelectric Effect)</h3>
+    <div class="tags"><span class="tag both">Concept + Experiment</span></div>
+    <p class="people"><b>Albert Einstein</b> — Bern, Swiss Patent Office</p>
+    <p>Going far beyond Planck, Einstein proposed that light itself <i>is</i> granular — not just absorbed in chunks.
+       This "heuristic point of view" explained why light can kick electrons out of metal.</p>
+    <div class="example"><span class="lbl">Detailed example — Millikan's verdict (1916)</span>
+      Robert Millikan set out to <i>refute</i> Einstein and instead confirmed him precisely. He measured the maximum
+      kinetic energy of photo-ejected electrons: <span class="num">K_max = hν − φ</span>, where φ is the metal's work function.
+      Three classical impossibilities are explained at once:
+      (1) <b>no electrons below a threshold frequency</b>, no matter the intensity — because each quantum carries fixed energy hν;
+      (2) <b>electron energy depends on frequency, not brightness</b> — brighter light means more quanta, not bigger quanta;
+      (3) <b>emission is instantaneous</b> (&lt;10⁻⁹ s) — no time needed to "accumulate" wave energy.
+      Millikan's slope gave <span class="num">h = 6.57×10⁻³⁴ J·s</span>, matching blackbody data. (Einstein's Nobel Prize, 1921, was for this — not relativity.)</div>
+  </div>
+
+  <div class="event">
+    <span class="year">1911</span>
+    <h3>The Nuclear Atom</h3>
+    <div class="tags"><span class="tag experiment">Experiment</span></div>
+    <p class="people"><b>Ernest Rutherford, Geiger, Marsden</b> — Manchester</p>
+    <p>Alpha particles fired at gold foil occasionally bounced straight back — impossible for J.J. Thomson's
+       "plum pudding" atom. The atom's positive charge must be concentrated in a tiny, dense nucleus.</p>
+    <div class="example"><span class="lbl">Detailed example — The backscattering surprise</span>
+      About 1 in 8,000 alphas deflected by more than 90°. Rutherford: "as if you fired a 15-inch shell at tissue paper
+      and it came back." Coulomb scattering gives the impact parameter
+      <span class="num">b = (k·Z₁Z₂e² / 2K)·cot(θ/2)</span>; for θ = 180°, b ≈ 10⁻¹⁴ m, forcing the nuclear radius
+      below ~10⁻¹⁴ m — 10,000× smaller than the atom itself. This created a crisis: an orbiting electron is an
+      accelerating charge, which classically radiates and should spiral into the nucleus in ~10⁻¹¹ seconds. Atoms should not exist.</div>
+  </div>
+</section>
+
+<!-- ============ ERA 2 ============ -->
+<section class="era" id="era2">
+  <h2>Era II · The Old Quantum Theory (1913–1922)</h2>
+  <p class="era-intro">Quantum rules are bolted onto classical orbits. It works brilliantly for hydrogen — and fails for everything else, showing something deeper is needed.</p>
+
+  <div class="event">
+    <span class="year">1913</span>
+    <h3>Bohr's Atomic Model</h3>
+    <div class="tags"><span class="tag both">Concept + Experiment</span></div>
+    <p class="people"><b>Niels Bohr</b> — Manchester / Copenhagen</p>
+    <p>Bohr declared that electrons occupy only certain "stationary" orbits, and light is emitted only when they jump between them:
+       <i>hν = E₂ − E₁</i>. Radiation became a quantum jump between discrete states.</p>
+    <div class="example"><span class="lbl">Detailed example — The hydrogen spectrum, quantitatively</span>
+      Bohr's energies: <span class="num">Eₙ = −13.6 eV / n²</span>. The jump from n=3 to n=2 (Balmer Hα line):
+      <span class="num">ν = R(1/2² − 1/3²)</span> with <span class="num">R = 1.097×10⁷ m⁻¹</span>, predicting λ = 656.3 nm —
+      matching the observed red line of hydrogen to the accuracy of spectroscopy itself.
+      Even better: 1885 Balmer series, 1908 Paschen (infrared), and the model predicted the
+      <b>Lyman ultraviolet series</b> (discovered 1906–14) and <b>Brackett series</b> correctly —
+      predictions made before some lines were measured.</div>
+    <div class="example"><span class="lbl">Where it broke</span>
+      The helium atom defeated Bohr's model completely: predicted spectra wrong by ~4%.
+      Worse, the <b>fine structure</b> of spectral lines (splitting seen with good spectroscopes, explained by Sommerfeld in 1915
+      using relativistic ellipses) and the <b>anomalous Zeeman effect</b> (patterning of lines in magnetic fields) obeyed
+      rules that no orbit model could rationalize. By the early 1920s the old quantum theory was a patchwork of ad-hoc rules.</div>
+  </div>
+
+  <div class="event">
+    <span class="year">1922–24</span>
+    <h3>The Compton Effect &amp; Particle–Wave Duality</h3>
+    <div class="tags"><span class="tag both">Concept + Experiment</span></div>
+    <p class="people"><b>Arthur Compton</b> (experiment) · <b>Louis de Broglie</b> (concept)</p>
+    <p>Compton showed X-rays scattering off electrons shift in wavelength exactly as if they were particles obeying
+       billiard-ball conservation laws. Then de Broglie inverted the logic: if waves act like particles, particles must act like waves — <i>λ = h/p</i>.</p>
+    <div class="example"><span class="lbl">Detailed example — Compton scattering kinematics</span>
+      Treating the X-ray photon as a particle of energy <span class="num">E = hc/λ</span> and momentum
+      <span class="num">p = h/λ</span>, energy and momentum conservation give the wavelength shift:
+      <span class="num">Δλ = (h/mₑc)(1 − cos θ)</span>, with the "Compton wavelength" <span class="num">h/mₑc = 2.43×10⁻¹² m</span>.
+      At θ = 90°, the shift is 2.43 pm — independent of the incoming wavelength, exactly as observed.
+      Skeptics (including Bohr, who had briefly abandoned light quanta) conceded the photon was real.
+      De Broglie's inverse hypothesis was confirmed in 1927 when <b>Davisson and Germer</b> saw electrons
+      diffract off nickel crystals with the predicted <span class="num">λ = h/mv</span> — electrons behaving as waves.</div>
+  </div>
+</section>
+
+<!-- ============ ERA 3 ============ -->
+<section class="era" id="era3">
+  <h2>Era III · Quantum Mechanics Proper (1923–1927)</h2>
+  <p class="era-into"></p>
+  <p class="era-intro">Within four dizzying years, two complete mathematical frameworks appear, are proven equivalent, and the uncertainty principle reshapes what "knowing" means.</p>
+
+  <div class="event">
+    <span class="year">1925</span>
+    <h3>Matrix Mechanics — the first quantum mechanics</h3>
+    <div class="tags"><span class="tag concept">Concept</span></div>
+    <p class="people"><b>Werner Heisenberg, Max Born, Pascual Jordan</b> — Göttingen · <b>Niels Bohr</b> — Copenhagen</p>
+    <p>Heisenberg's radical move: keep only what is measurable. His paper was titled
+       "On a quantum-theoretical reinterpretation of kinematic and mechanical relations." Position and momentum
+       became non-commuting objects — later recognized as matrices — and classical orbits were abandoned entirely.</p>
+    <div class="example"><span class="lbl">Detailed example — The commutation relation</span>
+      Born and Jordan formalized: <span class="num">pq − qp = (h/2πi)·1</span> — i.e. <span class="num">[x, p] = iħ</span>.
+      Consequence: states with definite position cannot have definite momentum. Applied to the harmonic oscillator,
+      the energies come out quantized automatically:
+      <span class="num">Eₙ = ħω(n + ½)</span> — including a surprising irreducible ground-state energy ½ħω,
+      the <b>zero-point energy</b>, later confirmed by the still-liquid behavior of helium at absolute zero.</div>
+  </div>
+
+  <div class="event">
+    <span class="year">1926</span>
+    <h3>Schrödinger's Wave Equation</h3>
+    <div class="tags"><span class="tag both">Concept + Experiment</span></div>
+    <p class="people"><b>Erwin Schrödinger</b> — Zurich · <b>Max Born</b> — Göttingen (probabilistic reading)</p>
+    <p>Guided by de Broglie's matter waves, Schrödinger wrote a differential equation for them.
+       The hydrogen problem's solutions reproduced Bohr's energies — now as standing-wave eigenstates, no orbits needed.
+       Born then supplied the meaning: the wave's square is a <b>probability</b>.</p>
+    <div class="example"><span class="lbl">Detailed example — The hydrogen ground state as a standing wave</span>
+      Solving <span class="num">Hψ = Eψ</span> with a Coulomb potential, normalizable solutions exist only for
+      <span class="num">Eₙ = −mₑe⁴/(2ħ²n²) = −13.6 eV/n²</span> — Bohr's formula, but now derived, not postulated.
+      Schrödinger's equation also explains <b>chemical bonding</b>: the same equation applied to the H₂⁺ molecular ion
+      shows the electron's wavefunction can lower its kinetic energy by spreading over two protons, giving a stable bond —
+      the birth of quantum chemistry. Within months, Pauli (and independently Dirac, Eckart) proved matrix and wave
+      mechanics are the same theory.</div>
+  </div>
+
+  <div class="event">
+    <span class="year">1927</span>
+    <h3>Uncertainty, Exclusion, and the Copenhagen Framework</h3>
+    <div class="tags"><span class="tag concept">Concept</span></div>
+    <p class="people"><b>Heisenberg</b> (uncertainty) · <b>Wolfgang Pauli</b> (exclusion, 1925) · <b>Bohr</b> (complementarity)</p>
+    <div class="example"><span class="lbl">Detailed example — Uncertainty in the microscope</span>
+      Heisenberg's original thought experiment: to locate an electron you must illuminate it with a photon,
+      but the photon's recoil disturbs its momentum. The relation
+      <span class="num">Δx·Δp ≥ ħ/2</span> is not a measurement flaw — it is a property of the
+      non-commuting operators. Pauli's exclusion principle (no two electrons in the same quantum state) explains
+      the entire periodic table: shells fill up, chemistry exists, and neutron stars avoid collapse.</div>
+  </div>
+</section>
+
+<!-- ============ ERA 4 ============ -->
+<section class="era" id="era4">
+  <h2>Era IV · From Particles to Fields — the Dirac Era (1927–1932)</h2>
+  <p class="era-intro">Quantum mechanics can't handle photons — you can create and destroy them. Fixing that means quantizing the electromagnetic field itself. QED is born.</p>
+
+  <div class="event">
+    <span class="year">1927</span>
+    <h3>Dirac Quantizes the Electromagnetic Field</h3>
+    <div class="tags"><span class="tag concept">Concept</span></div>
+    <p class="people"><b>P.A.M. Dirac</b> — Cambridge</p>
+    <p>The founding paper of QED. Dirac treated each mode of the radiation field as a quantum harmonic oscillator,
+       with creation and annihilation operators for photons. Spontaneous emission — Bohr's mysterious quantum jumps —
+       emerged automatically.</p>
+    <div class="example"><span class="lbl">Detailed example — Why atoms emit "spontaneously"</span>
+      Every mode of the vacuum still holds zero-point fluctuations ½ħω. Even in the lowest state, the vacuum field
+      jiggles the atom's electron, stimulating the transition 2p → 1s. Dirac's calculation of Einstein's A coefficient:
+      <span class="num">A₂₁ = (4/3)·(ω³|d|²)/(4πε₀ħc³)</span> — matching measured hydrogen lifetimes (~1.6 ns for the 2p state).
+      Spontaneous emission is emission <i>stimulated by the vacuum</i>.</div>
+  </div>
+
+  <div class="event">
+    <span class="year">1928</span>
+    <h3>The Dirac Equation — Relativity Meets Quantum Mechanics</h3>
+    <div class="tags"><span class="tag both">Concept + Experiment</span></div>
+    <p class="people"><b>P.A.M. Dirac</b> — Cambridge</p>
+    <p>Dirac linearized E² = p²c² + m²c⁴ in the energy to make Schrödinger's equation Lorentz-invariant.
+       Spin-½ and the correct magnetic moment fell out for free. But the equation had twice as many solutions as needed —
+       including negative-energy states.</p>
+    <div class="example"><span class="lbl">Detailed example — Three predictions, one equation</span>
+      (1) <b>Electron spin</b>: the Dirac equation yields <span class="num">g = 2</span> for the electron's magnetic moment —
+      previously a fudge. (2) <b>Fine structure</b>: Dirac's hydrogen levels, including relativistic and spin–orbit effects,
+      exactly explained Sommerfeld's fine-structure splittings. (3) <b>Antimatter</b>: the "holes" in the negative-energy sea
+      were predicted in 1931 as a positive electron — Carl Anderson photographed the <b>positron</b> in cosmic-ray tracks
+      in August 1932. Prediction: year 1931. Discovery: year 1932. Experiment vindicated the strangest feature of the theory.</div>
+  </div>
+
+  <div class="event">
+    <span class="year">1929–30</span>
+    <h3>Infinities Appear Immediately</h3>
+    <div class="tags"><span class="tag concept">Concept (a problem!)</span></div>
+    <p class="people"><b>Oppenheimer</b>, <b>Waller</b>, <b>Weisskopf</b>, <b>Dirac, Heisenberg, Pauli</b></p>
+    <p>Applying the new QED to self-energy — an electron interacting with the field it itself generates — produced
+       logarithmically divergent (infinite) corrections to the electron's mass and charge. These infinities stalled
+       the field for nearly two decades.</p>
+    <div class="example"><span class="lbl">Detailed example — The divergent self-energy</span>
+      Summing the vacuum fluctuation energy over <i>all</i> modes of the electron's own Coulomb field gives
+      <span class="num">δm ~ (e²/4πε₀)·∫ d³k/k² → ∞</span>, a divergence that is only logarithmic in Dirac's theory
+      (Weisskopf, 1934) but fatal all the same. Opinions of the era: Dirac wanted to abandon QED and start over;
+      Bohr and Rosenfeld argued the infinities might dissolve with a finite measurement apparatus. Nobody yet realized
+      the answer was not a new theory but a new bookkeeping of the old one.</div>
+  </div>
+</section>
+
+<!-- ============ ERA 5 ============ -->
+<section class="era" id="era5">
+  <h2>Era V · The Long Stall &amp; the Crisis Years (1930s)</h2>
+  <p class="era-intro">Two seemingly unrelated experiments — on radar vacuum tubes and hydrogen spectroscopy — end up resolving the infinities.</p>
+
+  <div class="event">
+    <span class="year">1932–1940s</span>
+    <h3>Regularization, Hole Theory, and Honest Despair</h3>
+    <div class="tags"><span class="tag concept">Concept</span></div>
+    <p class="people"><b>Weisskopf</b>, <b>Pauli &amp; Heisenberg</b>, <b>Kramers</b>, <b>Bethe</b>, <b>Fermi</b></p>
+    <p>Progress shifted to nuclear physics (more tractable), while a small community kept refining QED's failure modes.
+       Kramers, in his 1937–38 lectures, seeded the crucial idea: perhaps the <i>observed</i> mass and charge must be
+       inserted into the theory, making the bare ones irrelevant — the core of what would become renormalization.</p>
+    <div class="example"><span class="lbl">Detailed example — Rabi's beam method (1930s)</span>
+      In parallel, I.I. Rabi's molecular-beam magnetic-resonance method (1938) reached relative precision ~10⁻⁴ in
+      measuring magnetic moments — far beyond older Stern–Gerlach techniques. His student <b>Willis Lamb</b> and
+      <b>Polykarp Kush</b> would use wartime radar technology to make this precision 100× better. The crisis of 1947
+      was technologically possible only because radar had been invented.</div>
+  </div>
+
+  <div class="event">
+    <span class="year">1946</span>
+    <h3>The Electron's Magnetic Moment Shows a Crack</h3>
+    <div class="tags"><span class="tag experiment">Experiment</span></div>
+    <p class="people"><b>Nafe, Nelson &amp; Rabi</b> — Columbia</p>
+    <p>Precision microwave spectroscopy of hydrogen and deuterium hyperfine splitting suggested the electron's
+       <i>g</i>-factor was not exactly 2 as Dirac demanded, but slightly larger. The hint was ~0.1% off and
+       the community was skeptical — but it spurred Lamb to build his definitive experiment.</p>
+    <div class="example"><span class="lbl">Why g = 2 + ε matters</span>
+      The magnetic moment: <span class="num">μ = g·(e/2m)·S</span>. Dirac: g = 2 exactly. Any deviation means
+      the electron couples to vacuum fluctuations — direct evidence that the "empty" field must be treated as dynamical,
+      i.e. QED must be a field theory, not a single-particle wave mechanics.</div>
+  </div>
+</section>
+
+<!-- ============ ERA 6 ============ -->
+<section class="era" id="era6">
+  <h2>Era VI · Shelter Island, Renormalization &amp; the Triumph of QED (1947–1950)</h2>
+  <p class="era-intro">Four days in June 1947 changed physics. The experiments reported there broke Dirac's theory, and within three years QED was reborn as the most accurate theory ever built.</p>
+
+  <div class="event">
+    <span class="year">1947</span>
+    <h3>The Lamb Shift — the Experiment That Broke Dirac's Atom</h3>
+    <div class="tags"><span class="tag experiment">Experiment</span></div>
+    <p class="people"><b>Willis Lamb &amp; Robert Retherford</b> — Columbia</p>
+    <p>Using surplus radar technology, Lamb and Retherford drove transitions between hydrogen's 2S and 2P levels
+       with microwaves. Dirac's theory says these are <i>exactly degenerate</i>. They are not.</p>
+    <div class="example"><span class="lbl">Detailed example — Numbers that ended an era</span>
+      Lamb and Retherford measured a splitting of <span class="num">2S₁/₂ − 2P₁/₂ ≈ 1000 MHz</span>
+      (≈ 4 μeV — a whisper, ~5 parts in 10⁷ of the level's binding energy).
+      Reported at the <b>Shelter Island Conference</b> (June 2–4, 1947) alongside Kush's refined g-factor:
+      <span class="num">g = 2 × 1.00119 ± 3</span>. Both measurements contradicted the otherwise-perfect Dirac equation.
+      Bethe famously did the calculation on the train home from Shelter Island.</div>
+  </div>
+
+  <div class="event">
+    <span class="year">1947–49</span>
+    <h3>Renormalization — Subtracting the Infinities</h3>
+    <div class="tags"><span class="tag concept">Concept</span></div>
+    <p class="people"><b>Bethe</b> (non-relativistic seed, 1947) · <b>Sin-Itiro Tomonaga</b> (Tokyo) ·
+       <b>Julian Schwinger</b> (Harvard) · <b>Richard Feynman</b> (Cornell)</p>
+    <p>The idea that saved QED: infinite quantum corrections to mass and charge are unobservable because we only ever
+       measure the <i>physical</i>, dressed values. Absorb the infinities into a finite, measured mass and charge —
+       and the remaining predictions are finite, unique, and testable.</p>
+    <div class="example"><span class="lbl">Detailed example — Bethe's train calculation (June 1947)</span>
+      Treating the atom non-relativistically and cutting off the divergent integral at <span class="num">mₑc²</span>
+      ("the electron can't absorb a photon more energetic than its own rest energy"), Bethe computed the Lamb shift:
+      <span class="num">ΔE ≈ 1040 MHz</span> — the measured 1000 MHz, to 4%. The cutoff-dependent infinite part could be
+      dumped into the definition of mass. The finite residue was physics.</div>
+    <details class="math"><summary>➤ The key formulas of the finished theory</summary>
+      <div class="formula">
+g-factor (Schwinger, 1948):  g = 2·(1 + α/2π) = 2 × 1.001161…<br><br>
+anomalous magnetic moment (aₑ = (g−2)/2):<br>
+aₑ = α/(2π) − 0.328478965…(α/π)² + 1.181241…(α/π)³ − …<br><br>
+Lamb shift (leading log):  ΔE ≈ (4α⁵mₑc²/3π)·ln(1/α) ≈ 1000 MHz
+      </div>
+    </details>
+  </div>
+
+  <div class="event">
+    <span class="year">1948–49</span>
+    <h3>Three Proofs, One Theory — Tomonaga, Schwinger, Feynman</h3>
+    <div class="tags"><span class="tag concept">Concept</span></div>
+    <p class="people"><b>Tomonaga</b> (war-isolated Tokyo, 1943–48) · <b>Schwinger</b> (operator method, 1948) ·
+       <b>Feynman</b> (path integrals &amp; diagrams, 1948) · unified by <b>Dyson</b>, 1949</p>
+    <p>Tomonaga had developed a fully relativistic, covariant QED during the war, unknown in the West until 1947.
+       Schwinger built a formidable operator formalism; Feynman an intuitive diagrammatic one from his path integrals.
+       Freeman Dyson proved in 1949 that the two approaches — and Tomonaga's — were mathematically equivalent.</p>
+    <div class="example"><span class="lbl">Detailed example — Reading a Feynman diagram</span>
+      <div class="feynman">
+        <svg width="240" height="90" viewBox="0 0 240 90">
+          <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#62d0ff"/></marker></defs>
+          <line x1="10" y1="45" x2="100" y2="45" stroke="#ffb454" stroke-width="2" marker-end="url(#arr)"/>
+          <line x1="100" y1="45" x2="160" y2="45" stroke="#7ce38b" stroke-width="2"/>
+          <line x1="100" y1="45" x2="160" y2="45" stroke="#7ce38b" stroke-width="2" transform="translate(0,0)"/>
+          <path d="M160,45 C120,10 120,80 160,45" fill="none" stroke="#7ce38b" stroke-width="2"/>
+          <line x1="160" y1="45" x2="230" y2="45" stroke="#ffb454" stroke-width="2" marker-end="url(#arr)"/>
+          <text x="30" y="35" fill="#ffb454" font-size="11" font-family="sans-serif">photon in</text>
+          <text x="105" y="12" fill="#7ce38b" font-size="11" font-family="sans-serif">electron + virtual photon (self-energy loop)</text>
+          <text x="180" y="35" fill="#ffb454" font-size="11" font-family="sans-serif">photon out</text>
+        </svg>
+      </div>
+      Each diagram is a term in a series in <span class="num">α = e²/4πħc ≈ 1/137</span>. Each internal loop contributes
+      a divergent integral — but Dyson showed the divergences always cluster into just two quantities, the electron's
+      mass and charge, at every order. Two experimental inputs, <span class="num">mₑ</span> and <span class="num">e</span>,
+      buy infinite predictions. This systematic absorbability is <b>renormalizability</b>.</div>
+    <div class="example"><span class="lbl">Detailed example — The g-factor showdown, 1948</span>
+      At the Pocono Conference (March–April 1948), Schwinger announced
+      <span class="num">aₑ = α/2π = 0.00116</span>. The 1947 experiment had given 0.00119 ± 0.00003 — the first
+      confirmation that vacuum fluctuations have measurable, calculable effects. Precision has since climbed:
+      today <span class="num">aₑ(exp) = 1 159 652 180.73(0.28)×10⁻¹²</span> while QED through tenth order
+      agrees to within a few parts per trillion — QED is the most accurately verified theory in the history of science,
+      and α remains the only free parameter standing between experiment and prediction.</div>
+  </div>
+</section>
+
+<section class="era" id="legacy">
+  <h2>Legacy · What QED Started</h2>
+  <blockquote class="keyidea">
+    <b>The arc:</b> a bookkeeping trick (1900) → light as particles (1905) → quantized orbits (1913) →
+    matter as waves (1923–26) → fields as oscillators (1927) → antimatter (1928) → infinities (1930) →
+    radar-driven precision experiments (1947) → renormalization (1948) → the most accurate theory ever (today).
+    Each step was forced by an experiment that the previous theory could not explain.
+  </blockquote>
+  <div class="event">
+    <span class="year">1950s →</span>
+    <h3>The Template for All Modern Field Theory</h3>
+    <div class="tags"><span class="tag concept">Concept</span></div>
+    <p>The renormalization toolkit built for QED became the pattern for everything after it:
+       Yang–Mills gauge theory (1954), the electroweak theory (1961–68, photon reappears as part of a unified field with W and Z),
+       QCD (1973, "the QED of the strong force" with color charge), and the Standard Model (1970s).
+       Feynman's Nobel lecture put it simply: the theory of quantum electrodynamics is
+       "the jewel of physics — our proudest possession."</p>
+    <div class="example"><span class="lbl">Conceptual take-aways to remember</span>
+      (1) <b>Photons are the quanta of the field itself</b> — not particles traveling through space, but excitation
+      levels of oscillators that fill all space. (2) <b>Particles can be created and destroyed</b> — this is why quantum
+      mechanics alone was insufficient. (3) <b>Vacuum is not empty</b> — Lamb shift, anomalous moment, and Casimir force
+      all probe the vacuum's zero-point content. (4) <b>Infinities are not failures</b> — renormalization says that some
+      infinities live in unobservable parameters and must be measured, not computed. (5) <b>Agreement with experiment is
+      the standard</b> — QED survives because its predictions work to one part in a trillion.</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Historical timeline · quantum mechanics → quantum electrodynamics (1900–1950) ·
+  Nobel Prizes cited: Planck 1918 · Einstein 1921 · Bohr 1922 · Compton 1927 · de Broglie 1929 ·
+  Heisenberg 1932 · Schrödinger &amp; Dirac 1933 · Anderson 1936 · Rabi 1944 · Lamb &amp; Kusch 1955 ·
+  Tomonaga, Schwinger &amp; Feynman 1965
+</footer>
+
+</body>
+</html>
