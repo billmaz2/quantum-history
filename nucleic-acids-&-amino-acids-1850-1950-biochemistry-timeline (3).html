@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nucleic Acids &amp; Amino Acids — A Biochemistry Timeline, 1850–1950</title>
+<style>
+  :root{
+    --ink:#1a2233; --muted:#5b6577; --paper:#faf8f2; --card:#ffffff;
+    --accent:#0e5a6d; --accent2:#b0562a; --line:#e4ddcf; --tag:#eef4f5;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;color:var(--ink);background:var(--paper);line-height:1.65}
+  header{background:linear-gradient(135deg,#0e3d4a,#0e5a6d 55%,#1c7a8c);color:#f4fbfc;padding:48px 24px 40px;text-align:center}
+  header h1{margin:0 0 8px;font-size:2.1em;letter-spacing:.5px}
+  header p{margin:4px auto;max-width:760px;opacity:.92;font-style:italic}
+  nav.toc{background:#082d36;padding:10px 16px;text-align:center;flex-wrap:wrap;display:flex;gap:6px;justify-content:center}
+  nav.toc a{color:#cfeef4;text-decoration:none;font-size:.85em;padding:4px 10px;border:1px solid #1c5a6b;border-radius:14px;font-family:Verdana,sans-serif}
+  nav.toc a:hover{background:#0e5a6d}
+  main{max-width:980px;margin:0 auto;padding:32px 20px 80px}
+  h2{color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:8px;margin-top:56px;font-size:1.5em}
+  h3{color:var(--accent2);margin-bottom:6px}
+  .lead{font-size:1.05em;color:var(--muted)}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  .filters button{font-family:Verdana,sans-serif;font-size:.8em;padding:6px 14px;border-radius:16px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+  .filters button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .timeline{position:relative;margin-left:14px;padding-left:38px;border-left:3px solid var(--accent)}
+  .event{position:relative;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:20px;box-shadow:0 1px 4px rgba(20,40,60,.06)}
+  .event::before{content:"";position:absolute;left:-49px;top:18px;width:15px;height:15px;border-radius:50%;background:var(--accent2);border:3px solid #fff;box-shadow:0 0 0 2px var(--accent)}
+  .event .year{font-family:Verdana,sans-serif;font-weight:bold;color:var(--accent);font-size:1.05em}
+  .event .who{color:var(--accent2);font-weight:bold}
+  .tag{display:inline-block;font-family:Verdana,sans-serif;font-size:.68em;background:var(--tag);color:var(--accent);border-radius:10px;padding:1px 9px;margin-left:6px;vertical-align:middle}
+  .papers{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 18px;margin:10px 0}
+  .papers dt{font-weight:bold;color:var(--accent);margin-top:10px}
+  .papers dd{margin:0 0 4px}
+  .refs{display:flex;gap:12px;flex-wrap:wrap;font-family:Verdana,sans-serif;font-size:.75em}
+  .refs a{color:var(--accent);text-decoration:none;border-bottom:1px dotted var(--accent)}
+  table{width:100%;border-collapse:collapse;background:var(--card);font-size:.92em}
+  th{background:var(--accent);color:#fff;text-align:left;padding:9px 10px;font-family:Verdana,sans-serif;font-size:.8em}
+  td{border:1px solid var(--line);padding:8px 10px;vertical-align:top}
+  tr:nth-child(even) td{background:#f4f1e8}
+  .method{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent2);border-radius:8px;padding:14px 18px;margin:16px 0}
+  .method h3{margin-top:0}
+  .note{background:#fdf6e9;border:1px solid #ecdfbe;border-radius:8px;padding:12px 16px;font-size:.95em}
+  .qa{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:14px 0}
+  .qa b{color:var(--accent)}
+  a.ext{color:var(--accent2)}
+  footer{text-align:center;color:var(--muted);font-size:.85em;padding:30px 20px;border-top:1px solid var(--line)}
+  code{background:#eef0ee;padding:1px 5px;border-radius:4px;font-size:.9em}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>From Nuclein to the Double Helix Era</h1>
+  <p>An educational timeline of nucleic-acid and amino-acid biochemistry, 1850–1950: the experiments, the methods, the papers</p>
+</header>
+
+<nav class="toc">
+  <a href="#intro">Introduction</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#methods-na">Nucleic Acid Isolation</a>
+  <a href="#methods-bases">Bases &amp; Nucleotides</a>
+  <a href="#methods-aa">Amino Acids</a>
+  <a href="#dna-rna">DNA vs RNA</a>
+  <a href="#enzymes">Enzyme Isolation</a>
+  <a href="#papers">Key Papers &amp; Links</a>
+  <a href="#conceptual">Conceptual Guide</a>
+</nav>
+
+<main>
+
+<section id="intro">
+  <h2>Introduction</h2>
+  <p class="lead">Between 1850 and 1950, biochemistry moved from grinding tissues in kitchen-chemistry solvents to reading the molecular language of heredity. This page follows that arc in three parallel stories: <b>(1)</b> the isolation of "nuclein" and its transformation into "nucleic acid" and finally into DNA and RNA; <b>(2)</b> the chemical dissection of the bases, sugars, and nucleotides; and <b>(3)</b> the discovery and analytical isolation of the amino acids. Each milestone links the experimenter, the method, the primary paper, and modern <b>PubMed</b> and <b>Google Scholar</b> entry points.</p>
+  <div class="note"><b>A note on links:</b> papers before ~1920 are usually not indexed in PubMed as full records. For those, PubMed and Google Scholar <i>search</i> links are provided; for 20th-century classics, direct article links and DOIs are given where they exist.</div>
+</section>
+
+<section id="timeline">
+  <h2>Timeline of Experiments (filter by track)</h2>
+  <div class="filters">
+    <button class="active" data-f="all">All</button>
+    <button data-f="na">Nucleic acids</button>
+    <button data-f="nb">Bases &amp; nucleotides</button>
+    <button data-f="aa">Amino acids &amp; proteins</button>
+    <button data-f="m">Methods &amp; instruments</button>
+  </div>
+  <div class="timeline">
+
+    <div class="event" data-t="aa">
+      <span class="year">1850</span> <span class="who">Adolph Strecker</span> <span class="tag">amino acids</span>
+      <p>First <b>chemical synthesis</b> of an amino acid: Strecker converts acetaldehyde + HCN + ammonia into alanine, proving amino acids are ordinary organic molecules — the conceptual foundation for treating proteins as polymers of defined chemistry.</p>
+      <dl class="papers"><dt>Paper</dt><dd>Strecker, A. (1850) "Ueber die künstliche Bildung der Milchsäure…" <i>Ann. Chem. Pharm.</i> 82, 279. <span class="refs"><a href="https://scholar.google.com/scholar?q=Strecker+1850+alanin+Milchs%C3%A4ure+Annalen" target="_blank">Google Scholar</a><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Strecker+alanine+1850" target="_blank">PubMed search</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="aa">
+      <span class="year">1857–1860</span> <span class="who">Hoppe-Seyler &amp; pupils</span> <span class="tag">proteins</span>
+      <p>Felix Hoppe-Seyler establishes <b>physiological chemistry</b> as a discipline and isolates haemoglobin in crystalline form; his school invents the routine methods of protein precipitation (heat, acids, alcohol, salts) that Miescher would push to their limits.</p>
+      <dl class="papers"><dt>Paper</dt><dd>Hoppe-Seyler, F. (1862) "Ueber die Krystallisation des Blutfarbstoffs." <i>Virchows Archiv</i>. <span class="refs"><a href="https://scholar.google.com/scholar?q=Hoppe-Seyler+Krystallisation+Blutfarbstoffs" target="_blank">Google Scholar</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="na">
+      <span class="year">1868–1869</span> <span class="who">Friedrich Miescher</span> <span class="tag">nuclein</span>
+      <p>Working in Hoppe-Seyler's Tübingen lab, Miescher extracts from pus-cell (leucocyte) nuclei a phosphorus-rich, acid substance resistant to pepsin: he names it <b>"nuclein."</b> This is the birth of nucleic-acid chemistry. He later obtains it in high yield from <b>salmon sperm</b>, exploiting the fact that sperm heads are almost pure nucleus.</p>
+      <dl class="papers"><dt>Paper</dt><dd>Miescher, F. (1871) "Ueber die chemische Zusammensetzung der Eiterzellen." <i>Hoppe-Seyler's Med.-Chem. Untersuchungen</i> 4, 441–460. Published with Hoppe-Seyler's skeptical confirmation. <span class="refs"><a href="https://scholar.google.com/scholar?q=Miescher+1871+chemische+Zusammensetzung+Eiterzellen" target="_blank">Google Scholar</a><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Miescher+nuclein" target="_blank">PubMed search</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="nb">
+      <span class="year">1874</span> <span class="who">Piccard &amp; Miescher</span> <span class="tag">bases</span>
+      <p>Miescher and his circle detect <b>guanine</b> and other purine-like material in sperm nuclein; nuclein is no longer seen as a single substance but as a complex of protein with a non-protein, phosphorus-containing acid that carries "xanthine bodies" (purines).</p>
+      <dl class="papers"><dt>Reference</dt><dd>Dahm, A.E. (ed.) <i>Friedrich Miescher und die Entdeckung des Nucleins</i>; modern analysis: <span class="refs"><a href="https://scholar.google.com/scholar?q=Miescher+salmon+sperm+guanine+1874" target="_blank">Google Scholar</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="nb aa">
+      <span class="year">1883–1886</span> <span class="who">Albrecht Kossel</span> <span class="tag">bases · histones</span>
+      <p>Kossel begins the systematic chemical dissection of nuclein. He isolates from yeast and pancreatic extracts the base he names <b>"adenine"</b> (from Greek <i>aden</i>, gland), and in 1884 the protein fraction he calls <b>"histones."</b> He shows nuclein = protein + an acid rich in purines.</p>
+      <dl class="papers"><dt>Papers</dt>
+        <dd>Kossel, A. (1886) "Ueber die Adeninverbindungen…" <i>Arch. Anat. Physiol.</i>, 186–190. <span class="refs"><a href="https://scholar.google.com/scholar?q=Kossel+Adenin+1886+Archiv+Anatomie+Physiologie" target="_blank">Google Scholar</a><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Kossel+adenine" target="_blank">PubMed search</a></span></dd>
+        <dd>Kossel, A. (1884) "Ueber eine basische Substanz…" (histone). <span class="refs"><a href="https://scholar.google.com/scholar?q=Kossel+1884+Histon+basische+Substanz" target="_blank">Google Scholar</a></span></dd>
+      </dl>
+    </div>
+
+    <div class="event" data-t="na">
+      <span class="year">1889</span> <span class="who">Richard Altmann</span> <span class="tag">nucleic acid</span>
+      <p>Altmann devises a method — digestion with pepsin in dilute acid followed by extraction with dilute alkali — that <b>separates the protein from the non-protein moiety</b>. He coins the term <b>"nucleic acid"</b> for the phosphorus-containing acid freed of protein. This is the experiment your request calls "the free proteins isolation": the first cleavage of the nuclein complex.</p>
+      <dl class="papers"><dt>Paper</dt><dd>Altmann, R. (1889) "Ueber Nucleinsäuren." <i>Arch. Anat. Physiol., Physiol. Abt.</i>, 524–536. <span class="refs"><a href="https://scholar.google.com/scholar?q=Altmann+1889+Nucleins%C3%A4uren" target="_blank">Google Scholar</a><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Altmann+nucleic+acid+1889" target="_blank">PubMed search</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="nb">
+      <span class="year">1893–1896</span> <span class="who">Kossel &amp; Neumann</span> <span class="tag">pyrimidines</span>
+      <p>Kossel isolates from thymus nucleic acid the pyrimidine he names <b>"thymine"</b> (1893), and with his student <b>Hermann Steudel</b> and others the base <b>"cytosine"</b> (1894–96). By the end of the decade <b>uracil</b> is obtained from yeast nucleic acid (Ascoli, 1900). The four bases plus the purines of nuclein are now a defined chemical inventory.</p>
+      <dl class="papers"><dt>Papers</dt>
+        <dd>Kossel, A. &amp; Neumann, A. (1893) "Ueber das Thymin…" <i>Ber. Chem. Ges.</i> 26, 2753. <span class="refs"><a href="https://scholar.google.com/scholar?q=Kossel+Neumann+Thymin+1893" target="_blank">Google Scholar</a></span></dd>
+        <dd>Kossel, A. &amp; Neumann, A. (1894) "Ueber die Cytosine." <i>Ber. Chem. Ges.</i> 27. <span class="refs"><a href="https://scholar.google.com/scholar?q=Kossel+Cytosin+1894" target="_blank">Google Scholar</a></span></dd>
+      </dl>
+    </div>
+
+    <div class="event" data-t="aa m">
+      <span class="year">1899–1907</span> <span class="who">Emil Fischer</span> <span class="tag">amino acids · methods</span>
+      <p>Fischer completes the chemistry of the amino acids and proves proteins are <b>polypeptides</b>: the "ester method" (fractional distillation of amino-acid ethyl esters under vacuum) resolves mixtures that crystallization could not; the formal titration (Sørensen's <b>formol titration</b>, 1907) makes amino groups countable. His lock-and-key enzyme doctrine (1894) and Fischer's synthesis of purines also underpin Kossel's base chemistry.</p>
+      <dl class="papers"><dt>Papers</dt>
+        <dd>Fischer, E. (1902) "Ueber die Hydrolyse der Proteine." <i>Ber. Chem. Ges.</i> <span class="refs"><a href="https://scholar.google.com/scholar?q=Emil+Fischer+Hydrolyse+der+Proteine+1902" target="_blank">Google Scholar</a></span></dd>
+        <dd>Sørensen, S.P.L. (1907) "Enzymstudien. Die Ermittlung der Wasserstoffionenkonzentration." <i>Biochem. Z.</i> <span class="refs"><a href="https://scholar.google.com/scholar?q=S%C3%B8rensen+formol+titration+1907" target="_blank">Google Scholar</a></span></dd>
+      </dl>
+    </div>
+
+    <div class="event" data-t="nb">
+      <span class="year">1909</span> <span class="who">Levene &amp; Jacobs</span> <span class="tag">ribose · inosinic acid</span>
+      <p>Phoebus Levene proves that the sugar in yeast (plant) nucleic acid is the pentose <b>D-ribose</b>, isolated via the nucleotide <b>inosinic acid</b>. Nucleic acid is now decomposable into base + sugar + phosphate — the concept of the <b>nucleotide</b> is born.</p>
+      <dl class="papers"><dt>Paper</dt><dd>Levene, P.A. &amp; Jacobs, W.A. (1909) "Ueber Inosinsäure." <i>Ber. Chem. Ges.</i> 42, 335. <span class="refs"><a href="https://scholar.google.com/scholar?q=Levene+Jacobs+inosinic+acid+ribose+1909" target="_blank">Google Scholar</a><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Levene+Jacobs+ribose" target="_blank">PubMed search</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="na">
+      <span class="year">1914</span> <span class="who">Robert Feulgen</span> <span class="tag">DNA stain</span>
+      <p>Feulgen introduces the <b>Schiff-reagent staining reaction</b> specific for thymus-type (deoxyribo) nucleic acid — the first chemical method to localize DNA in cells, and historically the first DNA-specific color test.</p>
+      <dl class="papers"><dt>Paper</dt><dd>Feulgen, R. (1914) "Die Nuklealfärbung." <i>Hoppe-Seyler's Z. Physiol. Chem.</i> 92, 154. <span class="refs"><a href="https://scholar.google.com/scholar?q=Feulgen+1914+Nuklealf%C3%A4rbung" target="_blank">Google Scholar</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="nb na">
+      <span class="year">1929</span> <span class="who">Levene &amp; Mori</span> <span class="tag">deoxyribose</span>
+      <p>Levene identifies the sugar of thymus (animal) nucleic acid as <b>2-deoxy-D-ribose</b>. From this point there are unambiguously <b>two</b> nucleic acids: ribonucleic acid (RNA) and deoxyribonucleic acid (DNA). (His earlier rigid <b>tetranucleotide hypothesis</b> — four bases in equal proportion — however delayed recognition of DNA's information capacity.)</p>
+      <dl class="papers"><dt>Paper</dt><dd>Levene, P.A. &amp; Mori, T. (1929) "Ribodesose and xylo-desose." <i>J. Biol. Chem.</i> 83, 803. <span class="refs"><a href="https://scholar.google.com/scholar?q=Levene+Mori+1929+deoxyribose+ribodesose" target="_blank">Google Scholar</a><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Levene+Mori+deoxyribose+1929" target="_blank">PubMed search</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="na">
+      <span class="year">1928</span> <span class="who">Fred Griffith</span> <span class="tag">transformation</span>
+      <p>Griffith's in-vivo transformation experiment: heat-killed virulent pneumococci convert live rough (avirulent) cells into virulent smooth cells — a "transforming principle" is at work, though its chemistry is unknown.</p>
+      <dl class="papers"><dt>Paper</dt><dd>Griffith, F. (1928) "The significance of pneumococcal types." <i>J. Hygiene</i> 27, 113–159. <span class="refs"><a href="https://doi.org/10.1017/S0022172400031879" target="_blank">DOI</a><a href="https://scholar.google.com/scholar?q=Griffith+1928+significance+pneumococcal+types" target="_blank">Google Scholar</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="m">
+      <span class="year">1930–1940s</span> <span class="who">Kjeldahl → Warburg → Caspersson</span> <span class="tag">quantitative methods</span>
+      <p>Biochemistry gains its instruments: the <b>Kjeldahl</b> nitrogen determination standardizes protein and nuclein analysis; <b>UV spectrophotometry</b> (Warburg) and <b>microphotometry</b> (Caspersson, using the 260&nbsp;nm absorption of nucleic acids and 280&nbsp;nm of proteins) make nucleic acids countable inside single cells. <b>Ultracentrifugation</b> (Svedberg) and <b>electrophoresis</b> (Tiselius, 1937) extend the analytical toolkit.</p>
+      <dl class="papers"><dt>Reference</dt><dd>Caspersson, T. (1936) <i>Skand. Arch. Physiol.</i> 78, suppl. <span class="refs"><a href="https://scholar.google.com/scholar?q=Caspersson+ultraviolet+microspectrophotometry+nucleic+acids" target="_blank">Google Scholar</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="m aa">
+      <span class="year">1944–1945</span> <span class="who">Consden, Gordon &amp; Martin</span> <span class="tag">partition chromatography</span>
+      <p><b>Paper partition chromatography</b> is invented for amino acids and peptides — two-dimensional separation on filter paper with ninhydrin detection. For the first time the complete amino-acid composition of a protein (gramicidin, insulin) can be read off a sheet of paper. This method will be borrowed for nucleic-acid bases within three years.</p>
+      <dl class="papers"><dt>Paper</dt><dd>Consden, R., Gordon, A.H., Martin, A.J.P. (1944) "Qualitative analysis of proteins: a partition chromatographic method." <i>Biochem. J.</i> 38, 224–232. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/16747922/" target="_blank">PubMed 16747922</a><a href="https://scholar.google.com/scholar?q=Consden+Gordon+Martin+partition+chromatography+1944" target="_blank">Google Scholar</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="na m">
+      <span class="year">1944</span> <span class="who">Avery, MacLeod &amp; McCarty</span> <span class="tag">transforming principle = DNA</span>
+      <p>At the Rockefeller Institute, pneumococcal transformation is reproduced in a cell-free system. The active fraction is destroyed by <b>deoxyribonuclease</b> but not by protease or ribonuclease: the transforming principle <i>is</i> DNA. The isolation workflow — detergent lysis, chloroform deproteinization, ethanol precipitation of fibrous DNA, enzyme controls — is the direct ancestor of every modern DNA prep.</p>
+      <dl class="papers"><dt>Paper</dt><dd>Avery, O.T., MacLeod, C.M., McCarty, M. (1944) "Studies on the chemical nature of the substance inducing transformation of pneumococcal types." <i>J. Exp. Med.</i> 79, 137–158. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/19871356/" target="_blank">PubMed 19871356</a><a href="https://doi.org/10.1084/jem.79.2.137" target="_blank">Full text / DOI</a><a href="https://scholar.google.com/scholar?q=Avery+MacLeod+McCarty+1944+transforming+principle" target="_blank">Google Scholar</a></span></dd></dl>
+    </div>
+
+    <div class="event" data-t="na m">
+      <span class="year">1945</span> <span class="who">Schmidt &amp; Thannhauser; Schneider</span> <span class="tag">RNA/DNA separation</span>
+      <p>Two classic analytical procedures split RNA and DNA quantitatively: <b>Schmidt–Thannhauser</b> (alkaline hydrolysis liberates RNA nucleotides while DNA remains as "DNA-P") and <b>Schneider</b> (hot trichloroacetic-acid extraction of nucleic acids from the protein precipitate). Both remained standard until phenol and detergent methods arrived in the 1950s–60s.</p>
+      <dl class="papers"><dt>Papers</dt>
+        <dd>Schmidt, G. &amp; Thannhauser, S.J. (1945) <i>J. Biol. Chem.</i> 161, 83–89. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Schmidt+Thannhauser+1945+nucleic+acids" target="_blank">PubMed search</a></span></dd>
+        <dd>Schneider, W.C. (1945) <i>J. Biol. Chem.</i> 161, 293–303. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Schneider+1945+phosphorus+compounds+animal+tissue" target="_blank">PubMed search</a></span></dd>
+      </dl>
+    </div>
+
+    <div class="event" data-t="nb m">
+      <span class="year">1947–1950</span> <span class="who">Vischer &amp; Chargaff; Cohn</span> <span class="tag">chromatography of bases</span>
+      <p>Chargaff's laboratory adapts paper chromatography + UV spectroscopy to separate and quantify the four bases of DNA and RNA from many species. Result: <b>A ≈ T and G ≈ C</b> (Chargaff's rules, 1950) and the ratios vary between species — demolishing the tetranucleotide hypothesis and paving the way for base pairing. Simultaneously, <b>Waldo Cohn</b> at Oak Ridge develops <b>ion-exchange chromatography</b> for nucleotides, and Hotchkiss purifies and assays DNA chemically.</p>
+      <dl class="papers"><dt>Papers</dt>
+        <dd>Vischer, E. &amp; Chargaff, E. (1948) "The composition of the nucleic acids of thymus and of herring sperm." <i>J. Biol. Chem.</i> 176, 715–734. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Vischer+Chargaff+1948" target="_blank">PubMed search</a><a href="https://scholar.google.com/scholar?q=Vischer+Chargaff+1948+herring+sperm" target="_blank">Google Scholar</a></span></dd>
+        <dd>Chargaff, E. (1950) "Chemical specificity of nucleic acids and mechanism of their enzymatic degradation." <i>Experientia</i> 6, 201–209. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/14787060/" target="_blank">PubMed 14787060</a></span></dd>
+        <dd>Cohn, W.E. (1950) <i>J. Am. Chem. Soc.</i> 72, 1471. <span class="refs"><a href="https://scholar.google.com/scholar?q=Cohn+ion+exchange+chromatography+nucleotides+1950" target="_blank">Google Scholar</a></span></dd>
+      </dl>
+    </div>
+
+    <div class="event" data-t="aa m">
+      <span class="year">1949–1951</span> <span class="who">Moore &amp; Stein</span> <span class="tag">amino acid analysis</span>
+      <p>Rockefeller Institute again: Moore and Stein build <b>quantitative ion-exchange chromatography on starch columns</b> for complete amino-acid analysis of proteins (bovine serum albumin, 1949; β-lactoglobulin, 1951), with fraction collectors and ninhydrin quantification. Amino-acid analysis becomes an automated, reproducible engineering discipline — the analytical twin of Chargaff's base analysis.</p>
+      <dl class="papers"><dt>Papers</dt>
+        <dd>Stein, W.H. &amp; Moore, S. (1949) <i>J. Biol. Chem.</i> 178, 79. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Stein+Moore+1949+amino+acid+composition" target="_blank">PubMed search</a><a href="https://scholar.google.com/scholar?q=Moore+Stein+1949+amino+acid+composition+beta+lactoglobulin" target="_blank">Google Scholar</a></span></dd>
+        <dd>Moore, S. &amp; Stein, W.H. (1951) <i>J. Biol. Chem.</i> 192, 663. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Moore+Stein+1951+chromatography+amino+acids+starch" target="_blank">PubMed search</a></span></dd>
+      </dl>
+    </div>
+
+    <div class="event" data-t="na">
+      <span class="year">1950–1952</span> <span class="who">Hershey &amp; Chase; Franklin; Wilkins</span> <span class="tag">DNA as genetic material</span>
+      <p>Hershey and Chase label phage protein with <b>³⁵S</b> and DNA with <b>³²P</b>: only the DNA enters the infected bacterium — DNA carries the genes. X-ray diffraction by Rosalind Franklin and Maurice Wilkins yields the crystalline B-form photograph, with parameters (3.4&nbsp;Å rise, 20&nbsp;Å diameter) that Watson and Crick use to build the 1953 double helix, closing the century whose door Miescher opened.</p>
+      <dl class="papers"><dt>Papers</dt>
+        <dd>Hershey, A.D. &amp; Chase, M. (1952) "Independent functions of viral protein and nucleic acid in growth of bacteriophage." <i>J. Gen. Physiol.</i> 36, 39–56. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/12981234/" target="_blank">PubMed 12981234</a><a href="https://doi.org/10.1085/jgp.36.1.39" target="_blank">Full text / DOI</a></span></dd>
+        <dd>Franklin, R.E. &amp; Gosling, R.G. (1953) <i>Nature</i> 171, 740. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Franklin+Gosling+1953+DNA" target="_blank">PubMed search</a></span></dd>
+        <dd>Watson, J.D. &amp; Crick, F.H.C. (1953) <i>Nature</i> 171, 737. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/13054692/" target="_blank">PubMed 13054692</a><a href="https://doi.org/10.1038/171737a0" target="_blank">Full text / DOI</a></span></dd>
+      </dl>
+    </div>
+
+  </div>
+</section>
+
+<section id="methods-na">
+  <h2>Methods — Isolating Nucleic Acids (1869 → 1950)</h2>
+
+  <div class="method">
+    <h3>Miescher's alkaline extraction (1868–69)</h3>
+    <ol>
+      <li>Wash pus cells from surgical bandages with dilute sodium sulfate solution to remove serum proteins.</li>
+      <li>Extract cells with dilute <b>HCl</b> overnight — the cytoplasm dissolves, leaving naked nuclei.</li>
+      <li>Treat nuclei with dilute <b>NaOH</b>; neutralize with acetic acid → a grey, stringy precipitate: <b>nuclein</b> (DNA + protein).</li>
+      <li>Control test: nuclein resists gastric <b>pepsin</b> in acid, proving it is not ordinary protein.</li>
+    </ol>
+    <p><b>Logic:</b> differential solubility + enzyme resistance = a new chemical category. (Salmon-sperm variant: Miescher later used the pure nuclei of sperm heads to get grams of material.)</p>
+  </div>
+
+  <div class="method">
+    <h3>Altmann's "nucleic acid" deproteinization (1889)</h3>
+    <ol>
+      <li>Digest tissue with <b>pepsin in 0.1% HCl</b> at 37–40&nbsp;°C to destroy protein.</li>
+      <li>Extract the residue with dilute alkali; the nucleic acid dissolves.</li>
+      <li>Precipitate the acid with glacial acetic acid / alcohol → protein-free <b>nucleic acid</b>.</li>
+    </ol>
+    <p><b>Logic:</b> enzymatic removal of protein frees the non-protein moiety — the conceptual split of "nuclein" into nucleic acid + protein (histone in chromosomes).</p>
+  </div>
+
+  <div class="method">
+    <h3>Avery–MacLeod–McCarty DNA purification (1944)</h3>
+    <ol>
+      <li>Lyse heat-killed Type III pneumococci; precipitate DNA with ethanol; wind fibres on a spindle.</li>
+      <li>Deproteinize by shaking with <b>chloroform</b> (protein denatures at the interface).</li>
+      <li>Digest with purified enzymes as controls: <b>DNase destroys activity</b>; protease and RNase do not.</li>
+      <li>Activity tracks with the chemistry of DNA (negative Schlieren, orcinol and diphenylamine reactions, 260&nbsp;nm absorption).</li>
+    </ol>
+    <p><b>Logic:</b> enzyme ablation + chemical tests = an identity claim for the biological activity. This template — purify, then knock out with a specific enzyme — remains the core of molecular evidence.</p>
+  </div>
+
+  <div class="method">
+    <h3>RNA/DNA quantitative separation (1945)</h3>
+    <ul>
+      <li><b>Schmidt–Thannhauser:</b> alkaline hydrolysis at 37&nbsp;°C; RNA phosphorus becomes acid-soluble nucleotides, DNA phosphorus does not → subtract to get RNA-P and DNA-P.</li>
+      <li><b>Schneider:</b> extract the tissue with hot 5% <b>trichloroacetic acid</b> — both nucleic acids dissolve, proteins stay precipitated; then estimate by color reactions (diphenylamine for DNA, orcinol for RNA).</li>
+    </ul>
+  </div>
+</section>
+
+<section id="methods-bases">
+  <h2>Methods — Isolating Bases &amp; Nucleotides</h2>
+
+  <div class="method">
+    <h3>Kossel's school: hydrolysis + crystalline derivatives (1885–1900)</h3>
+    <ol>
+      <li><b>Acid hydrolysis</b> of nucleic acid (HCl, formic acid) liberates the bases.</li>
+      <li>Exploit solubility differences: precipitate purines as <b>picrates</b> or <b>silver nitrate salts</b> in ammoniacal solution; crystallize free bases from solution.</li>
+      <li>Confirm identity by elemental analysis, melting point, and comparison with known purines (Fischer's synthetic guanine, adenine).</li>
+    </ol>
+    <p><b>Logic:</b> break the polymer → capture small molecules as crystalline salts → prove structure by comparison with synthesized standards. This is 19th-century "gravimetric-organic" analysis.</p>
+  </div>
+
+  <div class="method">
+    <h3>Levene: dissecting the nucleotide (1909–1929)</h3>
+    <ul>
+      <li>Gentle hydrolysis of yeast nucleic acid with dilute ammonia yields crystalline <b>nucleosides and nucleotides</b> (e.g., inosinic acid → hypoxanthine + ribose + phosphate).</li>
+      <li>Sugar released by cleavage; identified as <b>D-ribose</b> (1909) and later <b>2-deoxy-D-ribose</b> (1929) by optical rotation and osazone derivatives.</li>
+      <li>Conclusion: the monomer is base–sugar–phosphate; the polymer is a chain of these units.</li>
+    </ul>
+  </div>
+
+  <div class="method">
+    <h3>Chromatographic revolution (1944–1950)</h3>
+    <ul>
+      <li><b>Paper partition chromatography</b>: spot hydrolysate on filter paper, develop with solvent (e.g., butanol–HCl), locate bases under a UV lamp (dark-quenching spots at 260&nbsp;nm), elute and read quantities spectrophotometrically (Vischer &amp; Chargaff).</li>
+      <li><b>Ion-exchange chromatography</b> (Cohn, Oak Ridge): anion-exchange resins separate nucleotides by charge/charge distribution — the basis of the later nucleotide maps and of Moore–Stein amino-acid columns.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="methods-aa">
+  <h2>Methods — Isolating Amino Acids</h2>
+
+  <div class="method">
+    <h3>19th century: hydrolysis + fractional crystallization (1820–1900)</h3>
+    <ol>
+      <li><b>Acid hydrolysis</b> of proteins with concentrated HCl (Braconnot's approach, first applied to gelatin, 1820) breaks the chain into free amino acids.</li>
+      <li>Separate by <b>fractional crystallization</b> of salts (copper, barium) — how glycine, leucine, tyrosine, cystine, etc., were discovered one at a time.</li>
+      <li>Identify by elemental analysis and comparison with synthetic samples (Strecker synthesis as proof of structure).</li>
+    </ol>
+  </div>
+
+  <div class="method">
+    <h3>Fischer's ester distillation (1900–1906)</h3>
+    <ol>
+      <li>Esterify the amino acids with ethanol + HCl.</li>
+      <li><b>Fractional vacuum distillation</b> of the ethyl esters separates even homologues that crystallize together.</li>
+      <li>Hydrolyse each ester fraction back to the free amino acid; count and identify all residues of a protein.</li>
+    </ol>
+    <p><b>Logic:</b> convert polar, non-volatile molecules into volatile derivatives — physical separation supersedes crystallization luck.</p>
+  </div>
+
+  <div class="method">
+    <h3>Quantitation &amp; modern analysis (1907–1950)</h3>
+    <ul>
+      <li><b>Van Slyke gasometric method</b> (1911–1914): nitrous acid liberates N₂ from free α-amino groups — free amino nitrogen becomes measurable during hydrolysis.</li>
+      <li><b>Microbiological assays</b> (1940s, Snell): lactic-acid bacteria that require a given amino acid convert growth into a titration curve.</li>
+      <li><b>Paper chromatography + ninhydrin</b> (Consden–Gordon–Martin, 1944): two-dimensional maps of amino acids; Sanger uses it to read the sequence of insulin peptides (1945–1951).</li>
+      <li><b>Ion-exchange columns</b> (Moore &amp; Stein, 1949–1951): complete automatic amino-acid composition in one run; by 1958, the first amino-acid analyzer.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="dna-rna">
+  <h2>DNA vs RNA — How the Difference Was Found, and How the Two Were Separated</h2>
+  <p class="lead">Today "DNA" and "RNA" look like two obvious categories, but for forty years biochemists knew only "plant nucleic acid" (yeast) and "animal nucleic acid" (thymus). The recognition that there are exactly two chemically distinct nucleic acids — and then the discovery that <i>both occur in every cell</i> — came from an interplay of chemical, enzymatic, and cytological evidence.</p>
+
+  <h3 style="margin-top:28px">Stage 1 — Two nucleic acids by chemistry (1900–1929)</h3>
+  <div class="method">
+    <ul>
+      <li><b>Hydrolysis products differed.</b> Kossel's and Levene's analyses showed yeast nucleic acid yields the pentose <b>D-ribose</b> plus uracil, while thymus nucleic acid yields a sugar that resisted identification for twenty years plus <b>thymine</b> (Levene &amp; Mori, 1929: <b>2-deoxy-D-ribose</b>). The sugars were the decisive discriminator: identical bases except uracil↔thymine, but different carbohydrates.</li>
+      <li><b>Optical and colour tests.</b> Orcinol (Bial's) reaction detects pentoses generally; the <b>diphenylamine reaction</b> (Dische, 1930) became the specific colorimetric test for the deoxyribose of DNA — still the classic DNA assay. Feulgen's <b>Nuklealreaktion</b> (1914/1924 with Rossenbeck) rests on the same chemistry: mild acid hydrolysis strips purines and frees aldehyde groups on deoxyribose, which react with Schiff reagent to give a purple colour <b>only with DNA</b>.</li>
+      <li><b>Physical behaviour differed.</b> Thymus "sodium nucleinate" formed extremely viscous, threads-on-stirring-rod solutions and gelled on warming; yeast nucleic acid did not — an early hint of the enormous size and secondary structure of DNA, before anyone could measure a molecular weight.</li>
+    </ul>
+    <p><b>False conclusion of the era:</b> because DNA was found in animal cells and RNA in plant/yeast cells, textbooks taught "animal = DNA, plant = RNA." Both ideas died in the 1930s–40s, below.</p>
+  </div>
+
+  <h3>Stage 2 — Enzymes prove the two are distinct and coexist (1903–1948)</h3>
+  <div class="method">
+    <ul>
+      <li><b>Distinct nucleases.</b> A DNase ("nucleodepolymerase") was described by Levene (1905); <b>ribonuclease</b> was detected in the 1920s (Jones, 1920) and crystallized by <b>Kunitz (1940)</b> from pancreas. Enzyme specificity is chemistry's sharpest scalpel: an enzyme that destroys RNA but leaves DNA intact is itself proof that the two substrates differ, and a tool to remove one to study the other.</li>
+      <li><b>Both nucleic acids in every cell.</b> Once RNase and DNase were available, extracts of any tissue could be digested selectively — RNA and DNA turned out to coexist in all animal and plant cells (confirmed quantitatively by Schmidt &amp; Thannhauser, Davidson, and Chargaff's group in the 1940s: DNA concentrated in chromosomes, RNA in cytoplasm and nucleolus).</li>
+      <li><b>Avery 1944 &amp; Hershey–Chase 1952:</b> DNase (not RNase, not protease) destroys pneumococcal transformation; ³²P (DNA) but not ³⁵S (protein) enters infected bacteria — the functional proof that the deoxyribo-type polymer is the genetic material.</li>
+    </ul>
+  </div>
+
+  <h3>Stage 3 — Cytological methods: seeing DNA and RNA in the cell</h3>
+  <div class="method">
+    <h3 style="margin-top:0">Feulgen reaction (1914, Feulgen &amp; Rossenbeck 1924)</h3>
+    <ol>
+      <li>Fix tissue section; hydrolyse gently in <b>1 M HCl at 60 °C</b> (~8 min): apurinic acid forms, freeing deoxyribose aldehydes.</li>
+      <li>Rinse and treat with colourless <b>Schiff reagent</b> (fuchsin decolourized by bisulphite).</li>
+      <li>Purple-magenta product appears <b>only where DNA is</b>; RNA does not react because its ribose has no free aldehyde at C2 under these conditions.</li>
+      <li>Controls: DNase pretreatment abolishes the stain; RNase does not.</li>
+    </ol>
+    <p><b>Result:</b> DNA localized to chromosomes; in Feulgen's hands this killed the idea that DNA was only animal — it stained plant chromosomes too. Combined with <b>microphotometry</b> (microscope photometer measures the dye amount per nucleus), the Feulgen method gave the first quantitative DNA-per-nucleus data and showed DNA content is constant per species and halved in gametes — cytological proof of DNA's genetic role <i>before</i> 1944.</p>
+  </div>
+
+  <div class="method">
+    <h3 style="margin-top:0">UV microspectrophotometry (Caspersson, 1936–1940)</h3>
+    <ul>
+      <li>Nucleic acids absorb <b>260 nm</b> (the bases), proteins absorb <b>280 nm</b> (aromatic amino acids).</li>
+      <li>Caspersson built a UV microscope with a photometer and measured single living cells: intense 260-nm absorption in <b>chromosomes</b> (DNA) and in the <b>nucleolus and cytoplasm</b> (RNA); protein-rich regions shifted the ratio to 280 nm.</li>
+      <li>With Jean Brachet, the picture emerged: <b>chromosomes = DNA + protein, nucleolus/cytoplasm = RNA + protein</b>, and RNA content correlates with protein synthesis (pancreas, silk gland, growing oocyte).</li>
+    </ul>
+    <dl class="papers"><dt>Key paper</dt><dd>Caspersson, T. (1936) <i>Skand. Arch. Physiol.</i> 78, Suppl. 8. <span class="refs"><a href="https://scholar.google.com/scholar?q=Caspersson+1936+ultraviolet+microspectrophotometry+nucleic+acids" target="_blank">Google Scholar</a></span></dd></dl>
+  </div>
+
+  <div class="method">
+    <h3 style="margin-top:0">Unna–Pappenheim / methyl green–pyronine (Brachet, 1940–1943)</h3>
+    <ol>
+      <li>Stain the section with a mixture of two basic dyes: <b>methyl green</b> and <b>pyronine Y</b>.</li>
+      <li>Methyl green binds preferentially to <b>polymerized DNA</b> (blue-green nuclei); pyronine binds <b>RNA</b> (red nucleolus and cytoplasm).</li>
+      <li><b>Enzyme controls (Brachet's decisive step):</b> pre-digest the section with crystallized <b>ribonuclease</b> — the red stain vanishes while the green nuclear stain survives; DNase does the reverse. This pairing of staining with nuclease digestion made the method specific and convinced the field that RNA is a general constituent of all cells.</li>
+    </ol>
+    <dl class="papers"><dt>Key papers</dt>
+      <dd>Brachet, J. (1941–42) "La localisation des acides pentosenucléiques…" <i>Arch. Biol.</i> 53, 207. <span class="refs"><a href="https://scholar.google.com/scholar?q=Brachet+methyl+green+pyronine+ribonuclease+localization" target="_blank">Google Scholar</a><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Brachet+ribonuclease+localization+pentose+nucleic+acid" target="_blank">PubMed search</a></span></dd>
+      <dd>Kunitz, M. (1940) "Crystalline ribonuclease." <i>J. Gen. Physiol.</i> 24, 15. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Kunitz+crystalline+ribonuclease+1940" target="_blank">PubMed search</a><a href="https://scholar.google.com/scholar?q=Kunitz+crystalline+ribonuclease" target="_blank">Google Scholar</a></span></dd>
+    </dl>
+  </div>
+
+  <h3>Stage 4 — Biochemical methods: separating DNA from RNA in a test tube</h3>
+  <div class="method">
+    <h3 style="margin-top:0">Schmidt &amp; Thannhauser alkaline fractionation (1945)</h3>
+    <ol>
+      <li>Extract the tissue and remove "acid-soluble" phosphorus (small nucleotides, inorganic phosphate) with cold TCA; lipids with alcohol/ether.</li>
+      <li>Incubate the residue in <b>0.3–1 M NaOH, 37 °C, overnight</b>: the 2′-OH of RNA allows alkaline transesterification → RNA breaks into acid-soluble <b>nucleotides (RNA-P)</b>; DNA, lacking the 2′-OH, survives intact.</li>
+      <li>Acidify: DNA precipitates (plus phosphoprotein), RNA nucleotides stay in solution → measure <b>RNA-P and DNA-P separately</b> by phosphorus analysis.</li>
+    </ol>
+    <p><b>Conceptual core:</b> the whole method exploits the one chemical difference between the sugars — the 2′-hydroxyl. Alkali is not just a reagent; it is a structural probe.</p>
+  </div>
+
+  <div class="method">
+    <h3 style="margin-top:0">Schneider hot-TCA extraction (1945) &amp; Ogur–Rosen perchloric acid (1950)</h3>
+    <ul>
+      <li><b>Schneider:</b> extract both nucleic acids from the protein with <b>5% TCA at 90 °C</b>; estimate DNA by the diphenylamine reaction and RNA by orcinol in the same extract.</li>
+      <li><b>Ogur &amp; Rosen:</b> differential extraction with hot <b>perchloric acid</b> — first RNA (10 min, 70 °C, mild acid), then DNA from the residue (15 min, 90 °C), minimizing cross-contamination.</li>
+      <li><b>Chargaff's route:</b> hydrolyse total nucleic acid with formic acid, resolve the four bases by <b>paper chromatography</b> (two solvent systems), quantify each eluted base by UV absorption — the first reliable base-composition tables, which also revealed RNA and DNA compositions as independently variable.</li>
+    </ul>
+  </div>
+
+  <div class="method">
+    <h3 style="margin-top:0">Selective enzymatic digestion &amp; differential precipitation</h3>
+    <ul>
+      <li>Digest purified total nucleic acid with <b>crystallized RNase</b>; precipitate undigested DNA with acid/alcohol — a preparative, not just analytical, separation.</li>
+      <li><b>Differential solubility:</b> DNA "sodium nucleinate" precipitates as fibres in ~0.1 M NaCl + ethanol; RNA precipitates more slowly as a gelatinous mass. Guanine-rich RNA (later called "RNA gel") forms insoluble complexes with copper salts — 19th-century-style separations that still work at the bench.</li>
+      <li><b>Epilogue beyond 1950:</b> the logic culminates in Kirby's <b>phenol/SDS extraction</b> (1956) where DNA stays in the aqueous phase and protein goes to phenol, Mirsky's DNA-histone dissociation with strong salt, <b>Meselson–Stahl density-gradient centrifugation</b> (1957, CsCl) resolving DNA species by buoyant density (GC-rich DNA is denser), and the separation of RNA by sucrose gradients — the direct descendants of the Schmidt–Thannhauser idea: make the two polymers behave differently, then pull them apart.</li>
+    </ul>
+  </div>
+
+  <div class="method">
+    <h3 style="margin-top:0">How Schmidt &amp; Thannhauser and Schneider actually reasoned — the thinking behind the two methods</h3>
+    <p><b>The problem both faced (early 1940s):</b> tissue extracts contain DNA, RNA, free nucleotides, phosphoproteins, inorganic phosphate and phospholipids — all carrying phosphorus — yet the only universally available, sub-microgram quantitative detector available in every lab was <b>phosphorus analysis</b> (the Fiske–Subbarow colorimetric method, 1925) and a handful of colour reactions. There were no specific stains in a test tube, no spectrophotometers in most labs, and no way to physically separate intact DNA from intact RNA at scale. The question was therefore not "how do I purify the two polymers?" but <b>"how do I convert the difference in their chemistry into a difference in a number I can measure?"</b></p>
+    <p><b>Schmidt &amp; Thannhauser's chain of reasoning (1945):</b></p>
+    <ol>
+      <li><i>Known chemistry as a lever:</i> organic chemists had known since ~1900 that alkali rapidly destroys yeast nucleic acid but leaves thymus nucleic acid essentially intact. Why: the 2′-OH of RNA's ribose allows an intramolecular <b>transesterification</b> — the phosphate backbone cyclizes and the chain collapses into small nucleotides; DNA has no 2′-OH, so there is nothing for the phosphate to cyclize onto, and the backbone survives alkali.</li>
+      <li><i>Convert structure into solubility:</i> intact polymers are acid-insoluble (they precipitate with acid); small nucleotides are acid-<b>soluble</b>. So after alkaline incubation: acidify → RNA fragments stay dissolved in the supernatant ("RNA-P"), DNA (plus phosphoprotein) precipitates ("DNA-P").</li>
+      <li><i>Subtraction accounting:</i> first wash out the small-molecule phosphorus with cold TCA <i>before</i> hydrolysis (otherwise free nucleotides would contaminate the RNA fraction), remove lipids with alcohol/ether, then split the residue into two fractions and measure each by phosphorus. One tissue, two numbers, one protocol.</li>
+      <li><i>Self-criticism:</i> they already flagged the known artefacts — the "DNA-P" fraction still contains phosphoprotein (later corrected by the Schneider method or by the Schmidt–Thannhauser–Schneider variants isolating DNA by diphenylamine on the residue). The method succeeded because it did not need to purify anything: it needed only <b>one reaction whose selectivity was already proven by pure chemistry</b> (Levene's alkali observations decades earlier).</li>
+    </ol>
+    <p><b>Schneider's chain of reasoning (1945):</b></p>
+    <ol>
+      <li><i>Drop the alkali, keep the accounting:</i> Schneider accepted that Schmidt–Thannhauser's DNA number was polluted by phosphoprotein. His move was to sidestep phosphorus fractionation entirely: use <b>hot 5% TCA to extract both nucleic acids together</b> out of the protein precipitate — proteins stay coagulated, nucleic acids dissolve — and then measure DNA and RNA in the same extract by their <b>colour reactions</b>: diphenylamine (deoxyribose → blue) for DNA, orcinol (pentose → green) for RNA.</li>
+      <li><i>Why hot TCA:</i> cold TCA precipitates macromolecules (the standard "wash" step); boiling TCA, by contrast, depolymerizes and dissolves nucleic acids while proteins denature and stay put — a solubility switch operated purely by temperature, exploiting what precipitation chemists already knew about TCA.</li>
+      <li><i>Trade-offs he accepted knowingly:</i> colour reactions are less specific than phosphorus (sugars in the tissue interfere; the orcinol reaction also reads DNA's deoxyribose weakly), so accuracy depends on running standards and blanks. In exchange, both nucleic acids come out in one extract, phosphoprotein no longer contaminates DNA, and any lab with a colorimeter can run it.</li>
+    </ol>
+    <p><b>Why these two methods became "the" methods (and stayed standard into the 1960s):</b></p>
+    <ul>
+      <li><b>They fit the instruments of the time</b> — a colorimeter and phosphorus assay, no UV spectrophotometer, ultracentrifuge or electrophoresis needed. A method succeeds historically when it matches what ordinary labs can actually do.</li>
+      <li><b>They converted a structural difference into a measurand</b> — 2′-OH chemistry (Schmidt–Thannhauser) or acid-solubility at heat (Schneider). Both are instances of the general strategy of this whole era: <i>don't separate the molecules; make one of them change state and measure the two states separately.</i></li>
+      <li><b>They were self-correcting</b> — the field cross-validated them against each other and against Bratton's, Ogur–Rosen's and Chargaff's procedures, and each artefact (phosphoprotein contamination, orcinol cross-reaction) had a known correction. The 1950s–60s phenol (Kirby) and detergent (Marmur 1961) methods replaced them only when the question changed from <i>"how much DNA and RNA is in this tissue?"</i> to <i>"give me the intact molecules to sequence, anneal and transform."</i> Schmidt–Thannhauser chemistry — exploiting the 2′-OH — is still the reason RNA is alkali-labile in every modern protocol.</li>
+    </ul>
+  </div>
+
+  <div class="qa"><b>Exam-style summary of the evidence chain:</b>
+    <ol>
+      <li><b>Chemical:</b> different sugars (ribose vs deoxyribose) and one base difference (uracil vs thymine) — Levene, 1909–1929.</li>
+      <li><b>Colour reactions:</b> Feulgen and diphenylamine react only with DNA; orcinol favours RNA-pentose.</li>
+      <li><b>Enzymological:</b> specific DNase and RNase (Kunitz crystallization, 1940) — both substrates exist everywhere.</li>
+      <li><b>Cytological:</b> Feulgen (DNA in chromosomes), Caspersson UV photometry, Brachet methyl green–pyronine (RNA in nucleolus/cytoplasm).</li>
+      <li><b>Biochemical:</b> Schmidt–Thannhauser alkaline split (2′-OH logic), Schneider/Ogur–Rosen extraction, Chargaff's chromatographic base tables.</li>
+      <li><b>Functional:</b> only DNA transforms pneumococci (Avery 1944) and enters infected cells (Hershey–Chase 1952).</li>
+    </ol>
+  </div>
+</section>
+
+<section id="enzymes">
+  <h2>The Hunt for the Specific Enzymes — Isolation History &amp; Experimental Logic</h2>
+  <p class="lead">Every DNA/RNA separation and every nucleotide analysis on this page ultimately depends on enzymes: pepsin to strip protein from nuclei, nucleases to prove the two nucleic acids are different molecules, phosphatases to cut nucleotides apart. Finding and purifying these enzymes was itself a century-long experimental programme with its own methods and its own conceptual battles.</p>
+
+  <h3 style="margin-top:28px">The conceptual problem: what <i>is</i> an enzyme? (1850–1930)</h3>
+  <div class="qa"><b>The battlefield.</b> After Pasteur, fermentation was attributed by Liebig's school to "chemical forces" of unstable proteins, while the <i>enzyme</i> (ferment) camp claimed specific, organism-like catalysts. The decisive experiments were isolation experiments:
+    <ul>
+      <li><b>Buchner (1897):</b> cell-free yeast juice (ground with sand and kieselguhr, filtered) still ferments sugar to alcohol and CO₂ → fermentation is chemistry of soluble molecules, not a property of living protoplasm. This founded biochemistry as the chemistry of enzymes, and the sand-grinding + filtration is the ancestor of every cell-free homogenate.</li>
+      <li><b>Fischer's lock-and-key (1894):</b> glycosidases distinguish α- and β-glycosidic bonds → enzymes have shape specificity, so "a specific enzyme for a specific substrate" became a search warrant: any new class of bond implies a specific enzyme exists to break it.</li>
+      <li><b>Sumner (1926):</b> crystallizes <b>urease</b> from jack bean (acetone precipitation, chilling) and argues the crystal <i>is</i> the enzyme — a pure protein. <b>Willstätter</b>, the authority of the day, insisted enzymes were not proteins but small active groups adsorbed on colloidal carriers, and his own ultra-purified pepsin gave negative protein tests. <b>Northrop (1930–32):</b> crystallizes <b>pepsin and trypsin</b>, shows constant activity per crystal mass, constant solubility, activity destroyed exactly parallel to protein denaturation, and — decisively — the crystals can be dissolved and recrystallized with the same activity. Willstätter's school had actually purified their enzymes <i>too far</i>: his protein tests were too insensitive for microgram protein. The episode is the classic lesson that absence of a positive test is not absence of the substance.</li>
+    </ul>
+  </div>
+
+  <h3>Enzymes of the nucleic-acid story, in isolation order</h3>
+
+  <div class="method">
+    <h3 style="margin-top:0">Pepsin &amp; trypsin — the protein-removal tools (1836 → 1930)</h3>
+    <ul>
+      <li><b>Schwann (1836)</b> names "pepsin" from gastric juice and shows it dissolves meat in acid — the first animal enzyme studied. Miescher's entire nuclein protocol (1869) is built on a pepsin control: the substance resisting pepsin <i>is</i> the discovery criterion.</li>
+      <li><b>Kühne (1876)</b> coins the word <b>"enzyme"</b> while working on trypsin, and distinguishes "organized ferments" (cells) from "unorganized ferments" (soluble enzymes).</li>
+      <li><b>Northrop (1930):</b> crystalline pepsin from commercial gastric mucosa: ammonium sulphate fractionation at controlled pH, then ethanol-salt precipitation until a crystalline phase forms. The purified protein was the first enzyme whose kinetics (Michaelis, Northrop's pH optimum work) could be measured without side reactions.</li>
+    </ul>
+    <dl class="papers"><dt>Papers</dt>
+      <dd>Northrop, J.H. (1930) "Crystalline pepsin." <i>Science</i> 72, 474. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Northrop+crystalline+pepsin+1930" target="_blank">PubMed search</a><a href="https://scholar.google.com/scholar?q=Northrop+crystalline+pepsin+1930" target="_blank">Google Scholar</a></span></dd>
+      <dd>Buchner, E. (1897) "Alkoholische Gärung ohne Hefezellen." <i>Ber. Chem. Ges.</i> 30, 117. <span class="refs"><a href="https://scholar.google.com/scholar?q=Buchner+1897+alkoholische+G%C3%A4rung+ohne+Hefezellen" target="_blank">Google Scholar</a></span></dd>
+    </dl>
+  </div>
+
+  <div class="method">
+    <h3 style="margin-top:0">Nucleodepolymerase / DNase (1905 → 1948)</h3>
+    <ul>
+      <li><b>Levene &amp; Medigreceanu (1905–06)</b> find in pancreas and other organs an enzyme depolymerizing thymus nucleic acid — they call it <b>"nucleodepolymerase."</b> Assay readout: the <b>viscosity</b> of a DNA solution falls, and the DNA loses its ability to be precipitated/fibrillated — activity long before "units" existed.</li>
+      <li>In the 1920s–40s the enzyme is purified by salt and acetone fractionation (Greenstein, Springer, etc.); named <b>deoxyribonuclease</b>.</li>
+      <li><b>McCarty (1946, with Avery)</b> crystallizes DNase from pancreas using 0.15 M "acid" ammonium sulphate fractionation — the very enzyme whose specificity had proved the transforming principle was DNA in 1944. Kunitz's route to crystalline DNase followed in 1948–50.</li>
+      <li><b>Experimental logic of its use:</b> destroy a candidate molecule selectively and ask whether the biological activity dies with it. The 1944 Avery experiment is this logic's most famous execution.</li>
+    </ul>
+    <dl class="papers"><dt>Papers</dt>
+      <dd>Levene, P.A. &amp; Medigreceanu, F. (1905) <i>J. Biol. Chem.</i> 1, 345. <span class="refs"><a href="https://scholar.google.com/scholar?q=Levene+Medigreceanu+nucleodepolymerase+1905" target="_blank">Google Scholar</a><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Levene+nucleodepolymerase" target="_blank">PubMed search</a></span></dd>
+      <dd>McCarty, M. (1946) "Purification and properties of deoxyribonuclease." <i>J. Gen. Physiol.</i> 29, 123. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=McCarty+purification+deoxyribonuclease+1946" target="_blank">PubMed search</a><a href="https://scholar.google.com/scholar?q=McCarty+1946+deoxyribonuclease+purification" target="_blank">Google Scholar</a></span></dd>
+    </dl>
+  </div>
+
+  <div class="method">
+    <h3 style="margin-top:0">Ribonuclease (1920 → 1940 → 1972)</h3>
+    <ul>
+      <li><b>Jones (1920):</b> observing that yeast nucleic acid is degraded in tissue extracts, W. Jones describes heat-stable "nuclease" activity — the first sighting of RNase. Its <b>heat stability</b> (boiling does not destroy it) was itself an isolation clue: it could be separated from most proteins by simply heating the extract.</li>
+      <li><b>Dubos (1930s) and Brachet's staining work:</b> RNase becomes the specific reagent that removes RNA from tissue sections — the cytological tool of the methyl green–pyronine method.</li>
+      <li><b>Kunitz (1940):</b> crystalline <b>ribonuclease</b> from beef pancreas. Purification ladder: dilute sulphuric acid extraction → heat to destroy contaminants (RNase survives) → ammonium sulphate and acetone fractionation → crystals. Assay: drop in <b>acid-soluble phosphorus</b> released from RNA, later the Kunitz <b>spectrophotometric</b> assay.</li>
+      <li><b>Epilogue:</b> RNase A became the first enzyme whose complete <b>amino-acid sequence</b> was determined (Stein, Moore &amp; Hirs, 1960) — closing the loop: Moore and Stein's amino-acid analyzer (1949–51) was applied to the very enzyme family that had made nucleic-acid analysis possible. The 1972 Nobel Prize (Anfinsen, Moore, Stein) is the direct descendant of this enzyme-isolation story.</li>
+    </ul>
+    <dl class="papers"><dt>Papers</dt>
+      <dd>Jones, W. (1920) "The action of boiled pancreas…" <i>Am. J. Physiol.</i> 52, 203. <span class="refs"><a href="https://scholar.google.com/scholar?q=Jones+1920+ribonuclease+boiled+pancreas" target="_blank">Google Scholar</a></span></dd>
+      <dd>Kunitz, M. (1940) "Crystalline ribonuclease." <i>J. Gen. Physiol.</i> 24, 15. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Kunitz+crystalline+ribonuclease+1940" target="_blank">PubMed search</a><a href="https://scholar.google.com/scholar?q=Kunitz+crystalline+ribonuclease" target="_blank">Google Scholar</a></span></dd>
+      <dd>Hirs, C.H.W., Moore, S., Stein, W.H. (1960) "The sequence of the amino acid residues in ribonuclease." <i>J. Biol. Chem.</i> 235, 633. <span class="refs"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Hirs+Moore+Stein+sequence+ribonuclease" target="_blank">PubMed search</a></span></dd>
+    </dl>
+  </div>
+
+  <div class="method">
+    <h3 style="margin-top:0">The discovery narratives in detail — how the DNA-digesting and RNA-digesting enzymes were actually found</h3>
+    <p class="lead">Neither nuclease was found by someone looking for "an enzyme that digests DNA/RNA." Both were found because a <b>substrate preparation kept misbehaving</b> — a pattern worth studying as the general way digestive enzymes entered biochemistry.</p>
+
+    <p><b>DNase — found by watching DNA solutions lose their viscosity (1903–1948).</b></p>
+    <ol>
+      <li><b>The incidental observation.</b> Around 1903–1905, workers preparing "sodium nucleinate" from thymus noticed that incubating the viscous DNA solution with tissue extracts (pancreas, spleen, liver) made it <b>thin and non-precipitable</b>. Levene and Medigreceanu (1905–06) systematized this at the Rockefeller Institute: they surveyed organs, showed the activity was soluble, heat-labile and destroyed by conditions that denature protein, and named it <b>"nucleodepolymerase."</b> The assay was purely physical: viscosity drop and loss of "fibril" formation on stirring — no chemistry needed, because DNA's huge size made it its own signal.</li>
+      <li><b>Why the observation could not be ignored.</b> A 1909-style objection was that the effect was just acid/alkali produced by the extract. The counter-logic: neutral buffered solutions, time-linearity of the viscosity fall, and heat-inactivated controls established that a thermolabile <i>catalyst</i> was acting — the same logic of control experiments as Buchner's fermentation.</li>
+      <li><b>The 1930s–40s purification race.</b> Greenstein, Springer and colleagues fractionated the activity with ammonium sulphate and acetone, defined pH optima, and — crucially — established that the pancreatic enzyme acted <b>only on the deoxyribo-type polymer</b>: yeast RNA solutions were untouched. Specificity was the discovery's scientific payload: the enzyme was an analytical reagent proving DNA and RNA are chemically distinct.</li>
+      <li><b>Two DNases, not one.</b> In the 1940s an intracellular <b>acid DNase (DNase II)</b> active around pH 5 was distinguished from the pancreatic <b>alkaline DNase (DNase I, pH optimum ~7.5 with Mg²⁺/Ca²⁺ cofactors)</b> — different pH optima, different tissue distributions, different end products. Differential pH optima became the standard way to disentangle "one enzyme or two?" before physical separation was possible.</li>
+      <li><b>Crystallization.</b> McCarty (1946) crystallized DNase from pancreas via cold dilute-sulphuric-acid extraction, ammonium sulphate fractionation and controlled acetone precipitation; Kunitz (1948–50) refined the crystallization and converted the viscosity assay into a <b>UV hyperchromicity assay</b> (depolymerized DNA absorbs more at 260 nm) — making DNase measurable kinetically and, incidentally, discovering the <b>hyperchromic effect</b> that became a central probe of DNA structure.</li>
+      <li><b>The payoff in the nucleic-acid story.</b> The Avery–MacLeod–McCarty experiment (1944) had used a crude DNase; McCarty's crystallization was undertaken <i>because</i> the 1944 experiment demanded an unquestionably pure, specific DNase. The enzyme found by watching viscosity became the proof that DNA was the transforming principle.</li>
+    </ol>
+
+    <p><b>RNase — found by watching RNA preparations fall apart, and by an accident of heat (1920–1940).</b></p>
+    <ol>
+      <li><b>The incidental observation.</b> In the 1910s–20s, attempts to prepare yeast nucleic acid from animal tissues (liver, pancreas, spleen) gave degraded, non-precipitable material: the RNA was being digested <i>by the tissue itself</i>. W. Jones (1920) made this explicit with the observation that a <b>boiled</b> pancreas extract still destroys yeast nucleic acid — a shock, because boiling destroys most enzymes. The heat resistance itself became the discovery's fingerprint.</li>
+      <li><b>The conceptual move.</b> Jones and later workers treated the destructive activity as a tool rather than a nuisance: if something in tissues digests RNA specifically, then (a) RNA must be a real, chemically distinct substrate in every cell, and (b) the enzyme can be used to <b>remove RNA selectively</b> from mixtures and sections.</li>
+      <li><b>Purification exploiting its own property.</b> Dubos (1938) and colleagues purified RNase from beef pancreas using the standard ladder — acid extraction, ammonium sulphate, acetone — plus the step that most enzymes cannot survive: <b>boiling at acid pH</b> to precipitate contaminating proteins while RNase stays active in solution. A quirk of the molecule (its extraordinary stability, later explained by its compact disulphide-bonded structure) became the purification trick.</li>
+      <li><b>Kunitz's crystallization (1940)</b> completed the arc: crystals from the heat-treated, salt-fractionated preparation; constant activity per protein mass; a quantitative assay based on release of <b>acid-soluble phosphorus</b> (later the UV assay shared with DNase).</li>
+      <li><b>Branching family.</b> Sato and Egami in Japan (1950s) isolated <b>RNase T1</b> from the mold product "Takadiastase," showing base-specificity (guanine) — opening the era of sequence-specific nucleases (RNase A = pyrimidine-specific). The specificities later became RNA-sequencing tools.</li>
+      <li><b>The payoff in the nucleic-acid story.</b> Crystalline RNase was what made Brachet's methyl green–pyronine cytology specific (digest away RNA, the red stain vanishes — so the red material <i>is</i> RNA), what made Hershey–Chase-style isotope work interpretable, and what fixed the Schmidt–Thannhauser alkali method as complementary rather than contradictory (enzyme vs chemistry, two independent routes to the same split).</li>
+    </ol>
+
+    <div class="qa"><b>Did they realize RNase was the reason animal RNA could not be isolated?</b> Yes — and this is one of the great "wrong conclusion from a right diagnosis" episodes in the field. Early workers (Jones, 1920, and even Levene's laboratory) knew that animal-tissue extracts destroyed yeast nucleic acid and suspected a tissue enzyme; Jones explicitly proposed that the difficulty of preparing pentose nucleic acid from animal organs was due to a depolymerizing enzyme. But because the degraded RNA never survived the extraction, the analytical result was simply <i>"animal tissues contain (almost) no RNA"</i> — and this was the textbook dogma through the 1920s (with DNA likewise being reported "absent" from plant tissues, for the mirror-image reason that the isolation chemistry, not the tissue, defined what you could see). The correction came from the 1930s–40s generation — Caspersson's UV photometry, Brachet's nuclease-controlled staining, and Davidson's and Chargaff's biochemical analyses — which showed that animal cells are <b>rich</b> in RNA, concentrated in nucleolus and cytoplasm: the "absence" had been an artefact of RNase attack during grinding and alkaline extraction. The practical lessons written into every protocol since: extract fast, at low temperature, at acid pH or in detergents/phenol that inactivate the enzyme, and add inhibitors — the modern discipline of "RNase-free technique" descends directly from this misdiagnosis corrected.
+    </div>
+
+    <div class="qa"><b>The general lesson both narratives teach:</b> (1) enzymes were discovered as <i>explanations for contaminated or degrading preparations</i> — the degraded prep is the signal, not the failure; (2) a physical observation (viscosity, solubility, colour) is a sufficient assay if the substrate is distinctive enough; (3) an enzyme's "annoying" properties (RNase's heat stability) become its purification handles; (4) specificity turns an enzyme from an object of study into an <i>analytical instrument</i> — and it was as instruments, not as curiosities, that DNase and RNase settled the DNA/RNA and transforming-principle questions of 1940s biochemistry.
+    </div>
+  </div>
+
+  <div class="method">
+    <h3 style="margin-top:0">Phosphatases &amp; nucleotidases — dismantling the monomer (1907 → 1940s)</h3>
+    <ul>
+      <li><b>Alkaline phosphatase</b> (obstetric enzyme "phosphomonoesterase," described 1907–1911; Grosser &amp; others in bone and placenta) hydrolyses the phosphate ester of nucleotides → became the tool for distinguishing nucleoside from nucleotide (does phosphate release = nucleotide, yes/no?).</li>
+      <li><b>"Nucleotidase"</b> and <b>"nucleosidase"</b> activities were hunted on the explicit conceptual model: <i>each bond in the nucleotide implies its own specific enzyme</i> (phosphate bond, glycosidic bond). Whether "nucleosidase" was a phosphorolysis or hydrolysis was debated for decades — an early example of discovering that bond-breaking can proceed by more than one chemistry.</li>
+      <li><b>5′-nucleotidase</b> (Reis, 1934–37) and the discovery of the nucleotidases in snake venom were crucial for building the nucleotide degradation map — and venom phosphodiesterase became a sequencing tool.</li>
+    </ul>
+    <dl class="papers"><dt>Reference</dt><dd>Reis, J. (1937) <i>Bull. Soc. Chim. Biol.</i> 19, 1575. <span class="refs"><a href="https://scholar.google.com/scholar?q=Reis+5-nucleotidase+1937" target="_blank">Google Scholar</a></span></dd></dl>
+  </div>
+
+  <h3>Conceptual guide: how do you find an enzyme that no one has seen?</h3>
+  <div class="qa"><b>The five-step experimental programme (as executed 1897–1950):</b>
+    <ol>
+      <li><b>Invent an assay that converts the invisible into the measurable.</b> A substrate with a physical property (viscosity of DNA; turbidity; acid-soluble phosphorus; gas evolution; colour change; UV absorption) that changes when the enzyme acts. No assay, no enzyme — this is why DNase was "found" as a viscosity drop and RNase as soluble-phosphorus release.</li>
+      <li><b>Prove the activity is enzymatic, not chemical.</b> Controls for time-linearity, heat lability, and protein-denaturing reagents; the test-tube must be shown to reproduce in the extract a reaction that is otherwise absent. (Buchner's CO₂; Kunitz's standard curve.)</li>
+      <li><b>Ask a specificity question to probe the substrate, not just the enzyme.</b> DNase destroys only DNA → DNA is chemically a distinct molecule; RNase removes only red pyronine stain → the red material is RNA. The enzyme is used as an analytical reagent, and isolation of the substrate (DNA, RNA) proceeds by selective enzymatic destruction.</li>
+      <li><b>Purify by fractional precipitation, guided by the assay at every step.</b> Salt (ammonium sulphate) fractionation, pH-controlled precipitation (isoelectric point), organic solvents (ethanol, acetone), heat (exploiting an enzyme's unusual thermostability — the accidental trick behind RNase), adsorption (kaolin, alumina, charcoal), and finally <b>crystallization</b> as the 1930s gold standard of homogeneity.</li>
+      <li><b>Prove the crystals ARE the enzyme.</b> Constant activity per mass across recrystallizations; parallel loss of activity and protein on denaturation; testable predictions of kinetics (Michaelis–Menten, 1913, itself formulated while enzymes were still un purified).</li>
+    </ol>
+  </div>
+
+  <div class="qa"><b>Cross-links to the rest of this page:</b> pepsin made Miescher's nuclein discovery possible (1869); DNase proved DNA was the transforming principle (1944); RNase made Brachet's cytology specific (1942) and made the Schmidt–Thannhauser split interpretable; the crystalline enzymes of Kunitz and Northrop were the first proteins sequenced by the chromatographic methods (1949–60) invented for amino acids — meaning the enzyme hunters and the nucleic-acid chemists converged on the same instruments. By the 1950s, "purify until it crystallizes" gave way to "purify until it's sequenceable" — the experimental logic did not change, only the endpoint.
+  </div>
+</section>
+
+<section id="papers">
+  <h2>Key Papers — Quick Reference Table</h2>
+  <table>
+    <tr><th>Year</th><th>Author(s)</th><th>Discovery</th><th>Paper</th><th>Links</th></tr>
+    <tr><td>1871</td><td>Miescher</td><td>Nuclein from cell nuclei</td><td><i>Med.-Chem. Untersuchungen</i> 4:441</td><td><a href="https://scholar.google.com/scholar?q=Miescher+1871+Eiterzellen+nuclein" target="_blank" class="ext">Scholar</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Miescher+nuclein+1871" target="_blank" class="ext">PubMed</a></td></tr>
+    <tr><td>1886</td><td>Kossel</td><td>Adenine</td><td><i>Arch. Anat. Physiol.</i></td><td><a href="https://scholar.google.com/scholar?q=Kossel+adenine+1886" target="_blank" class="ext">Scholar</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Kossel+adenine" target="_blank" class="ext">PubMed</a></td></tr>
+    <tr><td>1889</td><td>Altmann</td><td>Nucleic acid freed of protein</td><td><i>Arch. Anat. Physiol.</i>:524</td><td><a href="https://scholar.google.com/scholar?q=Altmann+Nucleins%C3%A4uren+1889" target="_blank" class="ext">Scholar</a></td></tr>
+    <tr><td>1893</td><td>Kossel &amp; Neumann</td><td>Thymine</td><td><i>Ber. Chem. Ges.</i> 26:2753</td><td><a href="https://scholar.google.com/scholar?q=Kossel+Neumann+thymine+1893" target="_blank" class="ext">Scholar</a></td></tr>
+    <tr><td>1909</td><td>Levene &amp; Jacobs</td><td>Ribose / nucleotide concept</td><td><i>Ber. Chem. Ges.</i> 42:335</td><td><a href="https://scholar.google.com/scholar?q=Levene+Jacobs+inosinic+acid+1909" target="_blank" class="ext">Scholar</a></td></tr>
+    <tr><td>1928</td><td>Griffith</td><td>Bacterial transformation</td><td><i>J. Hygiene</i> 27:113</td><td><a href="https://doi.org/10.1017/S0022172400031879" target="_blank" class="ext">DOI</a> · <a href="https://scholar.google.com/scholar?q=Griffith+1928+pneumococcal" target="_blank" class="ext">Scholar</a></td></tr>
+    <tr><td>1929</td><td>Levene &amp; Mori</td><td>Deoxyribose</td><td><i>J. Biol. Chem.</i> 83:803</td><td><a href="https://scholar.google.com/scholar?q=Levene+Mori+deoxyribose" target="_blank" class="ext">Scholar</a></td></tr>
+    <tr><td>1944</td><td>Consden, Gordon, Martin</td><td>Paper chromatography</td><td><i>Biochem. J.</i> 38:224</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/16747922/" target="_blank" class="ext">PubMed</a></td></tr>
+    <tr><td>1944</td><td>Avery, MacLeod, McCarty</td><td>DNA = transforming principle</td><td><i>J. Exp. Med.</i> 79:137</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/19871356/" target="_blank" class="ext">PubMed</a> · <a href="https://doi.org/10.1084/jem.79.2.137" target="_blank" class="ext">Full text</a></td></tr>
+    <tr><td>1948</td><td>Vischer &amp; Chargaff</td><td>Base composition of DNA</td><td><i>J. Biol. Chem.</i> 176:715</td><td><a href="https://scholar.google.com/scholar?q=Vischer+Chargaff+1948" target="_blank" class="ext">Scholar</a></td></tr>
+    <tr><td>1950</td><td>Chargaff</td><td>Chargaff's rules (A=T, G=C)</td><td><i>Experientia</i> 6:201</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/14787060/" target="_blank" class="ext">PubMed</a></td></tr>
+    <tr><td>1952</td><td>Hershey &amp; Chase</td><td>DNA enters cells, not protein</td><td><i>J. Gen. Physiol.</i> 36:39</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/12981234/" target="_blank" class="ext">PubMed</a> · <a href="https://doi.org/10.1085/jgp.36.1.39" target="_blank" class="ext">Full text</a></td></tr>
+    <tr><td>1953</td><td>Watson &amp; Crick</td><td>Double helix (endpoint of this era)</td><td><i>Nature</i> 171:737</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/13054692/" target="_blank" class="ext">PubMed</a> · <a href="https://doi.org/10.1038/171737a0" target="_blank" class="ext">Full text</a></td></tr>
+  </table>
+</section>
+
+<section id="conceptual">
+  <h2>Conceptual Experimental Analysis Guide (1850–1950)</h2>
+  <p class="lead">How to think about this century as an exam question or research narrative — five conceptual stages, each with its characteristic experimental logic:</p>
+
+  <div class="qa"><b>Stage I (1850–1880) — Extraction &amp; elemental analysis.</b> Question: <i>what new substances exist inside cells?</i> Logic: grind, extract with solvents of graded pH, precipitate, then weigh and analyse C/H/N/P. The experiment succeeds when a substance resists known categories (Miescher's pepsin-resistant, phosphorus-rich nuclein). Limitation: mixtures, no structures.</div>
+
+  <div class="qa"><b>Stage II (1880–1900) — Chemical dissection (Kossel's programme).</b> Question: <i>what is nuclein made of?</i> Logic: hydrolyse the complex, trap each fragment as a crystalline salt (picrates, silver compounds), and match it to synthetic standards (Fischer's purines). Discovery strategy: break down → isolate → identify by comparison. This is where the bases, histones, and "free protein vs nucleic acid" separation belong.</div>
+
+  <div class="qa"><b>Stage III (1900–1930) — Structure of the monomer &amp; polymer.</b> Question: <i>how are the units connected?</i> Logic: controlled partial hydrolysis defines the monomer (Levene's nucleotide; Fischer's peptide bond); stereochemistry and synthesis prove it. Danger of premature models: Levene's tetranucleotide hypothesis shows how a tidy but wrong structure freezes a field for twenty years — a classic lesson in evidence vs. elegance.</div>
+
+  <div class="qa"><b>Stage IV (1930–1945) — Enzymes as analytical scalpels.</b> Question: <i>which molecule carries function?</i> Logic: purify to homogeneity, then abolish the activity with a <b>single specific enzyme</b> (DNase in Avery 1944) — the "knockout" logic of pre-molecular biology. Parallel quantitative tools (UV absorption, Kjeldahl nitrogen, color reactions) turn identity claims into measurements.</div>
+
+  <div class="qa"><b>Stage V (1944–1950s) — Separation science &amp; information.</b> Question: <i>what is the sequence and how is it copied?</i> Logic: chromatography (paper, ion-exchange) makes composition comparable across species; Chargaff's ratios convert analytical chemistry into structural constraint; isotope labelling (³²P/³⁵S in Hershey–Chase) gives molecule-level fate tracking. The conceptual leap: nucleic acids are not just cell chemistry — they are <b>information</b>, and composition rules (A=T, G=C) are the first read of the code.</div>
+
+  <div class="qa"><b>Recurring experimental motifs to cite in essays:</b>
+    <ul>
+      <li><b>Differential solubility &amp; precipitation</b> (1850s→): the workhorse of every isolation on this page.</li>
+      <li><b>Hydrolysis as analysis</b>: what strong/weak acids and alkalis reveal about bonds.</li>
+      <li><b>Derivative trapping</b> (picrates, esters, osazones): making molecules separable by changing their physical form.</li>
+      <li><b>Enzyme specificity as proof of identity</b>: from Kossel's nucleases to Avery's DNase control.</li>
+      <li><b>Quantification forcing theory change</b>: spectrophotometry + chromatography killed the tetranucleotide hypothesis.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Educational compilation — history of nucleic-acid, nucleotide, and amino-acid biochemistry, 1850–1950. Links point to PubMed and Google Scholar entries for the cited works.
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.filters button');
+  buttons.forEach(btn => btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.f;
+    document.querySelectorAll('.event').forEach(ev => {
+      ev.style.display = (f === 'all' || ev.dataset.t.split(' ').includes(f)) ? '' : 'none';
+    });
+  }));
+</script>
+</body>
+</html>
