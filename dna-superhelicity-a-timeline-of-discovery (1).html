@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DNA Superhelicity — A Timeline of Discovery</title>
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --ink: #10202b;
+    --muted: #55677a;
+    --accent: #0b6e99;
+    --accent2: #c2410c;
+    --card: #ffffff;
+    --line: #d8e2ec;
+    --tag-bg: #e8f2f8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+  }
+  header.hero {
+    background: linear-gradient(135deg, #07293f 0%, #0b6e99 60%, #1287b8 100%);
+    color: #fff;
+    padding: 64px 24px 56px;
+    text-align: center;
+  }
+  header.hero h1 { font-size: 2.2rem; margin: 0 0 10px; letter-spacing: .5px; }
+  header.hero p { max-width: 760px; margin: 8px auto; color: #d7ecf5; font-size: 1.05rem; }
+  .pill {
+    display: inline-block; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35);
+    border-radius: 999px; padding: 4px 14px; font-size: .85rem; margin: 4px 4px 0; font-family: Verdana, sans-serif;
+  }
+  main { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }
+  h2.section {
+    font-family: Verdana, sans-serif; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--accent); border-bottom: 2px solid var(--line); padding-bottom: 8px; margin-top: 56px;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px 22px; margin: 18px 0; box-shadow: 0 1px 4px rgba(16,32,43,.06);
+  }
+  .formula {
+    font-family: "Courier New", monospace; font-size: 1.15rem; text-align: center;
+    background: #eef6fa; border: 1px dashed #9cc4d8; border-radius: 10px; padding: 12px; margin: 14px 0;
+  }
+  /* Timeline */
+  .tl { position: relative; margin: 26px 0 0; padding-left: 26px; }
+  .tl::before {
+    content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 3px;
+    background: linear-gradient(#1287b8, #9cc4d8); border-radius: 3px;
+  }
+  .ev { position: relative; padding: 0 0 34px 18px; }
+  .ev::before {
+    content: ""; position: absolute; left: -26px; top: 6px; width: 15px; height: 15px; border-radius: 50%;
+    background: #fff; border: 4px solid var(--accent);
+  }
+  .ev.key::before { border-color: var(--accent2); }
+  .ev .yr {
+    font-family: Verdana, sans-serif; font-weight: bold; font-size: 1.05rem; color: var(--accent);
+  }
+  .ev.key .yr { color: var(--accent2); }
+  .ev h3 { margin: 2px 0 6px; font-size: 1.12rem; }
+  .ev p { margin: 4px 0 8px; color: #2c3f4f; }
+  .cites { font-size: .88rem; }
+  .cites a {
+    display: inline-block; margin: 3px 6px 3px 0; padding: 2px 10px; border-radius: 999px;
+    background: var(--tag-bg); color: #0b5474; text-decoration: none; font-family: Verdana, sans-serif; font-size: .8rem;
+    border: 1px solid #bcd8e8;
+  }
+  .cites a:hover { background: #d3e9f4; }
+  .tag {
+    display: inline-block; font-family: Verdana, sans-serif; font-size: .72rem; text-transform: uppercase;
+    letter-spacing: .8px; padding: 2px 8px; border-radius: 4px; margin-right: 8px; vertical-align: middle;
+  }
+  .tag.disc { background: #fdf1e7; color: #9a3412; }
+  .tag.enzyme { background: #e8f6ee; color: #166534; }
+  .tag.gel { background: #eef0fa; color: #3730a3; }
+  .note { font-size: .9rem; color: var(--muted); font-style: italic; }
+  /* Interactive lab */
+  .lab { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 720px) { .lab { grid-template-columns: 1fr; } }
+  .lab .panel { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+  .lab h4 { margin: 0 0 8px; font-family: Verdana, sans-serif; font-size: .95rem; color: var(--accent); }
+  .gelbox { background: #1c2733; border-radius: 10px; padding: 14px; }
+  .gelbox svg { width: 100%; height: auto; display: block; }
+  .ctl label { font-family: Verdana, sans-serif; font-size: .85rem; color: var(--muted); }
+  .ctl input[type=range] { width: 100%; accent-color: var(--accent); }
+  .readout { font-family: "Courier New", monospace; font-size: .9rem; background: #eef6fa; border-radius: 8px; padding: 10px; margin-top: 8px; }
+  ul.gloss { columns: 2; column-gap: 34px; margin-top: 12px; }
+  @media (max-width: 620px) { ul.gloss { columns: 1; } }
+    ul.gloss li { margin-bottom: 10px; break-inside: avoid; }
+  b.term { color: var(--accent); }
+  ol.books { margin: 12px 0 0; padding-left: 22px; }
+  ol.books li { margin-bottom: 16px; }
+  .book-title { font-style: italic; }
+  .isbn { font-family: "Courier New", monospace; font-size: .85rem; color: #0b5474; }
+  footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 24px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>DNA Superhelicity</h1>
+  <p>An educational timeline: how supercoiled DNA was discovered, how the topoisomerases that control it were found, and how gel electrophoresis came to separate the topoisomers — individual species that differ by ΔLk = ±1.</p>
+  <span class="pill">Molecular Topology</span>
+  <span class="pill">History of Science</span>
+  <span class="pill">Every claim cited to PubMed / DOI</span>
+</header>
+
+<main>
+
+  <h2 class="section">1 · The core idea in one minute</h2>
+  <div class="card">
+    <p>A covalently closed circular DNA (cccDNA) has no free ends, so the number of times its two strands wind around each other is locked in. That integer is the <b class="term">linking number, Lk</b>. A relaxed B-DNA helix "wants" one turn per ~10.5 base pairs; if Lk differs from that relaxed value, the circle cannot unwind at the ends — instead it <b>writhes</b>, coiling up on itself like a twisted rubber band. That coiled state is <b class="term">superhelical DNA</b>.</p>
+    <div class="formula">Lk = Tw + Wr &nbsp;&nbsp;·&nbsp;&nbsp; σ = (Lk − Lk₀) / Lk₀ &nbsp;&nbsp;·&nbsp;&nbsp; ΔLk = ±1 between adjacent topoisomers</div>
+    <p class="note">Lk = linking number (a topological invariant), Tw = twist (helical winding), Wr = writhe (supercoils). σ is the superhelix density; natural DNAs are typically negatively supercoiled, σ ≈ −0.05 to −0.07.</p>
+  </div>
+
+  <h2 class="section">2 · Timeline of discovery</h2>
+  <div class="tl">
+
+    <div class="ev key">
+      <span class="yr">1963</span> <span class="tag disc">discovery</span>
+      <h3>Animal-virus DNA turns out to be a closed circle</h3>
+      <p>Dulbecco and Vogt show that polyoma virus DNA sediments in two forms. The faster form is a <b>ring</b>: a covalently closed duplex circle — the substrate on which all supercoiling physics would later be worked out.</p>
+      <p class="cites">Dulbecco &amp; Vogt, <i>Evidence for a ring structure of polyoma virus DNA</i>, PNAS 50:236 (1963) · <a href="https://doi.org/10.1073/pnas.50.2.236" target="_blank">DOI 10.1073/pnas.50.2.236</a></p>
+    </div>
+
+    <div class="ev key">
+      <span class="yr">1965</span> <span class="tag disc">discovery</span>
+      <h3>The "twisted circular form" — superhelical DNA is described</h3>
+      <p>Vinograd, Lebowitz, Radloff, Watson &amp; Laipis report that closed circular polyoma DNA exists in a compact, rapidly sedimenting twisted form, and that a single-strand nick converts it to the relaxed open circle. This is the birth of DNA superhelicity as an experimental fact: the twist is <b>topologically trapped</b> because the strands cannot rotate freely.</p>
+      <p class="cites">Vinograd et al., <i>The twisted circular form of polyoma viral DNA</i>, PNAS 53:1104 (1965) · <a href="https://pubmed.ncbi.nlm.nih.gov/4287964/" target="_blank">PubMed 4287964</a> · <a href="https://doi.org/10.1073/pnas.53.6.1104" target="_blank">DOI 10.1073/pnas.53.6.1104</a></p>
+    </div>
+
+    <div class="ev">
+      <span class="yr">1967</span> <span class="tag disc">method</span>
+      <h3>Dye–buoyant density: supercoiled DNA is purified in a centrifuge</h3>
+      <p>Radloff, Bauer &amp; Vinograd exploit the fact that closed circles bind less ethidium bromide than nicked DNA, so they band at a different density in CsCl–ethidium gradients. For two decades this was <i>the</i> way to purify and quantify supercoiled plasmids — and intercalating dyes became the calibrated "wrench" for removing supercoils turn by turn.</p>
+      <p class="cites">Radloff, Bauer &amp; Vinograd, <i>A dye-buoyant-density method for the detection and isolation of closed circular duplex DNA</i>, PNAS 57:1724 (1967) · <a href="https://doi.org/10.1073/pnas.57.6.1724" target="_blank">DOI 10.1073/pnas.57.6.1724</a></p>
+    </div>
+
+    <div class="ev key">
+      <span class="yr">1971</span> <span class="tag enzyme">enzyme</span>
+      <h3>Wang purifies ω protein — the first DNA topoisomerase</h3>
+      <p>James C. Wang purifies an <i>E. coli</i> protein, dubbed <b>ω</b>, that removes negative superhelical turns from cccDNA <i>without breaking both strands irreversibly</i>. The reaction proceeds gradually, requires no cofactor, and introduces a reversible "swivel" into DNA. This is the discovery of <b>topoisomerase I</b>, before the name existed.</p>
+      <p class="cites">Wang, <i>Interaction between DNA and Escherichia coli protein ω</i>, J. Mol. Biol. 55:523 (1971) · <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Wang+JC+protein+omega+1971+Escherichia+coli" target="_blank">PubMed search</a> — subsequent purification/characterization: <a href="https://pubmed.ncbi.nlm.nih.gov/817788/" target="_blank">PubMed 817788</a></p>
+    </div>
+
+    <div class="ev key">
+      <span class="yr">1972</span> <span class="tag enzyme">enzyme</span>
+      <h3>Mammalian cells have an untwisting enzyme too</h3>
+      <p>Champoux &amp; Dulbecco find a mammalian cell activity that relaxes superhelical DNA — the eukaryotic type I topoisomerase — proposed as the long-sought "swivel" for replication and transcription.</p>
+      <p class="cites">Champoux &amp; Dulbecco, <i>An activity from mammalian cells that untwists superhelical DNA: a possible swivel for DNA replication</i>, PNAS 69:143 (1972) · <a href="https://pubmed.ncbi.nlm.nih.gov/4333036/" target="_blank">PubMed 4333036</a> · <a href="https://doi.org/10.1073/pnas.69.1.143" target="_blank">DOI 10.1073/pnas.69.1.143</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC427563/" target="_blank">PMC427563</a></p>
+    </div>
+
+    <div class="ev key">
+      <span class="yr">1975</span> <span class="tag gel">gel electrophoresis</span>
+      <h3>Nicking–closing enzymes produce a Boltzmann ladder of topoisomers</h3>
+      <p>Depew &amp; Wang treat cccDNA with a nicking–closing enzyme and, crucially, recognize thermally driven <b>conformational fluctuations</b> in the DNA helix: each nicking–closing cycle samples a slightly different winding, so partial relaxation generates a whole <b>distribution of topological isomers</b> — a ladder in which adjacent bands differ by <b>ΔLk = 1</b>, with populations following Boltzmann statistics. This paper is the conceptual bridge between enzyme mechanism and the gel ladders everyone uses today.</p>
+      <p class="cites">Depew &amp; Wang, <i>Conformational fluctuations of DNA helix</i>, PNAS 72:4275 (1975) · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC388704/" target="_blank">PMC388704</a> · <a href="https://doi.org/10.1073/pnas.72.11.4275" target="_blank">DOI 10.1073/pnas.72.11.4275</a></p>
+    </div>
+
+    <div class="ev key">
+      <span class="yr">1975</span> <span class="tag gel">gel electrophoresis</span>
+      <h3>Agarose gels count superhelical turns</h3>
+      <p>Keller shows that SV40 DNA topoisomers, previously resolved only by ultracentrifugation, separate cleanly in <b>agarose gel electrophoresis</b>: fully supercoiled DNA runs fastest, and each discrete band corresponds to a species with a defined number of superhelical turns. Gel electrophoresis becomes the standard tool to "read" superhelicity — the direct ancestor of today's plasmid-topology gels.</p>
+      <p class="cites">Keller, <i>Determination of the number of superhelical turns in simian virus 40 DNA by gel electrophoresis</i>, PNAS 72:4876 (1975) · <a href="https://doi.org/10.1073/pnas.72.12.4876" target="_blank">DOI 10.1073/pnas.72.12.4876</a></p>
+    </div>
+
+    <div class="ev key">
+      <span class="yr">1976</span> <span class="tag enzyme">enzyme</span>
+      <h3>DNA gyrase: the enzyme that <i>adds</i> supercoils</h3>
+      <p>Gellert, Mizuuchi, O'Dea &amp; Nash discover <b>DNA gyrase</b> — the first enzyme known to introduce negative superhelical turns into DNA in an ATP-dependent reaction. Nature's negative supercoiling (σ ≈ −0.05) is thereby explained as an enzyme activity, not an accident of packaging.</p>
+      <p class="cites">Gellert, Mizuuchi, O'Dea &amp; Nash, <i>DNA gyrase: an enzyme that introduces superhelical turns into DNA</i>, PNAS 73:3872 (1976) · <a href="https://doi.org/10.1073/pnas.73.11.3872" target="_blank">DOI 10.1073/pnas.73.11.3872</a></p>
+    </div>
+
+    <div class="ev key">
+      <span class="yr">1979</span> <span class="tag gel">gel electrophoresis</span>
+      <h3>Two-dimensional gels and the helical repeat of DNA</h3>
+      <p>Wang's <b>two-dimensional (forward/reverse) gel</b> technique resolves the full topoisomer distribution: DNA is run in one direction, then with an intercalator (chloroquine) added, which unwinds the helix and shifts each topoisomer differently. From the point where the topoisomer distribution reverses, the <b>helical repeat of DNA in solution (~10.5 bp/turn)</b> is measured directly — and each spot on the 2-D arc corresponds to exactly one ΔLk step. This is the experiment that turned topoisomer gels into quantitative topology.</p>
+      <p class="cites">Wang, <i>Helical repeat of DNA in solution</i>, PNAS 76:200 (1979) · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC382905/" target="_blank">PMC382905</a> · <a href="https://doi.org/10.1073/pnas.76.1.200" target="_blank">DOI 10.1073/pnas.76.1.200</a></p>
+    </div>
+
+    <div class="ev key">
+      <span class="yr">1979</span> <span class="tag enzyme">enzyme</span>
+      <h3>The sign-inversion mechanism of strand passage</h3>
+      <p>Brown &amp; Cozzarelli propose that gyrase supercoils DNA by passing one duplex segment <i>through</i> a transient double-strand break in another — inverting the sign of a crossover — the defining reaction of <b>type II topoisomerases</b> (ΔLk in steps of 2).</p>
+      <p class="cites">Brown &amp; Cozzarelli, <i>A sign inversion mechanism for enzymatic supercoiling of DNA</i>, Science 206:1081 (1979) · <a href="https://doi.org/10.1126/science.227059" target="_blank">DOI 10.1126/science.227059</a></p>
+    </div>
+
+    <div class="ev key">
+      <span class="yr">1979–80</span> <span class="tag enzyme">enzyme</span>
+      <h3>A second bacterial type II enzyme, and eukaryotic topo II via catenanes</h3>
+      <p>Brown, Peebles &amp; Cozzarelli purify from <i>E. coli</i> an ATP-dependent topoisomerase related to but distinct from gyrase (now known as <b>topoisomerase IV</b>, the decatenating enzyme of chromosome segregation). In parallel, Baldi et al. isolate from <i>Xenopus</i> eggs a novel ATP-dependent eukaryotic topoisomerase — the discovery route for both was the ability to form and resolve <b>catenanes</b> (interlocked DNA rings), which these enzymes handle via the same double-strand passage reaction.</p>
+      <p class="cites">Brown, Peebles &amp; Cozzarelli, <i>A topoisomerase from Escherichia coli related to DNA gyrase</i>, PNAS 76:6110 (1979) · <a href="https://doi.org/10.1073/pnas.76.12.6110" target="_blank">DOI 10.1073/pnas.76.12.6110</a><br/>
+      Baldi et al., <i>In vitro catenation and decatenation of DNA and a novel eucaryotic ATP-dependent topoisomerase</i>, Cell 20:85 (1980) · <a href="https://doi.org/10.1016/0092-8674(80)90632-7" target="_blank">DOI 10.1016/0092-8674(80)90632-7</a></p>
+    </div>
+
+    <div class="ev">
+      <span class="yr">1981</span> <span class="tag enzyme">enzyme</span>
+      <h3>Type I enzymes can catenate and knot too</h3>
+      <p>Brown &amp; Cozzarelli show that even the single-strand-nicking ω protein can pass DNA segments through a transient enzyme-bridged break — revealing a mechanistic unity between type I and type II topoisomerases and making knots and catenanes readouts of enzyme mechanism.</p>
+      <p class="cites">Brown &amp; Cozzarelli, <i>Catenation and knotting of duplex DNA by type 1 topoisomerases: a mechanistic parallel with type 2 topoisomerases</i>, PNAS 78:843 (1981) · <a href="https://doi.org/10.1073/pnas.78.2.843" target="_blank">DOI 10.1073/pnas.78.2.843</a></p>
+    </div>
+
+    <div class="ev">
+      <span class="yr">1987</span> <span class="tag disc">concept</span>
+      <h3>The twin-domain model: transcription generates supercoils</h3>
+      <p>Liu &amp; Wang show that a moving RNA polymerase drags DNA around it, creating a twin-domain of positive supercoils ahead and negative supercoils behind — explaining why cells need topoisomerases everywhere, not just at replication forks.</p>
+      <p class="cites">Liu &amp; Wang, <i>Supercoiling of DNA during transcription</i>, PNAS 84:7024 (1987) · <a href="https://doi.org/10.1073/pnas.84.20.7024" target="_blank">DOI 10.1073/pnas.84.20.7024</a></p>
+    </div>
+
+    <div class="ev">
+      <span class="yr">1996</span> <span class="tag disc">synthesis</span>
+      <h3>The field's canonical review</h3>
+      <p>Wang's Annual Reviews article consolidates the discovery arc — ω, gyrase, catenanes, sign inversion — into the modern classification of type I/II topoisomerases. An excellent single entry point to the whole story.</p>
+      <p class="cites">Wang, <i>DNA topoisomerases</i>, Annu. Rev. Biochem. 65:635 (1996) · <a href="https://pubmed.ncbi.nlm.nih.gov/8811192/" target="_blank">PubMed 8811192</a> · <a href="https://doi.org/10.1146/annurev.bi.65.070196.003223" target="_blank">DOI 10.1146/annurev.bi.65.070196.003223</a></p>
+    </div>
+
+  </div>
+
+  <h2 class="section">3 · Interactive lab: read a topoisomer gel</h2>
+  <div class="lab">
+    <div class="panel">
+      <h4>1-D agarose gel</h4>
+      <div class="gelbox">
+        <svg viewBox="0 0 300 320" role="img" aria-label="Simulated agarose gel of plasmid topoisomers">
+          <defs>
+            <linearGradient id="gelgrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#243447"/><stop offset="1" stop-color="#101a26"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="300" height="320" rx="8" fill="url(#gelgrad)"/>
+          <g id="bands"></g>
+          <text x="150" y="312" fill="#7fa3bd" font-size="11" text-anchor="middle" font-family="Verdana">→ migration (anode)</text>
+          <text x="288" y="20" fill="#7fa3bd" font-size="10" text-anchor="end" font-family="Verdana">← + / top of gel</text>
+        </svg>
+      </div>
+      <div class="ctl" style="margin-top:14px;">
+        <label for="dlk">Superhelical state of the plasmid sample: ΔLk = <span id="dlkval">−12</span></label>
+        <input id="dlk" type="range" min="-20" max="0" step="1" value="-12" />
+        <div class="readout" id="readout1"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h4>2-D (forward / reverse) topoisomer gel</h4>
+      <div class="gelbox">
+        <svg viewBox="0 0 300 320" role="img" aria-label="Simulated two-dimensional topoisomer gel arc">
+          <rect x="0" y="0" width="300" height="320" rx="8" fill="#101a26"/>
+          <g id="arc"></g>
+          <line x1="24" y1="290" x2="284" y2="290" stroke="#2b3c50" stroke-width="2"/>
+          <line x1="24" y1="24" x2="24" y2="290" stroke="#2b3c50" stroke-width="2"/>
+          <text x="154" y="306" fill="#7fa3bd" font-size="11" text-anchor="middle" font-family="Verdana">1st dimension →</text>
+          <text x="12" y="160" fill="#7fa3bd" font-size="11" text-anchor="middle" font-family="Verdana" transform="rotate(-90 12 160)">2nd dimension ↑</text>
+        </svg>
+      </div>
+      <div class="readout" id="readout2">
+        After the first dimension, chloroquine is added for the second run. Each spot is one topoisomer (ΔLk = 1 apart). Because the intercalator unwinds the helix, the distribution bends into an arc — the minimum of the arc marks the topoisomer that is relaxed <i>under those dye conditions</i>, and the arc's shape yields the solution helical repeat (~10.5 bp/turn), exactly as in Wang's 1979 forward/reverse gels.
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section">4 · Glossary</h2>
+  <div class="card">
+    <ul class="gloss">
+      <li><b class="term">Linking number (Lk)</b> — integer count of times one strand crosses the other; fixed in covalently closed DNA.</li>
+      <li><b class="term">Twist (Tw) / Writhe (Wr)</b> — the geometric split of Lk into helical winding and supercoiling.</li>
+      <li><b class="term">Topoisomers</b> — same DNA molecule, different Lk; differ by ΔLk = 1 (type I enzymes) or 2 (type II).</li>
+      <li><b class="term">Superhelix density (σ)</b> — normalized supercoiling: σ = ΔLk/Lk₀; natural plasmids ≈ −0.05.</li>
+      <li><b class="term">Topoisomerase I (ω)</b> — single-strand passage, ΔLk = ±1, ATP-independent (Wang 1971).</li>
+      <li><b class="term">DNA gyrase</b> — bacterial type II enzyme that actively introduces negative supercoils, ΔLk = −2 (Gellert 1976).</li>
+      <li><b class="term">Topoisomerase IV</b> — bacterial type II enzyme specialized for decatenation (Brown 1979).</li>
+      <li><b class="term">Catenanes &amp; knots</b> — interlocked and knotted circles; natural readouts of strand passage.</li>
+      <li><b class="term">Ethidium bromide / chloroquine</b> — intercalators that unwind DNA, shifting every topoisomer's mobility; the basis of dye titration and 2-D gels.</li>
+      <li><b class="term">Boltzmann distribution</b> — the near-Gaussian spread of topoisomer amounts produced by partial relaxation (Depew &amp; Wang 1975).</li>
+    </ul>
+  </div>
+
+  <h2 class="section">5 · Books — further reading</h2>
+  <div class="card">
+    <ol class="books">
+      <li>
+        <span class="book-title">DNA Topology and Its Biological Effects</span>. Eds. Nicholas R. Cozzarelli &amp; James C. Wang. Cold Spring Harbor Laboratory Press, Cold Spring Harbor Monograph Series: 20, 1990.<br/>
+        <span class="isbn">ISBN 978-0879693480 (0-87969-348-7)</span> — the classic monograph co-edited by the two founders of the field; the definitive collection on supercoiling, catenanes, knots and enzyme mechanism.
+      </li>
+      <li>
+        <span class="book-title">DNA Topology</span>. Andrew D. Bates &amp; Anthony Maxwell. Oxford University Press, 2nd ed., 2005 (In Focus series; 1st ed. 1993).<br/>
+        <span class="isbn">ISBN 978-0198506553 (0-19-850655-4, paperback)</span> · <span class="isbn">978-0198567097 (0-19-856709-X, hardcover)</span> — the best short, student-friendly introduction to Lk, Tw, Wr and the topoisomerases.
+      </li>
+      <li>
+        <span class="book-title">Untangling the Double Helix: DNA Entanglement and the Action of the DNA Topoisomerases</span>. James C. Wang. Cold Spring Harbor Laboratory Press, 2009.<br/>
+        <span class="isbn">ISBN 978-0879698638 (hardcover)</span> · <span class="isbn">978-0879698799 (paperback)</span> — the discoverer of the ω protein tells the history of the field, including much of the timeline above, in his own words.
+      </li>
+      <li>
+        <span class="book-title">Nucleic Acids: Structures, Properties, and Functions</span>. Victor A. Bloomfield, Donald M. Crothers &amp; Ignacio Tinoco, Jr. University Science Books, Sausalito, 2000.<br/>
+        <span class="isbn">ISBN 0-935702-49-0</span> — the rigorous physical-chemistry treatment of supercoiling, twist–writhe partitioning and DNA topology (chapters on circular DNA and topoisomerases).
+      </li>
+      <li>
+        <span class="book-title">DNA Replication</span>. Arthur Kornberg &amp; Tania A. Baker. W.H. Freeman, 2nd ed., 1992.<br/>
+        <span class="isbn">ISBN 978-0716720034 (0-7167-2003-5)</span> — places supercoiling and topoisomerases in their biological context: replication forks, swivels and gyrase-dependent chromosome mechanics.
+      </li>
+    </ol>
+  </div>
+
+  <footer>
+    Compiled from the primary literature; every timeline entry links to PubMed and/or its publisher DOI.
+    Doubly-marked milestones (orange) are the four pillars: the 1965 observation, the 1971 enzyme, the 1975–79 gels, and the 1976–79 mechanism.
+  </footer>
+
+</main>
+
+<script>
+  // ---- 1-D gel simulation: mobility falls sharply as |ΔLk| decreases (relaxed open circle slowest) ----
+  var dlkInput = document.getElementById("dlk");
+  var dlkVal = document.getElementById("dlkval");
+  var bands = document.getElementById("bands");
+  var readout1 = document.getElementById("readout1");
+
+  function mobilityY(dlk) {
+    // y position in the gel: supercoiled (dlk very negative) near top (fast), relaxed near bottom
+    var f = 1 - Math.exp(Math.abs(dlk) / -6.0); // 0 (fully sc) -> ~1 (relaxed)
+    return 30 + f * 250;
+  }
+
+  function renderBands() {
+    var dlk = parseInt(dlkInput.value, 10);
+    dlkVal.textContent = dlk === 0 ? "0 (relaxed)" : dlk;
+    var parts = [];
+    // show a small ladder around the chosen state to mimic a topoisomer distribution
+    for (var d = dlk - 2; d <= dlk + 2; d++) {
+      if (d > 0) continue;
+      var intensity = Math.exp(-Math.pow(d - dlk, 2) / 2.2);
+      var y = mobilityY(d);
+      parts.push('<ellipse cx="150" cy="' + y.toFixed(1) + '" rx="' + (26 + intensity * 14).toFixed(1) +
+        '" ry="5" fill="#e764a0" opacity="' + (0.25 + 0.6 * intensity).toFixed(2) + '"/>');
+      parts.push('<text x="196" y="' + (y + 4).toFixed(1) + '" fill="#9db7cb" font-size="10" font-family="Verdana">ΔLk ' + d + '</text>');
+    }
+    bands.innerHTML = parts.join("");
+    var absr = Math.abs(dlk);
+    var sigma = (dlk / 250 * -1).toFixed(4); // pretend 2625 bp plasmid: Lk0 ≈ 250
+    var turns = Math.round(250 + dlk);
+    readout1.innerHTML = "Model: 2625 bp plasmid (Lk<sub>0</sub> ≈ 250, helical repeat 10.5 bp). " +
+      "This molecule carries about <b>" + absr + " negative superhelical turns</b> (Wr ≈ −" + absr +
+      "), σ ≈ <b>" + sigma + "</b>.<br/>Fully supercoiled DNA migrates fastest (top bands); a nick converts it to the slow, relaxed open circle. A nicking–closing enzyme would re-distribute it into a Boltzmann ladder of ΔLk = ±1 topoisomers (Depew &amp; Wang 1975).";
+  }
+  dlkInput.addEventListener("input", renderBands);
+  renderBands();
+
+  // ---- 2-D arc: topoisomer spots shifted by intercalator in the 2nd dimension ----
+  var arc = document.getElementById("arc");
+  var spots = [];
+  var x0 = 40, yTop = 60, yBot = 270;
+  for (var i = 0; i <= 14; i++) {
+    // first dimension position: speed ~ |Lk difference from current relaxation point under dye|
+    var t = i / 14;
+    var dx = 60 + 170 * t;                          // 1st-dim migration (monotone for simplicity)
+    var shift = 110 * Math.exp(-Math.pow((t - 0.35) * 2.6, 2)); // dye-induced reordering => arc
+    var dy = yTop + (yBot - yTop) * t - shift;
+    var r = 4 + 3 * Math.exp(-Math.pow((t - 0.35) * 3, 2));
+    spots.push('<circle cx="' + dx.toFixed(1) + '" cy="' + dy.toFixed(1) + '" r="' + r.toFixed(1) +
+      '" fill="#e764a0" opacity="0.85"/>');
+    if (i % 2 === 0) spots.push('<text x="' + (dx + 8).toFixed(1) + '" y="' + (dy + 4).toFixed(1) +
+      '" fill="#7fa3bd" font-size="9" font-family="Verdana">Lk' + (i - 4) + '</text>');
+  }
+  arc.innerHTML = spots.join("");
+</script>
+</body>
+</html>
